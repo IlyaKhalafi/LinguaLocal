@@ -42,11 +42,24 @@ test("server snapshots preserve defaults, unused media, settings and portable re
     const report = await createServerSnapshot(
       { dataDirectory, mediaDirectory, bundledDirectory },
       snapshot,
-      { content, settings: defaultSettings },
+      {
+        content,
+        settings: defaultSettings,
+        server: {
+          port: 3200,
+          host: "0.0.0.0",
+          publicUrl: "http://school.local:3200",
+        },
+      },
     );
     assert.equal(report.files, 7);
     assert.deepEqual(report.defaults, ["content.json"]);
     await restoreServerSnapshot(snapshot, restored);
+    assert.ok(
+      (
+        await readFile(path.join(restored, "server.env.example"), "utf8")
+      ).includes("PORT=3200"),
+    );
     assert.deepEqual(
       JSON.parse(await readFile(path.join(restored, "content.json"), "utf8")),
       content,

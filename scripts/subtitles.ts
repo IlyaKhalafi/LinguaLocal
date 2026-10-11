@@ -1,3 +1,4 @@
+import "./load-environment.mjs";
 import { readUtf8File } from "../src/lib/text-file";
 import { parseSubtitles, convertSubtitles } from "../src/lib/subtitles";
 import { writeFileAtomically } from "../src/lib/atomic-file";

@@ -124,3 +124,5 @@ Both destinations must be new directories. Restore verifies the inventory, requi
 Pause content edits and file transfers while taking a snapshot. A changed source file fails the operation and removes its partial output. Move symbolic links into regular media files first. Snapshots keep unused media so source materials are not lost. Student browser progress is backed up separately from Settings.
 
 In the standalone distribution, use `node scripts/snapshot-tools.mjs create NEW-SNAPSHOT-DIRECTORY` or `node scripts/snapshot-tools.mjs restore SNAPSHOT NEW-DATA-DIRECTORY`.
+
+Content commands load the project’s `.env` file, with exported environment variables taking precedence. Snapshots also archive the configured `PORT`, `LINGUALOCAL_HOST`, and public school address. Restore produces `server.env.example` for you to review on the new computer. Set its data paths before copying these values into the deployment environment. Other environment variables are not included.

@@ -58,6 +58,11 @@ try {
   const restored = path.join(directory, "restored");
   run("snapshot-tools", ["create", snapshot]);
   run("snapshot-tools", ["restore", snapshot, restored]);
+  assert.ok(
+    (
+      await readFile(path.join(restored, "server.env.example"), "utf8")
+    ).includes("PORT="),
+  );
   assert.equal(
     await readFile(path.join(restored, "content.json"), "utf8"),
     await readFile(path.join(dataDirectory, "content.json"), "utf8"),

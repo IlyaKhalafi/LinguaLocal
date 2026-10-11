@@ -9,8 +9,11 @@ await cp("node_modules/csv-parse", ".next/standalone/node_modules/csv-parse", {
   recursive: true,
 });
 const sources = [
+  ["scripts/load-environment.mjs", "load-environment.mjs"],
   ["scripts/storage-paths.mjs", "storage-paths.mjs"],
   ["src/content/starter.json", "starter.json"],
+  ["src/lib/network-address.ts", "network-address.mjs"],
+  ["src/lib/server-config.ts", "server-config.mjs"],
   ["src/lib/default-settings.ts", "default-settings.mjs"],
   ["src/lib/server-snapshot.ts", "server-snapshot.mjs"],
   ["scripts/server-snapshot.ts", "snapshot-tools.mjs"],

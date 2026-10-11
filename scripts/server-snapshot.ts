@@ -1,5 +1,7 @@
+import "./load-environment.mjs";
 import path from "node:path";
 import seed from "../src/content/starter.json" with { type: "json" };
+import { serverConfig } from "../src/lib/server-config";
 import { defaultSettings } from "../src/lib/default-settings";
 import { packSchema } from "../src/lib/schema";
 import {
@@ -14,7 +16,11 @@ runCommand(async () => {
     const report = await createServerSnapshot(
       { ...storagePaths(), bundledDirectory: path.resolve("public/demo") },
       source,
-      { content: packSchema.parse(seed), settings: defaultSettings },
+      {
+        content: packSchema.parse(seed),
+        settings: defaultSettings,
+        server: serverConfig(),
+      },
     );
     console.log(JSON.stringify(report, null, 2));
   } else if (

@@ -20,6 +20,12 @@ import {
 import { readValidatedJson, writeJsonAtomically } from "./json-file";
 import { resolveMediaFile } from "./media-files";
 import type { Stats } from "node:fs";
+import {
+  serverConfigSchema,
+  configTemplate,
+  type ServerConfig,
+} from "./server-config";
+import { writeFileAtomically } from "./atomic-file";
 
 const manifestLimit = 16 * 1024 * 1024;
 const fileName = z
@@ -38,6 +44,7 @@ const manifestSchema = z
   .object({
     version: z.literal(1),
     created: z.iso.datetime(),
+    server: serverConfigSchema.optional(),
     files: z
       .array(
         z.object({
@@ -186,7 +193,7 @@ async function copy(source: string, target: string, expected?: string) {
 export async function createServerSnapshot(
   roots: Roots,
   destination: string,
-  defaults: { content: ContentPack; settings: Settings },
+  defaults: { content: ContentPack; settings: Settings; server?: ServerConfig },
 ) {
   const contentDocument = await documentOrDefault(
     path.join(roots.dataDirectory, "content.json"),
@@ -254,6 +261,7 @@ export async function createServerSnapshot(
     const manifest = manifestSchema.parse({
       version: 1,
       created: new Date().toISOString(),
+      server: defaults.server,
       files,
     });
     if (Buffer.byteLength(JSON.stringify(manifest)) > manifestLimit)
@@ -326,6 +334,12 @@ export async function restoreServerSnapshot(
       if (actual.bytes !== file.bytes || actual.sha256 !== file.sha256)
         throw new Error(`Snapshot changed while restoring. ${file.file}`);
     }
+    if (manifest.server)
+      await writeFileAtomically(
+        path.join(target, "server.env.example"),
+        configTemplate(manifest.server),
+        { overwrite: false },
+      );
     return { directory: target, files: manifest.files.length };
   } catch (error) {
     await rm(target, { recursive: true, force: true });

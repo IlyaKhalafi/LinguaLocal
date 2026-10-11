@@ -1,3 +1,4 @@
+import "./load-environment.mjs";
 import { readUtf8File } from "../src/lib/text-file";
 import { packSchema } from "../src/lib/schema";
 import { importVocabulary } from "../src/lib/vocabulary-csv";

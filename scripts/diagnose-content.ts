@@ -1,3 +1,4 @@
+import "./load-environment.mjs";
 import path from "node:path";
 import { storagePaths } from "./storage-paths.mjs";
 import { packSchema } from "../src/lib/schema";

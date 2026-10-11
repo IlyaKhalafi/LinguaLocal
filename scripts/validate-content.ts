@@ -1,3 +1,4 @@
+import "./load-environment.mjs";
 import { packSchema } from "../src/lib/schema";
 import { readValidatedJson } from "../src/lib/json-file";
 import { runCommand } from "../src/lib/cli";
