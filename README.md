@@ -21,7 +21,7 @@
 
 Give students a place to browse their books, listen to a conversation, discover a new word, and practise a little every day. Run LinguaLocal on one school computer and open it from any phone, tablet, or laptop on the same Wi-Fi network.
 
-No accounts. No subscriptions. No runtime cloud services. Fonts, artwork, starter lessons, and sample media are included.
+No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions. No runtime cloud services. Fonts, artwork, starter lessons, and sample media are included.
 
 ## Why LinguaLocal
 
@@ -35,17 +35,17 @@ No accounts. No subscriptions. No runtime cloud services. Fonts, artwork, starte
 
 | Feature                | What you can do                                                                    | Preview                                                      |
 | ---------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Learning overview      | Find recommended books, a daily word, and your daily practice goal                 | [Overview](docs/screenshots/overview.png)                    |
+| Learning overview      | Open books, review vocabulary, and see your daily goal                             | [Overview](docs/screenshots/overview.png)                    |
 | Book library           | Search books and filter by subject or CEFR level                                   | [Bookshelf](docs/screenshots/library.png)                    |
 | Listening and watching | Play local audio and video, change speed, repeat a passage, and reveal transcripts | [Listening](docs/screenshots/listening.png)                  |
 | Reading materials      | Open and download local PDF worksheets alongside book media                        | [Book resources](docs/screenshots/book-everyday-english.png) |
 | Offline dictionary     | Search curated meanings and synonyms, see examples, and bookmark words             | [Dictionary](docs/screenshots/dictionary.png)                |
 | Guided lessons         | Explore grammar, reading, vocabulary, and speaking with practice questions         | [Lesson](docs/screenshots/lesson-present-simple.png)         |
-| Vocabulary quiz        | Choose a level, discover meanings, get feedback, and save your score               | [Word explorer](docs/screenshots/quiz-playing.png)           |
-| Matching game          | Pair words and definitions without a timer or leaderboard                          | [Perfect pairs](docs/screenshots/matching-playing.png)       |
+| Vocabulary quiz        | Choose a level, discover meanings, get feedback, and save your score               | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
+| Matching game          | Pair words and definitions without a timer or leaderboard                          | [Matching](docs/screenshots/matching-playing.png)            |
 | Spaced flashcards      | Study all words, saved words, or cards ready for review                            | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Learning progress      | See an eight-week activity map, streaks, completed lessons, and recent results     | [Progress](docs/screenshots/progress.png)                    |
-| School settings        | Choose personal preferences and export or restore progress backups                 | [Settings](docs/screenshots/settings.png)                    |
+| Personal settings      | Choose personal preferences and export or restore progress backups                 | [Settings](docs/screenshots/settings.png)                    |
 
 <table>
   <tr>
@@ -57,6 +57,14 @@ No accounts. No subscriptions. No runtime cloud services. Fonts, artwork, starte
     <td><img src="docs/screenshots/flashcards-playing.png" alt="A vocabulary flashcard ready to flip" width="480" /></td>
   </tr>
 </table>
+
+Choose a language using the globe control on any page. Persian and Arabic mirror the interface. Dictionary entries, book text, and English exercises keep their original language and reading direction. The choice stays in this browser without an account.
+
+| Interface | Desktop                                     | Mobile                                                       |
+| --------- | ------------------------------------------- | ------------------------------------------------------------ |
+| فارسی     | [Persian](docs/screenshots/fa-overview.png) | [Persian on mobile](docs/screenshots/fa-overview-mobile.png) |
+| العربية   | [Arabic](docs/screenshots/ar-overview.png)  | [Arabic on mobile](docs/screenshots/ar-overview-mobile.png)  |
+| Türkçe    | [Turkish](docs/screenshots/tr-overview.png) | [Turkish on mobile](docs/screenshots/tr-overview-mobile.png) |
 
 [See the complete screenshot catalogue, including mobile pages](docs/FEATURES.md).
 
@@ -72,7 +80,7 @@ docker compose up --build -d
 
 Open `http://localhost:3000` on the server. Students open `http://YOUR-SERVER-LAN-IP:3000` on the same network. For example, a server at `192.168.1.20` is available at `http://192.168.1.20:3000`.
 
-School content and uploads stay in the `school-data` volume when the container is rebuilt.
+School content and media stay in the `school-data` volume when the container is rebuilt.
 
 ### Node.js
 

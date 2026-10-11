@@ -49,3 +49,11 @@ Browser checks run in Chromium and WebKit and cover every starter book and lesso
 Screenshots can be regenerated from a running production server. The committed catalogue includes desktop and mobile pages plus active game and listening states using the starter collection.
 
 The TypeScript 7 compiler is installed under `@typescript/native`. Its official TypeScript 6 compatibility package is aliased as `typescript` because lint tooling needs the compiler API. Fresh installation, linting, type checks, and production builds have been verified. Some upstream ESLint plugins still declare older peer ranges and npm reports those as warnings.
+
+## Interface language
+
+Translation catalogues are bundled with the app. A validated language cookie selects the server-rendered language and writing direction. The browser selector updates the interface immediately and preserves the choice for future visits. Curriculum content is not translated by the interface.
+
+Logical CSS properties mirror navigation and spacing for Persian and Arabic. Bundled Noto Sans Arabic supports both scripts without external font requests. Complete counter messages allow each language to use its own word order. English and Arabic noun counts use locale plural rules.
+
+Tests compare catalogue keys and placeholders, exercise every page in all four interfaces on desktop and mobile, and verify that language changes preserve progress and English reading direction.

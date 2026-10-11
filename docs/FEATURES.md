@@ -30,13 +30,13 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 
 ## A little practice in action
 
-### Word explorer
+### Vocabulary quiz
 
-![Word explorer](screenshots/quiz-playing.png)
+![Vocabulary quiz](screenshots/quiz-playing.png)
 
-### Perfect pairs
+### Matching
 
-![Perfect pairs](screenshots/matching-playing.png)
+![Matching](screenshots/matching-playing.png)
 
 ### Flashcards
 
@@ -45,3 +45,13 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 ### Listening and transcripts
 
 ![Listening and transcripts](screenshots/listening.png)
+
+## Interface languages
+
+The interface supports English, Persian, Arabic, and Turkish. Persian and Arabic use right-to-left navigation while English learning material stays left to right.
+
+| Language | Home                                                                                  | Library                                                                             | Games                                                                           | Settings                                                                              |
+| -------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Persian  | [Desktop](screenshots/fa-overview.png) · [Mobile](screenshots/fa-overview-mobile.png) | [Desktop](screenshots/fa-library.png) · [Mobile](screenshots/fa-library-mobile.png) | [Desktop](screenshots/fa-games.png) · [Mobile](screenshots/fa-games-mobile.png) | [Desktop](screenshots/fa-settings.png) · [Mobile](screenshots/fa-settings-mobile.png) |
+| Arabic   | [Desktop](screenshots/ar-overview.png) · [Mobile](screenshots/ar-overview-mobile.png) | [Desktop](screenshots/ar-library.png) · [Mobile](screenshots/ar-library-mobile.png) | [Desktop](screenshots/ar-games.png) · [Mobile](screenshots/ar-games-mobile.png) | [Desktop](screenshots/ar-settings.png) · [Mobile](screenshots/ar-settings-mobile.png) |
+| Turkish  | [Desktop](screenshots/tr-overview.png) · [Mobile](screenshots/tr-overview-mobile.png) | [Desktop](screenshots/tr-library.png) · [Mobile](screenshots/tr-library-mobile.png) | [Desktop](screenshots/tr-games.png) · [Mobile](screenshots/tr-games-mobile.png) | [Desktop](screenshots/tr-settings.png) · [Mobile](screenshots/tr-settings-mobile.png) |
