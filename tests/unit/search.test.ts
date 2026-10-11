@@ -35,3 +35,15 @@ test("search preserves collection order and applies exact metadata filters", () 
     ["Journey home"],
   );
 });
+
+test("local keyboard digits and Persian joining marks find the same content", () => {
+  const index = createSearchIndex(
+    ["Unit 12", "می‌روم", "کـتاب"],
+    (value) => value,
+  );
+  assert.deepEqual(searchIndex(index, "۱۲"), ["Unit 12"]);
+  assert.deepEqual(searchIndex(index, "١٢"), ["Unit 12"]);
+  assert.deepEqual(searchIndex(index, "میروم"), ["می‌روم"]);
+  assert.deepEqual(searchIndex(index, "مي روم"), ["می‌روم"]);
+  assert.deepEqual(searchIndex(index, "كتاب"), ["کـتاب"]);
+});

@@ -9,6 +9,7 @@ import {
   Printer,
   Sparkles,
 } from "lucide-react";
+import { usePrintDetails } from "@/lib/use-print-details";
 import { useToday } from "@/lib/use-today";
 import { dayKey, streak } from "@/lib/learning";
 import type { ContentPack } from "@/lib/schema";
@@ -23,6 +24,7 @@ export function ProgressDashboard({
   content: ContentPack;
   serverDay: string;
 }) {
+  usePrintDetails();
   const { t, locale } = useLocale();
   const { progress, setGoal } = useProgress();
   const completed = content.lessons.filter((lesson) =>
@@ -106,7 +108,7 @@ export function ProgressDashboard({
               <span>{t("Less ▫ ▪ ▰ More")}</span>
               <span>{t("Today")}</span>
             </div>
-            <details className="activity-details">
+            <details className="activity-details print-expand">
               <summary>{t("Activity details")}</summary>
               <table>
                 <thead>
@@ -141,7 +143,7 @@ export function ProgressDashboard({
             </div>
             {progress.attempts.length ? (
               <div className="attempt-list">
-                {progress.attempts.slice(0, 10).map((attempt) => (
+                {progress.attempts.slice(0, 5).map((attempt) => (
                   <div className="attempt" key={attempt.id}>
                     <span className="stat-icon">
                       <CheckCircle2 size={17} />
@@ -208,15 +210,10 @@ export function ProgressDashboard({
                   ))}
               </select>
             </div>
-            <p>
-              {t(
-                "A lesson, a game, or a flashcard review counts as one activity.",
-              )}
-            </p>
           </section>
           <section className="panel" style={{ marginTop: 24 }}>
-            <div className="progress-lessons">
-              <h3>{t("Completed lessons")}</h3>
+            <details className="progress-lessons print-expand">
+              <summary>{t("Completed lessons")}</summary>
               {completed.length ? (
                 completed.map((lesson) => (
                   <p key={lesson.id} lang="en" dir="ltr">
@@ -226,10 +223,7 @@ export function ProgressDashboard({
               ) : (
                 <p>{t("No completed lessons.")}</p>
               )}
-            </div>
-            <Link className="text-link" href="/settings">
-              {t("Progress backup")}
-            </Link>
+            </details>
           </section>
         </aside>
       </div>

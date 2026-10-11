@@ -61,16 +61,9 @@ export function Flashcards({ words }: { words: Word[] }) {
           </div>
           {pool.length ? (
             <div className="panel">
-              <Sparkles size={30} color="#8ea879" />
-              <h2 style={{ marginTop: 15 }}>
+              <h2 style={{ marginBottom: 20 }}>
                 {t("{count} words available", { count: pool.length })}
               </h2>
-              <p
-                className="muted"
-                style={{ fontSize: 12, margin: "15px 0 24px" }}
-              >
-                {t("Up to 20 cards per session.")}
-              </p>
               <button className="button primary" onClick={start}>
                 {t("Start review")}
                 <ArrowRight size={14} />
@@ -123,7 +116,6 @@ export function Flashcards({ words }: { words: Word[] }) {
                 total: deck.length,
               })}
             </span>
-            {mode === "saved" && <span>{t("Saved words")}</span>}
           </div>
           <div className="progress-track">
             <div
@@ -169,10 +161,12 @@ export function Flashcards({ words }: { words: Word[] }) {
                 </p>
               </>
             )}
-            <span className="flashcard-hint">
-              <RotateCcw size={12} />
-              {t("Tap to flip")}
-            </span>
+            {index === 0 && (
+              <span className="flashcard-hint">
+                <RotateCcw size={12} />
+                {t("Tap to flip")}
+              </span>
+            )}
           </button>
           {flipped && (
             <div className="flashcard-actions">

@@ -17,6 +17,11 @@ export function Matching({ words }: { words: Word[] }) {
   const [matched, setMatched] = useState<string[]>([]);
   const [tries, setTries] = useState(0);
   const [message, setMessage] = useState("");
+  const [messageVersion, setMessageVersion] = useState(0);
+  function announce(text: string) {
+    setMessage(text);
+    setMessageVersion((version) => version + 1);
+  }
   const focusTarget = useFocusOnChange(`${left.length}-${matched.length}`);
   const nextWord = left.find((word) => !matched.includes(word.id));
   const { record } = useProgress();
@@ -27,11 +32,11 @@ export function Matching({ words }: { words: Word[] }) {
     setMatched([]);
     setChosen(null);
     setTries(0);
-    setMessage("");
+    announce("");
   }
   function pair(id: string) {
     if (!chosen) {
-      setMessage("Choose a word first.");
+      announce("Choose a word first.");
       return;
     }
     const nextTries = tries + 1;
@@ -40,7 +45,7 @@ export function Matching({ words }: { words: Word[] }) {
       const nextMatched = [...matched, id];
       setMatched(nextMatched);
       setChosen(null);
-      setMessage("Matched.");
+      announce("Matched.");
       if (nextMatched.length === left.length)
         record({
           title: "Matching",
@@ -48,7 +53,7 @@ export function Matching({ words }: { words: Word[] }) {
           total: nextTries,
         });
     } else {
-      setMessage("Incorrect. Try another meaning.");
+      announce("Incorrect. Try another meaning.");
     }
   }
   const done = left.length > 0 && matched.length === left.length;
@@ -86,11 +91,7 @@ export function Matching({ words }: { words: Word[] }) {
       ) : !left.length ? (
         <>
           <div className="panel">
-            <h2>{t("Match words to meanings")}</h2>
-            <p
-              className="muted"
-              style={{ margin: "15px 0 25px", fontSize: 12 }}
-            >
+            <p className="muted" style={{ marginBottom: 20, fontSize: 12 }}>
               {t("Choose a word, then its meaning.")}
             </p>
             <button className="button primary" onClick={start}>
@@ -108,7 +109,6 @@ export function Matching({ words }: { words: Word[] }) {
                 total: left.length,
               })}
             </span>
-            <span>{t("{count} attempts", { count: tries })}</span>
           </div>
           <div className="progress-track">
             <div
@@ -129,7 +129,7 @@ export function Matching({ words }: { words: Word[] }) {
                   aria-pressed={chosen === word.id}
                   onClick={() => {
                     setChosen(word.id);
-                    setMessage("");
+                    announce("");
                   }}
                 >
                   {word.word}
@@ -152,8 +152,13 @@ export function Matching({ words }: { words: Word[] }) {
               ))}
             </div>
           </div>
-          <p className="study-summary" role="status">
-            {t(message || "Choose a word, then its meaning.")}
+          <p
+            className={
+              message && message !== "Matched." ? "study-summary" : "sr-only"
+            }
+            role="status"
+          >
+            <span key={messageVersion}>{t(message)}</span>
           </p>
         </>
       )}

@@ -6,8 +6,10 @@ export function searchText(value: string): string {
     .replace(/[يى]/g, "ی")
     .replace(/ك/g, "ک")
     .replace(/ı/g, "i")
-    .replace(/’/g, "'")
-    .replace(/\u200c/g, " ")
+    .replace(/[’‘ʼ]/g, "'")
+    .replace(/[\u200c\u0640]/g, "")
+    .replace(/[۰-۹]/g, (digit) => String(digit.charCodeAt(0) - 0x06f0))
+    .replace(/[٠-٩]/g, (digit) => String(digit.charCodeAt(0) - 0x0660))
     .replace(/\s+/g, " ")
     .trim();
 }

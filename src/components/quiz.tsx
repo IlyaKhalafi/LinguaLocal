@@ -79,13 +79,6 @@ export function Quiz({ words }: { words: Word[] }) {
       ) : !question ? (
         <>
           <div className="panel">
-            <h2>{t("Quiz setup")}</h2>
-            <p
-              className="muted"
-              style={{ fontSize: 12, margin: "14px 0 24px" }}
-            >
-              {t("Up to 8 questions per round.")}
-            </p>
             <div className="form-field">
               <label htmlFor="quiz-level">{t("Level")}</label>
               <select
@@ -125,7 +118,6 @@ export function Quiz({ words }: { words: Word[] }) {
                 total: questions.length,
               })}
             </span>
-            <span>{t("{count} correct", { count: score })}</span>
           </div>
           <div className="progress-track">
             <div

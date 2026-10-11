@@ -21,6 +21,7 @@ export function BookDetail({ book }: { book: Book }) {
   const [playRequest, setPlayRequest] = useState(0);
   const opener = useRef<HTMLButtonElement | null>(null);
   const resourcesHeading = useRef<HTMLHeadingElement>(null);
+  const kinds = [...new Set(book.resources.map((resource) => resource.kind))];
   const resources = book.resources.filter(
     (resource) => kind === "all" || resource.kind === kind,
   );
@@ -33,9 +34,6 @@ export function BookDetail({ book }: { book: Book }) {
       <div className="book-detail">
         <Cover book={book} />
         <div>
-          <p className="eyebrow" lang="en" dir="ltr">
-            {book.category.toUpperCase()}
-          </p>
           <h1 lang="en" dir="ltr">
             {book.title}
           </h1>
@@ -44,11 +42,6 @@ export function BookDetail({ book }: { book: Book }) {
           </p>
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
-            {book.resources.length > 0 && (
-              <Badge>
-                {t("{count} resources", { count: book.resources.length })}
-              </Badge>
-            )}
           </div>
           <div className="resource-list">
             <div className="section-heading">
@@ -56,24 +49,26 @@ export function BookDetail({ book }: { book: Book }) {
                 {t("Resources")}
               </h2>
             </div>
-            <div className="tabs">
-              {["all", "audio", "video", "pdf"].map((item) => (
-                <button
-                  key={item}
-                  className={`tab ${kind === item ? "active" : ""}`}
-                  aria-pressed={kind === item}
-                  onClick={() => setKind(item)}
-                >
-                  {item === "all"
-                    ? t("All resources")
-                    : item === "pdf"
-                      ? t("Reading")
-                      : item === "audio"
-                        ? t("Listening")
-                        : t("Watching")}
-                </button>
-              ))}
-            </div>
+            {kinds.length > 1 && (
+              <div className="tabs">
+                {["all", ...kinds].map((item) => (
+                  <button
+                    key={item}
+                    className={`tab ${kind === item ? "active" : ""}`}
+                    aria-pressed={kind === item}
+                    onClick={() => setKind(item)}
+                  >
+                    {item === "all"
+                      ? t("All resources")
+                      : item === "pdf"
+                        ? t("Reading")
+                        : item === "audio"
+                          ? t("Listening")
+                          : t("Watching")}
+                  </button>
+                ))}
+              </div>
+            )}
             {resources.map((resource) => {
               const Icon =
                 resource.kind === "audio"
@@ -91,8 +86,12 @@ export function BookDetail({ book }: { book: Book }) {
                       {resource.title}
                     </h3>
                     <p lang="en" dir="ltr">
-                      {resource.unit} ·{" "}
-                      {resource.kind === "pdf" ? "PDF" : resource.duration}
+                      {[
+                        resource.unit !== resource.title ? resource.unit : "",
+                        resource.kind === "pdf" ? "PDF" : resource.duration,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </p>
                   </div>
                   {resource.kind === "pdf" ? (
