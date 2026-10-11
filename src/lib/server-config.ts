@@ -21,7 +21,9 @@ export const serverConfigSchema = z.object({
     }, "Use an HTTP or HTTPS school network address"),
 });
 export type ServerConfig = z.infer<typeof serverConfigSchema>;
-export function serverConfig(env = process.env): ServerConfig {
+export function serverConfig(
+  env: Record<string, string | undefined> = process.env,
+): ServerConfig {
   return serverConfigSchema.parse({
     port: Number(env.PORT || 3000),
     host: env.LINGUALOCAL_HOST || "0.0.0.0",
