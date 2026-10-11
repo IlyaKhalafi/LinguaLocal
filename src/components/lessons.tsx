@@ -51,6 +51,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
         {["", "Grammar", "Vocabulary", "Reading", "Speaking"].map((item) => (
           <button
             className={`tab ${category === item ? "active" : ""}`}
+            aria-pressed={category === item}
             key={item}
             onClick={() => setCategory(item)}
           >

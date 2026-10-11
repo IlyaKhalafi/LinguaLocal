@@ -2,18 +2,26 @@
 import { useMemo, useState } from "react";
 import { Bookmark, Leaf, Search } from "lucide-react";
 import { levels, type Word } from "@/lib/schema";
+import { useToday } from "@/lib/use-today";
 import { dailyWord } from "@/lib/learning";
 import { useProgress } from "./progress-provider";
 import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
 import Link from "next/link";
 
-export function Dictionary({ words }: { words: Word[] }) {
+export function Dictionary({
+  words,
+  serverDay,
+}: {
+  words: Word[];
+  serverDay: string;
+}) {
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [saved, setSaved] = useState(false);
   const { progress } = useProgress();
-  const featured = dailyWord(words);
+  const day = useToday(serverDay);
+  const featured = dailyWord(words, new Date(`${day}T12:00:00`));
   const filtered = useMemo(
     () =>
       words.filter(

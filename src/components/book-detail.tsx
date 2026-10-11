@@ -10,14 +10,11 @@ import {
   Video,
 } from "lucide-react";
 import { Badge, Cover, EmptyState } from "./ui";
+import { MediaPlayer, mediaUrl } from "./media-player";
 import type { Book, Resource } from "@/lib/schema";
 
-function mediaUrl(file: string) {
-  return `/api/media/${file.split("/").map(encodeURIComponent).join("/")}`;
-}
 export function BookDetail({ book }: { book: Book }) {
   const [selected, setSelected] = useState<Resource | null>(null);
-  const [error, setError] = useState("");
   const [kind, setKind] = useState("all");
   const resources = book.resources.filter(
     (resource) => kind === "all" || resource.kind === kind,
@@ -48,6 +45,7 @@ export function BookDetail({ book }: { book: Book }) {
                 <button
                   key={item}
                   className={`tab ${kind === item ? "active" : ""}`}
+                  aria-pressed={kind === item}
                   onClick={() => setKind(item)}
                 >
                   {item === "all"
@@ -94,7 +92,6 @@ export function BookDetail({ book }: { book: Book }) {
                       className="button secondary"
                       onClick={() => {
                         setSelected(resource);
-                        setError("");
                       }}
                     >
                       <Play size={13} />
@@ -121,58 +118,11 @@ export function BookDetail({ book }: { book: Book }) {
         </div>
       </div>
       {selected && (
-        <section
-          className="media-player"
-          aria-label="Media player"
+        <MediaPlayer
           key={selected.id}
-        >
-          <div className="section-heading">
-            <h3>{selected.title}</h3>
-            <button
-              className="text-link"
-              style={{ border: 0, background: "none" }}
-              onClick={() => setSelected(null)}
-            >
-              Close player
-            </button>
-          </div>
-          {selected.kind === "video" ? (
-            <video
-              controls
-              preload="metadata"
-              src={mediaUrl(selected.file)}
-              onError={() =>
-                setError(
-                  "This video could not be played. Ask your school to check the media file and format.",
-                )
-              }
-              aria-label={selected.title}
-            />
-          ) : (
-            <audio
-              controls
-              preload="metadata"
-              src={mediaUrl(selected.file)}
-              onError={() =>
-                setError(
-                  "This audio could not be played. Ask your school to check the media file.",
-                )
-              }
-              aria-label={selected.title}
-            />
-          )}
-          {error && (
-            <p className="inline-message" role="alert">
-              {error}
-            </p>
-          )}
-          {selected.transcript && (
-            <details>
-              <summary>Read the transcript</summary>
-              <p>{selected.transcript}</p>
-            </details>
-          )}
-        </section>
+          resource={selected}
+          onClose={() => setSelected(null)}
+        />
       )}
     </>
   );

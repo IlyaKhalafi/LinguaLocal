@@ -9,10 +9,7 @@
       "definition": "Eager to know or learn something.",
       "example": "Stay curious and ask one more question.",
       "level": "A2",
-      "synonyms": [
-        "inquisitive",
-        "interested"
-      ]
+      "synonyms": ["inquisitive", "interested"]
     },
     {
       "id": "journey",
@@ -22,10 +19,7 @@
       "definition": "An act of travelling from one place to another.",
       "example": "Our journey began at the train station.",
       "level": "A2",
-      "synonyms": [
-        "trip",
-        "voyage"
-      ]
+      "synonyms": ["trip", "voyage"]
     },
     {
       "id": "discover",
@@ -35,10 +29,7 @@
       "definition": "To find something for the first time.",
       "example": "We discovered a quiet cafe near the school.",
       "level": "A2",
-      "synonyms": [
-        "find",
-        "uncover"
-      ]
+      "synonyms": ["find", "uncover"]
     },
     {
       "id": "resilient",
@@ -48,10 +39,7 @@
       "definition": "Able to recover after difficulties.",
       "example": "Resilient learners try again after a mistake.",
       "level": "B2",
-      "synonyms": [
-        "strong",
-        "adaptable"
-      ]
+      "synonyms": ["strong", "adaptable"]
     },
     {
       "id": "bloom",
@@ -61,10 +49,7 @@
       "definition": "To produce flowers or develop successfully.",
       "example": "With regular practice, your confidence will bloom.",
       "level": "B1",
-      "synonyms": [
-        "flourish",
-        "blossom"
-      ]
+      "synonyms": ["flourish", "blossom"]
     },
     {
       "id": "kind",
@@ -74,10 +59,7 @@
       "definition": "Friendly, generous, and caring toward others.",
       "example": "A kind classmate helped me with my homework.",
       "level": "A1",
-      "synonyms": [
-        "caring",
-        "generous"
-      ]
+      "synonyms": ["caring", "generous"]
     },
     {
       "id": "gather",
@@ -87,10 +69,7 @@
       "definition": "To bring people or things together.",
       "example": "We gather in the library every Friday.",
       "level": "B1",
-      "synonyms": [
-        "collect",
-        "assemble"
-      ]
+      "synonyms": ["collect", "assemble"]
     },
     {
       "id": "purpose",
@@ -100,10 +79,7 @@
       "definition": "The reason for which something is done.",
       "example": "The purpose of this game is to practise vocabulary.",
       "level": "B1",
-      "synonyms": [
-        "aim",
-        "intention"
-      ]
+      "synonyms": ["aim", "intention"]
     },
     {
       "id": "bright",
@@ -113,10 +89,7 @@
       "definition": "Full of light, or showing intelligence.",
       "example": "It was a bright morning in the city.",
       "level": "A1",
-      "synonyms": [
-        "shining",
-        "clever"
-      ]
+      "synonyms": ["shining", "clever"]
     },
     {
       "id": "wander",
@@ -126,10 +99,7 @@
       "definition": "To walk around without a fixed destination.",
       "example": "We like to wander through the old town.",
       "level": "B1",
-      "synonyms": [
-        "roam",
-        "stroll"
-      ]
+      "synonyms": ["roam", "stroll"]
     },
     {
       "id": "improve",
@@ -139,10 +109,7 @@
       "definition": "To become better or make something better.",
       "example": "Reading every day will improve your vocabulary.",
       "level": "A2",
-      "synonyms": [
-        "develop",
-        "enhance"
-      ]
+      "synonyms": ["develop", "enhance"]
     },
     {
       "id": "achieve",
@@ -152,10 +119,7 @@
       "definition": "To succeed in reaching a goal through effort.",
       "example": "You can achieve your goal with steady practice.",
       "level": "B1",
-      "synonyms": [
-        "accomplish",
-        "attain"
-      ]
+      "synonyms": ["accomplish", "attain"]
     },
     {
       "id": "borrow",
@@ -165,9 +129,7 @@
       "definition": "To take something with the intention of returning it.",
       "example": "May I borrow your dictionary?",
       "level": "A2",
-      "synonyms": [
-        "take on loan"
-      ]
+      "synonyms": ["take on loan"]
     },
     {
       "id": "delight",
@@ -177,10 +139,7 @@
       "definition": "A feeling of great pleasure.",
       "example": "She read the letter with delight.",
       "level": "B2",
-      "synonyms": [
-        "joy",
-        "pleasure"
-      ]
+      "synonyms": ["joy", "pleasure"]
     },
     {
       "id": "essential",
@@ -190,10 +149,7 @@
       "definition": "Completely necessary or very important.",
       "example": "Water is essential for life.",
       "level": "B1",
-      "synonyms": [
-        "necessary",
-        "vital"
-      ]
+      "synonyms": ["necessary", "vital"]
     },
     {
       "id": "quiet",
@@ -203,10 +159,7 @@
       "definition": "Making little or no noise.",
       "example": "Please find a quiet place to read.",
       "level": "A1",
-      "synonyms": [
-        "silent",
-        "peaceful"
-      ]
+      "synonyms": ["silent", "peaceful"]
     },
     {
       "id": "explore",
@@ -216,10 +169,7 @@
       "definition": "To travel through or examine a place to learn about it.",
       "example": "Let us explore a new neighbourhood.",
       "level": "A2",
-      "synonyms": [
-        "investigate",
-        "discover"
-      ]
+      "synonyms": ["investigate", "discover"]
     },
     {
       "id": "thoughtful",
@@ -229,10 +179,7 @@
       "definition": "Showing care for the needs of other people.",
       "example": "It was thoughtful of you to bring an extra book.",
       "level": "B2",
-      "synonyms": [
-        "considerate",
-        "caring"
-      ]
+      "synonyms": ["considerate", "caring"]
     },
     {
       "id": "habit",
@@ -242,10 +189,7 @@
       "definition": "Something you do regularly, often without thinking.",
       "example": "Learning five words each morning is a useful habit.",
       "level": "A2",
-      "synonyms": [
-        "routine",
-        "practice"
-      ]
+      "synonyms": ["routine", "practice"]
     },
     {
       "id": "perspective",
@@ -255,10 +199,7 @@
       "definition": "A particular way of considering something.",
       "example": "Travel can give you a new perspective.",
       "level": "C1",
-      "synonyms": [
-        "viewpoint",
-        "outlook"
-      ]
+      "synonyms": ["viewpoint", "outlook"]
     },
     {
       "id": "hello",
@@ -268,9 +209,7 @@
       "definition": "A greeting used when you meet someone.",
       "example": "Hello! It is nice to meet you.",
       "level": "A1",
-      "synonyms": [
-        "hi"
-      ]
+      "synonyms": ["hi"]
     },
     {
       "id": "friend",
@@ -280,9 +219,7 @@
       "definition": "A person you know well and enjoy spending time with.",
       "example": "My friend and I study together.",
       "level": "A1",
-      "synonyms": [
-        "companion"
-      ]
+      "synonyms": ["companion"]
     },
     {
       "id": "listen",
@@ -292,10 +229,7 @@
       "definition": "To pay attention to a sound.",
       "example": "Listen carefully to the conversation.",
       "level": "A1",
-      "synonyms": [
-        "hear",
-        "pay attention"
-      ]
+      "synonyms": ["hear", "pay attention"]
     },
     {
       "id": "eloquent",
@@ -305,10 +239,7 @@
       "definition": "Able to express ideas clearly and effectively.",
       "example": "The speaker gave an eloquent explanation.",
       "level": "C1",
-      "synonyms": [
-        "articulate",
-        "expressive"
-      ]
+      "synonyms": ["articulate", "expressive"]
     }
   ],
   "books": [
@@ -326,7 +257,7 @@
           "title": "A new beginning",
           "kind": "audio",
           "file": "sample-dialogue.wav",
-          "duration": "0:24",
+          "duration": "0:23",
           "unit": "Unit 1",
           "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
         }
@@ -346,7 +277,7 @@
           "title": "A new beginning",
           "kind": "audio",
           "file": "sample-dialogue.wav",
-          "duration": "0:24",
+          "duration": "0:23",
           "unit": "Unit 1",
           "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
         }
@@ -366,7 +297,7 @@
           "title": "A new beginning",
           "kind": "audio",
           "file": "sample-dialogue.wav",
-          "duration": "0:24",
+          "duration": "0:23",
           "unit": "Unit 1",
           "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
         }
@@ -556,11 +487,7 @@
         }
       ],
       "question": "Which word is an adjective?",
-      "options": [
-        "Creativity",
-        "Create",
-        "Creative"
-      ],
+      "options": ["Creativity", "Create", "Creative"],
       "answer": 2,
       "explanation": "Creative describes a person or thing, so it is an adjective."
     }

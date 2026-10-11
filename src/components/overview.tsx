@@ -13,19 +13,24 @@ import {
 import { useProgress } from "./progress-provider";
 import { BookCard, PageHeading } from "./ui";
 import { WordCard } from "./word-card";
-import { dailyWord, dayKey, streak } from "@/lib/learning";
+import { dailyWord, streak } from "@/lib/learning";
+import { useToday } from "@/lib/use-today";
 import type { ContentPack, Settings } from "@/lib/schema";
 
 export function Overview({
   content,
   settings,
+  serverDay,
 }: {
   content: ContentPack;
   settings: Settings;
+  serverDay: string;
 }) {
   const { progress } = useProgress();
-  const today = progress.activity[dayKey()] ?? 0;
-  const word = dailyWord(content.words);
+  const day = useToday(serverDay);
+  const date = new Date(`${day}T12:00:00`);
+  const today = progress.activity[day] ?? 0;
+  const word = dailyWord(content.words, date);
   const completed = content.lessons.filter((lesson) =>
     progress.completed.includes(lesson.id),
   ).length;
@@ -39,7 +44,7 @@ export function Overview({
     },
     {
       icon: Flame,
-      value: streak(progress.activity),
+      value: streak(progress.activity, date),
       label: "Day learning streak",
     },
   ];
