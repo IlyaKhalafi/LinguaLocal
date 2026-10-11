@@ -1,0 +1,568 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "curious",
+      "word": "curious",
+      "phonetic": "/ˈkjʊəriəs/",
+      "part": "adjective",
+      "definition": "Eager to know or learn something.",
+      "example": "Stay curious and ask one more question.",
+      "level": "A2",
+      "synonyms": [
+        "inquisitive",
+        "interested"
+      ]
+    },
+    {
+      "id": "journey",
+      "word": "journey",
+      "phonetic": "/ˈdʒɜːrni/",
+      "part": "noun",
+      "definition": "An act of travelling from one place to another.",
+      "example": "Our journey began at the train station.",
+      "level": "A2",
+      "synonyms": [
+        "trip",
+        "voyage"
+      ]
+    },
+    {
+      "id": "discover",
+      "word": "discover",
+      "phonetic": "/dɪˈskʌvər/",
+      "part": "verb",
+      "definition": "To find something for the first time.",
+      "example": "We discovered a quiet cafe near the school.",
+      "level": "A2",
+      "synonyms": [
+        "find",
+        "uncover"
+      ]
+    },
+    {
+      "id": "resilient",
+      "word": "resilient",
+      "phonetic": "/rɪˈzɪliənt/",
+      "part": "adjective",
+      "definition": "Able to recover after difficulties.",
+      "example": "Resilient learners try again after a mistake.",
+      "level": "B2",
+      "synonyms": [
+        "strong",
+        "adaptable"
+      ]
+    },
+    {
+      "id": "bloom",
+      "word": "bloom",
+      "phonetic": "/bluːm/",
+      "part": "verb",
+      "definition": "To produce flowers or develop successfully.",
+      "example": "With regular practice, your confidence will bloom.",
+      "level": "B1",
+      "synonyms": [
+        "flourish",
+        "blossom"
+      ]
+    },
+    {
+      "id": "kind",
+      "word": "kind",
+      "phonetic": "/kaɪnd/",
+      "part": "adjective",
+      "definition": "Friendly, generous, and caring toward others.",
+      "example": "A kind classmate helped me with my homework.",
+      "level": "A1",
+      "synonyms": [
+        "caring",
+        "generous"
+      ]
+    },
+    {
+      "id": "gather",
+      "word": "gather",
+      "phonetic": "/ˈɡæðər/",
+      "part": "verb",
+      "definition": "To bring people or things together.",
+      "example": "We gather in the library every Friday.",
+      "level": "B1",
+      "synonyms": [
+        "collect",
+        "assemble"
+      ]
+    },
+    {
+      "id": "purpose",
+      "word": "purpose",
+      "phonetic": "/ˈpɜːrpəs/",
+      "part": "noun",
+      "definition": "The reason for which something is done.",
+      "example": "The purpose of this game is to practise vocabulary.",
+      "level": "B1",
+      "synonyms": [
+        "aim",
+        "intention"
+      ]
+    },
+    {
+      "id": "bright",
+      "word": "bright",
+      "phonetic": "/braɪt/",
+      "part": "adjective",
+      "definition": "Full of light, or showing intelligence.",
+      "example": "It was a bright morning in the city.",
+      "level": "A1",
+      "synonyms": [
+        "shining",
+        "clever"
+      ]
+    },
+    {
+      "id": "wander",
+      "word": "wander",
+      "phonetic": "/ˈwɒndər/",
+      "part": "verb",
+      "definition": "To walk around without a fixed destination.",
+      "example": "We like to wander through the old town.",
+      "level": "B1",
+      "synonyms": [
+        "roam",
+        "stroll"
+      ]
+    },
+    {
+      "id": "improve",
+      "word": "improve",
+      "phonetic": "/ɪmˈpruːv/",
+      "part": "verb",
+      "definition": "To become better or make something better.",
+      "example": "Reading every day will improve your vocabulary.",
+      "level": "A2",
+      "synonyms": [
+        "develop",
+        "enhance"
+      ]
+    },
+    {
+      "id": "achieve",
+      "word": "achieve",
+      "phonetic": "/əˈtʃiːv/",
+      "part": "verb",
+      "definition": "To succeed in reaching a goal through effort.",
+      "example": "You can achieve your goal with steady practice.",
+      "level": "B1",
+      "synonyms": [
+        "accomplish",
+        "attain"
+      ]
+    },
+    {
+      "id": "borrow",
+      "word": "borrow",
+      "phonetic": "/ˈbɒrəʊ/",
+      "part": "verb",
+      "definition": "To take something with the intention of returning it.",
+      "example": "May I borrow your dictionary?",
+      "level": "A2",
+      "synonyms": [
+        "take on loan"
+      ]
+    },
+    {
+      "id": "delight",
+      "word": "delight",
+      "phonetic": "/dɪˈlaɪt/",
+      "part": "noun",
+      "definition": "A feeling of great pleasure.",
+      "example": "She read the letter with delight.",
+      "level": "B2",
+      "synonyms": [
+        "joy",
+        "pleasure"
+      ]
+    },
+    {
+      "id": "essential",
+      "word": "essential",
+      "phonetic": "/ɪˈsenʃəl/",
+      "part": "adjective",
+      "definition": "Completely necessary or very important.",
+      "example": "Water is essential for life.",
+      "level": "B1",
+      "synonyms": [
+        "necessary",
+        "vital"
+      ]
+    },
+    {
+      "id": "quiet",
+      "word": "quiet",
+      "phonetic": "/ˈkwaɪət/",
+      "part": "adjective",
+      "definition": "Making little or no noise.",
+      "example": "Please find a quiet place to read.",
+      "level": "A1",
+      "synonyms": [
+        "silent",
+        "peaceful"
+      ]
+    },
+    {
+      "id": "explore",
+      "word": "explore",
+      "phonetic": "/ɪkˈsplɔːr/",
+      "part": "verb",
+      "definition": "To travel through or examine a place to learn about it.",
+      "example": "Let us explore a new neighbourhood.",
+      "level": "A2",
+      "synonyms": [
+        "investigate",
+        "discover"
+      ]
+    },
+    {
+      "id": "thoughtful",
+      "word": "thoughtful",
+      "phonetic": "/ˈθɔːtfəl/",
+      "part": "adjective",
+      "definition": "Showing care for the needs of other people.",
+      "example": "It was thoughtful of you to bring an extra book.",
+      "level": "B2",
+      "synonyms": [
+        "considerate",
+        "caring"
+      ]
+    },
+    {
+      "id": "habit",
+      "word": "habit",
+      "phonetic": "/ˈhæbɪt/",
+      "part": "noun",
+      "definition": "Something you do regularly, often without thinking.",
+      "example": "Learning five words each morning is a useful habit.",
+      "level": "A2",
+      "synonyms": [
+        "routine",
+        "practice"
+      ]
+    },
+    {
+      "id": "perspective",
+      "word": "perspective",
+      "phonetic": "/pərˈspektɪv/",
+      "part": "noun",
+      "definition": "A particular way of considering something.",
+      "example": "Travel can give you a new perspective.",
+      "level": "C1",
+      "synonyms": [
+        "viewpoint",
+        "outlook"
+      ]
+    },
+    {
+      "id": "hello",
+      "word": "hello",
+      "phonetic": "/həˈləʊ/",
+      "part": "exclamation",
+      "definition": "A greeting used when you meet someone.",
+      "example": "Hello! It is nice to meet you.",
+      "level": "A1",
+      "synonyms": [
+        "hi"
+      ]
+    },
+    {
+      "id": "friend",
+      "word": "friend",
+      "phonetic": "/frend/",
+      "part": "noun",
+      "definition": "A person you know well and enjoy spending time with.",
+      "example": "My friend and I study together.",
+      "level": "A1",
+      "synonyms": [
+        "companion"
+      ]
+    },
+    {
+      "id": "listen",
+      "word": "listen",
+      "phonetic": "/ˈlɪsən/",
+      "part": "verb",
+      "definition": "To pay attention to a sound.",
+      "example": "Listen carefully to the conversation.",
+      "level": "A1",
+      "synonyms": [
+        "hear",
+        "pay attention"
+      ]
+    },
+    {
+      "id": "eloquent",
+      "word": "eloquent",
+      "phonetic": "/ˈeləkwənt/",
+      "part": "adjective",
+      "definition": "Able to express ideas clearly and effectively.",
+      "example": "The speaker gave an eloquent explanation.",
+      "level": "C1",
+      "synonyms": [
+        "articulate",
+        "expressive"
+      ]
+    }
+  ],
+  "books": [
+    {
+      "id": "everyday-english",
+      "title": "Everyday English",
+      "subtitle": "Small conversations, big connections",
+      "level": "A1",
+      "color": "peach",
+      "category": "General English",
+      "description": "Build confidence in the conversations that happen every day, from introductions to ordering a coffee.",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:24",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        }
+      ]
+    },
+    {
+      "id": "the-open-road",
+      "title": "The Open Road",
+      "subtitle": "English for your next adventure",
+      "level": "A2",
+      "color": "mint",
+      "category": "Travel",
+      "description": "Explore the language of travel through original dialogues, practical phrases, and listening activities.",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:24",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        }
+      ]
+    },
+    {
+      "id": "words-in-bloom",
+      "title": "Words in Bloom",
+      "subtitle": "Grow a richer vocabulary",
+      "level": "B1",
+      "color": "lavender",
+      "category": "Vocabulary",
+      "description": "Make new words your own with memorable examples, themed word lists, and guided practice.",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:24",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        }
+      ]
+    },
+    {
+      "id": "a-world-of-stories",
+      "title": "A World of Stories",
+      "subtitle": "Read, imagine, discover",
+      "level": "B1",
+      "color": "blue",
+      "category": "Reading",
+      "description": "Find your next favourite story and practise reading for meaning, detail, and new perspectives.",
+      "resources": []
+    },
+    {
+      "id": "speak-your-mind",
+      "title": "Speak Your Mind",
+      "subtitle": "Ideas worth sharing",
+      "level": "B2",
+      "color": "yellow",
+      "category": "Speaking",
+      "description": "Express your opinions clearly and thoughtfully through discussion prompts and speaking tasks.",
+      "resources": []
+    },
+    {
+      "id": "beyond-the-everyday",
+      "title": "Beyond the Everyday",
+      "subtitle": "Language with a little more depth",
+      "level": "C1",
+      "color": "rose",
+      "category": "Advanced",
+      "description": "Explore nuanced ideas and sharpen your command of advanced vocabulary and natural expression.",
+      "resources": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "small-talk",
+      "title": "The art of small talk",
+      "description": "Turn a simple hello into a real conversation.",
+      "level": "A1",
+      "category": "Speaking",
+      "minutes": 6,
+      "sections": [
+        {
+          "title": "Start with something you share",
+          "body": "Small talk helps people feel comfortable. Start with the place you are in, the weather, or an activity you share. Try saying 'This is a lovely classroom' or 'How was your weekend?'"
+        },
+        {
+          "title": "Keep the conversation going",
+          "body": "Ask an open question. Instead of 'Do you like books?', try 'What kind of books do you enjoy?' Listen to the answer and ask one more question. Share a little about yourself too."
+        },
+        {
+          "title": "Try it with a partner",
+          "body": "Say hello to a classmate. Ask about their favourite food, a place they want to visit, or something they did yesterday. Spend two minutes listening before you switch roles."
+        }
+      ],
+      "question": "Which question is most likely to start a longer conversation?",
+      "options": [
+        "Are you tired?",
+        "What do you enjoy doing after class?",
+        "Is this your pen?"
+      ],
+      "answer": 1,
+      "explanation": "An open question invites the other person to share more than a yes or no answer."
+    },
+    {
+      "id": "present-simple",
+      "title": "Everyday habits, simple sentences",
+      "description": "Talk about the things you do, day after day.",
+      "level": "A1",
+      "category": "Grammar",
+      "minutes": 8,
+      "sections": [
+        {
+          "title": "Meet the present simple",
+          "body": "Use the present simple for habits and facts. 'I walk to school.' 'They study English.' With he, she, and it, add -s or -es. 'She reads every morning.' 'He watches films.'"
+        },
+        {
+          "title": "Questions and negatives",
+          "body": "Use do or does to ask a question. 'Do you like music?' 'Does she play tennis?' Use do not or does not for a negative. 'I do not drink coffee.' After does, use the base verb without -s."
+        }
+      ],
+      "question": "Choose the correct sentence.",
+      "options": [
+        "She walk to school.",
+        "She walks to school.",
+        "She walking to school."
+      ],
+      "answer": 1,
+      "explanation": "With she, add -s to the verb in the present simple."
+    },
+    {
+      "id": "travel-phrases",
+      "title": "Your next stop",
+      "description": "Useful phrases for finding your way in a new city.",
+      "level": "A2",
+      "category": "Vocabulary",
+      "minutes": 7,
+      "sections": [
+        {
+          "title": "Ask for directions",
+          "body": "Begin politely. 'Excuse me, could you tell me how to get to the station?' Useful direction words include straight ahead, turn left, turn right, next to, and opposite."
+        },
+        {
+          "title": "Check you understood",
+          "body": "Repeat the key information. 'So I turn left at the cafe?' If you need help, say 'Could you repeat that, please?' Thank the person before you leave."
+        }
+      ],
+      "question": "What does 'opposite the library' mean?",
+      "options": [
+        "Inside the library",
+        "Across from the library",
+        "Far away from the library"
+      ],
+      "answer": 1,
+      "explanation": "Opposite means on the other side, facing something."
+    },
+    {
+      "id": "reading-between-lines",
+      "title": "Reading between the lines",
+      "description": "Find the meaning that a writer leaves unsaid.",
+      "level": "B1",
+      "category": "Reading",
+      "minutes": 10,
+      "sections": [
+        {
+          "title": "Look for clues",
+          "body": "Writers do not always tell you everything directly. Read this sentence. 'Mia looked at the dark clouds and put an umbrella in her bag.' We can infer that Mia thinks it might rain."
+        },
+        {
+          "title": "Use evidence",
+          "body": "An inference is a conclusion based on clues. It is different from a random guess. Look for actions, descriptions, and word choices that support your idea. Ask yourself what you know and what the text shows."
+        }
+      ],
+      "question": "'Leo checked his watch three times while waiting.' What can you infer?",
+      "options": [
+        "Leo is probably impatient or worried about time.",
+        "Leo has three watches.",
+        "Leo is learning to tell time."
+      ],
+      "answer": 0,
+      "explanation": "Repeatedly checking a watch suggests that time matters to Leo in this moment."
+    },
+    {
+      "id": "giving-opinions",
+      "title": "Make your point",
+      "description": "Share an opinion and support it with a reason.",
+      "level": "B2",
+      "category": "Speaking",
+      "minutes": 8,
+      "sections": [
+        {
+          "title": "Say what you think",
+          "body": "Try phrases such as 'In my view', 'I would argue that', and 'From my perspective'. Then give a clear reason. 'In my view, reading fiction is valuable because it helps us understand other people.'"
+        },
+        {
+          "title": "Disagree thoughtfully",
+          "body": "Show that you heard the other person's idea. 'I see your point, but I think...' or 'That is an interesting argument. Have you considered...?' A good discussion helps both people learn."
+        }
+      ],
+      "question": "Which phrase introduces a respectful disagreement?",
+      "options": [
+        "That makes no sense.",
+        "You are completely wrong.",
+        "I see your point, but I think..."
+      ],
+      "answer": 2,
+      "explanation": "Acknowledging the other person's point helps keep the discussion respectful."
+    },
+    {
+      "id": "word-families",
+      "title": "One word, many possibilities",
+      "description": "Build your vocabulary through word families.",
+      "level": "B1",
+      "category": "Vocabulary",
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Meet a word family",
+          "body": "Words often belong to a family. Think of create, creative, creativity, and creation. They share a central meaning, but their roles in a sentence differ. Create is a verb. Creative is an adjective. Creativity and creation are nouns."
+        },
+        {
+          "title": "Notice the ending",
+          "body": "Endings can give you clues. Many nouns end in -tion or -ity. Many adjectives end in -ful or -ive. Learn a word with its family and write one sentence for each form."
+        }
+      ],
+      "question": "Which word is an adjective?",
+      "options": [
+        "Creativity",
+        "Create",
+        "Creative"
+      ],
+      "answer": 2,
+      "explanation": "Creative describes a person or thing, so it is an adjective."
+    }
+  ]
+}

@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# institution content and browser test output
+/data/
+/public/uploads/
+/test-results/
+/playwright-report/
