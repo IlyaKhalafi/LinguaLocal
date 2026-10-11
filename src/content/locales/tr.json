@@ -209,5 +209,9 @@
   "Replace progress on this device?": "Bu cihazdaki ilerleme değiştirilsin mi?",
   "Set the school address on the server.": "Sunucuda okulun ağ adresini ayarlayın.",
   "Unable to find the school address.": "Okulun ağ adresi bulunamadı.",
-  "Ask the school to check its network address.": "Okuldan ağ adresini kontrol etmesini isteyin."
+  "Ask the school to check its network address.": "Okuldan ağ adresini kontrol etmesini isteyin.",
+  "Scan to open LinguaLocal": "LinguaLocal uygulamasını açmak için tarayın",
+  "QR code unavailable. Use the address above.": "QR kodu kullanılamıyor. Yukarıdaki adresi kullanın.",
+  "School address": "Okul adresi",
+  "Hide network address": "Ağ adresini gizle"
 }

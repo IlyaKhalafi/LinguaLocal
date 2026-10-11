@@ -12,6 +12,7 @@ const translatedPreviews = new Set([
   "library",
   "games",
   "settings",
+  "join-network",
 ]);
 
 async function capture(page: Page, name: string, locale: Locale) {
@@ -20,6 +21,7 @@ async function capture(page: Page, name: string, locale: Locale) {
     await page.setViewportSize(
       mobile ? { width: 390, height: 844 } : { width: 1440, height: 1040 },
     );
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
     if (
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -71,6 +73,20 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
     .getByText(translate(locale, "Read the transcript"), { exact: true })
     .click();
   await capture(page, "listening", locale);
+  await page.route("**/api/network", (route) =>
+    route.fulfill({ json: { addresses: ["http://192.168.1.20:3000"] } }),
+  );
+  await page.goto(base + "/settings");
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Show network address"),
+      exact: true,
+    })
+    .click();
+  await page
+    .getByRole("img", { name: translate(locale, "Scan to open LinguaLocal") })
+    .waitFor();
+  await capture(page, "join-network", locale);
   await page.close();
 }
 

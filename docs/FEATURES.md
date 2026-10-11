@@ -46,6 +46,12 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 
 ![Listening and transcripts](screenshots/listening.png)
 
+### Joining the school network
+
+![School address and QR code](screenshots/join-network.png)
+
+The address appears on request. Choose a network interface only when more than one is available.
+
 ## Interface languages
 
 The interface supports English, Persian, Arabic, and Turkish. Persian and Arabic use right-to-left navigation while English learning material stays left to right.

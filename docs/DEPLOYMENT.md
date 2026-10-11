@@ -89,3 +89,5 @@ The network helper uses the current network address when opened from a student d
 A Docker container cannot discover the host computer’s Wi-Fi address. Set `LINGUALOCAL_PUBLIC_URL=http://192.168.1.20:3000` in `.env` before running Docker Compose, replacing the example with the server’s actual address. A local hostname or HTTPS address also works. This setting can also override address discovery for Node.js deployment.
 
 When using a reverse proxy or remapped port, set `LINGUALOCAL_PUBLIC_URL` to the address that students use.
+
+Use the network button in Settings to show a join QR code. If the server has multiple network connections, choose the school’s address before sharing it. QR images are generated on the device without a cloud service.

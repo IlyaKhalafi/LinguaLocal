@@ -31,7 +31,7 @@ The next release expands student practice, classroom materials, and local deploy
 
 ## Owning the hub
 
-- [ ] Local address discovery and join QR codes
+- [x] Local address discovery and join QR codes
 - [ ] Server configuration archives and storage diagnostics
 - [ ] Content diagnostics for missing media and unused files
 - [ ] At least 150 original words, 10 new lessons, a pack gallery, and validation tools

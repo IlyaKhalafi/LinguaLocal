@@ -209,5 +209,9 @@
   "Replace progress on this device?": "هل تريد استبدال التقدم على هذا الجهاز؟",
   "Set the school address on the server.": "اضبط عنوان شبكة المدرسة على الخادم.",
   "Unable to find the school address.": "تعذر العثور على عنوان المدرسة.",
-  "Ask the school to check its network address.": "اطلب من المدرسة التحقق من عنوان شبكتها."
+  "Ask the school to check its network address.": "اطلب من المدرسة التحقق من عنوان شبكتها.",
+  "Scan to open LinguaLocal": "امسح الرمز لفتح LinguaLocal",
+  "QR code unavailable. Use the address above.": "رمز QR غير متاح. استخدم العنوان أعلاه.",
+  "School address": "عنوان المدرسة",
+  "Hide network address": "إخفاء عنوان الشبكة"
 }

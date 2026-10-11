@@ -209,5 +209,9 @@
   "Replace progress on this device?": "پیشرفت این دستگاه جایگزین شود؟",
   "Set the school address on the server.": "نشانی شبکه مدرسه را روی سرور تنظیم کنید.",
   "Unable to find the school address.": "نشانی شبکه مدرسه پیدا نشد.",
-  "Ask the school to check its network address.": "از مدرسه بخواهید نشانی شبکه را بررسی کند."
+  "Ask the school to check its network address.": "از مدرسه بخواهید نشانی شبکه را بررسی کند.",
+  "Scan to open LinguaLocal": "برای باز کردن LinguaLocal اسکن کنید",
+  "QR code unavailable. Use the address above.": "کد QR در دسترس نیست. از نشانی بالا استفاده کنید.",
+  "School address": "نشانی مدرسه",
+  "Hide network address": "پنهان کردن آدرس شبکه"
 }

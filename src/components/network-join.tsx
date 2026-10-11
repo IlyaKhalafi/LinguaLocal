@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Wifi } from "lucide-react";
 import { useLocale } from "./locale-provider";
 import { isLoopbackHostname, schoolUrl } from "@/lib/network-address";
+import { JoinAddress } from "./join-address";
 
 export function NetworkJoin() {
   const { t } = useLocale();
@@ -34,8 +35,7 @@ export function NetworkJoin() {
       if (
         !Array.isArray(result.addresses) ||
         !result.addresses.every(
-          (address: unknown) =>
-            typeof address === "string" && URL.canParse(address),
+          (address: unknown) => typeof address === "string",
         )
       )
         throw new Error("Invalid network addresses");
@@ -59,24 +59,23 @@ export function NetworkJoin() {
       <button
         className="button secondary"
         style={{ marginTop: 20 }}
-        onClick={showAddress}
+        onClick={addresses.length ? () => setAddresses([]) : showAddress}
+        aria-expanded={addresses.length > 0}
+        aria-controls="school-network-address"
         disabled={busy}
       >
         <Wifi size={14} />
-        {t(busy ? "Loading" : "Show network address")}
+        {t(
+          busy
+            ? "Loading"
+            : addresses.length
+              ? "Hide network address"
+              : "Show network address",
+        )}
       </button>
-      {addresses.map((address) => (
-        <a
-          key={address}
-          className="network-address"
-          href={address}
-          target="_blank"
-          rel="noreferrer"
-          dir="ltr"
-        >
-          {address}
-        </a>
-      ))}
+      <div id="school-network-address" hidden={!addresses.length}>
+        {addresses.length > 0 && <JoinAddress addresses={addresses} />}
+      </div>
       <p className={message ? "inline-message" : "sr-only"} role="status">
         {t(message)}
       </p>

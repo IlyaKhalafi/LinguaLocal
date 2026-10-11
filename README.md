@@ -45,6 +45,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Matching game          | Pair words and definitions without a timer or leaderboard                          | [Matching](docs/screenshots/matching-playing.png)            |
 | Spaced flashcards      | Study all words, saved words, or cards ready for review                            | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Learning progress      | See an eight-week activity map, streaks, completed lessons, and recent results     | [Progress](docs/screenshots/progress.png)                    |
+| School network         | Reveal a shareable school address and scan a local QR code                         | [Join the school network](docs/screenshots/join-network.png) |
 | Personal settings      | Choose personal preferences and export or restore progress backups                 | [Settings](docs/screenshots/settings.png)                    |
 
 <table>
