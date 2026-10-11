@@ -206,5 +206,8 @@
   "{seconds}s": "{seconds} ث",
   "Press play to start playback.": "اضغط على تشغيل لبدء المقطع.",
   "Restore progress": "استعادة التقدم",
-  "Replace progress on this device?": "هل تريد استبدال التقدم على هذا الجهاز؟"
+  "Replace progress on this device?": "هل تريد استبدال التقدم على هذا الجهاز؟",
+  "Set the school address on the server.": "اضبط عنوان شبكة المدرسة على الخادم.",
+  "Unable to find the school address.": "تعذر العثور على عنوان المدرسة.",
+  "Ask the school to check its network address.": "اطلب من المدرسة التحقق من عنوان شبكتها."
 }

@@ -1686,12 +1686,13 @@ label {
   color: #607451;
 }
 .network-address {
+  display: block;
   background: #f0f4eb;
   padding: 12px 14px;
   border-radius: 8px;
   margin: 15px 0;
   font-size: 13px;
-  color: #63834c;
+  color: #3f6032;
   overflow-wrap: anywhere;
 }
 .file-input {

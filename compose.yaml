@@ -6,6 +6,8 @@ services:
     volumes:
       - school-data:/app/data
     restart: unless-stopped
+    environment:
+      LINGUALOCAL_PUBLIC_URL: ${LINGUALOCAL_PUBLIC_URL:-}
 
 volumes:
   school-data:

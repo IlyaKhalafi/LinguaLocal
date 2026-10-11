@@ -12,6 +12,7 @@ ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     HOSTNAME=0.0.0.0 \
     PORT=3000 \
+    LINGUALOCAL_CONTAINER=1 \
     LINGUALOCAL_DATA_DIR=/app/data \
     LINGUALOCAL_MEDIA_DIR=/app/data/media
 RUN addgroup -S -g 1001 lingualocal && \

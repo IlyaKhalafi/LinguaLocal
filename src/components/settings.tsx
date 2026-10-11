@@ -2,7 +2,8 @@
 import { useLocale } from "@/components/locale-provider";
 
 import { useState } from "react";
-import { Download, Wifi } from "lucide-react";
+import { Download } from "lucide-react";
+import { NetworkJoin } from "./network-join";
 import { useProgress } from "./progress-provider";
 import { progressSchema } from "@/lib/progress-schema";
 import type { Progress } from "@/lib/learning";
@@ -14,7 +15,6 @@ export function PersonalSettings() {
   const { progress, restore, reset } = useProgress();
   const [message, setMessage] = useState("");
   const [confirmReset, setConfirmReset] = useState(false);
-  const [host, setHost] = useState("");
   const [pending, setPending] = useState<Progress | null>(null);
   const [returnTo, setReturnTo] = useState("reset");
   const mode = confirmReset ? "reset" : pending ? "restore" : "closed";
@@ -23,8 +23,11 @@ export function PersonalSettings() {
     <>
       <PageHeading title={t("Settings")} />
       <div className="settings-grid">
-        <section className="panel settings-panel">
-          <h2>{t("Progress backup")}</h2>
+        <section
+          className="panel settings-panel"
+          aria-labelledby="progress-backup-heading"
+        >
+          <h2 id="progress-backup-heading">{t("Progress backup")}</h2>
           <button
             className="button secondary"
             onClick={() => downloadJson(progress, "lingualocal-progress.json")}
@@ -166,22 +169,7 @@ export function PersonalSettings() {
             </button>
           )}
         </section>
-        <section className="panel settings-panel">
-          <h2>{t("School network")}</h2>
-          <button
-            className="button secondary"
-            style={{ marginTop: 20 }}
-            onClick={() => setHost(window.location.origin)}
-          >
-            <Wifi size={14} />
-            {t("Show network address")}
-          </button>
-          {host && (
-            <p className="network-address" dir="ltr">
-              {host}
-            </p>
-          )}
-        </section>
+        <NetworkJoin />
       </div>
     </>
   );

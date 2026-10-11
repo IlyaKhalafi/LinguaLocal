@@ -81,3 +81,11 @@ Stop the service before copying a complete server backup to keep a consistent co
 | A media file is large                     | Copy the file into the configured media directory and reference it in the content pack  |
 
 Run one server process against a data directory. Manage content through the server’s files.
+
+## Joining the school network
+
+The network helper uses the current network address when opened from a student device. On a Node.js host, it discovers local IPv4 addresses when the page is opened through localhost.
+
+A Docker container cannot discover the host computer’s Wi-Fi address. Set `LINGUALOCAL_PUBLIC_URL=http://192.168.1.20:3000` in `.env` before running Docker Compose, replacing the example with the server’s actual address. A local hostname or HTTPS address also works. This setting can also override address discovery for Node.js deployment.
+
+When using a reverse proxy or remapped port, set `LINGUALOCAL_PUBLIC_URL` to the address that students use.

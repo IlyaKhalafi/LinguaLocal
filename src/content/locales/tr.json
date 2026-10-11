@@ -206,5 +206,8 @@
   "{seconds}s": "{seconds} sn",
   "Press play to start playback.": "Başlamak için oynat düğmesine basın.",
   "Restore progress": "İlerlemeyi geri yükle",
-  "Replace progress on this device?": "Bu cihazdaki ilerleme değiştirilsin mi?"
+  "Replace progress on this device?": "Bu cihazdaki ilerleme değiştirilsin mi?",
+  "Set the school address on the server.": "Sunucuda okulun ağ adresini ayarlayın.",
+  "Unable to find the school address.": "Okulun ağ adresi bulunamadı.",
+  "Ask the school to check its network address.": "Okuldan ağ adresini kontrol etmesini isteyin."
 }

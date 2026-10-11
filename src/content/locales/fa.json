@@ -206,5 +206,8 @@
   "{seconds}s": "{seconds} ثانیه",
   "Press play to start playback.": "برای شروع پخش، دکمه پخش را بزنید.",
   "Restore progress": "بازیابی پیشرفت",
-  "Replace progress on this device?": "پیشرفت این دستگاه جایگزین شود؟"
+  "Replace progress on this device?": "پیشرفت این دستگاه جایگزین شود؟",
+  "Set the school address on the server.": "نشانی شبکه مدرسه را روی سرور تنظیم کنید.",
+  "Unable to find the school address.": "نشانی شبکه مدرسه پیدا نشد.",
+  "Ask the school to check its network address.": "از مدرسه بخواهید نشانی شبکه را بررسی کند."
 }

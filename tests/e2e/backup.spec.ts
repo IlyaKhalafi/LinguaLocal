@@ -9,13 +9,11 @@ test("backup restore previews changes and supports cancellation", async ({
   await page.goto("/settings");
   const backup = { ...emptyProgress, saved: ["journey"], goal: 15 };
   const selectBackup = () =>
-    page
-      .locator("#restore-progress")
-      .setInputFiles({
-        name: "progress.json",
-        mimeType: "application/json",
-        buffer: Buffer.from(JSON.stringify(backup)),
-      });
+    page.locator("#restore-progress").setInputFiles({
+      name: "progress.json",
+      mimeType: "application/json",
+      buffer: Buffer.from(JSON.stringify(backup)),
+    });
   await selectBackup();
   await expect(
     page.getByRole("button", { name: "Cancel", exact: true }),
@@ -31,7 +29,9 @@ test("backup restore previews changes and supports cancellation", async ({
   await page
     .getByRole("button", { name: "Restore progress", exact: true })
     .click();
-  await expect(page.getByRole("status")).toHaveText("Progress restored.");
+  await expect(
+    page.getByRole("region", { name: "Progress backup" }).getByRole("status"),
+  ).toHaveText("Progress restored.");
   expect(
     await page.evaluate(
       () => JSON.parse(localStorage.getItem("lingualocal.progress.v1")!).saved,

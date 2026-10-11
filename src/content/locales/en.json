@@ -206,5 +206,8 @@
   "{seconds}s": "{seconds}s",
   "Press play to start playback.": "Press play to start playback.",
   "Restore progress": "Restore progress",
-  "Replace progress on this device?": "Replace progress on this device?"
+  "Replace progress on this device?": "Replace progress on this device?",
+  "Set the school address on the server.": "Set the school address on the server.",
+  "Unable to find the school address.": "Unable to find the school address.",
+  "Ask the school to check its network address.": "Ask the school to check its network address."
 }
