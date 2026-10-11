@@ -1,6 +1,7 @@
 import path from "node:path";
 import { packSchema } from "../src/lib/schema";
 import { readValidatedJson, writeJsonAtomically } from "../src/lib/json-file";
+import { runCommand } from "../src/lib/cli";
 
 async function install() {
   const source = process.argv[2];
@@ -14,9 +15,4 @@ async function install() {
   );
 }
 
-install().catch((error: unknown) => {
-  console.error(
-    error instanceof Error ? error.message : "Unable to install content.",
-  );
-  process.exitCode = 1;
-});
+runCommand(install);

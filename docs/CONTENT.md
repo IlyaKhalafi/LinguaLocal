@@ -21,6 +21,8 @@ School branding is stored in `data/settings.json` with `name` and `welcome` fiel
 
 Packs must be smaller than 2 MB and contain at least four words. Validation rules are in `src/lib/schema.ts`. Keep entry IDs stable to preserve student bookmarks and reviews.
 
+Validate a pack without installing it using `npm run content:validate -- collection.json`. The command reports the exact field for invalid values and exits unsuccessfully. In Docker, use `node scripts/validate-content.mjs /tmp/collection.json`. Validation never changes school files.
+
 ### Dictionary entries
 
 ```json

@@ -7,11 +7,14 @@ await mkdir(".next/standalone/scripts", { recursive: true });
 for (const [source, target] of [
   ["src/lib/schema.ts", "content-schema.mjs"],
   ["src/lib/json-file.ts", "json-file.mjs"],
+  ["src/lib/cli.ts", "cli.mjs"],
   ["scripts/install-content.ts", "install-content.mjs"],
+  ["scripts/validate-content.ts", "validate-content.mjs"],
 ]) {
   const input = (await readFile(source, "utf8"))
     .replace('"../src/lib/schema"', '"./content-schema.mjs"')
-    .replace('"../src/lib/json-file"', '"./json-file.mjs"');
+    .replace('"../src/lib/json-file"', '"./json-file.mjs"')
+    .replace('"../src/lib/cli"', '"./cli.mjs"');
   const { outputText } = ts.transpileModule(input, {
     compilerOptions: {
       target: ts.ScriptTarget.ES2022,
