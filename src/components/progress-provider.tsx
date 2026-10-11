@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { useLocale } from "./locale-provider";
-import { progressSchema } from "@/lib/progress-schema";
+import { progressSchema, recoverProgress } from "@/lib/progress-schema";
 import {
   dayKey,
   emptyProgress,
@@ -36,16 +36,17 @@ function snapshot(): Progress {
   }
   if (raw !== cachedRaw) {
     cachedRaw = raw;
+    let input: unknown;
     try {
-      const result = progressSchema.safeParse(
-        raw ? JSON.parse(raw) : emptyProgress,
-      );
+      input = raw ? JSON.parse(raw) : emptyProgress;
+      const result = progressSchema.safeParse(input);
       if (!result.success) throw new Error("Invalid progress");
       cached = result.data;
     } catch {
-      cached = emptyProgress;
+      cached = recoverProgress(input);
       try {
-        if (raw) localStorage.setItem(`${STORAGE_KEY}.corrupt`, raw);
+        if (raw && localStorage.getItem(`${STORAGE_KEY}.corrupt`) === null)
+          localStorage.setItem(`${STORAGE_KEY}.corrupt`, raw);
       } catch {
         /* The original value remains until the next save. */
       }

@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { emptyProgress } from "../../src/lib/learning";
-import { progressSchema } from "../../src/lib/progress-schema";
+import { progressSchema, recoverProgress } from "../../src/lib/progress-schema";
 
 test("progress backups reject impossible dates and scores", () => {
   assert.equal(progressSchema.safeParse(emptyProgress).success, true);
@@ -37,4 +37,22 @@ test("progress backups reject impossible dates and scores", () => {
       .success,
     false,
   );
+});
+
+test("recovery preserves valid progress fields when a single field is damaged", () => {
+  const damaged = {
+    ...emptyProgress,
+    saved: ["curious"],
+    completed: ["present-simple"],
+    goal: 15,
+    reviews: { curious: { interval: 1, repetitions: 1, due: "2026-99-99" } },
+  };
+  assert.equal(progressSchema.safeParse(damaged).success, false);
+  assert.deepEqual(recoverProgress(damaged), {
+    ...emptyProgress,
+    saved: ["curious"],
+    completed: ["present-simple"],
+    goal: 15,
+  });
+  assert.deepEqual(recoverProgress(null), emptyProgress);
 });

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { emptyProgress, type Progress } from "./learning";
 
 const identifier = z.string().min(1).max(120);
 export const reviewSchema = z.object({
@@ -27,3 +28,19 @@ export const progressSchema = z.object({
   activity: z.record(z.iso.date(), z.number().int().nonnegative()),
   goal: z.number().int().min(1).max(100),
 });
+
+export function recoverProgress(input: unknown): Progress {
+  if (!input || typeof input !== "object" || Array.isArray(input))
+    return emptyProgress;
+  const fields = input as Record<string, unknown>;
+  const recovered = Object.fromEntries(
+    Object.entries(progressSchema.shape).map(([key, schema]) => {
+      const result = schema.safeParse(fields[key]);
+      return [
+        key,
+        result.success ? result.data : emptyProgress[key as keyof Progress],
+      ];
+    }),
+  );
+  return progressSchema.parse(recovered);
+}
