@@ -6,6 +6,7 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
+import { ClientNotice } from "./client-notice";
 import { useLocale } from "./locale-provider";
 import { progressSchema, recoverProgress } from "@/lib/progress-schema";
 import {
@@ -165,11 +166,11 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     >
       {children}
       {unavailable && (
-        <div className="storage-notice" role="status">
+        <ClientNotice>
           {t(
             "Browser storage is unavailable. Progress will last for this visit.",
           )}
-        </div>
+        </ClientNotice>
       )}
     </context.Provider>
   );

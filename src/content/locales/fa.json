@@ -216,5 +216,16 @@
   "Result pages": "صفحه‌های نتایج",
   "Previous page": "صفحه قبل",
   "Next page": "صفحه بعد",
-  "Page {current} of {total}": "صفحه {current} از {total}"
+  "Page {current} of {total}": "صفحه {current} از {total}",
+  "Reading preferences": "تنظیمات خواندن",
+  "Reading size": "اندازه متن",
+  "Line spacing": "فاصله خطوط",
+  "Reading font": "قلم خواندن",
+  "Standard": "معمولی",
+  "Larger": "بزرگ‌تر",
+  "Comfortable": "بیشتر",
+  "Default": "پیش‌فرض",
+  "High contrast": "کنتراست بیشتر",
+  "Quiet mode": "حالت آرام",
+  "Preferences will last for this visit.": "تنظیمات فقط برای این بازدید می‌ماند."
 }

@@ -216,5 +216,16 @@
   "Result pages": "صفحات النتائج",
   "Previous page": "الصفحة السابقة",
   "Next page": "الصفحة التالية",
-  "Page {current} of {total}": "الصفحة {current} من {total}"
+  "Page {current} of {total}": "الصفحة {current} من {total}",
+  "Reading preferences": "تفضيلات القراءة",
+  "Reading size": "حجم النص",
+  "Line spacing": "تباعد الأسطر",
+  "Reading font": "خط القراءة",
+  "Standard": "عادي",
+  "Larger": "أكبر",
+  "Comfortable": "مريح",
+  "Default": "افتراضي",
+  "High contrast": "تباين عالٍ",
+  "Quiet mode": "وضع هادئ",
+  "Preferences will last for this visit.": "ستبقى التفضيلات لهذه الزيارة فقط."
 }

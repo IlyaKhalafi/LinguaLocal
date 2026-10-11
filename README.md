@@ -46,7 +46,8 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Spaced flashcards      | Study all words, saved words, or cards ready for review                            | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Learning progress      | See an eight-week activity map, streaks, completed lessons, and recent results     | [Progress](docs/screenshots/progress.png)                    |
 | School network         | Reveal a shareable school address and scan a local QR code                         | [Join the school network](docs/screenshots/join-network.png) |
-| Personal settings      | Choose personal preferences and export or restore progress backups                 | [Settings](docs/screenshots/settings.png)                    |
+| Reading preferences    | Choose larger text, readable fonts, spacing, contrast, and quiet mode              | [Reading controls](docs/screenshots/reading-settings.png)    |
+| Personal settings      | Export or restore progress backups                                                 | [Settings](docs/screenshots/settings.png)                    |
 
 <table>
   <tr>
@@ -143,4 +144,4 @@ Direct dependencies were checked against their stable registry releases on 11 Oc
 
 ## License
 
-LinguaLocal is available under the [MIT license](LICENSE). Bring your own licensed classroom materials and make the learning space your own.
+LinguaLocal is available under the [MIT license](LICENSE). Bundled [Inter](public/fonts/inter-license.txt), [Noto Sans Arabic](public/fonts/noto-arabic-license.txt), and [Atkinson Hyperlegible](public/fonts/atkinson-license.txt) retain their font licenses. Bring your own licensed classroom materials and make the learning space your own.

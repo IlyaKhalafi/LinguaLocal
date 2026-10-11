@@ -13,6 +13,7 @@ const translatedPreviews = new Set([
   "games",
   "settings",
   "join-network",
+  "reading-settings",
 ]);
 
 async function capture(page: Page, name: string, locale: Locale) {
@@ -87,6 +88,31 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
     .getByRole("img", { name: translate(locale, "Scan to open LinguaLocal") })
     .waitFor();
   await capture(page, "join-network", locale);
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Hide network address"),
+      exact: true,
+    })
+    .click();
+  await page
+    .getByText(translate(locale, "Reading preferences"), { exact: true })
+    .click();
+  await page
+    .getByLabel(translate(locale, "Reading size"))
+    .selectOption("large");
+  await page
+    .getByLabel(translate(locale, "Line spacing"))
+    .selectOption("relaxed");
+  await page
+    .getByLabel(translate(locale, "Reading font"))
+    .selectOption("readable");
+  await page
+    .getByLabel(translate(locale, "High contrast"), { exact: true })
+    .check();
+  await page
+    .getByLabel(translate(locale, "Quiet mode"), { exact: true })
+    .check();
+  await capture(page, "reading-settings", locale);
   await page.close();
 }
 

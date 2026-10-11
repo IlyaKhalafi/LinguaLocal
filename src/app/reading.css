@@ -1,0 +1,125 @@
+.reading-settings {
+  margin-bottom: 24px;
+}
+.reading-settings > summary {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 650;
+  color: var(--ink);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reading-settings[open] > summary svg {
+  transform: rotate(180deg);
+}
+.reading-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.reading-controls .form-field {
+  margin-bottom: 0;
+}
+.reading-switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  grid-column: 1 / -1;
+}
+.reading-switches label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.reading-switches input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+}
+html[data-reading-font="readable"] :is(:lang(en), :lang(tr)) {
+  font-family: "Atkinson Hyperlegible Next Variable", Arial, sans-serif;
+}
+html[data-reading-size="large"]
+  :is(
+    .definition,
+    .word-example,
+    .phonetic,
+    .word-bottom,
+    .lesson-section p,
+    .exercise h3,
+    .detail-description,
+    .option,
+    .matching-tile,
+    .media-player details p
+  ) {
+  font-size: 1.125rem;
+}
+html[data-reading-spacing="relaxed"]
+  :is(
+    .word-card p,
+    .lesson-section p,
+    .detail-description,
+    .option,
+    .matching-tile,
+    .media-player details p
+  ) {
+  line-height: 2;
+  letter-spacing: 0.03em;
+}
+html[data-reading-spacing="relaxed"] :is(:lang(fa), :lang(ar)) {
+  letter-spacing: normal;
+}
+html[data-contrast="true"] {
+  --line: #839384;
+  --text: #142f24;
+  --muted: #243f36;
+}
+html[data-contrast="true"]
+  :is(
+    .phonetic,
+    .word-example,
+    .word-bottom,
+    .matching-tile,
+    .detail-description
+  ) {
+  color: var(--ink);
+}
+html[data-reading-size="large"] .flashcard .definition {
+  font-size: 1.5rem;
+}
+html[data-quiet="true"] :is(.game-art, .results-panel > svg, .stat-icon) {
+  display: none;
+}
+html[data-quiet="true"] .goal-circle {
+  background: none;
+}
+html[data-quiet="true"] .results-score {
+  background: none;
+  border-radius: 0;
+  font-size: 24px;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+html[data-quiet="true"] .results-score > span {
+  margin-top: 0 !important;
+}
+html[data-quiet="true"] *,
+html[data-quiet="true"] *::before,
+html[data-quiet="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+@media (max-width: 700px) {
+  .reading-controls {
+    grid-template-columns: 1fr;
+  }
+}

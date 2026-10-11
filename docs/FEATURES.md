@@ -52,6 +52,12 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 
 The address appears on request. Choose a network interface only when more than one is available.
 
+## Reading preferences
+
+Settings offers larger reading text, comfortable line spacing, a bundled Atkinson Hyperlegible font, higher contrast, and a quiet mode that removes decorative art and animations. These choices stay in the current browser. The controls remain collapsed until needed.
+
+![Reading controls](screenshots/reading-settings.png)
+
 ## Interface languages
 
 The interface supports English, Persian, Arabic, and Turkish. Persian and Arabic use right-to-left navigation while English learning material stays left to right.

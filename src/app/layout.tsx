@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/noto-sans-arabic";
+import "@fontsource-variable/atkinson-hyperlegible-next";
 import "./globals.css";
+import "./reading.css";
+import { getRequestPreferences } from "@/lib/preferences-server";
+import { preferenceAttributes } from "@/lib/preferences";
+import { PreferencesProvider } from "@/components/preferences-provider";
 import { Shell } from "@/components/shell";
 import { ProgressProvider } from "@/components/progress-provider";
 import { getSettingsState } from "@/lib/content";
@@ -24,20 +29,28 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const { settings, warning } = await getSettingsState();
   const locale = await getRequestLocale();
+  const preferences = await getRequestPreferences();
   return (
-    <html lang={locale} dir={direction(locale)}>
+    <html
+      lang={locale}
+      dir={direction(locale)}
+      {...preferenceAttributes(preferences)}
+    >
       <body>
+        <div id="client-notices" className="client-notices" />
         <LocaleProvider initialLocale={locale}>
-          <ProgressProvider>
-            <Shell settings={settings}>
-              {warning && (
-                <p className="inline-message" role="status">
-                  <LocalizedText text={warning} />
-                </p>
-              )}
-              {children}
-            </Shell>
-          </ProgressProvider>
+          <PreferencesProvider initialPreferences={preferences}>
+            <ProgressProvider>
+              <Shell settings={settings}>
+                {warning && (
+                  <p className="inline-message" role="status">
+                    <LocalizedText text={warning} />
+                  </p>
+                )}
+                {children}
+              </Shell>
+            </ProgressProvider>
+          </PreferencesProvider>
         </LocaleProvider>
       </body>
     </html>

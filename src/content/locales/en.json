@@ -216,5 +216,16 @@
   "Result pages": "Result pages",
   "Previous page": "Previous page",
   "Next page": "Next page",
-  "Page {current} of {total}": "Page {current} of {total}"
+  "Page {current} of {total}": "Page {current} of {total}",
+  "Reading preferences": "Reading preferences",
+  "Reading size": "Reading size",
+  "Line spacing": "Line spacing",
+  "Reading font": "Reading font",
+  "Standard": "Standard",
+  "Larger": "Larger",
+  "Comfortable": "Comfortable",
+  "Default": "Default",
+  "High contrast": "High contrast",
+  "Quiet mode": "Quiet mode",
+  "Preferences will last for this visit.": "Preferences will last for this visit."
 }

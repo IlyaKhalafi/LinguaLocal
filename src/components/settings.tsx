@@ -3,6 +3,7 @@ import { useLocale } from "@/components/locale-provider";
 
 import { useState } from "react";
 import { Download } from "lucide-react";
+import { ReadingSettings } from "./reading-settings";
 import { NetworkJoin } from "./network-join";
 import { useProgress } from "./progress-provider";
 import { progressSchema } from "@/lib/progress-schema";
@@ -22,6 +23,7 @@ export function PersonalSettings() {
   return (
     <>
       <PageHeading title={t("Settings")} />
+      <ReadingSettings />
       <div className="settings-grid">
         <section
           className="panel settings-panel"

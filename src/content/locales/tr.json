@@ -216,5 +216,16 @@
   "Result pages": "Sonuç sayfaları",
   "Previous page": "Önceki sayfa",
   "Next page": "Sonraki sayfa",
-  "Page {current} of {total}": "{total} sayfadan {current}. sayfa"
+  "Page {current} of {total}": "{total} sayfadan {current}. sayfa",
+  "Reading preferences": "Okuma tercihleri",
+  "Reading size": "Yazı boyutu",
+  "Line spacing": "Satır aralığı",
+  "Reading font": "Okuma yazı tipi",
+  "Standard": "Standart",
+  "Larger": "Daha büyük",
+  "Comfortable": "Rahat",
+  "Default": "Varsayılan",
+  "High contrast": "Yüksek kontrast",
+  "Quiet mode": "Sakin mod",
+  "Preferences will last for this visit.": "Tercihler yalnızca bu ziyaret boyunca geçerli."
 }
