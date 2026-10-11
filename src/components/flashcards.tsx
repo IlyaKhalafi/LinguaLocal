@@ -119,7 +119,7 @@ export function Flashcards({ words }: { words: Word[] }) {
                 total: deck.length,
               })}
             </span>
-            <span>{mode === "saved" ? t("Saved words") : t("Flashcards")}</span>
+            {mode === "saved" && <span>{t("Saved words")}</span>}
           </div>
           <div className="progress-track">
             <div

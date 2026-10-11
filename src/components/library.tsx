@@ -1,7 +1,7 @@
 "use client";
+import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
 import { BookCard, EmptyState, PageHeading } from "./ui";
 import { levels, type Book } from "@/lib/schema";
 
@@ -27,16 +27,12 @@ export function Library({ books }: { books: Book[] }) {
     <>
       <PageHeading title={t("Library")} />
       <div className="toolbar">
-        <label className="search-field">
-          <Search size={17} />
-          <span className="sr-only">{t("Search books")}</span>
-          <input
-            dir="auto"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t("Search books")}
-          />
-        </label>
+        <SearchField
+          label={t("Search books")}
+          placeholder={t("Search books")}
+          value={query}
+          onChange={setQuery}
+        />
         <select
           aria-label={t("Filter books by level")}
           value={level}

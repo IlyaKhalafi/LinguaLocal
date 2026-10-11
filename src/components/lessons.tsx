@@ -1,8 +1,9 @@
 "use client";
+import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, Clock, Search } from "lucide-react";
+import { ArrowRight, CheckCircle2, Clock } from "lucide-react";
 import { levels, type Lesson } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { Badge, EmptyState, PageHeading } from "./ui";
@@ -25,16 +26,12 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
     <>
       <PageHeading title={t("Lessons")} />
       <div className="toolbar">
-        <label className="search-field">
-          <Search size={16} />
-          <span className="sr-only">{t("Search lessons")}</span>
-          <input
-            dir="auto"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t("Search lessons")}
-          />
-        </label>
+        <SearchField
+          label={t("Search lessons")}
+          placeholder={t("Search lessons")}
+          value={query}
+          onChange={setQuery}
+        />
         <select
           aria-label={t("Filter lessons by level")}
           value={level}
