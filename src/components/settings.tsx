@@ -4,6 +4,9 @@ import { useLocale } from "@/components/locale-provider";
 import { useState } from "react";
 import { Download, Wifi } from "lucide-react";
 import { useProgress } from "./progress-provider";
+import { progressSchema } from "@/lib/progress-schema";
+import type { Progress } from "@/lib/learning";
+import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { downloadJson, PageHeading } from "./ui";
 
 export function PersonalSettings() {
@@ -12,6 +15,10 @@ export function PersonalSettings() {
   const [message, setMessage] = useState("");
   const [confirmReset, setConfirmReset] = useState(false);
   const [host, setHost] = useState("");
+  const [pending, setPending] = useState<Progress | null>(null);
+  const [returnTo, setReturnTo] = useState("reset");
+  const mode = confirmReset ? "reset" : pending ? "restore" : "closed";
+  const focusTarget = useFocusOnChange(mode);
   return (
     <>
       <PageHeading title={t("Settings")} />
@@ -36,21 +43,36 @@ export function PersonalSettings() {
               id="restore-progress"
               className="sr-only"
               type="file"
+              ref={
+                mode === "closed" && returnTo === "backup"
+                  ? focusTarget
+                  : undefined
+              }
               accept=".json"
               onChange={async (event) => {
                 const input = event.currentTarget;
                 const file = input.files?.[0];
                 if (!file) return;
+                setPending(null);
+                setConfirmReset(false);
+                setReturnTo("backup");
+                setMessage("");
                 try {
                   if (file.size > 2 * 1024 * 1024) {
                     setMessage("Backup is too large.");
                     return;
                   }
-                  if (!restore(JSON.parse(await file.text()))) {
+                  const result = progressSchema.safeParse(
+                    JSON.parse(await file.text()),
+                  );
+                  if (!result.success) {
                     setMessage("This is not a valid progress backup.");
                     return;
                   }
-                  setMessage("Progress restored.");
+                  setMessage("");
+                  setReturnTo("backup");
+                  setConfirmReset(false);
+                  setPending(result.data);
                 } catch {
                   setMessage("This is not a valid progress backup.");
                 } finally {
@@ -62,6 +84,42 @@ export function PersonalSettings() {
           <p className={message ? "inline-message" : "sr-only"} role="status">
             {t(message)}
           </p>
+          {pending && (
+            <div
+              className="inline-message"
+              role="group"
+              aria-label={t("Restore progress")}
+            >
+              <p>{t("Replace progress on this device?")}</p>
+              <p>
+                {t("Saved words")}{" "}
+                <bdi>{t("{count}", { count: pending.saved.length })}</bdi>
+                {" · "}
+                {t("Completed lessons")}{" "}
+                <bdi>{t("{count}", { count: pending.completed.length })}</bdi>
+              </p>
+              <div className="button-row">
+                <button
+                  ref={focusTarget}
+                  className="button secondary"
+                  onClick={() => setPending(null)}
+                >
+                  {t("Cancel")}
+                </button>
+                <button
+                  className="button primary"
+                  onClick={() => {
+                    if (restore(pending)) {
+                      setPending(null);
+                      setMessage("Progress restored.");
+                    }
+                  }}
+                >
+                  {t("Restore progress")}
+                </button>
+              </div>
+            </div>
+          )}
           {confirmReset ? (
             <div className="inline-message">
               <p>
@@ -71,6 +129,7 @@ export function PersonalSettings() {
               </p>
               <div className="button-row">
                 <button
+                  ref={focusTarget}
                   className="button secondary"
                   onClick={() => setConfirmReset(false)}
                 >
@@ -90,9 +149,18 @@ export function PersonalSettings() {
             </div>
           ) : (
             <button
+              ref={
+                mode === "closed" && returnTo === "reset"
+                  ? focusTarget
+                  : undefined
+              }
               className="text-link"
               style={{ marginTop: 20, border: 0, background: "none" }}
-              onClick={() => setConfirmReset(true)}
+              onClick={() => {
+                setPending(null);
+                setReturnTo("reset");
+                setConfirmReset(true);
+              }}
             >
               {t("Reset progress")}
             </button>

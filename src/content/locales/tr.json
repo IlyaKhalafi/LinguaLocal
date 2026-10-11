@@ -204,5 +204,7 @@
   "Date": "Tarih",
   "Activities": "Etkinlikler",
   "{seconds}s": "{seconds} sn",
-  "Press play to start playback.": "Başlamak için oynat düğmesine basın."
+  "Press play to start playback.": "Başlamak için oynat düğmesine basın.",
+  "Restore progress": "İlerlemeyi geri yükle",
+  "Replace progress on this device?": "Bu cihazdaki ilerleme değiştirilsin mi?"
 }

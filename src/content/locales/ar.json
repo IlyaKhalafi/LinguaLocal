@@ -204,5 +204,7 @@
   "Date": "التاريخ",
   "Activities": "الأنشطة",
   "{seconds}s": "{seconds} ث",
-  "Press play to start playback.": "اضغط على تشغيل لبدء المقطع."
+  "Press play to start playback.": "اضغط على تشغيل لبدء المقطع.",
+  "Restore progress": "استعادة التقدم",
+  "Replace progress on this device?": "هل تريد استبدال التقدم على هذا الجهاز؟"
 }

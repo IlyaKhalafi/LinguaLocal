@@ -204,5 +204,7 @@
   "Date": "تاریخ",
   "Activities": "فعالیت‌ها",
   "{seconds}s": "{seconds} ثانیه",
-  "Press play to start playback.": "برای شروع پخش، دکمه پخش را بزنید."
+  "Press play to start playback.": "برای شروع پخش، دکمه پخش را بزنید.",
+  "Restore progress": "بازیابی پیشرفت",
+  "Replace progress on this device?": "پیشرفت این دستگاه جایگزین شود؟"
 }

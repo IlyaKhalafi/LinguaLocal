@@ -204,5 +204,7 @@
   "Date": "Date",
   "Activities": "Activities",
   "{seconds}s": "{seconds}s",
-  "Press play to start playback.": "Press play to start playback."
+  "Press play to start playback.": "Press play to start playback.",
+  "Restore progress": "Restore progress",
+  "Replace progress on this device?": "Replace progress on this device?"
 }
