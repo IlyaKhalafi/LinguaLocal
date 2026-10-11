@@ -14,12 +14,7 @@ const translatedPreviews = new Set([
   "settings",
 ]);
 
-async function capture(
-  page: Page,
-  name: string,
-  locale: Locale,
-  featured = false,
-) {
+async function capture(page: Page, name: string, locale: Locale) {
   await page.evaluate(() => document.fonts.ready);
   for (const mobile of [false, true]) {
     await page.setViewportSize(
@@ -33,9 +28,7 @@ async function capture(
       throw new Error(`Horizontal overflow on ${locale} ${name}`);
     const filename = `${locale === "en" ? "" : locale + "-"}${name}${mobile ? "-mobile" : ""}.png`;
     const output =
-      locale === "en" || translatedPreviews.has(name) || featured
-        ? folder
-        : reviewFolder;
+      locale === "en" || translatedPreviews.has(name) ? folder : reviewFolder;
     if (output)
       await page.screenshot({
         path: path.join(output, filename),

@@ -953,6 +953,12 @@ label {
   font-weight: 600;
   line-height: 1.3;
 }
+.number-ratio {
+  display: inline-flex;
+  justify-content: center;
+  gap: 0.15em;
+  white-space: pre;
+}
 .goal-circle small {
   font-size: 8px;
 

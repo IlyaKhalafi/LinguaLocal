@@ -14,6 +14,7 @@ import { dayKey, streak } from "@/lib/learning";
 import type { ContentPack } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
+import { NumberRatio } from "./number-ratio";
 
 export function ProgressDashboard({
   content,
@@ -156,12 +157,10 @@ export function ProgressDashboard({
                         })}
                       </p>
                     </div>
-                    <strong dir="ltr">
-                      {t("{current} / {total}", {
-                        current: attempt.score,
-                        total: attempt.total,
-                      })}
-                    </strong>
+                    <NumberRatio
+                      current={attempt.score}
+                      total={attempt.total}
+                    />
                   </div>
                 ))}
               </div>
@@ -189,12 +188,7 @@ export function ProgressDashboard({
               }
             >
               <div>
-                <strong dir="ltr">
-                  {t("{current} / {total}", {
-                    current: today,
-                    total: progress.goal,
-                  })}
-                </strong>
+                <NumberRatio current={today} total={progress.goal} />
                 <small>{t("Activities today")}</small>
               </div>
             </div>

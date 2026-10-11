@@ -29,12 +29,19 @@ for (const locale of ["fa", "ar", "tr"] as const) {
           "dir",
           direction(locale),
         );
-        await expect(page.locator("h1")).toBeVisible();
-        if (route === "/")
-          await expect(page.locator(".goal-circle strong")).toHaveAttribute(
-            "dir",
-            "ltr",
+        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+        if (route === "/" || route === "/progress") {
+          const ratio = page.locator(".goal-circle strong:visible");
+          await expect(ratio).toHaveText(
+            translate(locale, "{current} / {total}", { current: 0, total: 10 }),
           );
+          const positions = await ratio
+            .locator("bdi")
+            .evaluateAll((numbers) =>
+              numbers.map((number) => number.getBoundingClientRect().left),
+            );
+          expect(positions[0]).toBeLessThan(positions[1]);
+        }
         await page.evaluate(() => document.fonts.ready);
         expect(
           await page.evaluate(

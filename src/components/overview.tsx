@@ -12,6 +12,7 @@ import {
 import { useProgress } from "./progress-provider";
 import { BookCard, PageHeading } from "./ui";
 import { WordCard } from "./word-card";
+import { NumberRatio } from "./number-ratio";
 import { dailyWord, streak } from "@/lib/learning";
 import { useToday } from "@/lib/use-today";
 import { defaultSettings } from "@/lib/default-settings";
@@ -120,12 +121,7 @@ export function Overview({
               }
             >
               <div>
-                <strong dir="ltr">
-                  {t("{current} / {total}", {
-                    current: today,
-                    total: progress.goal,
-                  })}
-                </strong>
+                <NumberRatio current={today} total={progress.goal} />
                 <small>{t("Activities today")}</small>
               </div>
             </div>
