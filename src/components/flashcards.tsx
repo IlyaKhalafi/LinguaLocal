@@ -6,6 +6,7 @@ import { dayKey, shuffle } from "@/lib/learning";
 import type { Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
+import { PracticeGuide } from "./practice-guide";
 
 export function Flashcards({ words }: { words: Word[] }) {
   const { progress, review } = useProgress();
@@ -96,6 +97,7 @@ export function Flashcards({ words }: { words: Word[] }) {
               }
             />
           )}
+          <PracticeGuide words={pool} />
         </>
       ) : !word ? (
         <div className="results-panel">

@@ -43,7 +43,7 @@ export function ProgressDashboard({
     {
       icon: Flame,
       value: streak(progress.activity, new Date(`${day}T12:00:00`)),
-      label: "Day learning streak",
+      label: "Days in your streak",
     },
     { icon: BookOpen, value: completed.length, label: "Lessons completed" },
     { icon: Layers, value: saved.length, label: "Words collected" },

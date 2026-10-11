@@ -4,16 +4,31 @@ import path from "node:path";
 import { mediaDirectory } from "@/lib/content";
 import { mimeTypes } from "@/lib/media";
 import { apiError, HttpError } from "@/lib/http";
+import { checkMutation } from "@/lib/mutations";
 const MAX_SIZE = 100 * 1024 * 1024;
 export const runtime = "nodejs";
 export async function POST(request: Request) {
+  try {
+    checkMutation(request);
+    if (request.headers.get("x-lingualocal-upload") !== "1")
+      throw new HttpError(
+        400,
+        "Use the upload action in your school’s content studio.",
+      );
+  } catch (error) {
+    return apiError(error);
+  }
   const originalName = new URL(request.url).searchParams.get("name") ?? "";
-  const name = originalName
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-zA-Z0-9._-]/g, "-")
-    .replace(/^-+/, "")
-    .slice(0, 150);
+  const extension = path.extname(originalName).toLowerCase();
+  const base =
+    path
+      .basename(originalName, extension)
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9_-]/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 120) || "media";
+  const name = base + extension;
   if (
     /[\\/]/.test(originalName) ||
     originalName.includes("..") ||
@@ -24,7 +39,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         error:
-          "Use a simple filename and an MP3, WAV, OGG, M4A, FLAC, MP4, WebM, or PDF file.",
+          "Use a simple filename and an MP3, WAV, OGG, M4A, FLAC, MP4, WebM, PDF, or WebVTT file.",
       },
       { status: 400 },
     );

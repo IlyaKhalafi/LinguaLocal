@@ -1,10 +1,13 @@
-import { atomicWrite, getContent } from "@/lib/content";
+import { getContent, saveContent } from "@/lib/content";
+import { contentVersion } from "@/lib/content-version";
 import { apiError, readLimitedJson } from "@/lib/http";
 import { packSchema } from "@/lib/schema";
+import { checkMutation } from "@/lib/mutations";
 export async function GET() {
   try {
-    return Response.json(await getContent(), {
-      headers: { "Cache-Control": "no-store" },
+    const content = await getContent();
+    return Response.json(content, {
+      headers: { "Cache-Control": "no-store", ETag: contentVersion(content) },
     });
   } catch (error) {
     return apiError(error);
@@ -12,6 +15,7 @@ export async function GET() {
 }
 export async function PUT(request: Request) {
   try {
+    checkMutation(request);
     const result = packSchema.safeParse(await readLimitedJson(request));
     if (!result.success)
       return Response.json(
@@ -23,8 +27,11 @@ export async function PUT(request: Request) {
         },
         { status: 400 },
       );
-    await atomicWrite("content.json", result.data);
-    return Response.json({ ok: true });
+    const version = await saveContent(
+      result.data,
+      request.headers.get("if-match"),
+    );
+    return Response.json({ ok: true, version });
   } catch (error) {
     return apiError(error);
   }

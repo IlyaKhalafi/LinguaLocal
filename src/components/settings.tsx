@@ -270,7 +270,7 @@ export function SchoolSettings({
                 id="media-upload"
                 className="file-input"
                 type="file"
-                accept=".mp3,.wav,.ogg,.m4a,.flac,.mp4,.webm,.pdf"
+                accept=".mp3,.wav,.ogg,.m4a,.flac,.mp4,.webm,.pdf,.vtt"
                 disabled={uploadBusy}
                 onChange={(e) => void upload(e.target.files?.[0])}
               />

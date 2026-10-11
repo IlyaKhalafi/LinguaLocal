@@ -45,7 +45,7 @@ export function Overview({
     {
       icon: Flame,
       value: streak(progress.activity, date),
-      label: "Day learning streak",
+      label: "Days in your streak",
     },
   ];
   return (

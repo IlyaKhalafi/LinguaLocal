@@ -31,8 +31,8 @@ const navigation = [
 ];
 function subscribeMobile(callback: () => void) {
   const query = window.matchMedia("(max-width: 700px)");
-  query.addEventListener("change",callback);
-  return () => query.removeEventListener("change",callback);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
 }
 export function Shell({
   settings,
@@ -44,36 +44,68 @@ export function Shell({
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const mobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 700px)").matches, () => false);
+  const mobile = useSyncExternalStore(
+    subscribeMobile,
+    () => window.matchMedia("(max-width: 700px)").matches,
+    () => false,
+  );
   const sidebar = useRef<HTMLElement>(null);
   const menu = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     function shortcut(event: KeyboardEvent) {
-      if (event.key === "/" && !(event.target instanceof HTMLElement && (event.target.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)))) {
+      if (
+        event.key === "/" &&
+        !(
+          event.target instanceof HTMLElement &&
+          (event.target.isContentEditable ||
+            /INPUT|TEXTAREA|SELECT/.test(event.target.tagName))
+        )
+      ) {
         event.preventDefault();
-        if (pathname === "/dictionary") document.querySelector<HTMLInputElement>(".search-field input")?.focus();
+        if (pathname === "/dictionary")
+          document
+            .querySelector<HTMLInputElement>(".search-field input")
+            ?.focus();
         else router.push("/dictionary");
       }
     }
-    document.addEventListener("keydown",shortcut);
-    return () => document.removeEventListener("keydown",shortcut);
-  },[pathname,router]);
+    document.addEventListener("keydown", shortcut);
+    return () => document.removeEventListener("keydown", shortcut);
+  }, [pathname, router]);
   useEffect(() => {
     if (!open || !mobile) return;
     const previousOverflow = document.body.style.overflow;
+    const menuButton = menu.current;
     document.body.style.overflow = "hidden";
-    const focusable = () => Array.from(sidebar.current?.querySelectorAll<HTMLElement>("a, button") ?? []).filter((item) => item.offsetParent !== null);
+    const focusable = () =>
+      Array.from(
+        sidebar.current?.querySelectorAll<HTMLElement>("a, button") ?? [],
+      ).filter((item) => item.offsetParent !== null);
     focusable()[0]?.focus();
     function trap(event: KeyboardEvent) {
-      if (event.key === "Escape") {setOpen(false);return;}
+      if (event.key === "Escape") {
+        setOpen(false);
+        return;
+      }
       if (event.key !== "Tab") return;
-      const items = focusable();const first = items[0];const last = items.at(-1);
-      if (event.shiftKey && document.activeElement === first) {event.preventDefault();last?.focus();}
-      else if (!event.shiftKey && document.activeElement === last) {event.preventDefault();first?.focus();}
+      const items = focusable();
+      const first = items[0];
+      const last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
     }
-    document.addEventListener("keydown",trap);
-    return () => {document.body.style.overflow = previousOverflow;document.removeEventListener("keydown",trap);menu.current?.focus();};
-  },[open,mobile]);
+    document.addEventListener("keydown", trap);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", trap);
+      menuButton?.focus();
+    };
+  }, [open, mobile]);
   const current = navigation.find((item) =>
     item.href === "/" ? pathname === "/" : pathname.startsWith(item.href),
   );
@@ -90,7 +122,12 @@ export function Shell({
           onClick={() => setOpen(false)}
         />
       )}
-      <aside id="school-navigation" ref={sidebar} className={`sidebar ${open ? "is-open" : ""}`} inert={mobile && !open}>
+      <aside
+        id="school-navigation"
+        ref={sidebar}
+        className={`sidebar ${open ? "is-open" : ""}`}
+        inert={mobile && !open}
+      >
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
           <span className="brand-icon">
             <Leaf size={23} />
@@ -123,7 +160,6 @@ export function Shell({
             >
               <Icon size={19} />
               <span>{label}</span>
-              {href === "/library" && <span className="nav-dot" />}
             </Link>
           ))}
         </nav>
@@ -175,7 +211,11 @@ export function Shell({
             <ChevronRight size={14} />
             <strong>
               {current?.label ??
-                (pathname === "/settings" ? "School settings" : "Explore")}
+                (pathname === "/settings"
+                  ? "School settings"
+                  : pathname === "/studio"
+                    ? "Content studio"
+                    : "Explore")}
             </strong>
           </div>
           <div className="topbar-right">

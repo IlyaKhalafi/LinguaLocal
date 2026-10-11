@@ -4,6 +4,7 @@ import { mediaDirectory } from "@/lib/content";
 import { mimeTypes } from "@/lib/media";
 import { apiError } from "@/lib/http";
 import type { MediaFile } from "@/lib/media-types";
+import { mediaPathSchema } from "@/lib/schema";
 
 export async function GET() {
   try {
@@ -33,7 +34,11 @@ export async function GET() {
             });
           if (!child.isFile()) continue;
           const extension = path.extname(child.name).toLowerCase();
-          if (!mimeTypes[extension]) continue;
+          if (
+            !mimeTypes[extension] ||
+            !mediaPathSchema.safeParse(relative).success
+          )
+            continue;
           const info = await stat(/* turbopackIgnore: true */ location);
           files.set(relative, {
             file: relative,
@@ -54,6 +59,7 @@ export async function GET() {
     return Response.json(
       {
         files: [...files.values()].sort((a, b) => a.file.localeCompare(b.file)),
+        truncated: files.size >= 2000,
       },
       { headers: { "Cache-Control": "no-store" } },
     );

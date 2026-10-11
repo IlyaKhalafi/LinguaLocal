@@ -6,6 +6,7 @@ import { shuffle } from "@/lib/learning";
 import type { Word } from "@/lib/schema";
 import { PageHeading } from "./ui";
 import { useProgress } from "./progress-provider";
+import { PracticeGuide } from "./practice-guide";
 
 export function Matching({ words }: { words: Word[] }) {
   const [left, setLeft] = useState<Word[]>([]);
@@ -79,16 +80,22 @@ export function Matching({ words }: { words: Word[] }) {
           </div>
         </div>
       ) : !left.length ? (
-        <div className="panel">
-          <h2>Bring words and meanings together.</h2>
-          <p className="muted" style={{ margin: "15px 0 25px", fontSize: 12 }}>
-            Six pairs, no timer, and plenty of space to think.
-          </p>
-          <button className="button primary" onClick={start}>
-            Let’s find a match
-            <ArrowRight size={14} />
-          </button>
-        </div>
+        <>
+          <div className="panel">
+            <h2>Bring words and meanings together.</h2>
+            <p
+              className="muted"
+              style={{ margin: "15px 0 25px", fontSize: 12 }}
+            >
+              Six pairs, no timer, and plenty of space to think.
+            </p>
+            <button className="button primary" onClick={start}>
+              Let’s find a match
+              <ArrowRight size={14} />
+            </button>
+          </div>
+          <PracticeGuide words={words} />
+        </>
       ) : (
         <>
           <div className="game-progress">

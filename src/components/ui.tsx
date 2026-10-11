@@ -71,7 +71,7 @@ export function Cover({
     <div className={`book-cover ${book.color} ${compact ? "compact" : ""}`}>
       <div className="cover-top">
         <span>THE LINGUALOCAL COLLECTION</span>
-        <span>{book.level}</span>
+        <BookOpen size={11} aria-hidden="true" />
       </div>
       <div className="cover-art" aria-hidden="true">
         <div className="arch arch-one" />

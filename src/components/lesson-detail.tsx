@@ -25,7 +25,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
       {lesson.sections.map((section, index) => (
         <section className="lesson-section" key={index}>
           <p className="eyebrow">
-            {String(index + 1).padStart(2, "0")} · A LITTLE MORE UNDERSTANDING
+            SECTION {String(index + 1).padStart(2, "0")}
           </p>
           <h2>{section.title}</h2>
           <p>{section.body}</p>

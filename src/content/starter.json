@@ -260,6 +260,24 @@
           "duration": "0:23",
           "unit": "Unit 1",
           "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        },
+        {
+          "id": "greetings-video",
+          "title": "Start with hello",
+          "kind": "video",
+          "file": "greetings.mp4",
+          "captions": "greetings.vtt",
+          "duration": "0:12",
+          "unit": "Unit 1",
+          "transcript": "Hello. A new conversation starts here.\nHow are you today?\nI am well. Thank you for asking."
+        },
+        {
+          "id": "greetings-reading",
+          "title": "Your first conversation",
+          "kind": "pdf",
+          "file": "greetings.pdf",
+          "duration": "1 page",
+          "unit": "Unit 1"
         }
       ]
     },

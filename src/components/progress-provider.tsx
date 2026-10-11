@@ -34,7 +34,7 @@ const progressSchema = z.object({
         title: z.string(),
         score: z.number().nonnegative(),
         total: z.number().positive(),
-        date: z.string(),
+        date: z.iso.datetime(),
       }),
     )
     .max(100),
@@ -52,19 +52,27 @@ function snapshot(): Progress {
   if (typeof window === "undefined") return emptyProgress;
   if (memoryFallback) return cached;
   let raw: string | null;
-  try { raw = localStorage.getItem(STORAGE_KEY); } catch {
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch {
     memoryFallback = true;
     return cached;
   }
   if (raw !== cachedRaw) {
     cachedRaw = raw;
     try {
-      const result = progressSchema.safeParse(raw ? JSON.parse(raw) : emptyProgress);
+      const result = progressSchema.safeParse(
+        raw ? JSON.parse(raw) : emptyProgress,
+      );
       if (!result.success) throw new Error("Invalid progress");
       cached = result.data;
     } catch {
       cached = emptyProgress;
-      try { if (raw) localStorage.setItem(`${STORAGE_KEY}.corrupt`, raw); } catch { /* The original value remains until the next save. */ }
+      try {
+        if (raw) localStorage.setItem(`${STORAGE_KEY}.corrupt`, raw);
+      } catch {
+        /* The original value remains until the next save. */
+      }
     }
   }
   return cached;
@@ -116,11 +124,16 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     snapshot,
     () => emptyProgress,
   );
+  const unavailable = useSyncExternalStore(
+    subscribe,
+    () => memoryFallback,
+    () => false,
+  );
   return (
     <context.Provider
       value={{
         progress,
-        persistent: !memoryFallback,
+        persistent: !unavailable,
         toggleSaved: (id) =>
           update((p) => ({
             ...p,
@@ -173,7 +186,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-      {memoryFallback && (
+      {unavailable && (
         <div className="storage-notice" role="status">
           Browser storage is unavailable. Progress will last for this visit.
         </div>

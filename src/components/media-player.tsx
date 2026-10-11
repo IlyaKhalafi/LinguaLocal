@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Repeat2, RotateCcw } from "lucide-react";
 import type { Resource } from "@/lib/schema";
 
@@ -20,6 +20,16 @@ export function MediaPlayer({
   const [start, setStart] = useState<number | null>(null);
   const [end, setEnd] = useState<number | null>(null);
   const [loop, setLoop] = useState(false);
+  const section = useRef<HTMLElement>(null);
+  useEffect(() => {
+    section.current?.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+      block: "nearest",
+    });
+    section.current?.focus({ preventScroll: true });
+  }, []);
   const media = () =>
     resource.kind === "video" ? video.current : audio.current;
   function changeSpeed(value: number) {
@@ -57,6 +67,20 @@ export function MediaPlayer({
     src: mediaUrl(resource.file),
     onTimeUpdate: updateTime,
     onLoadedMetadata: () => changeSpeed(speed),
+    onRateChange: () => {
+      const player = media();
+      if (player) setSpeed(player.playbackRate);
+    },
+    onPlaying: () => setError(""),
+    onEnded: () => {
+      const player = media();
+      if (loop && start !== null && player) {
+        player.currentTime = start;
+        void player
+          .play()
+          .catch(() => setError("Press play to continue your loop."));
+      }
+    },
     onError: () =>
       setError(
         "This file could not be played. Ask your school to check the media file and format.",
@@ -64,7 +88,12 @@ export function MediaPlayer({
     "aria-label": resource.title,
   } as const;
   return (
-    <section className="media-player" aria-label="Media player">
+    <section
+      className="media-player"
+      aria-label="Media player"
+      ref={section}
+      tabIndex={-1}
+    >
       <div className="section-heading">
         <h3>{resource.title}</h3>
         <button
@@ -76,7 +105,7 @@ export function MediaPlayer({
         </button>
       </div>
       {resource.kind === "video" ? (
-        <video {...properties} ref={video}>
+        <video {...properties} ref={video} playsInline>
           {resource.captions && (
             <track
               kind="captions"

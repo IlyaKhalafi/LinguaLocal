@@ -26,7 +26,7 @@ export function putJson(
   value: unknown,
   headers: Record<string, string> = {},
 ) {
-  return requestJson<{ ok: boolean }>(url, {
+  return requestJson<{ ok: boolean; version?: string }>(url, {
     method: "PUT",
     headers: { "Content-Type": "application/json", ...headers },
     body: JSON.stringify(value),

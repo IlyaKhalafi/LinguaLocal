@@ -22,7 +22,14 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <ProgressProvider>
-          <Shell settings={settings}>{warning && <p className="inline-message" role="status">{warning}</p>}{children}</Shell>
+          <Shell settings={settings}>
+            {warning && (
+              <p className="inline-message" role="status">
+                {warning}
+              </p>
+            )}
+            {children}
+          </Shell>
         </ProgressProvider>
       </body>
     </html>

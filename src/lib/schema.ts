@@ -3,7 +3,7 @@ import { z } from "zod";
 export const levels = ["A1", "A2", "B1", "B2", "C1"] as const;
 const id = z.string().regex(/^[a-z0-9][a-z0-9-]{0,79}$/);
 const text = z.string().trim().min(1).max(2000);
-const mediaPath = z
+export const mediaPathSchema = z
   .string()
   .min(1)
   .max(300)
@@ -12,7 +12,8 @@ const mediaPath = z
       !value.startsWith("/") &&
       !value.includes("..") &&
       !value.includes("\\") &&
-      !value.includes(":"),
+      !value.includes(":") &&
+      value.split("/").every((segment) => segment && segment !== "."),
     "Use a relative media path",
   );
 export const wordSchema = z.object({
@@ -30,11 +31,11 @@ export const resourceSchema = z
     id,
     title: text,
     kind: z.enum(["audio", "video", "pdf"]),
-    file: mediaPath,
+    file: mediaPathSchema,
     duration: z.string().max(40),
     unit: text,
     transcript: z.string().max(20000).optional(),
-    captions: mediaPath.optional(),
+    captions: mediaPathSchema.optional(),
   })
   .refine((resource) => {
     const extension = resource.file.split(".").at(-1)?.toLowerCase();
@@ -47,7 +48,8 @@ export const resourceSchema = z
     return supported.includes(extension ?? "");
   }, "The file format must match the resource kind")
   .refine(
-    (resource) => !resource.captions || resource.captions.endsWith(".vtt"),
+    (resource) =>
+      !resource.captions || resource.captions.toLowerCase().endsWith(".vtt"),
     "Captions must use WebVTT format",
   );
 export const bookSchema = z.object({

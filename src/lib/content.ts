@@ -1,4 +1,5 @@
-import { mkdir, open, readFile, rename, unlink } from "node:fs/promises";
+import { mkdir, open, readFile, rename, stat, unlink } from "node:fs/promises";
+import type { ZodType } from "zod";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import {
@@ -8,6 +9,8 @@ import {
   type Settings,
 } from "./schema";
 import seed from "@/content/starter.json";
+import { contentVersion } from "./content-version";
+import { HttpError } from "./http";
 
 export const dataDirectory = path.resolve(
   /* turbopackIgnore: true */
@@ -22,19 +25,30 @@ export const defaultSettings: Settings = {
   welcome: "A little practice. A world of possibilities.",
 };
 
-async function readJson(name: string): Promise<unknown | null> {
+const starterContent = packSchema.parse(seed);
+const documentCache = new Map<
+  string,
+  { signature: string; value: Promise<unknown> }
+>();
+async function readDocument<T>(
+  name: string,
+  fallback: T,
+  schema: ZodType<T>,
+): Promise<T> {
   try {
-    return JSON.parse(
-      await readFile(
-        /* turbopackIgnore: true */ path.join(
-          /* turbopackIgnore: true */ dataDirectory,
-          name,
-        ),
-        "utf8",
-      ),
+    const location = path.join(/* turbopackIgnore: true */ dataDirectory, name);
+    const info = await stat(/* turbopackIgnore: true */ location);
+    const signature = `${info.mtimeMs}:${info.ctimeMs}:${info.size}:${info.ino}`;
+    const cached = documentCache.get(name);
+    if (cached?.signature === signature) return (await cached.value) as T;
+    const value = readFile(/* turbopackIgnore: true */ location, "utf8").then(
+      (raw) => schema.parse(JSON.parse(raw)),
     );
+    documentCache.set(name, { signature, value });
+    return await value;
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
+    documentCache.delete(name);
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return fallback;
     throw new Error(`Unable to read ${name}. Check the data directory.`, {
       cause: error,
     });
@@ -42,12 +56,33 @@ async function readJson(name: string): Promise<unknown | null> {
 }
 
 export async function getContent(): Promise<ContentPack> {
-  return packSchema.parse((await readJson("content.json")) ?? seed);
+  return readDocument("content.json", starterContent, packSchema);
 }
 export async function getSettings(): Promise<Settings> {
-  return settingsSchema.parse(
-    (await readJson("settings.json")) ?? defaultSettings,
+  return readDocument("settings.json", defaultSettings, settingsSchema);
+}
+let contentWriteQueue = Promise.resolve();
+export async function saveContent(
+  content: ContentPack,
+  expectedVersion: string | null,
+) {
+  const task = contentWriteQueue.then(async () => {
+    if (
+      expectedVersion &&
+      expectedVersion !== contentVersion((await getContentState()).content)
+    )
+      throw new HttpError(
+        409,
+        "The collection changed in another browser. Download your draft, reload this page, and apply your changes to the latest collection.",
+      );
+    await atomicWrite("content.json", content);
+    return contentVersion(content);
+  });
+  contentWriteQueue = task.then(
+    () => undefined,
+    () => undefined,
   );
+  return task;
 }
 export async function getSettingsState() {
   try {
@@ -67,7 +102,7 @@ export async function getContentState() {
   } catch (error) {
     console.error("Content needs repair", error);
     return {
-      content: packSchema.parse(seed),
+      content: starterContent,
       warning:
         "The school’s content file could not be read. The starter collection is shown here so you can import a valid backup to repair it. The original file remains on the server until you replace it.",
     };
@@ -88,6 +123,7 @@ export async function atomicWrite(
       temporary,
       path.join(/* turbopackIgnore: true */ dataDirectory, name),
     );
+    documentCache.delete(name);
   } finally {
     await handle.close().catch(() => undefined);
     await unlink(temporary).catch(() => undefined);

@@ -6,6 +6,7 @@ import { makeQuiz } from "@/lib/learning";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
+import { PracticeGuide } from "./practice-guide";
 
 export function Quiz({ words }: { words: Word[] }) {
   const [level, setLevel] = useState("");
@@ -73,39 +74,45 @@ export function Quiz({ words }: { words: Word[] }) {
           </div>
         </div>
       ) : !question ? (
-        <div className="panel">
-          <h2>Choose your next challenge.</h2>
-          <p className="muted" style={{ fontSize: 12, margin: "14px 0 24px" }}>
-            Up to eight words, with a little explanation along the way.
-          </p>
-          <div className="form-field">
-            <label htmlFor="quiz-level">Your vocabulary level</label>
-            <select
-              id="quiz-level"
-              value={level}
-              onChange={(e) => setLevel(e.target.value)}
+        <>
+          <div className="panel">
+            <h2>Choose your next challenge.</h2>
+            <p
+              className="muted"
+              style={{ fontSize: 12, margin: "14px 0 24px" }}
             >
-              <option value="">A little of everything</option>
-              {levels.map((level) => (
-                <option key={level}>{level}</option>
-              ))}
-            </select>
-          </div>
-          {pool.length < 4 && (
-            <p className="inline-message">
-              This level needs at least four words. Choose all levels or ask
-              your school to add more.
+              Up to eight words, with a little explanation along the way.
             </p>
-          )}
-          <button
-            className="button primary"
-            disabled={pool.length < 4}
-            onClick={start}
-          >
-            Let’s explore
-            <ArrowRight size={14} />
-          </button>
-        </div>
+            <div className="form-field">
+              <label htmlFor="quiz-level">Your vocabulary level</label>
+              <select
+                id="quiz-level"
+                value={level}
+                onChange={(e) => setLevel(e.target.value)}
+              >
+                <option value="">A little of everything</option>
+                {levels.map((level) => (
+                  <option key={level}>{level}</option>
+                ))}
+              </select>
+            </div>
+            {pool.length < 4 && (
+              <p className="inline-message">
+                This level needs at least four words. Choose all levels or ask
+                your school to add more.
+              </p>
+            )}
+            <button
+              className="button primary"
+              disabled={pool.length < 4}
+              onClick={start}
+            >
+              Let’s explore
+              <ArrowRight size={14} />
+            </button>
+          </div>
+          <PracticeGuide words={pool} />
+        </>
       ) : (
         <>
           <div className="game-progress">

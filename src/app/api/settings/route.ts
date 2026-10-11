@@ -1,6 +1,7 @@
 import { atomicWrite, getSettings } from "@/lib/content";
 import { apiError, readLimitedJson } from "@/lib/http";
 import { settingsSchema } from "@/lib/schema";
+import { checkMutation } from "@/lib/mutations";
 export async function GET() {
   try {
     return Response.json(await getSettings(), {
@@ -12,6 +13,7 @@ export async function GET() {
 }
 export async function PUT(request: Request) {
   try {
+    checkMutation(request);
     const result = settingsSchema.safeParse(await readLimitedJson(request));
     if (!result.success)
       return Response.json(

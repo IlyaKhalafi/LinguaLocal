@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { Badge } from "./ui";
+import { localEnglishVoice } from "@/lib/pronunciation";
 
 export function WordCard({
   word,
@@ -15,14 +16,13 @@ export function WordCard({
   const { progress, toggleSaved } = useProgress();
   const [message, setMessage] = useState("");
   const saved = progress.saved.includes(word.id);
-  function pronounce() {
+  async function pronounce() {
     if (!("speechSynthesis" in window)) {
       setMessage("Pronunciation is unavailable in this browser.");
       return;
     }
-    const voice = speechSynthesis
-      .getVoices()
-      .find((voice) => voice.lang.startsWith("en") && voice.localService);
+    setMessage("");
+    const voice = await localEnglishVoice();
     if (!voice) {
       setMessage(
         "Install an English voice on your device for offline pronunciation.",
