@@ -9,7 +9,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [x] Timed transcripts with dictionary lookup
 - [ ] Shadowing and dictation with word-level feedback
 - [ ] Private voice recordings saved on the student device
-- [ ] Spelling, listening, and gap-fill practice
+- [x] Spelling, listening, and gap-fill practice
 - [ ] Named study decks and tags
 - [ ] Review ratings, ease, lapses, and difficult-card practice
 - [ ] Personal notes on words and lessons

@@ -1,11 +1,25 @@
 "use client";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
-import { ArrowRight, Brain, Layers, Puzzle, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Brain,
+  Pencil,
+  Layers,
+  Puzzle,
+  Sparkles,
+} from "lucide-react";
 import { PageHeading } from "@/components/ui";
 export function Games() {
   const { t } = useLocale();
   const games = [
+    {
+      icon: Pencil,
+      title: "Practice",
+      description: "Spell, listen, and complete sentences.",
+      href: "/games/practice",
+      label: "Start practice",
+    },
     {
       icon: Brain,
       title: "Vocabulary quiz",

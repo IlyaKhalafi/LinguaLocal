@@ -5,6 +5,7 @@ export const pageCatalogue = [
   { name: "dictionary", path: "/dictionary" },
   { name: "lessons", path: "/lessons" },
   { name: "games", path: "/games" },
+  { name: "practice", path: "/games/practice" },
   { name: "quiz", path: "/games/quiz" },
   { name: "matching", path: "/games/match" },
   { name: "flashcards", path: "/flashcards" },

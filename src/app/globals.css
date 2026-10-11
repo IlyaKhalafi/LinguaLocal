@@ -3090,3 +3090,47 @@ button:disabled {
     line-height: 1.25;
   }
 }
+
+.game-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.practice-saved {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 0 0 20px;
+  cursor: pointer;
+}
+.practice-saved input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--green);
+}
+.practice-prompt {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+.practice-listen {
+  margin-bottom: 24px;
+}
+.practice-listen[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: default;
+}
+.question-card .inline-message .button {
+  margin-top: 10px;
+}
+@media (max-width: 900px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+html[data-reading-size="large"] .practice-prompt {
+  font-size: 1.75rem;
+}
+html[data-reading-spacing="relaxed"] .practice-prompt {
+  line-height: 2;
+}

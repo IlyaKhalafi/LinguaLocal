@@ -75,3 +75,9 @@ The interface supports English, Persian, Arabic, and Turkish. Persian and Arabic
 Replay a captioned passage by its timestamp. Select text to look it up in the dictionary. Repeat controls stay folded until needed.
 
 ![Timed transcript](screenshots/timed-transcript.png)
+
+### Written and listening practice
+
+Choose spelling, local listening, or gap fill. Use the whole dictionary, a level, or your saved words. Keyboard answers receive immediate feedback. Listening uses an English voice installed on the device.
+
+![Practice](screenshots/practice-playing.png)

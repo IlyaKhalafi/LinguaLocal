@@ -44,6 +44,11 @@ async function capture(page: Page, name: string, locale: Locale) {
 async function capturePractice(context: BrowserContext, locale: Locale) {
   const page = await context.newPage();
   const flows = [
+    {
+      path: "/games/practice",
+      button: "Start practice",
+      name: "practice-playing",
+    },
     { path: "/games/quiz", button: "Start quiz", name: "quiz-playing" },
     {
       path: "/games/match",
