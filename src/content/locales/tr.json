@@ -227,5 +227,11 @@
   "Default": "Varsayılan",
   "High contrast": "Yüksek kontrast",
   "Quiet mode": "Sakin mod",
-  "Preferences will last for this visit.": "Tercihler yalnızca bu ziyaret boyunca geçerli."
+  "Preferences will last for this visit.": "Tercihler yalnızca bu ziyaret boyunca geçerli.",
+  "Repeat a passage": "Bir bölümü tekrarla",
+  "Loading transcript": "Metin yükleniyor",
+  "Timed transcript is unavailable.": "Zamanlı metin kullanılamıyor.",
+  "Play from {time}": "{time} konumundan oynat",
+  "Look up {word}": "{word} sözcüğünü ara",
+  "Current passage": "Geçerli bölüm"
 }

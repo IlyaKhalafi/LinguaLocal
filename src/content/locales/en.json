@@ -227,5 +227,11 @@
   "Default": "Default",
   "High contrast": "High contrast",
   "Quiet mode": "Quiet mode",
-  "Preferences will last for this visit.": "Preferences will last for this visit."
+  "Preferences will last for this visit.": "Preferences will last for this visit.",
+  "Repeat a passage": "Repeat a passage",
+  "Loading transcript": "Loading transcript",
+  "Timed transcript is unavailable.": "Timed transcript is unavailable.",
+  "Play from {time}": "Play from {time}",
+  "Look up {word}": "Look up {word}",
+  "Current passage": "Current passage"
 }

@@ -227,5 +227,11 @@
   "Default": "پیش‌فرض",
   "High contrast": "کنتراست بیشتر",
   "Quiet mode": "حالت آرام",
-  "Preferences will last for this visit.": "تنظیمات فقط برای این بازدید می‌ماند."
+  "Preferences will last for this visit.": "تنظیمات فقط برای این بازدید می‌ماند.",
+  "Repeat a passage": "تکرار یک بخش",
+  "Loading transcript": "در حال بارگذاری متن",
+  "Timed transcript is unavailable.": "متن زمان‌بندی‌شده در دسترس نیست.",
+  "Play from {time}": "پخش از {time}",
+  "Look up {word}": "جست‌وجوی {word}",
+  "Current passage": "بخش در حال پخش"
 }

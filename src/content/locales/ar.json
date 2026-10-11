@@ -227,5 +227,11 @@
   "Default": "افتراضي",
   "High contrast": "تباين عالٍ",
   "Quiet mode": "وضع هادئ",
-  "Preferences will last for this visit.": "ستبقى التفضيلات لهذه الزيارة فقط."
+  "Preferences will last for this visit.": "ستبقى التفضيلات لهذه الزيارة فقط.",
+  "Repeat a passage": "تكرار مقطع",
+  "Loading transcript": "جارٍ تحميل النص",
+  "Timed transcript is unavailable.": "النص المتزامن غير متاح.",
+  "Play from {time}": "تشغيل من {time}",
+  "Look up {word}": "البحث عن {word}",
+  "Current passage": "المقطع الحالي"
 }

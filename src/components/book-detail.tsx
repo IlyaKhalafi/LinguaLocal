@@ -11,7 +11,8 @@ import {
   Video,
 } from "lucide-react";
 import { Badge, Cover, EmptyState } from "./ui";
-import { MediaPlayer, mediaUrl } from "./media-player";
+import { MediaPlayer } from "./media-player";
+import { mediaUrl } from "@/lib/media-url";
 import type { Book, Resource } from "@/lib/schema";
 
 export function BookDetail({ book }: { book: Book }) {
@@ -33,7 +34,7 @@ export function BookDetail({ book }: { book: Book }) {
       </Link>
       <div className="book-detail">
         <Cover book={book} />
-        <div>
+        <div className="book-summary">
           <h1 lang="en" dir="ltr">
             {book.title}
           </h1>
@@ -43,97 +44,97 @@ export function BookDetail({ book }: { book: Book }) {
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
           </div>
-          <div className="resource-list">
-            <div className="section-heading">
-              <h2 ref={resourcesHeading} tabIndex={-1}>
-                {t("Resources")}
-              </h2>
+        </div>
+        <div className="resource-list">
+          <div className="section-heading">
+            <h2 ref={resourcesHeading} tabIndex={-1}>
+              {t("Resources")}
+            </h2>
+          </div>
+          {kinds.length > 1 && (
+            <div className="tabs">
+              {["all", ...kinds].map((item) => (
+                <button
+                  key={item}
+                  className={`tab ${kind === item ? "active" : ""}`}
+                  aria-pressed={kind === item}
+                  onClick={() => setKind(item)}
+                >
+                  {item === "all"
+                    ? t("All resources")
+                    : item === "pdf"
+                      ? t("Reading")
+                      : item === "audio"
+                        ? t("Listening")
+                        : t("Watching")}
+                </button>
+              ))}
             </div>
-            {kinds.length > 1 && (
-              <div className="tabs">
-                {["all", ...kinds].map((item) => (
-                  <button
-                    key={item}
-                    className={`tab ${kind === item ? "active" : ""}`}
-                    aria-pressed={kind === item}
-                    onClick={() => setKind(item)}
-                  >
-                    {item === "all"
-                      ? t("All resources")
-                      : item === "pdf"
-                        ? t("Reading")
-                        : item === "audio"
-                          ? t("Listening")
-                          : t("Watching")}
-                  </button>
-                ))}
-              </div>
-            )}
-            {resources.map((resource) => {
-              const Icon =
-                resource.kind === "audio"
-                  ? Headphones
-                  : resource.kind === "video"
-                    ? Video
-                    : FileText;
-              return (
-                <div className="resource-item" key={resource.id}>
-                  <span className="resource-icon">
-                    <Icon size={19} />
-                  </span>
-                  <div className="resource-title">
-                    <h3 lang="en" dir="ltr">
-                      {resource.title}
-                    </h3>
-                    <p lang="en" dir="ltr">
-                      {[
-                        resource.unit !== resource.title ? resource.unit : "",
-                        resource.kind === "pdf" ? "PDF" : resource.duration,
-                      ]
-                        .filter(Boolean)
-                        .join(" · ")}
-                    </p>
-                  </div>
-                  {resource.kind === "pdf" ? (
-                    <a
-                      className="button secondary"
-                      href={mediaUrl(resource.file)}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {t("Read")}
-                      <FileText size={13} />
-                    </a>
-                  ) : (
-                    <button
-                      className="button secondary"
-                      onClick={(event) => {
-                        opener.current = event.currentTarget;
-                        setSelected(resource);
-                        setPlayRequest((request) => request + 1);
-                      }}
-                    >
-                      <Play size={13} />
-                      {t("Play")}
-                    </button>
-                  )}
+          )}
+          {resources.map((resource) => {
+            const Icon =
+              resource.kind === "audio"
+                ? Headphones
+                : resource.kind === "video"
+                  ? Video
+                  : FileText;
+            return (
+              <div className="resource-item" key={resource.id}>
+                <span className="resource-icon">
+                  <Icon size={19} />
+                </span>
+                <div className="resource-title">
+                  <h3 lang="en" dir="ltr">
+                    {resource.title}
+                  </h3>
+                  <p lang="en" dir="ltr">
+                    {[
+                      resource.unit !== resource.title ? resource.unit : "",
+                      resource.kind === "pdf" ? "PDF" : resource.duration,
+                    ]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                </div>
+                {resource.kind === "pdf" ? (
                   <a
-                    className="icon-button"
-                    href={`${mediaUrl(resource.file)}?download=1`}
-                    download
+                    className="button secondary"
+                    href={mediaUrl(resource.file)}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={t("Download {title}", {
-                      title: resource.title,
-                    })}
                   >
-                    <Download size={16} />
+                    {t("Read")}
+                    <FileText size={13} />
                   </a>
-                </div>
-              );
-            })}
-            {resources.length === 0 && <EmptyState title={t("No resources")} />}
-          </div>
+                ) : (
+                  <button
+                    className="button secondary"
+                    onClick={(event) => {
+                      opener.current = event.currentTarget;
+                      setSelected(resource);
+                      setPlayRequest((request) => request + 1);
+                    }}
+                  >
+                    <Play size={13} />
+                    {t("Play")}
+                  </button>
+                )}
+                <a
+                  className="icon-button"
+                  href={`${mediaUrl(resource.file)}?download=1`}
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t("Download {title}", {
+                    title: resource.title,
+                  })}
+                >
+                  <Download size={16} />
+                </a>
+              </div>
+            );
+          })}
+          {resources.length === 0 && <EmptyState title={t("No resources")} />}
         </div>
       </div>
       {selected && (

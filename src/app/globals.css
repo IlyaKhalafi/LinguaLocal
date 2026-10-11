@@ -2997,3 +2997,96 @@ button:disabled {
     padding-inline: 12px;
   }
 }
+
+.media-player summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.media-player summary::before {
+  content: "+";
+  margin-inline-end: 10px;
+  font-size: 18px;
+}
+.media-player details[open] > summary::before {
+  content: "−";
+}
+.transcript-cues {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+.transcript-cues li {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  border-radius: 8px;
+  padding: 8px;
+  border-inline-start: 3px solid transparent;
+}
+.transcript-cues li.current {
+  background: var(--soft);
+  border-inline-start-color: var(--green);
+}
+.transcript-time {
+  color: var(--green);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 7px;
+  min-height: 44px;
+  font: inherit;
+  cursor: pointer;
+}
+.media-player .transcript-cues p {
+  margin-top: 6px;
+  font-size: 14px;
+}
+.transcript-lookup {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.transcript-time {
+  user-select: none;
+}
+
+.book-detail > .book-cover {
+  grid-row: span 2;
+}
+.book-detail > .resource-list {
+  grid-column: 2;
+  margin-top: 0;
+}
+@media (max-width: 480px) {
+  .book-detail {
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 18px;
+  }
+  .book-detail > .book-cover {
+    grid-row: auto;
+    padding: 12px;
+    margin: 0;
+  }
+  .book-detail .cover-art {
+    min-height: 75px;
+  }
+  .book-detail .cover-title,
+  .book-detail .cover-subtitle,
+  .book-detail .cover-top {
+    display: none;
+  }
+  .book-detail > .resource-list {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
+  .book-detail .detail-description {
+    margin: 10px 0 14px;
+  }
+  .book-detail h1 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+}

@@ -69,3 +69,9 @@ The interface supports English, Persian, Arabic, and Turkish. Persian and Arabic
 | Turkish  | [Desktop](screenshots/tr-overview.png) · [Mobile](screenshots/tr-overview-mobile.png) | [Desktop](screenshots/tr-library.png) · [Mobile](screenshots/tr-library-mobile.png) | [Desktop](screenshots/tr-games.png) · [Mobile](screenshots/tr-games-mobile.png) | [Desktop](screenshots/tr-settings.png) · [Mobile](screenshots/tr-settings-mobile.png) |
 
 [View the rendered README preview](readme-preview.png).
+
+### Timed transcripts
+
+Replay a captioned passage by its timestamp. Select text to look it up in the dictionary. Repeat controls stay folded until needed.
+
+![Timed transcript](screenshots/timed-transcript.png)

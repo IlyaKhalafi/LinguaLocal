@@ -16,12 +16,14 @@ const pageSize = 12;
 export function Dictionary({
   words,
   focusSearch = false,
+  initialQuery = "",
 }: {
   words: Word[];
   focusSearch?: boolean;
+  initialQuery?: string;
 }) {
   const { t } = useLocale();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const [level, setLevel] = useState("");
   const [page, setPage] = useState(0);
   const [focusRequest, setFocusRequest] = useState(0);
@@ -46,8 +48,7 @@ export function Dictionary({
         index,
         search,
         (word) =>
-          (!level || word.level === level) &&
-          (!saved || savedIds.has(word.id)),
+          (!level || word.level === level) && (!saved || savedIds.has(word.id)),
       ),
     [index, search, level, saved, savedIds],
   );
@@ -72,6 +73,7 @@ export function Dictionary({
           value={query}
           onChange={(value) => {
             setQuery(value);
+            setFocusWord(null);
             setPage(0);
           }}
         />
@@ -80,6 +82,7 @@ export function Dictionary({
           value={level}
           onChange={(e) => {
             setLevel(e.target.value);
+            setFocusWord(null);
             setPage(0);
           }}
         >

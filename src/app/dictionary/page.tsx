@@ -5,12 +5,17 @@ export const generateMetadata = () => localizedMetadata("Dictionary");
 export default async function DictionaryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ focus?: string }>;
+  searchParams: Promise<{ focus?: string; search?: string }>;
 }) {
+  const params = await searchParams;
   return (
     <Dictionary
+      key={params.search ?? ""}
       words={(await getContent()).words}
-      focusSearch={(await searchParams).focus === "search"}
+      focusSearch={params.focus === "search"}
+      initialQuery={
+        typeof params.search === "string" ? params.search.slice(0, 200) : ""
+      }
     />
   );
 }

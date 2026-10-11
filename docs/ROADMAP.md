@@ -6,7 +6,7 @@ The next release expands student practice, classroom materials, and local deploy
 
 - [ ] Installable app and cached pages for supported secure browser contexts
 - [ ] Selected book media saved for offline playback
-- [ ] Timed transcripts with dictionary lookup
+- [x] Timed transcripts with dictionary lookup
 - [ ] Shadowing and dictation with word-level feedback
 - [ ] Private voice recordings saved on the student device
 - [ ] Spelling, listening, and gap-fill practice

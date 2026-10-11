@@ -3,11 +3,10 @@ import { useLocale } from "@/components/locale-provider";
 import { useEffect, useRef, useState } from "react";
 import { Repeat2, RotateCcw } from "lucide-react";
 import type { Resource } from "@/lib/schema";
+import { mediaUrl } from "@/lib/media-url";
+import { TimedTranscript } from "./timed-transcript";
 import { useMediaLoop } from "@/lib/use-media-loop";
 
-export function mediaUrl(file: string) {
-  return `/api/media/${file.split("/").map(encodeURIComponent).join("/")}`;
-}
 export function MediaPlayer({
   resource,
   onClose,
@@ -23,11 +22,16 @@ export function MediaPlayer({
   const captionTrack = useRef<HTMLTrackElement>(null);
   const [speed, setSpeed] = useState(1);
   const [error, setError] = useState("");
+  const [announcement, setAnnouncement] = useState("");
   const [captionError, setCaptionError] = useState("");
   const [start, setStart] = useState<number | null>(null);
   const [end, setEnd] = useState<number | null>(null);
   const [loop, setLoop] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
   const [captions, setCaptions] = useState(false);
+  function playFailure(error: unknown, message: string) {
+    if ((error as { name?: string })?.name !== "AbortError") setError(message);
+  }
   useMediaLoop(resource.kind === "video" ? video : audio, loop, start, end);
   const section = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -50,7 +54,9 @@ export function MediaPlayer({
   }, []);
   useEffect(() => {
     const player = audio.current ?? video.current;
-    void player?.play().catch(() => setError("Press play to start playback."));
+    void player
+      ?.play()
+      .catch((error) => playFailure(error, "Press play to start playback."));
   }, [playRequest]);
   useEffect(() => {
     section.current?.scrollIntoView({
@@ -77,6 +83,7 @@ export function MediaPlayer({
   }
   function updateTime() {
     const player = media();
+    if (player) setCurrentTime(player.currentTime);
     if (
       loop &&
       start !== null &&
@@ -119,7 +126,9 @@ export function MediaPlayer({
         player.currentTime = start;
         void player
           .play()
-          .catch(() => setError("Press play to continue your loop."));
+          .catch((error) =>
+            playFailure(error, "Press play to continue your loop."),
+          );
       }
     },
     onError: () =>
@@ -166,7 +175,6 @@ export function MediaPlayer({
         {resource.kind === "video" && resource.captions && (
           <button
             className={`button ${captions ? "primary" : "secondary"}`}
-            aria-pressed={captions}
             disabled={Boolean(captionError)}
             onClick={() => {
               const player = media();
@@ -206,38 +214,45 @@ export function MediaPlayer({
           <RotateCcw size={12} />
           {t("Back 10 seconds")}
         </button>
-        <button
-          className="button secondary"
-          onClick={() => {
-            setStart(media()?.currentTime ?? 0);
-            setEnd(null);
-            setLoop(false);
-          }}
-        >
-          {t("Set loop start")}
-          {start !== null &&
-            ` ${t("{seconds}s", { seconds: Number(start.toFixed(1)) })}`}
-        </button>
-        <button
-          className="button secondary"
-          disabled={start === null}
-          onClick={markEnd}
-        >
-          {t("Set loop end")}
-          {end !== null &&
-            ` ${t("{seconds}s", { seconds: Number(end.toFixed(1)) })}`}
-        </button>
-        {end !== null && (
-          <button
-            className={`button ${loop ? "primary" : "secondary"}`}
-            aria-pressed={loop}
-            onClick={() => setLoop(!loop)}
-          >
-            <Repeat2 size={12} />
-            {loop ? t("Repeat on") : t("Repeat off")}
-          </button>
-        )}
       </div>
+      <details className="repeat-controls">
+        <summary>{t("Repeat a passage")}</summary>
+        <div className="listening-controls">
+          <button
+            className="button secondary"
+            onClick={() => {
+              setStart(media()?.currentTime ?? 0);
+              setEnd(null);
+              setLoop(false);
+            }}
+          >
+            {t("Set loop start")}
+            {start !== null &&
+              ` ${t("{seconds}s", { seconds: Number(start.toFixed(1)) })}`}
+          </button>
+          <button
+            className="button secondary"
+            disabled={start === null}
+            onClick={markEnd}
+          >
+            {t("Set loop end")}
+            {end !== null &&
+              ` ${t("{seconds}s", { seconds: Number(end.toFixed(1)) })}`}
+          </button>
+          {end !== null && (
+            <button
+              className={`button ${loop ? "primary" : "secondary"}`}
+              onClick={() => setLoop(!loop)}
+            >
+              <Repeat2 size={12} />
+              {loop ? t("Repeat on") : t("Repeat off")}
+            </button>
+          )}
+        </div>
+      </details>
+      <span className="sr-only" role="status">
+        {announcement}
+      </span>
       {error && (
         <p className="inline-message" role="alert">
           {t(error)}
@@ -248,13 +263,25 @@ export function MediaPlayer({
           {t(captionError)}
         </p>
       )}
-      {resource.transcript && (
-        <details>
-          <summary>{t("Read the transcript")}</summary>
-          <p lang="en" dir="ltr">
-            {resource.transcript}
-          </p>
-        </details>
+      {(resource.captions || resource.transcript) && (
+        <TimedTranscript
+          file={resource.captions}
+          fallback={resource.transcript}
+          currentTime={currentTime}
+          seek={(time) => {
+            const player = media();
+            if (!player) return;
+            if (loop) setAnnouncement(t("Repeat off"));
+            setLoop(false);
+            player.currentTime = time;
+            setCurrentTime(time);
+            void player
+              .play()
+              .catch((error) =>
+                playFailure(error, "Press play to start playback."),
+              );
+          }}
+        />
       )}
     </section>
   );

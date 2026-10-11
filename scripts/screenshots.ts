@@ -74,6 +74,21 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
     .getByText(translate(locale, "Read the transcript"), { exact: true })
     .click();
   await capture(page, "listening", locale);
+  await page
+    .getByRole("button", { name: translate(locale, "Watching"), exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: translate(locale, "Play"), exact: true })
+    .click();
+  await page
+    .getByText(translate(locale, "Read the transcript"), { exact: true })
+    .click();
+  await page.locator(".transcript-cues li").first().waitFor();
+  await page.locator("video").evaluate((video: HTMLVideoElement) => {
+    video.pause();
+    video.currentTime = 4;
+  });
+  await capture(page, "timed-transcript", locale);
   await page.route("**/api/network", (route) =>
     route.fulfill({ json: { addresses: ["http://192.168.1.20:3000"] } }),
   );
