@@ -50,12 +50,26 @@ export function Shell({
     () => window.matchMedia("(max-width: 700px)").matches,
     () => false,
   );
+  const [navigationContext, setNavigationContext] = useState({
+    pathname,
+    mobile,
+  });
+  if (
+    navigationContext.pathname !== pathname ||
+    navigationContext.mobile !== mobile
+  ) {
+    setNavigationContext({ pathname, mobile });
+    if (open) setOpen(false);
+  }
   const sidebar = useRef<HTMLElement>(null);
   const menu = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     function shortcut(event: KeyboardEvent) {
       if (
         event.key === "/" &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
         !(
           event.target instanceof HTMLElement &&
           (event.target.isContentEditable ||
@@ -63,11 +77,14 @@ export function Shell({
         )
       ) {
         event.preventDefault();
+        setOpen(false);
         if (pathname === "/dictionary")
-          document
-            .querySelector<HTMLInputElement>(".search-field input")
-            ?.focus();
-        else router.push("/dictionary");
+          requestAnimationFrame(() =>
+            document
+              .querySelector<HTMLInputElement>(".search-field input")
+              ?.focus(),
+          );
+        else router.push("/dictionary?focus=search");
       }
     }
     document.addEventListener("keydown", shortcut);
@@ -160,6 +177,7 @@ export function Shell({
         <div className="sidebar-bottom">
           <Link
             href="/settings"
+            aria-current={pathname === "/settings" ? "page" : undefined}
             className={`nav-item ${pathname === "/settings" ? "active" : ""}`}
             onClick={() => setOpen(false)}
           >

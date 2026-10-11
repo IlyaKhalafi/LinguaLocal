@@ -8,7 +8,13 @@ import { useProgress } from "./progress-provider";
 import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
 
-export function Dictionary({ words }: { words: Word[] }) {
+export function Dictionary({
+  words,
+  focusSearch = false,
+}: {
+  words: Word[];
+  focusSearch?: boolean;
+}) {
   const { t } = useLocale();
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
@@ -31,6 +37,7 @@ export function Dictionary({ words }: { words: Word[] }) {
       <PageHeading title={t("Dictionary")} />
       <div className="toolbar">
         <SearchField
+          autoFocus={focusSearch}
           label={t("Search dictionary")}
           placeholder={t("Search words or meanings")}
           value={query}
