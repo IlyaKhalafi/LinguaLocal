@@ -2,8 +2,9 @@
 import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
-import { useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { createSearchIndex, searchIndex } from "@/lib/search";
 import { levels, type Lesson } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { Badge, EmptyState, PageHeading } from "./ui";
@@ -14,13 +15,25 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
   const { progress } = useProgress();
-  const filtered = lessons.filter(
-    (lesson) =>
-      `${lesson.title} ${lesson.description}`
-        .toLowerCase()
-        .includes(query.toLowerCase()) &&
-      (!category || lesson.category === category) &&
-      (!level || lesson.level === level),
+  const search = useDeferredValue(query);
+  const index = useMemo(
+    () =>
+      createSearchIndex(
+        lessons,
+        (lesson) => `${lesson.title} ${lesson.description} ${lesson.category}`,
+      ),
+    [lessons],
+  );
+  const filtered = useMemo(
+    () =>
+      searchIndex(
+        index,
+        search,
+        (lesson) =>
+          (!category || lesson.category === category) &&
+          (!level || lesson.level === level),
+      ),
+    [index, search, category, level],
   );
   return (
     <>

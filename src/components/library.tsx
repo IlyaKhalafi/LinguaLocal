@@ -1,8 +1,9 @@
 "use client";
 import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { BookCard, EmptyState, PageHeading } from "./ui";
+import { createSearchIndex, searchIndex } from "@/lib/search";
 import { levels, type Book } from "@/lib/schema";
 
 export function Library({ books }: { books: Book[] }) {
@@ -11,17 +12,25 @@ export function Library({ books }: { books: Book[] }) {
   const [level, setLevel] = useState("");
   const [category, setCategory] = useState("");
   const categories = [...new Set(books.map((book) => book.category))];
+  const search = useDeferredValue(query);
+  const index = useMemo(
+    () =>
+      createSearchIndex(
+        books,
+        (book) => `${book.title} ${book.subtitle} ${book.category}`,
+      ),
+    [books],
+  );
   const filtered = useMemo(
     () =>
-      books.filter(
+      searchIndex(
+        index,
+        search,
         (book) =>
-          `${book.title} ${book.subtitle} ${book.category}`
-            .toLowerCase()
-            .includes(query.toLowerCase()) &&
           (!level || book.level === level) &&
           (!category || book.category === category),
       ),
-    [books, query, level, category],
+    [index, search, level, category],
   );
   return (
     <>

@@ -1,12 +1,13 @@
 "use client";
 import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { Bookmark } from "lucide-react";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
+import { createSearchIndex, searchIndex } from "@/lib/search";
 import { Pagination } from "./pagination";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 
@@ -28,17 +29,27 @@ export function Dictionary({
   const resultsRef = useFocusOnChange(focusRequest, false);
   const [saved, setSaved] = useState(false);
   const { progress } = useProgress();
+  const savedIds = useMemo(() => new Set(progress.saved), [progress.saved]);
+  const search = useDeferredValue(query);
+  const index = useMemo(
+    () =>
+      createSearchIndex(
+        words,
+        (word) =>
+          `${word.word} ${word.definition} ${word.example} ${word.synonyms.join(" ")}`,
+      ),
+    [words],
+  );
   const filtered = useMemo(
     () =>
-      words.filter(
+      searchIndex(
+        index,
+        search,
         (word) =>
-          `${word.word} ${word.definition} ${word.synonyms.join(" ")}`
-            .toLowerCase()
-            .includes(query.trim().toLowerCase()) &&
           (!level || word.level === level) &&
-          (!saved || progress.saved.includes(word.id)),
+          (!saved || savedIds.has(word.id)),
       ),
-    [words, query, level, saved, progress.saved],
+    [index, search, level, saved, savedIds],
   );
   const pages = Math.ceil(filtered.length / pageSize);
   const currentPage = Math.max(0, Math.min(page, pages - 1));
