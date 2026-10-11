@@ -1,22 +1,9 @@
+import { pageCatalogue } from "../../scripts/page-catalogue";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import seed from "../../src/content/starter.json";
 
-const routes = [
-  "/",
-  "/library",
-  "/dictionary",
-  "/lessons",
-  "/games",
-  "/games/quiz",
-  "/games/match",
-  "/flashcards",
-  "/progress",
-  "/settings",
-  ...seed.books.map((book) => `/library/${book.id}`),
-  ...seed.lessons.map((lesson) => `/lessons/${lesson.id}`),
-  "/not-a-page",
-];
+const routes = pageCatalogue.map((page) => page.path);
 
 for (const route of routes) {
   test(`page works on desktop and mobile ${route}`, async ({ page }) => {
@@ -154,7 +141,7 @@ test("lesson exercises give feedback and record a completion once", async ({
   ).toBeDisabled();
   await page.getByRole("button", { name: "B She walks to school." }).click();
   await page.getByRole("button", { name: "Check answer" }).click();
-  await expect(page.getByRole("status")).toContainText("You’ve got it!");
+  await expect(page.getByRole("status")).toContainText("Correct.");
   await page.getByRole("button", { name: "Mark as complete" }).click();
   await expect(page.getByRole("button", { name: "Completed" })).toBeDisabled();
   await page.reload();

@@ -7,8 +7,8 @@ const dataDirectory = mkdtempSync(join(tmpdir(), "lingualocal-e2e-"));
 
 export default defineConfig({
   testDir: "./tests/e2e",
-  fullyParallel: false,
-  workers: 1,
+  fullyParallel: true,
+  workers: 2,
   retries: process.env.CI ? 1 : 0,
   reporter: [["list"], ["html", { open: "never" }]],
   use: { baseURL: "http://127.0.0.1:3100", trace: "retain-on-failure" },
