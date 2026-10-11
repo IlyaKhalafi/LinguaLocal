@@ -1,0 +1,179 @@
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import {
+  ArrowLeft,
+  Download,
+  FileText,
+  Headphones,
+  Play,
+  Video,
+} from "lucide-react";
+import { Badge, Cover, EmptyState } from "./ui";
+import type { Book, Resource } from "@/lib/schema";
+
+function mediaUrl(file: string) {
+  return `/api/media/${file.split("/").map(encodeURIComponent).join("/")}`;
+}
+export function BookDetail({ book }: { book: Book }) {
+  const [selected, setSelected] = useState<Resource | null>(null);
+  const [error, setError] = useState("");
+  const [kind, setKind] = useState("all");
+  const resources = book.resources.filter(
+    (resource) => kind === "all" || resource.kind === kind,
+  );
+  return (
+    <>
+      <Link className="back-link" href="/library">
+        <ArrowLeft size={14} />
+        Back to your bookshelf
+      </Link>
+      <div className="book-detail">
+        <Cover book={book} />
+        <div>
+          <p className="eyebrow">{book.category.toUpperCase()}</p>
+          <h1>{book.title}</h1>
+          <p className="detail-description">{book.description}</p>
+          <div className="button-row">
+            <Badge tone="green">{book.level}</Badge>
+            <Badge>{book.resources.length} resources</Badge>
+            <Badge>Available on your school network</Badge>
+          </div>
+          <div className="resource-list">
+            <div className="section-heading">
+              <h2>Open a new chapter</h2>
+            </div>
+            <div className="tabs">
+              {["all", "audio", "video", "pdf"].map((item) => (
+                <button
+                  key={item}
+                  className={`tab ${kind === item ? "active" : ""}`}
+                  onClick={() => setKind(item)}
+                >
+                  {item === "all"
+                    ? "All resources"
+                    : item === "pdf"
+                      ? "Reading"
+                      : item === "audio"
+                        ? "Listening"
+                        : "Watching"}
+                </button>
+              ))}
+            </div>
+            {resources.map((resource) => {
+              const Icon =
+                resource.kind === "audio"
+                  ? Headphones
+                  : resource.kind === "video"
+                    ? Video
+                    : FileText;
+              return (
+                <div className="resource-item" key={resource.id}>
+                  <span className="resource-icon">
+                    <Icon size={19} />
+                  </span>
+                  <div className="resource-title">
+                    <h3>{resource.title}</h3>
+                    <p>
+                      {resource.unit} ·{" "}
+                      {resource.kind === "pdf" ? "PDF" : resource.duration}
+                    </p>
+                  </div>
+                  {resource.kind === "pdf" ? (
+                    <a
+                      className="button secondary"
+                      href={mediaUrl(resource.file)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Read
+                      <FileText size={13} />
+                    </a>
+                  ) : (
+                    <button
+                      className="button secondary"
+                      onClick={() => {
+                        setSelected(resource);
+                        setError("");
+                      }}
+                    >
+                      <Play size={13} />
+                      Play
+                    </button>
+                  )}
+                  <a
+                    className="icon-button"
+                    href={`${mediaUrl(resource.file)}?download=1`}
+                    aria-label={`Download ${resource.title}`}
+                  >
+                    <Download size={16} />
+                  </a>
+                </div>
+              );
+            })}
+            {resources.length === 0 && (
+              <EmptyState
+                title="Room for something wonderful."
+                description="Your school can add audio, video, and reading materials through a content pack in School settings."
+              />
+            )}
+          </div>
+        </div>
+      </div>
+      {selected && (
+        <section
+          className="media-player"
+          aria-label="Media player"
+          key={selected.id}
+        >
+          <div className="section-heading">
+            <h3>{selected.title}</h3>
+            <button
+              className="text-link"
+              style={{ border: 0, background: "none" }}
+              onClick={() => setSelected(null)}
+            >
+              Close player
+            </button>
+          </div>
+          {selected.kind === "video" ? (
+            <video
+              controls
+              preload="metadata"
+              src={mediaUrl(selected.file)}
+              onError={() =>
+                setError(
+                  "This video could not be played. Ask your school to check the media file and format.",
+                )
+              }
+              aria-label={selected.title}
+            />
+          ) : (
+            <audio
+              controls
+              preload="metadata"
+              src={mediaUrl(selected.file)}
+              onError={() =>
+                setError(
+                  "This audio could not be played. Ask your school to check the media file.",
+                )
+              }
+              aria-label={selected.title}
+            />
+          )}
+          {error && (
+            <p className="inline-message" role="alert">
+              {error}
+            </p>
+          )}
+          {selected.transcript && (
+            <details>
+              <summary>Read the transcript</summary>
+              <p>{selected.transcript}</p>
+            </details>
+          )}
+        </section>
+      )}
+    </>
+  );
+}
