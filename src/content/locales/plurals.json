@@ -1,0 +1,68 @@
+{
+  "en": {
+    "{count} words": {
+      "one": "{count} word",
+      "other": "{count} words"
+    },
+    "{count} books": {
+      "one": "{count} book",
+      "other": "{count} books"
+    },
+    "{count} resources": {
+      "one": "{count} resource",
+      "other": "{count} resources"
+    },
+    "{count} words available": {
+      "one": "{count} word available",
+      "other": "{count} words available"
+    },
+    "{count} attempts": {
+      "one": "{count} attempt",
+      "other": "{count} attempts"
+    }
+  },
+  "fa": {},
+  "ar": {
+    "{count} words": {
+      "zero": "لا كلمات",
+      "one": "{count} كلمة",
+      "two": "كلمتان",
+      "few": "{count} كلمات",
+      "many": "{count} كلمة",
+      "other": "{count} كلمة"
+    },
+    "{count} books": {
+      "zero": "لا كتب",
+      "one": "{count} كتاب",
+      "two": "كتابان",
+      "few": "{count} كتب",
+      "many": "{count} كتابًا",
+      "other": "{count} كتاب"
+    },
+    "{count} resources": {
+      "zero": "لا مصادر",
+      "one": "{count} مصدر",
+      "two": "مصدران",
+      "few": "{count} مصادر",
+      "many": "{count} مصدرًا",
+      "other": "{count} مصدر"
+    },
+    "{count} words available": {
+      "zero": "لا كلمات متاحة",
+      "one": "{count} كلمة متاحة",
+      "two": "كلمتان متاحتان",
+      "few": "{count} كلمات متاحة",
+      "many": "{count} كلمة متاحة",
+      "other": "{count} كلمة متاحة"
+    },
+    "{count} attempts": {
+      "zero": "لا محاولات",
+      "one": "{count} محاولة",
+      "two": "محاولتان",
+      "few": "{count} محاولات",
+      "many": "{count} محاولة",
+      "other": "{count} محاولة"
+    }
+  },
+  "tr": {}
+}
