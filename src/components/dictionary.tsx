@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import { useMemo, useState } from "react";
 import { Bookmark, Search } from "lucide-react";
 import { levels, type Word } from "@/lib/schema";
@@ -7,7 +8,8 @@ import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
 import Link from "next/link";
 
-export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
+export function Dictionary({ words }: { words: Word[] }) {
+  const { t } = useLocale();
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [saved, setSaved] = useState(false);
@@ -27,30 +29,31 @@ export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
   return (
     <>
       <PageHeading
-        title="Dictionary"
+        title={t("Dictionary")}
         action={
           <Link className="button secondary" href="/flashcards">
             <Bookmark size={14} />
-            Flashcards
+            {t("Flashcards")}
           </Link>
         }
       />
       <div className="toolbar">
         <label className="search-field">
           <Search size={17} />
-          <span className="sr-only">Search dictionary</span>
+          <span className="sr-only">{t("Search dictionary")}</span>
           <input
+            dir="auto"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search words or meanings"
+            placeholder={t("Search words or meanings")}
           />
         </label>
         <select
-          aria-label="Filter words by level"
+          aria-label={t("Filter words by level")}
           value={level}
           onChange={(e) => setLevel(e.target.value)}
         >
-          <option value="">All levels</option>
+          <option value="">{t("All levels")}</option>
           {levels.map((level) => (
             <option key={level}>{level}</option>
           ))}
@@ -61,11 +64,11 @@ export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
           onClick={() => setSaved(!saved)}
         >
           <Bookmark size={14} />
-          Saved words
+          {t("Saved words")}
         </button>
       </div>
       <p className="result-caption" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? "word" : "words"}
+        {t("{count} words", { count: filtered.length })}
       </p>
       {filtered.length ? (
         <div className="dictionary-grid">
@@ -75,11 +78,11 @@ export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
         </div>
       ) : (
         <EmptyState
-          title={saved ? "No saved words" : "No matching words"}
+          title={saved ? t("No saved words") : t("No matching words")}
           description={
             saved
-              ? "Save words using the bookmark button."
-              : "Try a different search or clear the filters."
+              ? t("Save words using the bookmark button.")
+              : t("Try a different search or clear the filters.")
           }
           action={
             <button
@@ -90,15 +93,16 @@ export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
                 setLevel("");
               }}
             >
-              Clear filters
+              {t("Clear filters")}
             </button>
           }
         />
       )}
       {filtered.length > 100 && (
         <p className="result-caption" style={{ marginTop: 20 }}>
-          Showing the first 100 matches. Refine your search to find a specific
-          word.
+          {t(
+            "Showing the first 100 matches. Refine your search to find a specific word.",
+          )}
         </p>
       )}
     </>

@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -14,6 +15,7 @@ import { MediaPlayer, mediaUrl } from "./media-player";
 import type { Book, Resource } from "@/lib/schema";
 
 export function BookDetail({ book }: { book: Book }) {
+  const { t } = useLocale();
   const [selected, setSelected] = useState<Resource | null>(null);
   const [kind, setKind] = useState("all");
   const resources = book.resources.filter(
@@ -23,24 +25,27 @@ export function BookDetail({ book }: { book: Book }) {
     <>
       <Link className="back-link" href="/library">
         <ArrowLeft size={14} />
-        Back to library
+        {t("Back to library")}
       </Link>
       <div className="book-detail">
         <Cover book={book} />
         <div>
           <p className="eyebrow">{book.category.toUpperCase()}</p>
-          <h1>{book.title}</h1>
-          <p className="detail-description">{book.description}</p>
+          <h1 lang="en" dir="ltr">
+            {book.title}
+          </h1>
+          <p className="detail-description" lang="en" dir="ltr">
+            {book.description}
+          </p>
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
             <Badge>
-              {book.resources.length}{" "}
-              {book.resources.length === 1 ? "resource" : "resources"}
+              {t("{count} resources", { count: book.resources.length })}
             </Badge>
           </div>
           <div className="resource-list">
             <div className="section-heading">
-              <h2>Resources</h2>
+              <h2>{t("Resources")}</h2>
             </div>
             <div className="tabs">
               {["all", "audio", "video", "pdf"].map((item) => (
@@ -51,12 +56,12 @@ export function BookDetail({ book }: { book: Book }) {
                   onClick={() => setKind(item)}
                 >
                   {item === "all"
-                    ? "All resources"
+                    ? t("All resources")
                     : item === "pdf"
-                      ? "Reading"
+                      ? t("Reading")
                       : item === "audio"
-                        ? "Listening"
-                        : "Watching"}
+                        ? t("Listening")
+                        : t("Watching")}
                 </button>
               ))}
             </div>
@@ -73,8 +78,10 @@ export function BookDetail({ book }: { book: Book }) {
                     <Icon size={19} />
                   </span>
                   <div className="resource-title">
-                    <h3>{resource.title}</h3>
-                    <p>
+                    <h3 lang="en" dir="ltr">
+                      {resource.title}
+                    </h3>
+                    <p lang="en" dir="ltr">
                       {resource.unit} ·{" "}
                       {resource.kind === "pdf" ? "PDF" : resource.duration}
                     </p>
@@ -86,7 +93,7 @@ export function BookDetail({ book }: { book: Book }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      Read
+                      {t("Read")}
                       <FileText size={13} />
                     </a>
                   ) : (
@@ -97,13 +104,15 @@ export function BookDetail({ book }: { book: Book }) {
                       }}
                     >
                       <Play size={13} />
-                      Play
+                      {t("Play")}
                     </button>
                   )}
                   <a
                     className="icon-button"
                     href={`${mediaUrl(resource.file)}?download=1`}
-                    aria-label={`Download ${resource.title}`}
+                    aria-label={t("Download {title}", {
+                      title: resource.title,
+                    })}
                   >
                     <Download size={16} />
                   </a>
@@ -112,8 +121,8 @@ export function BookDetail({ book }: { book: Book }) {
             })}
             {resources.length === 0 && (
               <EmptyState
-                title="No resources"
-                description="No resources in this category."
+                title={t("No resources")}
+                description={t("No resources in this category.")}
               />
             )}
           </div>

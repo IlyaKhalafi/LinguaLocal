@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import type { Settings } from "@/lib/schema";
+import { LanguageSelect } from "./language-select";
 
 const navigation = [
   { href: "/", label: "Home", icon: Compass },
@@ -39,6 +41,7 @@ export function Shell({
   settings: Settings;
   children: React.ReactNode;
 }) {
+  const { t } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -104,18 +107,15 @@ export function Shell({
       menuButton?.focus();
     };
   }, [open, mobile]);
-  const current = navigation.find((item) =>
-    item.href === "/" ? pathname === "/" : pathname.startsWith(item.href),
-  );
   return (
     <div className="app-shell">
       <a href="#main-content" className="skip-link">
-        Skip to content
+        {t("Skip to content")}
       </a>
       {open && (
         <button
           className="sidebar-backdrop"
-          aria-label="Close navigation"
+          aria-label={t("Close navigation")}
           tabIndex={-1}
           onClick={() => setOpen(false)}
         />
@@ -134,12 +134,12 @@ export function Shell({
         </Link>
         <button
           className="mobile-close icon-button"
-          aria-label="Close navigation"
+          aria-label={t("Close navigation")}
           onClick={() => setOpen(false)}
         >
           <X size={20} />
         </button>
-        <nav aria-label="Main navigation">
+        <nav aria-label={t("Main navigation")}>
           {navigation.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
@@ -153,7 +153,7 @@ export function Shell({
               className={`nav-item ${(href === "/" ? pathname === "/" : pathname.startsWith(href)) ? "active" : ""}`}
             >
               <Icon size={19} />
-              <span>{label}</span>
+              <span>{t(label)}</span>
             </Link>
           ))}
         </nav>
@@ -164,7 +164,7 @@ export function Shell({
             onClick={() => setOpen(false)}
           >
             <Settings2 size={19} />
-            <span>Settings</span>
+            <span>{t("Settings")}</span>
           </Link>
         </div>
       </aside>
@@ -173,7 +173,7 @@ export function Shell({
           <div className="breadcrumb">
             <button
               className="mobile-menu icon-button"
-              aria-label="Open navigation"
+              aria-label={t("Open navigation")}
               aria-expanded={open}
               aria-controls="school-navigation"
               ref={menu}
@@ -181,15 +181,13 @@ export function Shell({
             >
               <Menu size={20} />
             </button>
-            <strong>
-              {current?.label ??
-                (pathname === "/settings" ? "Settings" : "Explore")}
-            </strong>
           </div>
           <div className="topbar-right">
+            <LanguageSelect />
             <Link className="topbar-search" href="/dictionary">
               <Search size={16} />
-              Find a word <kbd>/</kbd>
+              {t("Find a word")}
+              <kbd>/</kbd>
             </Link>
           </div>
         </header>

@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, CheckCircle2, Clock, Search } from "lucide-react";
@@ -7,6 +8,7 @@ import { useProgress } from "./progress-provider";
 import { Badge, EmptyState, PageHeading } from "./ui";
 
 export function Lessons({ lessons }: { lessons: Lesson[] }) {
+  const { t } = useLocale();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [level, setLevel] = useState("");
@@ -21,23 +23,24 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
   );
   return (
     <>
-      <PageHeading title="Lessons" />
+      <PageHeading title={t("Lessons")} />
       <div className="toolbar">
         <label className="search-field">
           <Search size={16} />
-          <span className="sr-only">Search lessons</span>
+          <span className="sr-only">{t("Search lessons")}</span>
           <input
+            dir="auto"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search lessons"
+            placeholder={t("Search lessons")}
           />
         </label>
         <select
-          aria-label="Filter lessons by level"
+          aria-label={t("Filter lessons by level")}
           value={level}
           onChange={(e) => setLevel(e.target.value)}
         >
-          <option value="">All levels</option>
+          <option value="">{t("All levels")}</option>
           {levels.map((level) => (
             <option key={level}>{level}</option>
           ))}
@@ -51,7 +54,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
             key={item}
             onClick={() => setCategory(item)}
           >
-            {item || "All lessons"}
+            {t(item || "All lessons")}
           </button>
         ))}
       </div>
@@ -73,25 +76,29 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
                         : "green"
                   }
                 >
-                  {lesson.category}
+                  {t(lesson.category)}
                 </Badge>
                 <Badge>{lesson.level}</Badge>
               </div>
-              <h3>{lesson.title}</h3>
-              <p>{lesson.description}</p>
+              <h3 lang="en" dir="ltr">
+                {lesson.title}
+              </h3>
+              <p lang="en" dir="ltr">
+                {lesson.description}
+              </p>
               <div className="lesson-card-bottom">
                 <span>
                   <Clock size={13} />
-                  {lesson.minutes} min read
+                  {t("{count} min read", { count: lesson.minutes })}
                 </span>
                 {progress.completed.includes(lesson.id) ? (
                   <span>
                     <CheckCircle2 size={14} />
-                    Completed
+                    {t("Completed")}
                   </span>
                 ) : (
                   <span>
-                    Open lesson
+                    {t("Open lesson")}
                     <ArrowRight size={14} />
                   </span>
                 )}
@@ -101,8 +108,8 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
         </div>
       ) : (
         <EmptyState
-          title="No matching lessons"
-          description="Try a different search or clear the filters."
+          title={t("No matching lessons")}
+          description={t("Try a different search or clear the filters.")}
           action={
             <button
               className="button secondary"
@@ -112,7 +119,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
                 setLevel("");
               }}
             >
-              Clear filters
+              {t("Clear filters")}
             </button>
           }
         />

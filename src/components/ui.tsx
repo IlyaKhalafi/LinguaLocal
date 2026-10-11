@@ -1,3 +1,5 @@
+"use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -16,7 +18,9 @@ export function PageHeading({
   title,
   description,
   action,
+  contentLanguage,
 }: {
+  contentLanguage?: string;
   eyebrow?: string;
   title: string;
   description?: string;
@@ -26,8 +30,21 @@ export function PageHeading({
     <div className="page-heading">
       <div>
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1>{title}</h1>
-        {description && <p className="muted">{description}</p>}
+        <h1
+          lang={contentLanguage}
+          dir={contentLanguage === "en" ? "ltr" : undefined}
+        >
+          {title}
+        </h1>
+        {description && (
+          <p
+            className="muted"
+            lang={contentLanguage}
+            dir={contentLanguage === "en" ? "ltr" : undefined}
+          >
+            {description}
+          </p>
+        )}
       </div>
       {action}
     </div>
@@ -68,9 +85,15 @@ export function Cover({
   compact?: boolean;
 }) {
   return (
-    <div className={`book-cover ${book.color} ${compact ? "compact" : ""}`}>
+    <div
+      lang="en"
+      dir="ltr"
+      className={`book-cover ${book.color} ${compact ? "compact" : ""}`}
+    >
       <div className="cover-top">
-        <span>LinguaLocal</span>
+        <span aria-hidden="true">
+          <Leaf size={12} />
+        </span>
         <BookOpen size={11} aria-hidden="true" />
       </div>
       <div className="cover-art" aria-hidden="true">
@@ -82,20 +105,25 @@ export function Cover({
       <div className="cover-title">{book.title}</div>
       <div className="cover-subtitle">{book.subtitle}</div>
       <div className="cover-footer">
-        <span>{book.level}</span>
+        <span aria-hidden="true" />
         <Sparkles size={14} />
       </div>
     </div>
   );
 }
 export function BookCard({ book }: { book: Book }) {
+  const { t } = useLocale();
   return (
     <Link className="book-card" href={`/library/${book.id}`}>
       <Cover book={book} />
       <div className="book-info">
         <div>
-          <h3>{book.title}</h3>
-          <p>{book.category}</p>
+          <h3 lang="en" dir="ltr">
+            {book.title}
+          </h3>
+          <p lang="en" dir="ltr">
+            {book.category}
+          </p>
         </div>
         <ArrowUpRight size={19} />
       </div>
@@ -103,8 +131,7 @@ export function BookCard({ book }: { book: Book }) {
         <Badge>{book.level}</Badge>
         <span>
           <Headphones size={13} />
-          {book.resources.length}{" "}
-          {book.resources.length === 1 ? "resource" : "resources"}
+          {t("{count} resources", { count: book.resources.length })}
         </span>
       </div>
     </Link>

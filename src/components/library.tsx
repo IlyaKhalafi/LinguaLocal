@@ -1,10 +1,12 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { BookCard, EmptyState, PageHeading } from "./ui";
 import { levels, type Book } from "@/lib/schema";
 
 export function Library({ books }: { books: Book[] }) {
+  const { t } = useLocale();
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [category, setCategory] = useState("");
@@ -23,41 +25,41 @@ export function Library({ books }: { books: Book[] }) {
   );
   return (
     <>
-      <PageHeading title="Library" />
+      <PageHeading title={t("Library")} />
       <div className="toolbar">
         <label className="search-field">
           <Search size={17} />
-          <span className="sr-only">Search books</span>
+          <span className="sr-only">{t("Search books")}</span>
           <input
+            dir="auto"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search books"
+            placeholder={t("Search books")}
           />
         </label>
         <select
-          aria-label="Filter books by level"
+          aria-label={t("Filter books by level")}
           value={level}
           onChange={(e) => setLevel(e.target.value)}
         >
-          <option value="">All levels</option>
+          <option value="">{t("All levels")}</option>
           {levels.map((level) => (
             <option key={level}>{level}</option>
           ))}
         </select>
         <select
-          aria-label="Filter books by category"
+          aria-label={t("Filter books by category")}
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="">All subjects</option>
+          <option value="">{t("All subjects")}</option>
           {categories.map((category) => (
             <option key={category}>{category}</option>
           ))}
         </select>
       </div>
       <p className="result-caption" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? "book" : "books"} on your
-        shelf
+        {t("{count} books", { count: filtered.length })}
       </p>
       {filtered.length ? (
         <div className="book-grid library-grid">
@@ -67,8 +69,8 @@ export function Library({ books }: { books: Book[] }) {
         </div>
       ) : (
         <EmptyState
-          title="No matching books"
-          description="Try a different search or choose another level."
+          title={t("No matching books")}
+          description={t("Try a different search or choose another level.")}
           action={
             <button
               className="button secondary"
@@ -78,7 +80,7 @@ export function Library({ books }: { books: Book[] }) {
                 setCategory("");
               }}
             >
-              Clear filters
+              {t("Clear filters")}
             </button>
           }
         />

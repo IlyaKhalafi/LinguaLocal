@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, RotateCcw, Sparkles } from "lucide-react";
@@ -8,6 +9,7 @@ import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
 
 export function Flashcards({ words }: { words: Word[] }) {
+  const { t } = useLocale();
   const { progress, review } = useProgress();
   const [mode, setMode] = useState("all");
   const [deck, setDeck] = useState<Word[]>([]);
@@ -36,7 +38,7 @@ export function Flashcards({ words }: { words: Word[] }) {
   const word = deck[index];
   return (
     <div className="game-panel">
-      <PageHeading title="Flashcards" />
+      <PageHeading title={t("Flashcards")} />
       {!started ? (
         <>
           <div className="study-selector tabs">
@@ -51,36 +53,38 @@ export function Flashcards({ words }: { words: Word[] }) {
                 key={item.id}
                 onClick={() => setMode(item.id)}
               >
-                {item.label}
+                {t(item.label)}
               </button>
             ))}
           </div>
           {pool.length ? (
             <div className="panel">
               <Sparkles size={30} color="#8ea879" />
-              <h2 style={{ marginTop: 15 }}>{pool.length} words available</h2>
+              <h2 style={{ marginTop: 15 }}>
+                {t("{count} words available", { count: pool.length })}
+              </h2>
               <p
                 className="muted"
                 style={{ fontSize: 12, margin: "15px 0 24px" }}
               >
-                Up to 20 cards per session.
+                {t("Up to 20 cards per session.")}
               </p>
               <button className="button primary" onClick={start}>
-                Start review
+                {t("Start review")}
                 <ArrowRight size={14} />
               </button>
             </div>
           ) : (
             <EmptyState
-              title={mode === "saved" ? "No saved words" : "No cards due"}
+              title={mode === "saved" ? t("No saved words") : t("No cards due")}
               description={
                 mode === "saved"
-                  ? "Save words in the dictionary first."
-                  : "Choose all words to practise now."
+                  ? t("Save words in the dictionary first.")
+                  : t("Choose all words to practise now.")
               }
               action={
                 <Link className="button primary" href="/dictionary">
-                  Open dictionary
+                  {t("Open dictionary")}
                 </Link>
               }
             />
@@ -89,18 +93,20 @@ export function Flashcards({ words }: { words: Word[] }) {
       ) : !word ? (
         <div className="results-panel">
           <Sparkles size={34} color="#8ba775" />
-          <h2>Review complete</h2>
-          <div className="results-score">{deck.length}</div>
-          <p>Words reviewed.</p>
+          <h2>{t("Review complete")}</h2>
+          <div className="results-score">
+            {t("{count}", { count: deck.length })}
+          </div>
+          <p>{t("Words reviewed.")}</p>
           <div className="button-row">
             <button
               className="button primary"
               onClick={() => setStarted(false)}
             >
-              Review more words
+              {t("Review more words")}
             </button>
             <Link className="button secondary" href="/progress">
-              View progress
+              {t("View progress")}
             </Link>
           </div>
         </div>
@@ -108,9 +114,12 @@ export function Flashcards({ words }: { words: Word[] }) {
         <>
           <div className="game-progress">
             <span>
-              Card {index + 1} of {deck.length}
+              {t("Card {current} of {total}", {
+                current: index + 1,
+                total: deck.length,
+              })}
             </span>
-            <span>{mode === "saved" ? "Saved words" : "Flashcards"}</span>
+            <span>{mode === "saved" ? t("Saved words") : t("Flashcards")}</span>
           </div>
           <div className="progress-track">
             <div
@@ -124,29 +133,40 @@ export function Flashcards({ words }: { words: Word[] }) {
             onClick={() => setFlipped(!flipped)}
             aria-label={
               flipped
-                ? `Show word. ${word.definition} ${word.example}`
-                : `Reveal meaning of ${word.word}`
+                ? t("Show word. {definition} {example}", {
+                    definition: word.definition,
+                    example: word.example,
+                  })
+                : t("Reveal meaning of {word}", { word: word.word })
             }
           >
             <p className="eyebrow">
               {flipped
-                ? "Meaning"
+                ? t("Meaning")
                 : `${word.level} · ${word.part.toUpperCase()}`}
             </p>
             {flipped ? (
               <>
-                <p className="definition">{word.definition}</p>
-                <p className="word-example">“{word.example}”</p>
+                <p className="definition" lang="en" dir="ltr">
+                  {word.definition}
+                </p>
+                <p className="word-example" lang="en" dir="ltr">
+                  “{word.example}”
+                </p>
               </>
             ) : (
               <>
-                <h2>{word.word}</h2>
-                <p className="phonetic">{word.phonetic}</p>
+                <h2 lang="en" dir="ltr">
+                  {word.word}
+                </h2>
+                <p className="phonetic" lang="en" dir="ltr">
+                  {word.phonetic}
+                </p>
               </>
             )}
             <span className="flashcard-hint">
               <RotateCcw size={12} />
-              Tap to flip
+              {t("Tap to flip")}
             </span>
           </button>
           {flipped && (
@@ -156,10 +176,11 @@ export function Flashcards({ words }: { words: Word[] }) {
                 onClick={() => answer(false)}
               >
                 <RotateCcw size={14} />
-                Review again
+                {t("Review again")}
               </button>
               <button className="button primary" onClick={() => answer(true)}>
-                <Check size={15} />I remembered
+                <Check size={15} />
+                {t("I remembered")}
               </button>
             </div>
           )}

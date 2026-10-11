@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "./locale-provider";
 import { Bookmark, Check, Volume2 } from "lucide-react";
 import { useState } from "react";
 import type { Word } from "@/lib/schema";
@@ -13,6 +14,7 @@ export function WordCard({
   word: Word;
   featured?: boolean;
 }) {
+  const { t, locale, dir } = useLocale();
   const { progress, toggleSaved } = useProgress();
   const [message, setMessage] = useState("");
   const saved = progress.saved.includes(word.id);
@@ -36,14 +38,19 @@ export function WordCard({
     speechSynthesis.speak(utterance);
   }
   return (
-    <article className={`word-card ${featured ? "featured-word" : ""}`}>
+    <article
+      lang="en"
+      dir="ltr"
+      className={`word-card ${featured ? "featured-word" : ""}`}
+    >
       <div className="word-top">
         <div>
           <div className="word-title">
             <h2>{word.word}</h2>
             <button
               className="icon-button"
-              aria-label={`Pronounce ${word.word}`}
+              lang={locale}
+              aria-label={t("Pronounce {word}", { word: word.word })}
               onClick={pronounce}
             >
               <Volume2 size={18} />
@@ -54,8 +61,11 @@ export function WordCard({
           </p>
         </div>
         <button
+          lang={locale}
           className={`icon-button save-button ${saved ? "saved" : ""}`}
-          aria-label={`${saved ? "Unsave" : "Save"} ${word.word}`}
+          aria-label={t(saved ? "Unsave {word}" : "Save {word}", {
+            word: word.word,
+          })}
           aria-pressed={saved}
           onClick={() => toggleSaved(word.id)}
         >
@@ -69,8 +79,8 @@ export function WordCard({
         <span>{word.synonyms.join(" · ")}</span>
       </div>
       {message && (
-        <p className="inline-message" role="status">
-          {message}
+        <p className="inline-message" role="status" lang={locale} dir={dir}>
+          {t(message)}
         </p>
       )}
     </article>

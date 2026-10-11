@@ -130,7 +130,7 @@ label {
 .skip-link {
   position: fixed;
   top: -60px;
-  left: 15px;
+  inset-inline-start: 15px;
   padding: 10px;
   background: var(--green);
   color: white;
@@ -237,7 +237,7 @@ label {
   height: 6px;
   border-radius: 50%;
   background: #6b9f66;
-  margin-right: 6px;
+  margin-inline-end: 6px;
 }
 .app-shell {
   min-height: 100vh;
@@ -245,11 +245,11 @@ label {
 .sidebar {
   width: 236px;
   position: fixed;
-  left: 0;
+  inset-inline-start: 0;
   top: 0;
   bottom: 0;
   background: #fff;
-  border-right: 1px solid var(--line);
+  border-inline-end: 1px solid var(--line);
   padding: 31px 21px 18px;
   display: flex;
   flex-direction: column;
@@ -318,7 +318,7 @@ label {
   height: 5px;
   border-radius: 50%;
   background: #6e9260;
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 .sidebar-bottom {
   margin-top: auto;
@@ -381,7 +381,7 @@ label {
   height: 28px;
 }
 .workspace {
-  margin-left: 236px;
+  margin-inline-start: 236px;
 }
 .topbar {
   height: 76px;
@@ -524,7 +524,7 @@ label {
 }
 .hero-art {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   bottom: 0;
   top: 0;
   width: 39%;
@@ -536,7 +536,7 @@ label {
   border-radius: 50%;
   border: 1px solid #d8dec5;
   position: absolute;
-  right: -24px;
+  inset-inline-end: -24px;
   top: 10px;
 }
 .hero-orbit:after {
@@ -565,7 +565,7 @@ label {
 .hero-book:before {
   content: "";
   position: absolute;
-  left: 8px;
+  inset-inline-start: 8px;
   top: 0;
   bottom: 0;
   width: 1px;
@@ -573,14 +573,14 @@ label {
 }
 .hero-book.book-back {
   background: #b8c8a4;
-  right: 45px;
+  inset-inline-end: 45px;
   top: 41px;
   transform: rotate(14deg);
   color: #426340;
 }
 .hero-book.book-front {
   background: #edc7a4;
-  right: 166px;
+  inset-inline-end: 166px;
   top: 80px;
   transform: rotate(-14deg);
   color: #5c6c53;
@@ -593,7 +593,7 @@ label {
 .hero-spark {
   position: absolute;
   color: #5c6c53;
-  right: 44px;
+  inset-inline-end: 44px;
   bottom: 34px;
 }
 .stat-grid {
@@ -673,10 +673,10 @@ label {
 .book-cover:before {
   content: "";
   position: absolute;
-  left: 6px;
+  inset-inline-start: 6px;
   top: 0;
   bottom: 0;
-  border-left: 1px solid #0000000a;
+  border-inline-start: 1px solid #0000000a;
 }
 .book-cover.mint {
   background: #d2dfcb;
@@ -726,12 +726,12 @@ label {
 .arch-one {
   background: currentColor;
   opacity: 0.1;
-  left: 8%;
+  inset-inline-start: 8%;
 }
 .arch-two {
   border: 1px solid currentColor;
   opacity: 0.3;
-  right: 2%;
+  inset-inline-end: 2%;
   bottom: -36%;
 }
 .art-circle {
@@ -741,12 +741,12 @@ label {
   background: currentColor;
   opacity: 0.18;
   position: absolute;
-  right: 11%;
+  inset-inline-end: 11%;
   top: 3px;
 }
 .art-leaf {
   position: absolute;
-  left: 27%;
+  inset-inline-start: 27%;
   bottom: 0;
   opacity: 0.45;
   transform: rotate(-20deg);
@@ -861,7 +861,7 @@ label {
   margin-top: 5px;
 }
 .phonetic span {
-  margin-left: 9px;
+  margin-inline-start: 9px;
   font-style: italic;
   font-size: 10px;
 }
@@ -871,8 +871,8 @@ label {
   margin-top: 17px;
 }
 .word-example {
-  padding-left: 12px;
-  border-left: 2px solid #cdd8c2;
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid #cdd8c2;
   font-size: 11px;
   color: #5c6c53;
   font-style: italic;
@@ -921,7 +921,7 @@ label {
   margin-top: 4px;
 }
 .practice-banner .button {
-  margin-left: auto;
+  margin-inline-start: auto;
   font-size: 10px;
   background: #fffdf8;
   border-color: #e7e3d8;
@@ -1278,7 +1278,7 @@ label {
   padding: 14px 17px;
   border: 1px solid var(--line);
   border-radius: 9px;
-  text-align: left;
+  text-align: start;
   color: #65755f;
   background: #fff;
   display: flex;
@@ -1486,7 +1486,7 @@ label {
   border-radius: 9px;
   background: white;
   padding: 15px;
-  text-align: left;
+  text-align: start;
   color: #677b5a;
   font-size: 12px;
 }
@@ -1728,7 +1728,7 @@ label {
 .storage-notice {
   position: fixed;
   bottom: 15px;
-  left: 50%;
+  inset-inline-start: 50%;
   transform: translateX(-50%);
   padding: 12px 20px;
   border-radius: 9px;
@@ -1786,10 +1786,10 @@ label {
     width: 36%;
   }
   .hero-book.book-front {
-    right: 175px;
+    inset-inline-end: 175px;
   }
   .hero-book.book-back {
-    right: 75px;
+    inset-inline-end: 75px;
   }
   .dashboard-columns {
     grid-template-columns: minmax(0, 1fr) 320px;
@@ -1813,11 +1813,11 @@ label {
 @media (max-width: 1150px) {
   .sidebar {
     width: 210px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-inline-start: 15px;
+    padding-inline-end: 15px;
   }
   .workspace {
-    margin-left: 210px;
+    margin-inline-start: 210px;
   }
   .brand {
     gap: 8px;
@@ -1842,11 +1842,11 @@ label {
     width: 35%;
   }
   .hero-book.book-front {
-    right: 90px;
+    inset-inline-end: 90px;
     width: 100px;
   }
   .hero-book.book-back {
-    right: 15px;
+    inset-inline-end: 15px;
     width: 105px;
   }
   .hero {
@@ -1877,8 +1877,8 @@ label {
     font-size: 25px;
   }
   .page-footer {
-    padding-left: 28px;
-    padding-right: 28px;
+    padding-inline-start: 28px;
+    padding-inline-end: 28px;
   }
   .progress-layout {
     grid-template-columns: 1fr 250px;
@@ -1968,14 +1968,14 @@ label {
   .mobile-close {
     display: flex;
     position: absolute;
-    right: 13px;
+    inset-inline-end: 13px;
     top: 10px;
   }
   .mobile-menu {
     display: flex;
   }
   .workspace {
-    margin-left: 0;
+    margin-inline-start: 0;
   }
   .topbar {
     height: 61px;
@@ -2030,7 +2030,7 @@ label {
     opacity: 1;
   }
   .hero-book.book-front {
-    right: 15px;
+    inset-inline-end: 15px;
     top: 93px;
     width: 82px;
     height: 113px;
@@ -2038,17 +2038,17 @@ label {
   }
   .hero-book.book-back {
     display: none;
-    right: -14px;
+    inset-inline-end: -14px;
     top: 48px;
     width: 85px;
     height: 118px;
     font-size: 16px;
   }
   .hero-orbit {
-    right: -130px;
+    inset-inline-end: -130px;
   }
   .hero-spark {
-    right: 12px;
+    inset-inline-end: 12px;
     bottom: 18px;
     width: 22px;
   }
@@ -2092,7 +2092,7 @@ label {
   }
   .art-leaf {
     width: 58px;
-    left: 13%;
+    inset-inline-start: 13%;
   }
   .art-circle {
     width: 22px;
@@ -2328,11 +2328,11 @@ label {
     width: 30%;
   }
   .hero-book.book-front {
-    right: 15px;
+    inset-inline-end: 15px;
     width: 72px;
   }
   .hero-book.book-back {
-    right: -23px;
+    inset-inline-end: -23px;
   }
   .dashboard-aside {
     grid-template-columns: 1fr;
@@ -2593,7 +2593,7 @@ label {
   color: #385532;
   padding: 7px 12px;
   border-radius: 6px;
-  margin-right: 12px;
+  margin-inline-end: 12px;
   cursor: pointer;
 }
 .game-card-copy p {
@@ -2651,7 +2651,7 @@ label {
   font-size: 11px;
 }
 .word-preview > span:first-child {
-  margin-right: 5px;
+  margin-inline-end: 5px;
   flex-basis: 100%;
 }
 .topbar-search {
@@ -2661,7 +2661,7 @@ label {
   background: #fff;
 }
 .topbar-search kbd {
-  margin-left: 8px;
+  margin-inline-start: 8px;
 }
 @media (max-width: 700px) {
   .cover-title {
@@ -2761,7 +2761,7 @@ button:disabled {
   margin-top: 20px;
 }
 .resource-item .button {
-  margin-right: 0;
+  margin-inline-end: 0;
 }
 .resource-item {
   gap: 12px;
@@ -2805,5 +2805,133 @@ button:disabled {
   .home-shortcuts .button {
     flex: 1;
     min-width: 130px;
+  }
+}
+
+:lang(fa),
+:lang(ar) {
+  font-family: "Noto Sans Arabic Variable", Tahoma, sans-serif;
+  letter-spacing: normal;
+}
+:lang(en),
+:lang(tr) {
+  font-family: "Inter Variable", Arial, sans-serif;
+}
+[lang="en"][dir="ltr"] {
+  unicode-bidi: isolate;
+}
+.language-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.language-select select {
+  min-height: 40px;
+  padding: 8px 12px;
+  max-width: 140px;
+  font-size: 13px;
+}
+[dir="rtl"] .back-link > svg,
+[dir="rtl"] .button > .lucide-arrow-right,
+[dir="rtl"] .text-link > .lucide-arrow-right {
+  transform: scaleX(-1);
+}
+[dir="rtl"] .eyebrow {
+  letter-spacing: normal;
+}
+[dir="rtl"] .stat-label {
+  font-size: 12px;
+}
+.settings-panel h2 {
+  margin-block-end: 20px;
+}
+@media (max-width: 700px) {
+  [dir="rtl"] .sidebar {
+    transform: translateX(100%);
+  }
+  [dir="rtl"] .sidebar.is-open {
+    transform: translateX(0);
+  }
+  .language-select select {
+    max-width: 125px;
+    min-height: 44px;
+  }
+  .language-select {
+    gap: 6px;
+  }
+  .breadcrumb {
+    min-width: 0;
+  }
+  .topbar-right {
+    flex-shrink: 0;
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+}
+@media print {
+  .workspace {
+    margin-inline: 0;
+  }
+}
+
+.upload-control:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+.upload-control > label {
+  cursor: pointer;
+}
+.activity-details {
+  margin-block-start: 20px;
+  font-size: 12px;
+}
+.activity-details summary {
+  cursor: pointer;
+  color: var(--green);
+}
+.activity-details table {
+  width: 100%;
+  margin-block-start: 12px;
+  border-collapse: collapse;
+  text-align: start;
+}
+.activity-details th,
+.activity-details td {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-heading > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.book-detail .detail-description {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+.button,
+.tab,
+.icon-button,
+.topbar-search {
+  min-height: 44px;
+}
+.icon-button {
+  min-width: 44px;
+}
+.word-top > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+.word-title {
+  flex-wrap: wrap;
+}
+.word-title h2 {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .resource-item .icon-button {
+    width: 44px;
   }
 }

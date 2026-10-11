@@ -1,6 +1,7 @@
+import { localizedMetadata } from "@/lib/locale-server";
 import { Library } from "@/components/library";
 import { getContent } from "@/lib/content";
-export const metadata = { title: "Book library" };
+export const generateMetadata = () => localizedMetadata("Library");
 export default async function LibraryPage() {
   return <Library books={(await getContent()).books} />;
 }

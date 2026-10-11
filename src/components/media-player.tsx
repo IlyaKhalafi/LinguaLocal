@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import { useEffect, useRef, useState } from "react";
 import { Repeat2, RotateCcw } from "lucide-react";
 import type { Resource } from "@/lib/schema";
@@ -13,6 +14,7 @@ export function MediaPlayer({
   resource: Resource;
   onClose: () => void;
 }) {
+  const { t } = useLocale();
   const audio = useRef<HTMLAudioElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const [speed, setSpeed] = useState(1);
@@ -101,18 +103,20 @@ export function MediaPlayer({
   return (
     <section
       className="media-player"
-      aria-label="Media player"
+      aria-label={t("Media player")}
       ref={section}
       tabIndex={-1}
     >
       <div className="section-heading">
-        <h3>{resource.title}</h3>
+        <h3 lang="en" dir="ltr">
+          {resource.title}
+        </h3>
         <button
           className="text-link"
           style={{ border: 0, background: "none" }}
           onClick={onClose}
         >
-          Close player
+          {t("Close player")}
         </button>
       </div>
       {resource.kind === "video" ? (
@@ -148,10 +152,10 @@ export function MediaPlayer({
               if (track) track.mode = captions ? "disabled" : "showing";
             }}
           >
-            {captions ? "Hide captions" : "Show captions"}
+            {captions ? t("Hide captions") : t("Show captions")}
           </button>
         )}
-        <label htmlFor="playback-speed">Playback speed</label>
+        <label htmlFor="playback-speed">{t("Playback speed")}</label>
         <select
           id="playback-speed"
           value={speed}
@@ -159,7 +163,7 @@ export function MediaPlayer({
         >
           {[0.5, 0.75, 1, 1.25, 1.5, 2].map((value) => (
             <option key={value} value={value}>
-              {value}×
+              {t("{count}", { count: value })}×
             </option>
           ))}
         </select>
@@ -172,7 +176,7 @@ export function MediaPlayer({
           }}
         >
           <RotateCcw size={12} />
-          Back 10 seconds
+          {t("Back 10 seconds")}
         </button>
         <button
           className="button secondary"
@@ -182,14 +186,18 @@ export function MediaPlayer({
             setLoop(false);
           }}
         >
-          Set loop start{start !== null && ` ${start.toFixed(1)}s`}
+          {t("Set loop start")}
+          {start !== null &&
+            ` ${t("{seconds}s", { seconds: Number(start.toFixed(1)) })}`}
         </button>
         <button
           className="button secondary"
           disabled={start === null}
           onClick={markEnd}
         >
-          Set loop end{end !== null && ` ${end.toFixed(1)}s`}
+          {t("Set loop end")}
+          {end !== null &&
+            ` ${t("{seconds}s", { seconds: Number(end.toFixed(1)) })}`}
         </button>
         {end !== null && (
           <button
@@ -198,19 +206,21 @@ export function MediaPlayer({
             onClick={() => setLoop(!loop)}
           >
             <Repeat2 size={12} />
-            {loop ? "Repeat on" : "Repeat off"}
+            {loop ? t("Repeat on") : t("Repeat off")}
           </button>
         )}
       </div>
       {error && (
         <p className="inline-message" role="alert">
-          {error}
+          {t(error)}
         </p>
       )}
       {resource.transcript && (
         <details>
-          <summary>Read the transcript</summary>
-          <p>{resource.transcript}</p>
+          <summary>{t("Read the transcript")}</summary>
+          <p lang="en" dir="ltr">
+            {resource.transcript}
+          </p>
         </details>
       )}
     </section>

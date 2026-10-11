@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 
 import Link from "next/link";
 import {
@@ -13,6 +14,7 @@ import { BookCard, PageHeading } from "./ui";
 import { WordCard } from "./word-card";
 import { dailyWord, streak } from "@/lib/learning";
 import { useToday } from "@/lib/use-today";
+import { defaultSettings } from "@/lib/default-settings";
 import type { ContentPack, Settings } from "@/lib/schema";
 
 export function Overview({
@@ -24,6 +26,7 @@ export function Overview({
   settings: Settings;
   serverDay: string;
 }) {
+  const { t } = useLocale();
   const { progress } = useProgress();
   const day = useToday(serverDay);
   const date = new Date(`${day}T12:00:00`);
@@ -52,8 +55,8 @@ export function Overview({
   ];
   return (
     <>
-      <PageHeading title="Home" />
-      {settings.welcome !== "A little practice. A world of possibilities." && (
+      <PageHeading title={t("Home")} />
+      {settings.welcome !== defaultSettings.welcome && (
         <p className="school-welcome">{settings.welcome}</p>
       )}
       <div className="stat-grid">
@@ -63,8 +66,8 @@ export function Overview({
               <Icon size={19} />
             </span>
             <div>
-              <div className="stat-value">{value}</div>
-              <div className="stat-label">{label}</div>
+              <div className="stat-value">{t("{count}", { count: value })}</div>
+              <div className="stat-label">{t(label)}</div>
             </div>
           </div>
         ))}
@@ -72,9 +75,10 @@ export function Overview({
       <div className="dashboard-columns">
         <section>
           <div className="section-heading">
-            <h2>Books</h2>
+            <h2>{t("Books")}</h2>
             <Link className="text-link" href="/library">
-              View all <ArrowRight size={14} />
+              {t("View all")}
+              <ArrowRight size={14} />
             </Link>
           </div>
           <div className="book-grid">
@@ -83,27 +87,30 @@ export function Overview({
             ))}
           </div>
           {!content.books.length && (
-            <p className="muted">No books available.</p>
+            <p className="muted">{t("No books available.")}</p>
           )}
           <div className="home-shortcuts">
             <Link className="button secondary" href="/lessons">
-              Lessons <ArrowRight size={14} />
+              {t("Lessons")}
+              <ArrowRight size={14} />
             </Link>
             <Link className="button secondary" href="/games">
-              Games <ArrowRight size={14} />
+              {t("Games")}
+              <ArrowRight size={14} />
             </Link>
             <Link className="button primary" href="/flashcards">
-              Review words <ArrowRight size={14} />
+              {t("Review words")}
+              <ArrowRight size={14} />
             </Link>
           </div>
         </section>
         <aside className="dashboard-aside">
           <div className="daily-word-panel">
-            <h2 className="section-title">Word of the day</h2>
+            <h2 className="section-title">{t("Word of the day")}</h2>
             <WordCard featured word={word} />
           </div>
           <div className="panel goal-panel">
-            <h3>Daily goal</h3>
+            <h3>{t("Daily goal")}</h3>
             <div
               className="goal-circle"
               style={
@@ -113,14 +120,18 @@ export function Overview({
               }
             >
               <div>
-                <strong>
-                  {today} / {progress.goal}
+                <strong dir="ltr">
+                  {t("{current} / {total}", {
+                    current: today,
+                    total: progress.goal,
+                  })}
                 </strong>
-                <small>Activities today</small>
+                <small>{t("Activities today")}</small>
               </div>
             </div>
             <Link className="text-link" href="/progress">
-              View progress <ArrowRight size={14} />
+              {t("View progress")}
+              <ArrowRight size={14} />
             </Link>
           </div>
         </aside>

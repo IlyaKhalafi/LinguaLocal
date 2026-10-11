@@ -1,9 +1,9 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import {
   BookOpen,
   CheckCircle2,
-  Download,
   Flame,
   Layers,
   Printer,
@@ -13,7 +13,7 @@ import { useToday } from "@/lib/use-today";
 import { dayKey, streak } from "@/lib/learning";
 import type { ContentPack } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
-import { downloadJson, PageHeading } from "./ui";
+import { PageHeading } from "./ui";
 
 export function ProgressDashboard({
   content,
@@ -22,6 +22,7 @@ export function ProgressDashboard({
   content: ContentPack;
   serverDay: string;
 }) {
+  const { t, locale } = useLocale();
   const { progress, setGoal } = useProgress();
   const completed = content.lessons.filter((lesson) =>
     progress.completed.includes(lesson.id),
@@ -52,11 +53,11 @@ export function ProgressDashboard({
   return (
     <>
       <PageHeading
-        title="Progress"
+        title={t("Progress")}
         action={
           <button className="button secondary" onClick={() => window.print()}>
             <Printer size={14} />
-            Print progress
+            {t("Print progress")}
           </button>
         }
       />
@@ -67,8 +68,8 @@ export function ProgressDashboard({
               <Icon size={19} />
             </span>
             <div>
-              <div className="stat-value">{value}</div>
-              <div className="stat-label">{label}</div>
+              <div className="stat-value">{t("{count}", { count: value })}</div>
+              <div className="stat-label">{t(label)}</div>
             </div>
           </div>
         ))}
@@ -78,32 +79,63 @@ export function ProgressDashboard({
           <section className="panel">
             <div className="section-heading">
               <div>
-                <h2>Activity</h2>
-                <p>Last 8 weeks</p>
+                <h2>{t("Activity")}</h2>
+                <p>{t("Last 8 weeks")}</p>
               </div>
               <Flame size={20} color="#a4b78c" />
             </div>
-            <div className="activity-grid">
+            <div
+              className="activity-grid"
+              role="img"
+              aria-label={t("{count} activities in the last 8 weeks", {
+                count: days.reduce((sum, day) => sum + day.count, 0),
+              })}
+            >
               {days.map(({ day, count }) => (
                 <div
                   className={`activity-cell ${count ? `level-${Math.min(3, Math.ceil(count / 4))}` : ""}`}
                   key={day}
-                  title={`${day} · ${count} activities`}
-                  role="img"
-                  aria-label={`${day}, ${count} activities`}
+                  title={t("{day} · {count} activities", { day, count })}
+                  aria-hidden="true"
                 />
               ))}
             </div>
             <div className="activity-legend">
               <span>{days[0].day}</span>
-              <span>Less ▫ ▪ ▰ More</span>
-              <span>Today</span>
+              <span>{t("Less ▫ ▪ ▰ More")}</span>
+              <span>{t("Today")}</span>
             </div>
+            <details className="activity-details">
+              <summary>{t("Activity details")}</summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>{t("Date")}</th>
+                    <th>{t("Activities")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {days
+                    .filter((day) => day.count > 0)
+                    .map(({ day, count }) => (
+                      <tr key={day}>
+                        <td>
+                          <bdi dir="ltr">{day}</bdi>
+                        </td>
+                        <td>{t("{count}", { count })}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+              {!days.some((day) => day.count > 0) && (
+                <p>{t("No practice sessions yet.")}</p>
+              )}
+            </details>
           </section>
           <section className="panel" style={{ marginTop: 24 }}>
             <div className="section-heading">
               <div>
-                <h2>Recent sessions</h2>
+                <h2>{t("Recent sessions")}</h2>
               </div>
             </div>
             {progress.attempts.length ? (
@@ -114,17 +146,21 @@ export function ProgressDashboard({
                       <CheckCircle2 size={17} />
                     </span>
                     <div>
-                      <h3>{attempt.title}</h3>
+                      <h3>{t(attempt.title)}</h3>
                       <p>
-                        {new Date(attempt.date).toLocaleDateString("en", {
+                        {new Date(attempt.date).toLocaleDateString(locale, {
+                          calendar: "gregory",
                           month: "short",
                           day: "numeric",
                           year: "numeric",
                         })}
                       </p>
                     </div>
-                    <strong>
-                      {attempt.score} / {attempt.total}
+                    <strong dir="ltr">
+                      {t("{current} / {total}", {
+                        current: attempt.score,
+                        total: attempt.total,
+                      })}
                     </strong>
                   </div>
                 ))}
@@ -132,10 +168,10 @@ export function ProgressDashboard({
             ) : (
               <div style={{ padding: "20px 0" }}>
                 <p className="muted" style={{ fontSize: 12, marginBottom: 15 }}>
-                  No practice sessions yet.
+                  {t("No practice sessions yet.")}
                 </p>
                 <Link className="button primary" href="/games">
-                  Open games
+                  {t("Open games")}
                 </Link>
               </div>
             )}
@@ -143,7 +179,7 @@ export function ProgressDashboard({
         </div>
         <aside>
           <section className="panel goal-panel">
-            <h3>Daily goal</h3>
+            <h3>{t("Daily goal")}</h3>
             <div
               className="goal-circle"
               style={
@@ -153,14 +189,17 @@ export function ProgressDashboard({
               }
             >
               <div>
-                <strong>
-                  {today}/{progress.goal}
+                <strong dir="ltr">
+                  {t("{current} / {total}", {
+                    current: today,
+                    total: progress.goal,
+                  })}
                 </strong>
-                <small>Activities today</small>
+                <small>{t("Activities today")}</small>
               </div>
             </div>
             <div className="form-field">
-              <label htmlFor="daily-goal">Activities per day</label>
+              <label htmlFor="daily-goal">{t("Activities per day")}</label>
               <select
                 id="daily-goal"
                 value={progress.goal}
@@ -170,42 +209,33 @@ export function ProgressDashboard({
                   .sort((a, b) => a - b)
                   .map((goal) => (
                     <option key={goal} value={goal}>
-                      {goal} activities per day
+                      {t("{count} activities per day", { count: goal })}
                     </option>
                   ))}
               </select>
             </div>
             <p>
-              A lesson, a game, or a flashcard review counts as one activity.
+              {t(
+                "A lesson, a game, or a flashcard review counts as one activity.",
+              )}
             </p>
           </section>
           <section className="panel" style={{ marginTop: 24 }}>
-            <h3>Progress backup</h3>
-            <p
-              className="muted"
-              style={{ fontSize: 11, margin: "12px 0 19px" }}
-            >
-              Save a backup to move progress to another device.
-            </p>
-            <button
-              className="button secondary"
-              onClick={() =>
-                downloadJson(progress, "lingualocal-progress.json")
-              }
-            >
-              <Download size={14} />
-              Save a backup
-            </button>
             <div className="progress-lessons">
-              <h3>Completed lessons</h3>
+              <h3>{t("Completed lessons")}</h3>
               {completed.length ? (
                 completed.map((lesson) => (
-                  <p key={lesson.id}>✓ {lesson.title}</p>
+                  <p key={lesson.id} lang="en" dir="ltr">
+                    ✓ {lesson.title}
+                  </p>
                 ))
               ) : (
-                <p>No completed lessons.</p>
+                <p>{t("No completed lessons.")}</p>
               )}
             </div>
+            <Link className="text-link" href="/settings">
+              {t("Progress backup")}
+            </Link>
           </section>
         </aside>
       </div>

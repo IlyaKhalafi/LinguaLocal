@@ -6,6 +6,7 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
+import { useLocale } from "./locale-provider";
 import { z } from "zod";
 import {
   dayKey,
@@ -119,6 +120,7 @@ const context = createContext<{
 } | null>(null);
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
+  const { t } = useLocale();
   const progress = useSyncExternalStore(
     subscribe,
     snapshot,
@@ -188,7 +190,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       {children}
       {unavailable && (
         <div className="storage-notice" role="status">
-          Browser storage is unavailable. Progress will last for this visit.
+          {t(
+            "Browser storage is unavailable. Progress will last for this visit.",
+          )}
         </div>
       )}
     </context.Provider>

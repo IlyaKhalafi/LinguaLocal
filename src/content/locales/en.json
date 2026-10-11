@@ -151,7 +151,6 @@
   "Study with flashcards": "Study with flashcards",
   "Tap to flip": "Tap to flip",
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "The school settings file could not be read. Ask the school to repair settings.json on the server.",
-  "The school’s content file could not be read. The starter collection is shown here while the school repairs content.json on the server. The original file remains on the server until you replace it.": "The school’s content file could not be read. The starter collection is shown here while the school repairs content.json on the server. The original file remains on the server until you replace it.",
   "This file could not be played. Ask your school to check the media file and format.": "This file could not be played. Ask your school to check the media file and format.",
   "This is not a valid progress backup.": "This is not a valid progress backup.",
   "This level needs at least four words. Choose all levels or ask your school to add more.": "This level needs at least four words. Choose all levels or ask your school to add more.",
@@ -195,5 +194,14 @@
   "{count} resources": "{count} resources",
   "Ask the school to check the server files.": "Ask the school to check the server files.",
   "Save {word}": "Save {word}",
-  "Unsave {word}": "Unsave {word}"
+  "Unsave {word}": "Unsave {word}",
+  "Clear filters": "Clear filters",
+  "Loading": "Loading",
+  "{count}": "{count}",
+  "{current} / {total}": "{current} / {total}",
+  "{count} activities in the last 8 weeks": "{count} activities in the last 8 weeks",
+  "Activity details": "Activity details",
+  "Date": "Date",
+  "Activities": "Activities",
+  "{seconds}s": "{seconds}s"
 }

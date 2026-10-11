@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
@@ -8,6 +9,7 @@ import { PageHeading } from "./ui";
 import { useProgress } from "./progress-provider";
 
 export function Matching({ words }: { words: Word[] }) {
+  const { t } = useLocale();
   const [left, setLeft] = useState<Word[]>([]);
   const [right, setRight] = useState<Word[]>([]);
   const [chosen, setChosen] = useState<string | null>(null);
@@ -51,38 +53,43 @@ export function Matching({ words }: { words: Word[] }) {
     <div className="game-panel">
       <Link className="back-link" href="/games">
         <ArrowLeft size={14} />
-        Games
+        {t("Games")}
       </Link>
-      <PageHeading title="Matching" />
+      <PageHeading title={t("Matching")} />
       {done ? (
         <div className="results-panel">
           <Sparkles size={35} color="#98a780" />
-          <h2>Round complete</h2>
-          <div className="results-score">{matched.length}</div>
+          <h2>{t("Round complete")}</h2>
+          <div className="results-score">
+            {t("{count}", { count: matched.length })}
+          </div>
           <p>
-            {matched.length} pairs matched in {tries} attempts.
+            {t("{count} pairs matched in {tries} attempts.", {
+              count: matched.length,
+              tries,
+            })}
           </p>
           <div className="button-row">
             <button className="button primary" onClick={start}>
-              Play again
+              {t("Play again")}
             </button>
             <Link className="button secondary" href="/progress">
-              View progress
+              {t("View progress")}
             </Link>
           </div>
         </div>
       ) : !left.length ? (
         <>
           <div className="panel">
-            <h2>Match words to meanings</h2>
+            <h2>{t("Match words to meanings")}</h2>
             <p
               className="muted"
               style={{ margin: "15px 0 25px", fontSize: 12 }}
             >
-              Choose a word, then its meaning.
+              {t("Choose a word, then its meaning.")}
             </p>
             <button className="button primary" onClick={start}>
-              Start matching
+              {t("Start matching")}
               <ArrowRight size={14} />
             </button>
           </div>
@@ -91,9 +98,12 @@ export function Matching({ words }: { words: Word[] }) {
         <>
           <div className="game-progress">
             <span>
-              {matched.length} of {left.length} pairs found
+              {t("{count} of {total} pairs found", {
+                count: matched.length,
+                total: left.length,
+              })}
             </span>
-            <span>{tries} attempts</span>
+            <span>{t("{count} attempts", { count: tries })}</span>
           </div>
           <div className="progress-track">
             <div
@@ -105,6 +115,8 @@ export function Matching({ words }: { words: Word[] }) {
             <div className="matching-column">
               {left.map((word) => (
                 <button
+                  lang="en"
+                  dir="ltr"
                   className={`matching-tile ${chosen === word.id ? "chosen" : ""} ${matched.includes(word.id) ? "matched" : ""}`}
                   key={word.id}
                   disabled={matched.includes(word.id)}
@@ -122,6 +134,8 @@ export function Matching({ words }: { words: Word[] }) {
             <div className="matching-column">
               {right.map((word) => (
                 <button
+                  lang="en"
+                  dir="ltr"
                   className={`matching-tile ${matched.includes(word.id) ? "matched" : ""}`}
                   key={word.id}
                   disabled={matched.includes(word.id)}
@@ -133,7 +147,7 @@ export function Matching({ words }: { words: Word[] }) {
             </div>
           </div>
           <p className="study-summary" role="status">
-            {message || "Choose a word, then its meaning."}
+            {t(message || "Choose a word, then its meaning.")}
           </p>
         </>
       )}

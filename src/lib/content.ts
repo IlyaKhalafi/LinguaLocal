@@ -9,6 +9,8 @@ import {
   type Settings,
 } from "./schema";
 import seed from "@/content/starter.json";
+import { defaultSettings } from "./default-settings";
+export { defaultSettings } from "./default-settings";
 
 export const dataDirectory = path.resolve(
   /* turbopackIgnore: true */
@@ -18,10 +20,6 @@ export const mediaDirectory = path.resolve(
   /* turbopackIgnore: true */
   process.env.LINGUALOCAL_MEDIA_DIR || path.join(dataDirectory, "media"),
 );
-export const defaultSettings: Settings = {
-  name: "LinguaLocal",
-  welcome: "A little practice. A world of possibilities.",
-};
 
 const starterContent = packSchema.parse(seed);
 const documentCache = new Map<
@@ -68,18 +66,6 @@ export async function getSettingsState() {
       settings: defaultSettings,
       warning:
         "The school settings file could not be read. Ask the school to repair settings.json on the server.",
-    };
-  }
-}
-export async function getContentState() {
-  try {
-    return { content: await getContent(), warning: "" };
-  } catch (error) {
-    console.error("Content needs repair", error);
-    return {
-      content: starterContent,
-      warning:
-        "The school’s content file could not be read. The starter collection is shown here while the school repairs content.json on the server. The original file remains on the server until you replace it.",
     };
   }
 }

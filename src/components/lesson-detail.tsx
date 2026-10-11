@@ -1,4 +1,5 @@
 "use client";
+import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, Printer } from "lucide-react";
@@ -7,6 +8,7 @@ import { useProgress } from "./progress-provider";
 import { Badge, PageHeading } from "./ui";
 
 export function LessonDetail({ lesson }: { lesson: Lesson }) {
+  const { t } = useLocale();
   const [selected, setSelected] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
   const { progress, complete } = useProgress();
@@ -15,26 +17,31 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
     <article className="lesson-content">
       <Link className="back-link" href="/lessons">
         <ArrowLeft size={14} />
-        All lessons
+        {t("All lessons")}
       </Link>
       <PageHeading
-        eyebrow={`${lesson.category.toUpperCase()} · ${lesson.level} · ${lesson.minutes} MIN READ`}
+        contentLanguage="en"
+        eyebrow={`${t(lesson.category)} · ${lesson.level} · ${t("{count} min read", { count: lesson.minutes })}`}
         title={lesson.title}
         description={lesson.description}
       />
       {lesson.sections.map((section, index) => (
-        <section className="lesson-section" key={index}>
+        <section lang="en" dir="ltr" className="lesson-section" key={index}>
           <h2>{section.title}</h2>
           <p>{section.body}</p>
         </section>
       ))}
       <section className="exercise">
-        <Badge tone="green">Practice</Badge>
-        <h3>{lesson.question}</h3>
+        <Badge tone="green">{t("Practice")}</Badge>
+        <h3 lang="en" dir="ltr">
+          {lesson.question}
+        </h3>
         <div className="options">
           {lesson.options.map((option, index) => (
             <button
               key={index}
+              lang="en"
+              dir="ltr"
               className={`option ${selected === index ? "selected" : ""} ${checked && index === lesson.answer ? "correct" : ""} ${checked && selected === index && index !== lesson.answer ? "incorrect" : ""}`}
               aria-pressed={selected === index}
               disabled={checked}
@@ -53,9 +60,11 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
             role="status"
           >
             <strong>
-              {selected === lesson.answer ? "Correct. " : "Incorrect. "}
+              {selected === lesson.answer ? t("Correct. ") : t("Incorrect. ")}
             </strong>
-            {lesson.explanation}
+            <bdi lang="en" dir="ltr">
+              {lesson.explanation}
+            </bdi>
           </p>
         )}
         <div className="game-controls">
@@ -67,7 +76,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
                 setSelected(null);
               }}
             >
-              Try again
+              {t("Try again")}
             </button>
           ) : (
             <button
@@ -75,7 +84,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
               disabled={selected === null}
               onClick={() => setChecked(true)}
             >
-              Check answer
+              {t("Check answer")}
             </button>
           )}
         </div>
@@ -83,7 +92,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
       <div className="completion">
         <button className="button secondary" onClick={() => window.print()}>
           <Printer size={14} />
-          Print lesson
+          {t("Print lesson")}
         </button>
         <button
           className={`button ${done ? "soft-button" : "primary"}`}
@@ -94,7 +103,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           onClick={() => complete(lesson.id)}
         >
           <CheckCircle2 size={15} />
-          {done ? "Completed" : "Mark as complete"}
+          {done ? t("Completed") : t("Mark as complete")}
         </button>
       </div>
       {!done && !checked && (
@@ -103,7 +112,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           className="muted"
           style={{ marginTop: 12, fontSize: 12 }}
         >
-          Check your answer before marking this lesson complete.
+          {t("Check your answer before marking this lesson complete.")}
         </p>
       )}
     </article>

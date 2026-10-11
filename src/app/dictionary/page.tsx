@@ -1,7 +1,7 @@
-import { dayKey } from "@/lib/learning";
+import { localizedMetadata } from "@/lib/locale-server";
 import { Dictionary } from "@/components/dictionary";
 import { getContent } from "@/lib/content";
-export const metadata = { title: "Dictionary" };
+export const generateMetadata = () => localizedMetadata("Dictionary");
 export default async function DictionaryPage() {
-  return <Dictionary serverDay={dayKey()} words={(await getContent()).words} />;
+  return <Dictionary words={(await getContent()).words} />;
 }

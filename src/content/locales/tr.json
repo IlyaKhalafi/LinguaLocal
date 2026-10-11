@@ -151,7 +151,6 @@
   "Study with flashcards": "Bilgi kartlarıyla çalış",
   "Tap to flip": "Çevirmek için dokunun",
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "Okul ayar dosyası okunamadı. Okuldan sunucudaki settings.json dosyasını onarmasını isteyin.",
-  "The school’s content file could not be read. The starter collection is shown here while the school repairs content.json on the server. The original file remains on the server until you replace it.": "Okul içerik dosyası okunamadı. Okul sunucudaki content.json dosyasını onarana kadar başlangıç koleksiyonu gösterilir. Asıl dosya siz değiştirene kadar sunucuda kalır.",
   "This file could not be played. Ask your school to check the media file and format.": "Bu dosya oynatılamadı. Okulunuzdan medya dosyasını ve biçimini kontrol etmesini isteyin.",
   "This is not a valid progress backup.": "Bu geçerli bir ilerleme yedeği değil.",
   "This level needs at least four words. Choose all levels or ask your school to add more.": "Bu seviye için en az dört kelime gerekir. Tüm seviyeleri seçin veya okulunuzdan daha fazla eklemesini isteyin.",
@@ -195,5 +194,14 @@
   "{count} resources": "{count} kaynak",
   "Ask the school to check the server files.": "Okuldan sunucu dosyalarını kontrol etmesini isteyin.",
   "Save {word}": "{word} kelimesini kaydet",
-  "Unsave {word}": "{word} kelimesini kayıtlılardan kaldır"
+  "Unsave {word}": "{word} kelimesini kayıtlılardan kaldır",
+  "Clear filters": "Filtreleri temizle",
+  "Loading": "Yükleniyor",
+  "{count}": "{count}",
+  "{current} / {total}": "{current} / {total}",
+  "{count} activities in the last 8 weeks": "Son 8 haftada {count} etkinlik",
+  "Activity details": "Etkinlik ayrıntıları",
+  "Date": "Tarih",
+  "Activities": "Etkinlikler",
+  "{seconds}s": "{seconds} sn"
 }

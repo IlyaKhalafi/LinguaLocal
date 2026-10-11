@@ -19,6 +19,14 @@
     "{count} attempts": {
       "one": "{count} attempt",
       "other": "{count} attempts"
+    },
+    "{count} activities per day": {
+      "one": "{count} activity per day",
+      "other": "{count} activities per day"
+    },
+    "{day} · {count} activities": {
+      "one": "{day} · {count} activity",
+      "other": "{day} · {count} activities"
     }
   },
   "fa": {},
@@ -62,6 +70,22 @@
       "few": "{count} محاولات",
       "many": "{count} محاولة",
       "other": "{count} محاولة"
+    },
+    "{count} activities per day": {
+      "zero": "لا أنشطة يومية",
+      "one": "{count} نشاط يوميًا",
+      "two": "نشاطان يوميًا",
+      "few": "{count} أنشطة يوميًا",
+      "many": "{count} نشاطًا يوميًا",
+      "other": "{count} نشاط يوميًا"
+    },
+    "{count} min read": {
+      "zero": "مدة القراءة {count} دقيقة",
+      "one": "مدة القراءة {count} دقيقة",
+      "two": "مدة القراءة دقيقتان",
+      "few": "مدة القراءة {count} دقائق",
+      "many": "مدة القراءة {count} دقيقة",
+      "other": "مدة القراءة {count} دقيقة"
     }
   },
   "tr": {}
