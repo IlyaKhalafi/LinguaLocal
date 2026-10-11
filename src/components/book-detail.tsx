@@ -23,7 +23,7 @@ export function BookDetail({ book }: { book: Book }) {
     <>
       <Link className="back-link" href="/library">
         <ArrowLeft size={14} />
-        Back to your bookshelf
+        Back to library
       </Link>
       <div className="book-detail">
         <Cover book={book} />
@@ -37,11 +37,10 @@ export function BookDetail({ book }: { book: Book }) {
               {book.resources.length}{" "}
               {book.resources.length === 1 ? "resource" : "resources"}
             </Badge>
-            <Badge>Available on your school network</Badge>
           </div>
           <div className="resource-list">
             <div className="section-heading">
-              <h2>Open a new chapter</h2>
+              <h2>Resources</h2>
             </div>
             <div className="tabs">
               {["all", "audio", "video", "pdf"].map((item) => (
@@ -113,8 +112,8 @@ export function BookDetail({ book }: { book: Book }) {
             })}
             {resources.length === 0 && (
               <EmptyState
-                title="Room for something wonderful."
-                description="Your school can add audio, video, and reading materials by updating its content pack on the server."
+                title="No resources"
+                description="No resources in this category."
               />
             )}
           </div>

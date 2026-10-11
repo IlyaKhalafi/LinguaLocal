@@ -23,11 +23,7 @@ export function Library({ books }: { books: Book[] }) {
   );
   return (
     <>
-      <PageHeading
-        eyebrow="YOUR SCHOOL’S BOOKSHELF"
-        title="A world between the covers."
-        description="Find your next book, press play, and see where it takes you."
-      />
+      <PageHeading title="Library" />
       <div className="toolbar">
         <label className="search-field">
           <Search size={17} />
@@ -35,7 +31,7 @@ export function Library({ books }: { books: Book[] }) {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search your bookshelf..."
+            placeholder="Search books"
           />
         </label>
         <select
@@ -71,7 +67,7 @@ export function Library({ books }: { books: Book[] }) {
         </div>
       ) : (
         <EmptyState
-          title="A new discovery is around the corner."
+          title="No matching books"
           description="Try a different search or choose another level."
           action={
             <button

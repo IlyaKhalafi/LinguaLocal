@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 import {
-  ArrowRight,
   BookOpen,
   Flame,
   GraduationCap,
   Layers,
-  Leaf,
-  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import { useProgress } from "./progress-provider";
 import { BookCard, PageHeading } from "./ui";
@@ -31,71 +29,33 @@ export function Overview({
   const date = new Date(`${day}T12:00:00`);
   const today = progress.activity[day] ?? 0;
   const word = dailyWord(content.words, date);
-  const completed = content.lessons.filter((lesson) =>
-    progress.completed.includes(lesson.id),
-  ).length;
   const stats = [
-    { icon: BookOpen, value: content.books.length, label: "Books to explore" },
-    { icon: GraduationCap, value: completed, label: "Lessons completed" },
+    { icon: BookOpen, value: content.books.length, label: "Books" },
+    {
+      icon: GraduationCap,
+      value: content.lessons.filter((lesson) =>
+        progress.completed.includes(lesson.id),
+      ).length,
+      label: "Completed lessons",
+    },
     {
       icon: Layers,
-      value: content.words.filter((w) => progress.saved.includes(w.id)).length,
-      label: "Words collected",
+      value: content.words.filter((word) => progress.saved.includes(word.id))
+        .length,
+      label: "Saved words",
     },
     {
       icon: Flame,
       value: streak(progress.activity, date),
-      label: "Days in your streak",
+      label: "Day streak",
     },
   ];
   return (
     <>
-      <PageHeading
-        eyebrow="MAKE ROOM FOR A LITTLE DISCOVERY"
-        title="Your next chapter starts here."
-        description={settings.welcome}
-        action={
-          <Link className="button secondary" href="/progress">
-            <Leaf size={14} />
-            My learning journey
-          </Link>
-        }
-      />
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">A SPACE TO LEARN. A PLACE TO GROW.</p>
-          <h2>
-            Big possibilities.
-            <br />
-            <em>One little step at a time.</em>
-          </h2>
-          <p>
-            Your books, your favourite words, and a little everyday practice.
-            Everything you need, right here at school.
-          </p>
-          <Link className="button primary" href="/library">
-            Explore the library
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-        <div className="hero-art" aria-hidden="true">
-          <div className="hero-orbit" />
-          <div className="hero-book book-back">
-            <Leaf size={31} />
-            Words
-            <br />
-            in Bloom<small>GROW YOUR VOCABULARY</small>
-          </div>
-          <div className="hero-book book-front">
-            Everyday
-            <br />
-            English
-            <BookOpen size={29} />
-            <small>THE WORLD IS YOURS</small>
-          </div>
-          <Sparkles className="hero-spark" size={35} strokeWidth={1} />
-        </div>
-      </section>
+      <PageHeading title="Home" />
+      {settings.welcome !== "A little practice. A world of possibilities." && (
+        <p className="school-welcome">{settings.welcome}</p>
+      )}
       <div className="stat-grid">
         {stats.map(({ icon: Icon, value, label }) => (
           <div className="stat-card" key={label}>
@@ -112,13 +72,9 @@ export function Overview({
       <div className="dashboard-columns">
         <section>
           <div className="section-heading">
-            <div>
-              <h2>A good place to start</h2>
-              <p>A few favourites from your school’s bookshelf.</p>
-            </div>
+            <h2>Books</h2>
             <Link className="text-link" href="/library">
-              View all books
-              <ArrowRight size={13} />
+              View all <ArrowRight size={14} />
             </Link>
           </div>
           <div className="book-grid">
@@ -126,39 +82,28 @@ export function Overview({
               <BookCard book={book} key={book.id} />
             ))}
           </div>
-          {content.books.length === 0 && (
-            <p className="muted">
-              Your school can add books to its server content pack.
-            </p>
+          {!content.books.length && (
+            <p className="muted">No books available.</p>
           )}
-          <div className="practice-banner">
-            <span className="stat-icon">
-              <Sparkles size={22} />
-            </span>
-            <div>
-              <h3>A little play goes a long way.</h3>
-              <p>Make new words stick with a quick vocabulary game.</p>
-            </div>
+          <div className="home-shortcuts">
+            <Link className="button secondary" href="/lessons">
+              Lessons <ArrowRight size={14} />
+            </Link>
             <Link className="button secondary" href="/games">
-              Let’s practise
-              <ArrowRight size={12} />
+              Games <ArrowRight size={14} />
+            </Link>
+            <Link className="button primary" href="/flashcards">
+              Review words <ArrowRight size={14} />
             </Link>
           </div>
         </section>
         <aside className="dashboard-aside">
           <div className="daily-word-panel">
-            <p className="eyebrow">
-              <Sparkles size={12} />
-              YOUR WORD OF THE DAY
-            </p>
+            <h2 className="section-title">Word of the day</h2>
             <WordCard featured word={word} />
-            <Link className="daily-word-link" href="/dictionary">
-              Discover more words
-              <ArrowRight size={12} />
-            </Link>
           </div>
           <div className="panel goal-panel">
-            <h3>Your daily dose of learning</h3>
+            <h3>Daily goal</h3>
             <div
               className="goal-circle"
               style={
@@ -169,23 +114,13 @@ export function Overview({
             >
               <div>
                 <strong>
-                  {today}
-                  <span style={{ fontSize: 13, color: "#a0ac94" }}>
-                    {" "}
-                    / {progress.goal}
-                  </span>
+                  {today} / {progress.goal}
                 </strong>
-                <small>PRACTICE ACTIVITIES</small>
+                <small>Activities today</small>
               </div>
             </div>
-            <p>
-              {today >= progress.goal
-                ? "You reached today’s goal. Beautiful work!"
-                : "A few minutes today. A little more confidence tomorrow."}
-            </p>
-            <Link className="text-link" href="/flashcards">
-              Keep your curiosity going
-              <ArrowRight size={12} />
+            <Link className="text-link" href="/progress">
+              View progress <ArrowRight size={14} />
             </Link>
           </div>
         </aside>

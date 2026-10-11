@@ -24,15 +24,12 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
       />
       {lesson.sections.map((section, index) => (
         <section className="lesson-section" key={index}>
-          <p className="eyebrow">
-            SECTION {String(index + 1).padStart(2, "0")}
-          </p>
           <h2>{section.title}</h2>
           <p>{section.body}</p>
         </section>
       ))}
       <section className="exercise">
-        <Badge tone="green">Put it into practice</Badge>
+        <Badge tone="green">Practice</Badge>
         <h3>{lesson.question}</h3>
         <div className="options">
           {lesson.options.map((option, index) => (
@@ -56,9 +53,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
             role="status"
           >
             <strong>
-              {selected === lesson.answer
-                ? "You’ve got it! "
-                : "A good opportunity to learn. "}
+              {selected === lesson.answer ? "Correct. " : "Incorrect. "}
             </strong>
             {lesson.explanation}
           </p>
@@ -72,7 +67,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
                 setSelected(null);
               }}
             >
-              Try the question again
+              Try again
             </button>
           ) : (
             <button
@@ -80,7 +75,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
               disabled={selected === null}
               onClick={() => setChecked(true)}
             >
-              Check your answer
+              Check answer
             </button>
           )}
         </div>
@@ -99,7 +94,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           onClick={() => complete(lesson.id)}
         >
           <CheckCircle2 size={15} />
-          {done ? "Lesson completed" : "Mark as complete"}
+          {done ? "Completed" : "Mark as complete"}
         </button>
       </div>
       {!done && !checked && (
@@ -108,7 +103,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           className="muted"
           style={{ marginTop: 12, fontSize: 12 }}
         >
-          Check your practice answer to mark this lesson complete.
+          Check your answer before marking this lesson complete.
         </p>
       )}
     </article>

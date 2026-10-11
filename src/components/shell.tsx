@@ -6,7 +6,6 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   BookOpen,
   ChartNoAxesCombined,
-  ChevronRight,
   Compass,
   Gamepad2,
   GraduationCap,
@@ -15,19 +14,18 @@ import {
   Menu,
   Search,
   Settings2,
-  Wifi,
   X,
 } from "lucide-react";
 import type { Settings } from "@/lib/schema";
 
 const navigation = [
-  { href: "/", label: "Overview", icon: Compass },
-  { href: "/library", label: "Book library", icon: BookOpen },
+  { href: "/", label: "Home", icon: Compass },
+  { href: "/library", label: "Library", icon: BookOpen },
   { href: "/dictionary", label: "Dictionary", icon: Search },
   { href: "/lessons", label: "Lessons", icon: GraduationCap },
-  { href: "/games", label: "Practice & play", icon: Gamepad2 },
+  { href: "/games", label: "Games", icon: Gamepad2 },
   { href: "/flashcards", label: "Flashcards", icon: Layers },
-  { href: "/progress", label: "My progress", icon: ChartNoAxesCombined },
+  { href: "/progress", label: "Progress", icon: ChartNoAxesCombined },
 ];
 function subscribeMobile(callback: () => void) {
   const query = window.matchMedia("(max-width: 700px)");
@@ -132,10 +130,7 @@ export function Shell({
           <span className="brand-icon">
             <Leaf size={23} />
           </span>
-          <span>
-            {settings.name}
-            <small>YOUR LOCAL LEARNING SPACE</small>
-          </span>
+          <span>{settings.name}</span>
         </Link>
         <button
           className="mobile-close icon-button"
@@ -144,7 +139,6 @@ export function Shell({
         >
           <X size={20} />
         </button>
-        <p className="nav-label">YOUR WORKSPACE</p>
         <nav aria-label="Main navigation">
           {navigation.map(({ href, label, icon: Icon }) => (
             <Link
@@ -164,20 +158,6 @@ export function Shell({
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <div className="local-card">
-            <span className="local-icon">
-              <Wifi size={18} />
-            </span>
-            <strong>Learning, locally.</strong>
-            <p>
-              Your school. Your resources.
-              <br />A whole world to explore.
-            </p>
-            <span className="tiny">
-              <span className="status-dot" />
-              No internet needed
-            </span>
-          </div>
           <Link
             href="/settings"
             className={`nav-item ${pathname === "/settings" ? "active" : ""}`}
@@ -186,12 +166,6 @@ export function Shell({
             <Settings2 size={19} />
             <span>Settings</span>
           </Link>
-          <div className="sidebar-footer">
-            <span className="avatar">L</span>
-            <div>
-              Made for curious minds<small>LinguaLocal v2</small>
-            </div>
-          </div>
         </div>
       </aside>
       <div className="workspace" inert={mobile && open}>
@@ -207,34 +181,21 @@ export function Shell({
             >
               <Menu size={20} />
             </button>
-            <span>Workspace</span>
-            <ChevronRight size={14} />
             <strong>
               {current?.label ??
                 (pathname === "/settings" ? "Settings" : "Explore")}
             </strong>
           </div>
           <div className="topbar-right">
-            <span className="local-pill">
-              <span className="status-dot" />
-              Local learning hub
-            </span>
             <Link className="topbar-search" href="/dictionary">
               <Search size={16} />
               Find a word <kbd>/</kbd>
             </Link>
-            <span className="avatar small">L</span>
           </div>
         </header>
         <main id="main-content" className="main-content">
           {children}
         </main>
-        <footer className="page-footer">
-          <span>Small steps. Endless possibilities.</span>
-          <span>
-            Made to work on your school network <Leaf size={12} />
-          </span>
-        </footer>
       </div>
     </div>
   );

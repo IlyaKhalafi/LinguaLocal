@@ -43,22 +43,20 @@ export function ProgressDashboard({
     {
       icon: Flame,
       value: streak(progress.activity, new Date(`${day}T12:00:00`)),
-      label: "Days in your streak",
+      label: "Day streak",
     },
-    { icon: BookOpen, value: completed.length, label: "Lessons completed" },
-    { icon: Layers, value: saved.length, label: "Words collected" },
-    { icon: Sparkles, value: mastered.length, label: "Words remembered" },
+    { icon: BookOpen, value: completed.length, label: "Completed lessons" },
+    { icon: Layers, value: saved.length, label: "Saved words" },
+    { icon: Sparkles, value: mastered.length, label: "Words learned" },
   ];
   return (
     <>
       <PageHeading
-        eyebrow="EVERY LITTLE STEP COUNTS"
-        title="Look how far you’ve come."
-        description="Your discoveries, your practice, your own little learning journey."
+        title="Progress"
         action={
           <button className="button secondary" onClick={() => window.print()}>
             <Printer size={14} />
-            Print my progress
+            Print progress
           </button>
         }
       />
@@ -80,8 +78,8 @@ export function ProgressDashboard({
           <section className="panel">
             <div className="section-heading">
               <div>
-                <h2>A little learning, day by day</h2>
-                <p>Your last eight weeks of curiosity.</p>
+                <h2>Activity</h2>
+                <p>Last 8 weeks</p>
               </div>
               <Flame size={20} color="#a4b78c" />
             </div>
@@ -105,8 +103,7 @@ export function ProgressDashboard({
           <section className="panel" style={{ marginTop: 24 }}>
             <div className="section-heading">
               <div>
-                <h2>Recent little wins</h2>
-                <p>Your latest practice sessions.</p>
+                <h2>Recent sessions</h2>
               </div>
             </div>
             {progress.attempts.length ? (
@@ -135,11 +132,10 @@ export function ProgressDashboard({
             ) : (
               <div style={{ padding: "20px 0" }}>
                 <p className="muted" style={{ fontSize: 12, marginBottom: 15 }}>
-                  Your first little win is waiting. Try a word game to get
-                  started.
+                  No practice sessions yet.
                 </p>
                 <Link className="button primary" href="/games">
-                  Find your first challenge
+                  Open games
                 </Link>
               </div>
             )}
@@ -147,7 +143,7 @@ export function ProgressDashboard({
         </div>
         <aside>
           <section className="panel goal-panel">
-            <h3>Your daily learning goal</h3>
+            <h3>Daily goal</h3>
             <div
               className="goal-circle"
               style={
@@ -160,11 +156,11 @@ export function ProgressDashboard({
                 <strong>
                   {today}/{progress.goal}
                 </strong>
-                <small>ACTIVITIES TODAY</small>
+                <small>Activities today</small>
               </div>
             </div>
             <div className="form-field">
-              <label htmlFor="daily-goal">Make it your own</label>
+              <label htmlFor="daily-goal">Activities per day</label>
               <select
                 id="daily-goal"
                 value={progress.goal}
@@ -184,13 +180,12 @@ export function ProgressDashboard({
             </p>
           </section>
           <section className="panel" style={{ marginTop: 24 }}>
-            <h3>Keep your discoveries</h3>
+            <h3>Progress backup</h3>
             <p
               className="muted"
               style={{ fontSize: 11, margin: "12px 0 19px" }}
             >
-              Progress belongs to this browser. Save a backup to bring it to
-              another device.
+              Save a backup to move progress to another device.
             </p>
             <button
               className="button secondary"
@@ -202,13 +197,13 @@ export function ProgressDashboard({
               Save a backup
             </button>
             <div className="progress-lessons">
-              <h3>Lessons explored</h3>
+              <h3>Completed lessons</h3>
               {completed.length ? (
                 completed.map((lesson) => (
                   <p key={lesson.id}>✓ {lesson.title}</p>
                 ))
               ) : (
-                <p>There’s a first chapter for everything.</p>
+                <p>No completed lessons.</p>
               )}
             </div>
           </section>

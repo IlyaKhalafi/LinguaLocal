@@ -15,11 +15,8 @@ export default function GlobalError({
           color: "#243f36",
         }}
       >
-        <h1>Let’s try that again.</h1>
-        <p>
-          The learning space could not load. Ask your school to check the
-          server’s content and settings files.
-        </p>
+        <h1>Unable to load this page</h1>
+        <p>Ask the school to check the server files.</p>
         <button
           onClick={reset}
           style={{ padding: "12px 20px", cursor: "pointer" }}

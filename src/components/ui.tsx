@@ -70,7 +70,7 @@ export function Cover({
   return (
     <div className={`book-cover ${book.color} ${compact ? "compact" : ""}`}>
       <div className="cover-top">
-        <span>THE LINGUALOCAL COLLECTION</span>
+        <span>LinguaLocal</span>
         <BookOpen size={11} aria-hidden="true" />
       </div>
       <div className="cover-art" aria-hidden="true">
@@ -82,7 +82,7 @@ export function Cover({
       <div className="cover-title">{book.title}</div>
       <div className="cover-subtitle">{book.subtitle}</div>
       <div className="cover-footer">
-        <span>LEARN SOMETHING NEW</span>
+        <span>{book.level}</span>
         <Sparkles size={14} />
       </div>
     </div>

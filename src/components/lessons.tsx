@@ -21,11 +21,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
   );
   return (
     <>
-      <PageHeading
-        eyebrow="SOMETHING NEW, EVERY DAY"
-        title="Small lessons. Lasting discoveries."
-        description="A few focused minutes to build your English, one idea at a time."
-      />
+      <PageHeading title="Lessons" />
       <div className="toolbar">
         <label className="search-field">
           <Search size={16} />
@@ -33,7 +29,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="What would you like to learn?"
+            placeholder="Search lessons"
           />
         </label>
         <select
@@ -95,7 +91,7 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
                   </span>
                 ) : (
                   <span>
-                    Let’s learn
+                    Open lesson
                     <ArrowRight size={14} />
                   </span>
                 )}
@@ -105,8 +101,8 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
         </div>
       ) : (
         <EmptyState
-          title="A different path to learning."
-          description="Try another category or search to find your next lesson."
+          title="No matching lessons"
+          description="Try a different search or clear the filters."
           action={
             <button
               className="button secondary"

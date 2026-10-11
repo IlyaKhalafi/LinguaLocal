@@ -1,27 +1,17 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Bookmark, Leaf, Search } from "lucide-react";
+import { Bookmark, Search } from "lucide-react";
 import { levels, type Word } from "@/lib/schema";
-import { useToday } from "@/lib/use-today";
-import { dailyWord } from "@/lib/learning";
 import { useProgress } from "./progress-provider";
 import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
 import Link from "next/link";
 
-export function Dictionary({
-  words,
-  serverDay,
-}: {
-  words: Word[];
-  serverDay: string;
-}) {
+export function Dictionary({ words }: { words: Word[]; serverDay: string }) {
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [saved, setSaved] = useState(false);
   const { progress } = useProgress();
-  const day = useToday(serverDay);
-  const featured = dailyWord(words, new Date(`${day}T12:00:00`));
   const filtered = useMemo(
     () =>
       words.filter(
@@ -37,26 +27,14 @@ export function Dictionary({
   return (
     <>
       <PageHeading
-        eyebrow="MAKE WORDS YOUR OWN"
-        title="A little word. A whole new world."
-        description="Explore meanings, collect favourites, and grow your vocabulary."
+        title="Dictionary"
         action={
           <Link className="button secondary" href="/flashcards">
             <Bookmark size={14} />
-            Study your words
+            Flashcards
           </Link>
         }
       />
-      <div className="dictionary-intro">
-        <Leaf size={28} strokeWidth={1.5} />
-        <div>
-          <h3>A word to take with you today</h3>
-          <p>
-            <strong>{featured.word}</strong> · {featured.definition} Save a word
-            with the bookmark to practise it later.
-          </p>
-        </div>
-      </div>
       <div className="toolbar">
         <label className="search-field">
           <Search size={17} />
@@ -64,7 +42,7 @@ export function Dictionary({
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Find a word, meaning, or synonym..."
+            placeholder="Search words or meanings"
           />
         </label>
         <select
@@ -87,9 +65,7 @@ export function Dictionary({
         </button>
       </div>
       <p className="result-caption" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? "word" : "words"}{" "}
-        {saved ? "in your collection" : "to discover"} · Curated offline
-        dictionary
+        {filtered.length} {filtered.length === 1 ? "word" : "words"}
       </p>
       {filtered.length ? (
         <div className="dictionary-grid">
@@ -99,15 +75,11 @@ export function Dictionary({
         </div>
       ) : (
         <EmptyState
-          title={
-            saved
-              ? "Your word collection starts here."
-              : "We haven’t met this word yet."
-          }
+          title={saved ? "No saved words" : "No matching words"}
           description={
             saved
-              ? "Bookmark a few words from the dictionary, then come back to study them."
-              : "Try a synonym or a shorter search. Your school can add more entries through a content pack."
+              ? "Save words using the bookmark button."
+              : "Try a different search or clear the filters."
           }
           action={
             <button
@@ -118,7 +90,7 @@ export function Dictionary({
                 setLevel("");
               }}
             >
-              Explore all words
+              Clear filters
             </button>
           }
         />

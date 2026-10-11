@@ -62,19 +62,19 @@ async function main() {
       console.log(`Captured ${route.path}`);
     }
     await page.goto(base + "/games/quiz");
-    await page.getByRole("button", { name: "Let’s explore" }).click();
+    await page.getByRole("button", { name: "Start quiz" }).click();
     await page.screenshot({
       path: `${folder}/quiz-playing.png`,
       fullPage: true,
     });
     await page.goto(base + "/games/match");
-    await page.getByRole("button", { name: "Let’s find a match" }).click();
+    await page.getByRole("button", { name: "Start matching" }).click();
     await page.screenshot({
       path: `${folder}/matching-playing.png`,
       fullPage: true,
     });
     await page.goto(base + "/flashcards");
-    await page.getByRole("button", { name: "Start a little practice" }).click();
+    await page.getByRole("button", { name: "Start review" }).click();
     await page.screenshot({
       path: `${folder}/flashcards-playing.png`,
       fullPage: true,

@@ -6,7 +6,6 @@ import { makeQuiz } from "@/lib/learning";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
-import { PracticeGuide } from "./practice-guide";
 
 export function Quiz({ words }: { words: Word[] }) {
   const [level, setLevel] = useState("");
@@ -28,7 +27,7 @@ export function Quiz({ words }: { words: Word[] }) {
   }
   function next() {
     if (index === questions.length - 1) {
-      record({ title: "Word explorer", score, total: questions.length });
+      record({ title: "Vocabulary quiz", score, total: questions.length });
       setFinished(true);
     } else {
       setIndex(index + 1);
@@ -41,17 +40,13 @@ export function Quiz({ words }: { words: Word[] }) {
     <div className="game-panel">
       <Link className="back-link" href="/games">
         <ArrowLeft size={14} />
-        Practice & play
+        Games
       </Link>
-      <PageHeading
-        eyebrow="THE VOCABULARY QUIZ"
-        title="Word explorer"
-        description="A little curiosity goes a long way. Find the meaning that fits."
-      />
+      <PageHeading title="Vocabulary quiz" />
       {finished ? (
         <div className="results-panel">
           <Sparkles size={35} color="#88a373" />
-          <h2>A little wiser than before.</h2>
+          <h2>Quiz complete</h2>
           <div className="results-score">
             {score}
             <span style={{ fontSize: 15, marginTop: -35 }}>
@@ -60,8 +55,8 @@ export function Quiz({ words }: { words: Word[] }) {
           </div>
           <p>
             {score === questions.length
-              ? "Every word found its meaning. Lovely work!"
-              : "Every question is another chance to learn. Keep exploring."}
+              ? "All answers correct."
+              : "Review the missed words and try again."}
           </p>
           <div className="button-row">
             <button className="button primary" onClick={start}>
@@ -69,28 +64,28 @@ export function Quiz({ words }: { words: Word[] }) {
               Play again
             </button>
             <Link className="button secondary" href="/progress">
-              See your progress
+              View progress
             </Link>
           </div>
         </div>
       ) : !question ? (
         <>
           <div className="panel">
-            <h2>Choose your next challenge.</h2>
+            <h2>Quiz setup</h2>
             <p
               className="muted"
               style={{ fontSize: 12, margin: "14px 0 24px" }}
             >
-              Up to eight words, with a little explanation along the way.
+              Up to 8 questions per round.
             </p>
             <div className="form-field">
-              <label htmlFor="quiz-level">Your vocabulary level</label>
+              <label htmlFor="quiz-level">Level</label>
               <select
                 id="quiz-level"
                 value={level}
                 onChange={(e) => setLevel(e.target.value)}
               >
-                <option value="">A little of everything</option>
+                <option value="">All levels</option>
                 {levels.map((level) => (
                   <option key={level}>{level}</option>
                 ))}
@@ -107,11 +102,10 @@ export function Quiz({ words }: { words: Word[] }) {
               disabled={pool.length < 4}
               onClick={start}
             >
-              Let’s explore
+              Start quiz
               <ArrowRight size={14} />
             </button>
           </div>
-          <PracticeGuide words={pool} />
         </>
       ) : (
         <>
@@ -128,7 +122,7 @@ export function Quiz({ words }: { words: Word[] }) {
             />
           </div>
           <section className="question-card">
-            <p className="eyebrow">WHAT DOES THIS WORD MEAN?</p>
+            <p className="eyebrow">Choose the meaning</p>
             <div className="quiz-word">{question.word.word}</div>
             <p className="phonetic">
               {question.word.phonetic} · {question.word.part}
@@ -155,9 +149,7 @@ export function Quiz({ words }: { words: Word[] }) {
                 role="status"
               >
                 <strong>
-                  {selected === question.word.id
-                    ? "That’s the one. "
-                    : "Now you know. "}
+                  {selected === question.word.id ? "Correct. " : "Incorrect. "}
                 </strong>
                 {question.word.example}
               </p>
@@ -165,9 +157,7 @@ export function Quiz({ words }: { words: Word[] }) {
             <div className="game-controls">
               {checked ? (
                 <button className="button primary" onClick={next}>
-                  {index === questions.length - 1
-                    ? "See how you did"
-                    : "Next word"}
+                  {index === questions.length - 1 ? "View result" : "Next word"}
                   <ArrowRight size={14} />
                 </button>
               ) : (

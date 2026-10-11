@@ -2777,3 +2777,33 @@ button:disabled {
   border-color: #bdcdb0;
   background: #e7efdd;
 }
+
+.home-shortcuts {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-block-start: 28px;
+}
+.section-title {
+  font-size: 16px;
+  margin-block-end: 16px;
+}
+.school-welcome {
+  margin-block-end: 24px;
+  color: var(--muted);
+}
+.sidebar nav {
+  margin-block-start: 30px;
+}
+.sidebar {
+  overflow-y: auto;
+}
+.page-heading {
+  min-height: 0;
+}
+@media (max-width: 700px) {
+  .home-shortcuts .button {
+    flex: 1;
+    min-width: 130px;
+  }
+}

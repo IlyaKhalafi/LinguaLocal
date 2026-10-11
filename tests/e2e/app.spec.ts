@@ -77,13 +77,13 @@ test("dictionary search, saved words, and flashcard reviews survive a reload", a
   await page.getByRole("button", { name: "Saved words", exact: true }).click();
   await expect(page.locator(".word-card")).toHaveCount(1);
   await page.goto("/flashcards");
-  await page.getByRole("button", { name: "My saved words" }).click();
-  await page.getByRole("button", { name: "Start a little practice" }).click();
+  await page.getByRole("button", { name: "Saved words" }).click();
+  await page.getByRole("button", { name: "Start review" }).click();
   await page.getByRole("button", { name: "Reveal meaning of curious" }).click();
   await page.getByRole("button", { name: "I remembered" }).click();
   await expect(
     page.getByRole("heading", {
-      name: "A little practice, a little progress.",
+      name: "Review complete",
     }),
   ).toBeVisible();
   await page.reload();
@@ -153,16 +153,12 @@ test("lesson exercises give feedback and record a completion once", async ({
     page.getByRole("button", { name: "Mark as complete" }),
   ).toBeDisabled();
   await page.getByRole("button", { name: "B She walks to school." }).click();
-  await page.getByRole("button", { name: "Check your answer" }).click();
+  await page.getByRole("button", { name: "Check answer" }).click();
   await expect(page.getByRole("status")).toContainText("You’ve got it!");
   await page.getByRole("button", { name: "Mark as complete" }).click();
-  await expect(
-    page.getByRole("button", { name: "Lesson completed" }),
-  ).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Completed" })).toBeDisabled();
   await page.reload();
-  await expect(
-    page.getByRole("button", { name: "Lesson completed" }),
-  ).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Completed" })).toBeDisabled();
   const progress = await page.evaluate(() =>
     JSON.parse(localStorage.getItem("lingualocal.progress.v1")!),
   );
@@ -174,7 +170,7 @@ test("quiz and matching games finish and preserve their results", async ({
   page,
 }) => {
   await page.goto("/games/quiz");
-  await page.getByRole("button", { name: "Let’s explore" }).click();
+  await page.getByRole("button", { name: "Start quiz" }).click();
   for (let i = 0; i < 8; i++) {
     const word = await page.locator(".quiz-word").innerText();
     const definition = seed.words.find(
@@ -183,12 +179,12 @@ test("quiz and matching games finish and preserve their results", async ({
     await page.getByRole("button").filter({ hasText: definition }).click();
     await page.getByRole("button", { name: "Check meaning" }).click();
     await page
-      .getByRole("button", { name: i === 7 ? "See how you did" : "Next word" })
+      .getByRole("button", { name: i === 7 ? "View result" : "Next word" })
       .click();
   }
   await expect(page.locator(".results-score")).toContainText("8");
   await page.goto("/games/match");
-  await page.getByRole("button", { name: "Let’s find a match" }).click();
+  await page.getByRole("button", { name: "Start matching" }).click();
   const words = await page
     .locator(".matching-column")
     .first()
@@ -202,7 +198,7 @@ test("quiz and matching games finish and preserve their results", async ({
     await page.getByRole("button", { name: definition, exact: true }).click();
   }
   await expect(
-    page.getByRole("heading", { name: "Everything found its place." }),
+    page.getByRole("heading", { name: "Round complete" }),
   ).toBeVisible();
   await page.reload();
   const progress = await page.evaluate(() =>
