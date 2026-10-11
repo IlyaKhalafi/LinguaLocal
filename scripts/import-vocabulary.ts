@@ -1,4 +1,4 @@
-import { readFile, stat } from "node:fs/promises";
+import { readUtf8File } from "../src/lib/text-file";
 import { packSchema } from "../src/lib/schema";
 import { importVocabulary } from "../src/lib/vocabulary-csv";
 import { readValidatedJson, writeJsonAtomically } from "../src/lib/json-file";
@@ -10,9 +10,7 @@ runCommand(async () => {
     throw new Error(
       "Usage is import-vocabulary INPUT.csv OUTPUT.json [BASE.json]",
     );
-  if ((await stat(source)).size > 2 * 1024 * 1024)
-    throw new Error("CSV file exceeds the size limit.");
-  const csv = await readFile(source, "utf8");
+  const csv = await readUtf8File(source, { label: "CSV file" });
   const base = basePath
     ? await readValidatedJson(basePath, packSchema)
     : undefined;

@@ -21,7 +21,9 @@
     "format:check": "prettier --check .",
     "content:diagnose": "tsx scripts/diagnose-content.ts",
     "vocabulary:import": "tsx scripts/import-vocabulary.ts",
-    "test:tools": "node scripts/check-tools.mjs"
+    "test:tools": "node scripts/check-tools.mjs",
+    "subtitles:check": "tsx scripts/subtitles.ts check",
+    "subtitles:convert": "tsx scripts/subtitles.ts convert"
   },
   "dependencies": {
     "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",

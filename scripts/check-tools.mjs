@@ -48,6 +48,12 @@ try {
   const report = JSON.parse(run("diagnose-content", [output]));
   assert.deepEqual(report.missing, []);
   assert.deepEqual(report.errors, []);
+  const captions = path.join(directory, "captions.vtt");
+  run("subtitle-tools", ["convert", "examples/captions.srt", captions]);
+  const captionReport = JSON.parse(run("subtitle-tools", ["check", captions]));
+  assert.equal(captionReport.cues, 2);
+  assert.deepEqual(captionReport.warnings, []);
+  run("subtitle-tools", ["convert", "examples/captions.srt", captions], 1);
   run("import-vocabulary", [], 1);
   console.log("Packaged content tools passed.");
 } finally {

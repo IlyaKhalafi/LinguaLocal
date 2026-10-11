@@ -20,7 +20,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [ ] Printable vocabulary and lesson worksheets with separate answer keys
 - [ ] Self-reported progress summaries and classroom roll-ups
 - [ ] Vocabulary spreadsheet import and deck export
-- [ ] Subtitle conversion and timing diagnostics
+- [x] Subtitle conversion and timing diagnostics
 - [ ] Server content snapshots and restore tools
 
 ## Everyday use

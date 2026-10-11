@@ -11,6 +11,11 @@ await cp("node_modules/csv-parse", ".next/standalone/node_modules/csv-parse", {
 const sources = [
   ["scripts/storage-paths.mjs", "storage-paths.mjs"],
   ["src/lib/schema.ts", "content-schema.mjs"],
+  ["src/lib/atomic-file.ts", "atomic-file.mjs"],
+  ["src/lib/document-limits.ts", "document-limits.mjs"],
+  ["src/lib/text-file.ts", "text-file.mjs"],
+  ["src/lib/subtitles.ts", "subtitles.mjs"],
+  ["scripts/subtitles.ts", "subtitle-tools.mjs"],
   ["src/lib/json-file.ts", "json-file.mjs"],
   ["src/lib/cli.ts", "cli.mjs"],
   ["src/lib/media-files.ts", "media-files.mjs"],

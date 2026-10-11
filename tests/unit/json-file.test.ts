@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, chmod, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { z } from "zod";
@@ -14,7 +14,9 @@ test("atomic JSON replacement preserves the previous file when serialization fai
   try {
     const file = path.join(directory, "data.json");
     await writeJsonAtomically(file, { value: 1 });
+    await chmod(file, 0o600);
     await writeJsonAtomically(file, { value: 2 });
+    assert.equal((await stat(file)).mode & 0o777, 0o600);
     assert.deepEqual(
       await readValidatedJson(file, z.object({ value: z.number() })),
       { value: 2 },

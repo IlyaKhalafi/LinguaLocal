@@ -70,6 +70,16 @@ Audio formats are MP3, WAV, OGG, M4A, and FLAC. Video formats are MP4 and WebM. 
 
 For video, add a `captions` field containing a relative `.vtt` path. Duration text is entered by the content author and displayed as supplied.
 
+### Converting and checking captions
+
+Save subtitles as UTF-8. Run `npm run subtitles:convert -- captions.srt captions.vtt` to convert SubRip captions to WebVTT. Millisecond timing, line breaks, and text formatting are preserved. Converted SubRip cues are ordered by start time. The output must be a new file.
+
+Run `npm run subtitles:check -- captions.vtt` to check cue timing and report overlaps, out-of-order cues, and long captions that may wrap on phones. The report includes the cue count and total duration. Overlapping captions can be intentional when speakers overlap, so they are reported as warnings. Invalid timing or empty cue text stops conversion.
+
+The packaged commands are `node scripts/subtitle-tools.mjs convert INPUT.srt OUTPUT.vtt` and `node scripts/subtitle-tools.mjs check INPUT.vtt`. Files are limited to 2 MB and 20,000 cues. Existing WebVTT comments, styles, and positioning settings stay intact when normalizing a WebVTT file.
+
+[Download example captions](../examples/captions.srt).
+
 ### Lessons
 
 Each lesson has a title, description, level, category, reading time, and text sections. Its practice question contains two to six options, a zero-based correct answer index, and an explanation. Categories are Grammar, Vocabulary, Reading, and Speaking.

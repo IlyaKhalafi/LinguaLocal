@@ -1,4 +1,5 @@
 import { parse } from "csv-parse/sync";
+import { DOCUMENT_LIMIT } from "./document-limits";
 import { z } from "zod";
 import { packSchema, wordSchema, type ContentPack, type Word } from "./schema";
 
@@ -31,7 +32,7 @@ function delimiter(csv: string): string {
 }
 
 export function importVocabulary(csv: string, base?: ContentPack): ContentPack {
-  if (Buffer.byteLength(csv) > 2 * 1024 * 1024)
+  if (Buffer.byteLength(csv) > DOCUMENT_LIMIT)
     throw new Error("CSV file exceeds the size limit.");
   const records = parse(csv, {
     bom: true,
@@ -93,7 +94,7 @@ export function importVocabulary(csv: string, base?: ContentPack): ContentPack {
     ...(base ?? { version: 1, books: [], lessons: [] }),
     words: [...merged.values()],
   });
-  if (Buffer.byteLength(JSON.stringify(content)) > 2 * 1024 * 1024)
+  if (Buffer.byteLength(JSON.stringify(content)) > DOCUMENT_LIMIT)
     throw new Error("The resulting pack exceeds the size limit.");
   return content;
 }
