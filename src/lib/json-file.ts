@@ -1,4 +1,12 @@
-import { mkdir, open, readFile, rename, stat, unlink } from "node:fs/promises";
+import {
+  link,
+  mkdir,
+  open,
+  readFile,
+  rename,
+  stat,
+  unlink,
+} from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
 import type { ZodType } from "zod";
@@ -16,7 +24,11 @@ export async function readValidatedJson<T>(
   return schema.parse(JSON.parse(raw.toString("utf8")));
 }
 
-export async function writeJsonAtomically(file: string, value: unknown) {
+export async function writeJsonAtomically(
+  file: string,
+  value: unknown,
+  options: { overwrite?: boolean } = {},
+) {
   const serialized = JSON.stringify(value);
   if (serialized === undefined) throw new Error("A JSON value is required.");
   const directory = path.dirname(file);
@@ -30,7 +42,9 @@ export async function writeJsonAtomically(file: string, value: unknown) {
     await handle.writeFile(serialized);
     await handle.sync();
     await handle.close();
-    await rename(temporary, /* turbopackIgnore: true */ file);
+    if (options.overwrite === false)
+      await link(temporary, /* turbopackIgnore: true */ file);
+    else await rename(temporary, /* turbopackIgnore: true */ file);
   } finally {
     await handle.close().catch(() => undefined);
     await unlink(temporary).catch(() => undefined);

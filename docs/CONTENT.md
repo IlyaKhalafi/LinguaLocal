@@ -40,6 +40,16 @@ Validate a pack without installing it using `npm run content:validate -- collect
 
 Use unique, stable IDs made from lowercase letters, numbers, and hyphens. Keep IDs unchanged when correcting an entry so bookmarks and reviews still refer to it. Supported levels are A1, A2, B1, B2, and C1.
 
+### Importing a vocabulary spreadsheet
+
+Export a UTF-8 CSV from your spreadsheet with `id`, `word`, `part`, `definition`, `example`, and `level` columns. Optional `phonetic` and `synonyms` columns are supported. Separate synonyms with `|` inside the cell. Comma and semicolon separators are detected automatically. Quoted commas, line breaks, and spreadsheet byte-order marks are accepted. Invalid records report their CSV line and field.
+
+[Download the example spreadsheet](../examples/vocabulary.csv).
+
+Run `npm run vocabulary:import -- words.csv new-collection.json collection.json` to merge vocabulary into an existing pack. Matching IDs update that word in the new output. The command reports how many existing words changed. The base collection stays intact, duplicate CSV IDs are rejected, and the output must be a new file. Omit the base path to create a vocabulary-only pack with at least four words.
+
+In Docker, use `node scripts/import-vocabulary.mjs /tmp/words.csv /tmp/new-collection.json /tmp/collection.json`. Validate the output before installing it. The input and resulting pack each have a 2 MB limit.
+
 ### Book resources
 
 ```json

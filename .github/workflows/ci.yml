@@ -24,6 +24,7 @@ jobs:
       - run: npm run format:check
       - run: npm run check
       - run: npm run build
+      - run: npm run test:tools
       - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:e2e
       - run: docker build -t lingualocal:check .

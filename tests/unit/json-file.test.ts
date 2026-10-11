@@ -33,3 +33,19 @@ test("atomic JSON replacement preserves the previous file when serialization fai
     await rm(directory, { recursive: true, force: true });
   }
 });
+
+test("new JSON output never replaces an existing file and removes temporary files", async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), "lingualocal-json-new-"));
+  try {
+    const file = path.join(directory, "pack.json");
+    await writeJsonAtomically(file, { original: true }, { overwrite: false });
+    await assert.rejects(
+      writeJsonAtomically(file, { replacement: true }, { overwrite: false }),
+      (error: unknown) => (error as NodeJS.ErrnoException).code === "EEXIST",
+    );
+    assert.equal(await readFile(file, "utf8"), '{"original":true}');
+    assert.deepEqual(await readdir(directory), ["pack.json"]);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
