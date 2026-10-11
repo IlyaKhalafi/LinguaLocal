@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { shuffle } from "@/lib/learning";
+import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import type { Word } from "@/lib/schema";
 import { PageHeading } from "./ui";
 import { useProgress } from "./progress-provider";
@@ -16,6 +17,8 @@ export function Matching({ words }: { words: Word[] }) {
   const [matched, setMatched] = useState<string[]>([]);
   const [tries, setTries] = useState(0);
   const [message, setMessage] = useState("");
+  const focusTarget = useFocusOnChange(`${left.length}-${matched.length}`);
+  const nextWord = left.find((word) => !matched.includes(word.id));
   const { record } = useProgress();
   function start() {
     const selection = shuffle(words).slice(0, 6);
@@ -59,7 +62,9 @@ export function Matching({ words }: { words: Word[] }) {
       {done ? (
         <div className="results-panel">
           <Sparkles size={35} color="#98a780" />
-          <h2>{t("Round complete")}</h2>
+          <h2 ref={focusTarget} tabIndex={-1}>
+            {t("Round complete")}
+          </h2>
           <div className="results-score">
             {t("{count}", { count: matched.length })}
           </div>
@@ -115,6 +120,7 @@ export function Matching({ words }: { words: Word[] }) {
             <div className="matching-column">
               {left.map((word) => (
                 <button
+                  ref={word.id === nextWord?.id ? focusTarget : undefined}
                   lang="en"
                   dir="ltr"
                   className={`matching-tile ${chosen === word.id ? "chosen" : ""} ${matched.includes(word.id) ? "matched" : ""}`}

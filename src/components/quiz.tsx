@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, RotateCcw, Sparkles } from "lucide-react";
 import { makeQuiz } from "@/lib/learning";
+import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
@@ -19,6 +20,9 @@ export function Quiz({ words }: { words: Word[] }) {
   const [checked, setChecked] = useState(false);
   const { record } = useProgress();
   const pool = words.filter((word) => !level || word.level === level);
+  const focusTarget = useFocusOnChange(
+    `${finished}-${questions.length}-${index}`,
+  );
   function start() {
     setQuestions(makeQuiz(pool));
     setIndex(0);
@@ -48,7 +52,9 @@ export function Quiz({ words }: { words: Word[] }) {
       {finished ? (
         <div className="results-panel">
           <Sparkles size={35} color="#88a373" />
-          <h2>{t("Quiz complete")}</h2>
+          <h2 ref={focusTarget} tabIndex={-1}>
+            {t("Quiz complete")}
+          </h2>
           <div className="results-score">
             {t("{count}", { count: score })}
             <span style={{ fontSize: 15, marginTop: -35 }}>
@@ -129,9 +135,15 @@ export function Quiz({ words }: { words: Word[] }) {
           </div>
           <section className="question-card">
             <p className="eyebrow">{t("Choose the meaning")}</p>
-            <div className="quiz-word" lang="en" dir="ltr">
+            <h2
+              className="quiz-word"
+              lang="en"
+              dir="ltr"
+              ref={focusTarget}
+              tabIndex={-1}
+            >
               {question.word.word}
-            </div>
+            </h2>
             <p className="phonetic" lang="en" dir="ltr">
               {question.word.phonetic} · {question.word.part}
             </p>

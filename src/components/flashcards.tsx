@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, RotateCcw, Sparkles } from "lucide-react";
 import { dayKey, shuffle } from "@/lib/learning";
+import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import type { Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
@@ -16,6 +17,7 @@ export function Flashcards({ words }: { words: Word[] }) {
   const [started, setStarted] = useState(false);
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const focusTarget = useFocusOnChange(`${started}-${index}`);
   const pool = words.filter((word) =>
     mode === "saved"
       ? progress.saved.includes(word.id)
@@ -93,7 +95,9 @@ export function Flashcards({ words }: { words: Word[] }) {
       ) : !word ? (
         <div className="results-panel">
           <Sparkles size={34} color="#8ba775" />
-          <h2>{t("Review complete")}</h2>
+          <h2 ref={focusTarget} tabIndex={-1}>
+            {t("Review complete")}
+          </h2>
           <div className="results-score">
             {t("{count}", { count: deck.length })}
           </div>
@@ -129,6 +133,7 @@ export function Flashcards({ words }: { words: Word[] }) {
           </div>
           <button
             className="flashcard"
+            ref={focusTarget}
             aria-expanded={flipped}
             onClick={() => setFlipped(!flipped)}
             aria-label={

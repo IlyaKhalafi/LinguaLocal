@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle2, Printer } from "lucide-react";
 import type { Lesson } from "@/lib/schema";
+import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { useProgress } from "./progress-provider";
 import { Badge, PageHeading } from "./ui";
 
@@ -13,6 +14,8 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
   const [checked, setChecked] = useState(false);
   const { progress, complete } = useProgress();
   const done = progress.completed.includes(lesson.id);
+  const retryTarget = useFocusOnChange(checked);
+  const completedTarget = useFocusOnChange(done);
   return (
     <article className="lesson-content">
       <Link className="back-link" href="/lessons">
@@ -39,6 +42,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
         <div className="options">
           {lesson.options.map((option, index) => (
             <button
+              ref={index === 0 && !checked ? retryTarget : undefined}
               key={index}
               lang="en"
               dir="ltr"
@@ -89,7 +93,13 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           )}
         </div>
       </section>
-      <div className="completion">
+      <div
+        className="completion"
+        ref={completedTarget}
+        tabIndex={-1}
+        role="group"
+        aria-label={done ? t("Completed") : t("Practice")}
+      >
         <button className="button secondary" onClick={() => window.print()}>
           <Printer size={14} />
           {t("Print lesson")}
