@@ -203,5 +203,6 @@
   "Activity details": "Activity details",
   "Date": "Date",
   "Activities": "Activities",
-  "{seconds}s": "{seconds}s"
+  "{seconds}s": "{seconds}s",
+  "Press play to start playback.": "Press play to start playback."
 }

@@ -203,5 +203,6 @@
   "Activity details": "Etkinlik ayrıntıları",
   "Date": "Tarih",
   "Activities": "Etkinlikler",
-  "{seconds}s": "{seconds} sn"
+  "{seconds}s": "{seconds} sn",
+  "Press play to start playback.": "Başlamak için oynat düğmesine basın."
 }

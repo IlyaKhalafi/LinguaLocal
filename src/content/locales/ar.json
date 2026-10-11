@@ -203,5 +203,6 @@
   "Activity details": "تفاصيل النشاط",
   "Date": "التاريخ",
   "Activities": "الأنشطة",
-  "{seconds}s": "{seconds} ث"
+  "{seconds}s": "{seconds} ث",
+  "Press play to start playback.": "اضغط على تشغيل لبدء المقطع."
 }

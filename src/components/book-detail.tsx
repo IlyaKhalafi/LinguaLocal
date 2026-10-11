@@ -1,7 +1,7 @@
 "use client";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowLeft,
   Download,
@@ -18,6 +18,9 @@ export function BookDetail({ book }: { book: Book }) {
   const { t } = useLocale();
   const [selected, setSelected] = useState<Resource | null>(null);
   const [kind, setKind] = useState("all");
+  const [playRequest, setPlayRequest] = useState(0);
+  const opener = useRef<HTMLButtonElement | null>(null);
+  const resourcesHeading = useRef<HTMLHeadingElement>(null);
   const resources = book.resources.filter(
     (resource) => kind === "all" || resource.kind === kind,
   );
@@ -49,7 +52,9 @@ export function BookDetail({ book }: { book: Book }) {
           </div>
           <div className="resource-list">
             <div className="section-heading">
-              <h2>{t("Resources")}</h2>
+              <h2 ref={resourcesHeading} tabIndex={-1}>
+                {t("Resources")}
+              </h2>
             </div>
             <div className="tabs">
               {["all", "audio", "video", "pdf"].map((item) => (
@@ -103,8 +108,10 @@ export function BookDetail({ book }: { book: Book }) {
                   ) : (
                     <button
                       className="button secondary"
-                      onClick={() => {
+                      onClick={(event) => {
+                        opener.current = event.currentTarget;
                         setSelected(resource);
+                        setPlayRequest((request) => request + 1);
                       }}
                     >
                       <Play size={13} />
@@ -114,6 +121,9 @@ export function BookDetail({ book }: { book: Book }) {
                   <a
                     className="icon-button"
                     href={`${mediaUrl(resource.file)}?download=1`}
+                    download
+                    target="_blank"
+                    rel="noreferrer"
                     aria-label={t("Download {title}", {
                       title: resource.title,
                     })}
@@ -131,7 +141,14 @@ export function BookDetail({ book }: { book: Book }) {
         <MediaPlayer
           key={selected.id}
           resource={selected}
-          onClose={() => setSelected(null)}
+          playRequest={playRequest}
+          onClose={() => {
+            setSelected(null);
+            (opener.current?.isConnected
+              ? opener.current
+              : resourcesHeading.current
+            )?.focus();
+          }}
         />
       )}
     </>

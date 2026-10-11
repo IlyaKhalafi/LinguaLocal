@@ -10,9 +10,11 @@ export function mediaUrl(file: string) {
 export function MediaPlayer({
   resource,
   onClose,
+  playRequest = 0,
 }: {
   resource: Resource;
   onClose: () => void;
+  playRequest?: number;
 }) {
   const { t } = useLocale();
   const audio = useRef<HTMLAudioElement>(null);
@@ -24,6 +26,10 @@ export function MediaPlayer({
   const [loop, setLoop] = useState(false);
   const [captions, setCaptions] = useState(false);
   const section = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const player = audio.current ?? video.current;
+    void player?.play().catch(() => setError("Press play to start playback."));
+  }, [playRequest]);
   useEffect(() => {
     section.current?.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches

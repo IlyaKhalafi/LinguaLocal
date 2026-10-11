@@ -203,5 +203,6 @@
   "Activity details": "جزئیات فعالیت",
   "Date": "تاریخ",
   "Activities": "فعالیت‌ها",
-  "{seconds}s": "{seconds} ثانیه"
+  "{seconds}s": "{seconds} ثانیه",
+  "Press play to start playback.": "برای شروع پخش، دکمه پخش را بزنید."
 }
