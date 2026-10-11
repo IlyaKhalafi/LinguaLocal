@@ -93,12 +93,24 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
         <button
           className={`button ${done ? "soft-button" : "primary"}`}
           disabled={done || !checked}
+          aria-describedby={
+            !done && !checked ? "lesson-complete-help" : undefined
+          }
           onClick={() => complete(lesson.id)}
         >
           <CheckCircle2 size={15} />
           {done ? "Lesson completed" : "Mark as complete"}
         </button>
       </div>
+      {!done && !checked && (
+        <p
+          id="lesson-complete-help"
+          className="muted"
+          style={{ marginTop: 12, fontSize: 12 }}
+        >
+          Check your practice answer to mark this lesson complete.
+        </p>
+      )}
     </article>
   );
 }

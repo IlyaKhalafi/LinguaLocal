@@ -2841,6 +2841,19 @@ label {
     width: 100%;
     max-width: none;
   }
+  .studio-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .studio-row .icon-button,
+  .studio-row .text-link {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .lesson-content .game-controls .button {
+    width: 100%;
+    min-height: 44px;
+  }
 }
 @media (max-width: 420px) {
   .cover-title {

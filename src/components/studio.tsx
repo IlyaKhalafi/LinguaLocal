@@ -397,7 +397,7 @@ export function ContentStudio({
           or saving the collection.
         </p>
       )}
-      <div className="tabs" style={{ marginBottom: 22 }}>
+      <div className="tabs studio-tabs" style={{ marginBottom: 22 }}>
         {[
           { id: "books", label: "Books & media" },
           { id: "words", label: "Dictionary words" },
