@@ -32,6 +32,19 @@ try {
   ]);
   const original = await readFile(output, "utf8");
   run("validate-content", [output]);
+  const levelPack = path.join(directory, "a2.json");
+  run("export-content", [output, levelPack, "A2"]);
+  const levelContent = JSON.parse(await readFile(levelPack, "utf8"));
+  assert.ok(levelContent.books.every((book) => book.level === "A2"));
+  assert.ok(levelContent.lessons.every((lesson) => lesson.level === "A2"));
+  run("validate-content", [levelPack]);
+  run("export-content", [output, levelPack, "A2"], 1);
+  assert.deepEqual(JSON.parse(await readFile(levelPack, "utf8")), levelContent);
+  run(
+    "export-content",
+    [output, path.join(directory, "invalid.json"), "D2"],
+    1,
+  );
   run(
     "import-vocabulary",
     ["examples/vocabulary.csv", output, "src/content/starter.json"],

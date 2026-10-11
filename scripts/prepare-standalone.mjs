@@ -28,6 +28,8 @@ const sources = [
   ["src/lib/media-files.ts", "media-files.mjs"],
   ["src/lib/content-diagnostics.ts", "content-diagnostics.mjs"],
   ["src/lib/vocabulary-csv.ts", "vocabulary-csv.mjs"],
+  ["src/lib/pack-export.ts", "pack-export.mjs"],
+  ["scripts/export-content.ts", "export-content.mjs"],
   ["scripts/import-vocabulary.ts", "import-vocabulary.mjs"],
   ["scripts/diagnose-content.ts", "diagnose-content.mjs"],
   ["scripts/install-content.ts", "install-content.mjs"],

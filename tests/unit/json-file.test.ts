@@ -22,6 +22,14 @@ test("atomic JSON replacement preserves the previous file when serialization fai
       { value: 2 },
     );
     await assert.rejects(writeJsonAtomically(file, { value: BigInt(3) }));
+    await assert.rejects(
+      writeJsonAtomically(
+        file,
+        { value: "a".repeat(50) },
+        { pretty: true, limit: 40 },
+      ),
+      /size limit/,
+    );
     assert.equal(await readFile(file, "utf8"), '{"value":2}');
     assert.deepEqual(await readdir(directory), ["data.json"]);
     await assert.rejects(

@@ -1,0 +1,353 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "resilient",
+      "word": "resilient",
+      "phonetic": "/rɪˈzɪliənt/",
+      "part": "adjective",
+      "definition": "Able to recover after difficulties.",
+      "example": "Resilient learners try again after a mistake.",
+      "level": "B2",
+      "synonyms": ["strong", "adaptable"]
+    },
+    {
+      "id": "delight",
+      "word": "delight",
+      "phonetic": "/dɪˈlaɪt/",
+      "part": "noun",
+      "definition": "A feeling of great pleasure.",
+      "example": "She read the letter with delight.",
+      "level": "B2",
+      "synonyms": ["joy", "pleasure"]
+    },
+    {
+      "id": "thoughtful",
+      "word": "thoughtful",
+      "phonetic": "/ˈθɔːtfəl/",
+      "part": "adjective",
+      "definition": "Showing care for the needs of other people.",
+      "example": "It was thoughtful of you to bring an extra book.",
+      "level": "B2",
+      "synonyms": ["considerate", "caring"]
+    },
+    {
+      "id": "consequence",
+      "word": "consequence",
+      "phonetic": "/ˈkɒnsɪkwəns/",
+      "part": "noun",
+      "definition": "A result caused by an action or event.",
+      "example": "Missing the bus was a consequence of leaving late.",
+      "level": "B1",
+      "synonyms": ["result"]
+    },
+    {
+      "id": "ambiguous",
+      "word": "ambiguous",
+      "phonetic": "/æmˈbɪɡjuəs/",
+      "part": "adjective",
+      "definition": "Having more than one possible meaning.",
+      "example": "The ambiguous instruction confused the group.",
+      "level": "B2",
+      "synonyms": ["open to more than one reading"]
+    },
+    {
+      "id": "analyse",
+      "word": "analyse",
+      "phonetic": "/ˈænəlaɪz/",
+      "part": "verb",
+      "definition": "To examine something carefully to understand it.",
+      "example": "We analyse the results before making a decision.",
+      "level": "B2",
+      "synonyms": ["examine"]
+    },
+    {
+      "id": "anticipate",
+      "word": "anticipate",
+      "phonetic": "/ænˈtɪsɪpeɪt/",
+      "part": "verb",
+      "definition": "To expect something and prepare for it.",
+      "example": "We anticipate a busy afternoon, so we have extra staff ready.",
+      "level": "B2",
+      "synonyms": ["expect"]
+    },
+    {
+      "id": "assumption",
+      "word": "assumption",
+      "phonetic": "/əˈsʌmpʃən/",
+      "part": "noun",
+      "definition": "Something accepted as true without enough proof.",
+      "example": "Our plan relied on the assumption that everyone had a phone.",
+      "level": "B2",
+      "synonyms": ["supposition"]
+    },
+    {
+      "id": "collaborate",
+      "word": "collaborate",
+      "phonetic": "/kəˈlæbəreɪt/",
+      "part": "verb",
+      "definition": "To work with others on a shared task.",
+      "example": "The two classes collaborate on a school newspaper.",
+      "level": "B2",
+      "synonyms": ["work together"]
+    },
+    {
+      "id": "compromise",
+      "word": "compromise",
+      "phonetic": "/ˈkɒmprəmaɪz/",
+      "part": "noun",
+      "definition": "An agreement in which each side gives up part of what it wants.",
+      "example": "We reached a compromise about the meeting time.",
+      "level": "B2",
+      "synonyms": ["middle ground"]
+    },
+    {
+      "id": "consistent",
+      "word": "consistent",
+      "phonetic": "/kənˈsɪstənt/",
+      "part": "adjective",
+      "definition": "Acting or happening in a similar way over time.",
+      "example": "Consistent practice helps new words stay in your memory.",
+      "level": "B2",
+      "synonyms": ["steady"]
+    },
+    {
+      "id": "contribute",
+      "word": "contribute",
+      "phonetic": "/kənˈtrɪbjuːt/",
+      "part": "verb",
+      "definition": "To give something as part of a shared effort.",
+      "example": "Everyone can contribute an idea to the discussion.",
+      "level": "B2",
+      "synonyms": ["add"]
+    },
+    {
+      "id": "convincing",
+      "word": "convincing",
+      "phonetic": "/kənˈvɪnsɪŋ/",
+      "part": "adjective",
+      "definition": "Making someone believe that an idea is true or reasonable.",
+      "example": "She gave a convincing reason for changing the timetable.",
+      "level": "B2",
+      "synonyms": ["persuasive"]
+    },
+    {
+      "id": "criteria",
+      "word": "criteria",
+      "phonetic": "/kraɪˈtɪəriə/",
+      "part": "plural noun",
+      "definition": "Standards used to judge or choose something.",
+      "example": "We agreed on three criteria for choosing a book.",
+      "level": "B2",
+      "synonyms": ["standards"]
+    },
+    {
+      "id": "distinguish",
+      "word": "distinguish",
+      "phonetic": "/dɪˈstɪŋɡwɪʃ/",
+      "part": "verb",
+      "definition": "To recognise or show the difference between things.",
+      "example": "Can you distinguish a fact from an opinion?",
+      "level": "B2",
+      "synonyms": ["tell apart"]
+    },
+    {
+      "id": "emphasise",
+      "word": "emphasise",
+      "phonetic": "/ˈemfəsaɪz/",
+      "part": "verb",
+      "definition": "To give particular attention or importance to something.",
+      "example": "I want to emphasise the value of regular practice.",
+      "level": "B2",
+      "synonyms": ["stress"]
+    },
+    {
+      "id": "evaluate",
+      "word": "evaluate",
+      "phonetic": "/ɪˈvæljueɪt/",
+      "part": "verb",
+      "definition": "To judge the quality or value of something.",
+      "example": "We evaluate our project after each lesson.",
+      "level": "B2",
+      "synonyms": ["assess"]
+    },
+    {
+      "id": "evidence",
+      "word": "evidence",
+      "phonetic": "/ˈevɪdəns/",
+      "part": "noun",
+      "definition": "Information that supports a belief or conclusion.",
+      "example": "The writer uses evidence to support the argument.",
+      "level": "B2",
+      "synonyms": ["supporting information"]
+    },
+    {
+      "id": "implement",
+      "word": "implement",
+      "phonetic": "/ˈɪmplɪment/",
+      "part": "verb",
+      "definition": "To put a plan or decision into action.",
+      "example": "We will implement the new timetable next week.",
+      "level": "B2",
+      "synonyms": ["carry out"]
+    },
+    {
+      "id": "interpret",
+      "word": "interpret",
+      "phonetic": "/ɪnˈtɜːprɪt/",
+      "part": "verb",
+      "definition": "To explain or understand the meaning of something.",
+      "example": "Readers may interpret the ending in different ways.",
+      "level": "B2",
+      "synonyms": ["make sense of"]
+    },
+    {
+      "id": "negotiate",
+      "word": "negotiate",
+      "phonetic": "/nɪˈɡəʊʃieɪt/",
+      "part": "verb",
+      "definition": "To discuss something in order to reach an agreement.",
+      "example": "The students negotiate the division of work.",
+      "level": "B2",
+      "synonyms": ["discuss terms"]
+    },
+    {
+      "id": "priority",
+      "word": "priority",
+      "phonetic": "/praɪˈɒrəti/",
+      "part": "noun",
+      "definition": "Something treated as more important than other things.",
+      "example": "Making the instructions clear is our first priority.",
+      "level": "B2",
+      "synonyms": ["main concern"]
+    },
+    {
+      "id": "resourceful",
+      "word": "resourceful",
+      "phonetic": "/rɪˈsɔːsfəl/",
+      "part": "adjective",
+      "definition": "Good at finding ways to solve a problem.",
+      "example": "Our resourceful group made a game from old cards.",
+      "level": "B2",
+      "synonyms": ["ingenious"]
+    },
+    {
+      "id": "sustainable",
+      "word": "sustainable",
+      "phonetic": "/səˈsteɪnəbəl/",
+      "part": "adjective",
+      "definition": "Able to continue without exhausting resources.",
+      "example": "Cycling is a sustainable way to travel short distances.",
+      "level": "B2",
+      "synonyms": ["maintainable"]
+    }
+  ],
+  "books": [
+    {
+      "id": "speak-your-mind",
+      "title": "Speak Your Mind",
+      "subtitle": "Ideas worth sharing",
+      "description": "Express your opinions clearly and thoughtfully through discussion prompts and speaking tasks.",
+      "level": "B2",
+      "color": "yellow",
+      "category": "Speaking",
+      "resources": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "giving-opinions",
+      "title": "Make your point",
+      "description": "Share an opinion and support it with a reason.",
+      "level": "B2",
+      "category": "Speaking",
+      "minutes": 8,
+      "sections": [
+        {
+          "title": "Say what you think",
+          "body": "Try phrases such as 'In my view', 'I would argue that', and 'From my perspective'. Then give a clear reason. 'In my view, reading fiction is valuable because it helps us understand other people.'"
+        },
+        {
+          "title": "Disagree thoughtfully",
+          "body": "Show that you heard the other person's idea. 'I see your point, but I think...' or 'That is an interesting argument. Have you considered...?' A good discussion helps both people learn."
+        }
+      ],
+      "question": "Which phrase introduces a respectful disagreement?",
+      "options": [
+        "That makes no sense.",
+        "You are completely wrong.",
+        "I see your point, but I think..."
+      ],
+      "answer": 2,
+      "explanation": "Acknowledging the other person's point helps keep the discussion respectful."
+    },
+    {
+      "id": "argument-structure",
+      "title": "An argument with support",
+      "description": "Connect a claim to evidence and an explanation.",
+      "level": "B2",
+      "category": "Reading",
+      "wordIds": [
+        "evidence",
+        "assumption",
+        "interpret",
+        "convincing",
+        "evaluate",
+        "criteria"
+      ],
+      "minutes": 6,
+      "sections": [
+        {
+          "title": "Find the parts",
+          "body": "A claim states an idea. Evidence supports it. An explanation shows why that evidence matters. 'The library should open later' is a claim. A record of evening visits could provide evidence. An explanation could be 'Many visits happen after 6 p.m., so evening opening would suit students who work or study late.'"
+        },
+        {
+          "title": "Test the connection",
+          "body": "Ask whether the evidence actually supports the claim. A personal preference is not enough to show what everyone needs. Look for an assumption between the evidence and the conclusion. Discuss what extra information would make the argument more convincing."
+        }
+      ],
+      "question": "Which detail best supports a claim that students need later library hours?",
+      "options": [
+        "The library walls are green.",
+        "A survey shows many students cannot visit before closing time.",
+        "One student likes reading novels."
+      ],
+      "answer": 1,
+      "explanation": "The survey connects students' availability directly to the proposed opening hours."
+    },
+    {
+      "id": "careful-claims",
+      "title": "Leave room for uncertainty",
+      "description": "Use cautious language when evidence is limited.",
+      "level": "B2",
+      "category": "Speaking",
+      "wordIds": [
+        "evidence",
+        "consistent",
+        "assumption",
+        "interpret",
+        "evaluate",
+        "consequence"
+      ],
+      "minutes": 6,
+      "sections": [
+        {
+          "title": "Match confidence to evidence",
+          "body": "Words such as may, appears, and suggests help you avoid claiming more than you know. 'The new timetable may improve attendance.' 'These results suggest that shorter sessions help.' Cautious wording makes the degree of certainty clear."
+        },
+        {
+          "title": "Keep the useful detail",
+          "body": "Caution should not make your message vague. Say what happened and what remains uncertain. 'Attendance rose this month, but we need more evidence before drawing a conclusion.' Practise describing a small classroom survey without assuming it represents everyone."
+        }
+      ],
+      "question": "Which sentence best matches limited evidence from one small class?",
+      "options": [
+        "Every student learns faster in the morning.",
+        "The results prove that mornings are always better.",
+        "The results suggest that this class may benefit from morning sessions."
+      ],
+      "answer": 2,
+      "explanation": "Suggest and may reflect the limited evidence, and this class keeps the claim appropriately narrow."
+    }
+  ]
+}

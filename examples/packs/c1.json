@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "perspective",
+      "word": "perspective",
+      "phonetic": "/pərˈspektɪv/",
+      "part": "noun",
+      "definition": "A particular way of considering something.",
+      "example": "Travel can give you a new perspective.",
+      "level": "C1",
+      "synonyms": ["viewpoint", "outlook"]
+    },
+    {
+      "id": "eloquent",
+      "word": "eloquent",
+      "phonetic": "/ˈeləkwənt/",
+      "part": "adjective",
+      "definition": "Able to express ideas clearly and effectively.",
+      "example": "The speaker gave an eloquent explanation.",
+      "level": "C1",
+      "synonyms": ["articulate", "expressive"]
+    },
+    {
+      "id": "alleviate",
+      "word": "alleviate",
+      "phonetic": "/əˈliːvieɪt/",
+      "part": "verb",
+      "definition": "To make a problem or discomfort less severe.",
+      "example": "A short break can alleviate stress.",
+      "level": "C1",
+      "synonyms": ["ease"]
+    },
+    {
+      "id": "coherent",
+      "word": "coherent",
+      "phonetic": "/kəʊˈhɪərənt/",
+      "part": "adjective",
+      "definition": "Clear and organised so its parts fit together.",
+      "example": "The essay presents a coherent argument.",
+      "level": "C1",
+      "synonyms": ["well-organised"]
+    },
+    {
+      "id": "compelling",
+      "word": "compelling",
+      "phonetic": "/kəmˈpelɪŋ/",
+      "part": "adjective",
+      "definition": "Strong enough to attract attention or persuade.",
+      "example": "She offered a compelling reason to protect the park.",
+      "level": "C1",
+      "synonyms": ["persuasive"]
+    },
+    {
+      "id": "contemplate",
+      "word": "contemplate",
+      "phonetic": "/ˈkɒntəmpleɪt/",
+      "part": "verb",
+      "definition": "To think carefully about an idea or possibility.",
+      "example": "Take a moment to contemplate the question.",
+      "level": "C1",
+      "synonyms": ["consider"]
+    },
+    {
+      "id": "discrepancy",
+      "word": "discrepancy",
+      "phonetic": "/dɪˈskrepənsi/",
+      "part": "noun",
+      "definition": "A difference between things that should agree.",
+      "example": "We found a discrepancy between the two reports.",
+      "level": "C1",
+      "synonyms": ["inconsistency"]
+    },
+    {
+      "id": "elaborate",
+      "word": "elaborate",
+      "phonetic": "/ɪˈlæbəreɪt/",
+      "part": "verb",
+      "definition": "To give more information about an idea.",
+      "example": "Could you elaborate on your suggestion?",
+      "level": "C1",
+      "synonyms": ["expand"]
+    },
+    {
+      "id": "feasible",
+      "word": "feasible",
+      "phonetic": "/ˈfiːzəbəl/",
+      "part": "adjective",
+      "definition": "Possible and practical to do.",
+      "example": "A weekly reading club is feasible with our current timetable.",
+      "level": "C1",
+      "synonyms": ["workable"]
+    },
+    {
+      "id": "inherent",
+      "word": "inherent",
+      "phonetic": "/ɪnˈhɪərənt/",
+      "part": "adjective",
+      "definition": "Existing as a natural or essential part of something.",
+      "example": "Every new project has inherent uncertainty.",
+      "level": "C1",
+      "synonyms": ["built-in"]
+    },
+    {
+      "id": "meticulous",
+      "word": "meticulous",
+      "phonetic": "/məˈtɪkjələs/",
+      "part": "adjective",
+      "definition": "Paying very close attention to details.",
+      "example": "The editor made a meticulous check of every page.",
+      "level": "C1",
+      "synonyms": ["thorough"]
+    },
+    {
+      "id": "nuance",
+      "word": "nuance",
+      "phonetic": "/ˈnjuːɑːns/",
+      "part": "noun",
+      "definition": "A small difference in meaning, feeling, or expression.",
+      "example": "A change in tone adds a new nuance to the sentence.",
+      "level": "C1",
+      "synonyms": ["subtle difference"]
+    },
+    {
+      "id": "plausible",
+      "word": "plausible",
+      "phonetic": "/ˈplɔːzəbəl/",
+      "part": "adjective",
+      "definition": "Seeming reasonable or likely to be true.",
+      "example": "That is a plausible explanation for the delay.",
+      "level": "C1",
+      "synonyms": ["credible"]
+    },
+    {
+      "id": "pragmatic",
+      "word": "pragmatic",
+      "phonetic": "/præɡˈmætɪk/",
+      "part": "adjective",
+      "definition": "Dealing with things in a practical way.",
+      "example": "We chose a pragmatic solution that used existing materials.",
+      "level": "C1",
+      "synonyms": ["practical"]
+    },
+    {
+      "id": "profound",
+      "word": "profound",
+      "phonetic": "/prəˈfaʊnd/",
+      "part": "adjective",
+      "definition": "Very deep or having a strong effect.",
+      "example": "The conversation had a profound effect on her outlook.",
+      "level": "C1",
+      "synonyms": ["deep"]
+    },
+    {
+      "id": "reconcile",
+      "word": "reconcile",
+      "phonetic": "/ˈrekənsaɪl/",
+      "part": "verb",
+      "definition": "To find a way for different ideas or needs to fit together.",
+      "example": "We need to reconcile the two groups' expectations.",
+      "level": "C1",
+      "synonyms": ["bring into agreement"]
+    },
+    {
+      "id": "scrutiny",
+      "word": "scrutiny",
+      "phonetic": "/ˈskruːtəni/",
+      "part": "noun",
+      "definition": "Careful and detailed examination.",
+      "example": "The proposal received close scrutiny from the group.",
+      "level": "C1",
+      "synonyms": ["inspection"]
+    },
+    {
+      "id": "subtle",
+      "word": "subtle",
+      "phonetic": "/ˈsʌtəl/",
+      "part": "adjective",
+      "definition": "Not obvious and requiring care to notice.",
+      "example": "There is a subtle difference between the two phrases.",
+      "level": "C1",
+      "synonyms": ["slight"]
+    },
+    {
+      "id": "tentative",
+      "word": "tentative",
+      "phonetic": "/ˈtentətɪv/",
+      "part": "adjective",
+      "definition": "Not yet definite or certain.",
+      "example": "We made a tentative plan for the next meeting.",
+      "level": "C1",
+      "synonyms": ["provisional"]
+    },
+    {
+      "id": "transparent",
+      "word": "transparent",
+      "phonetic": "/trænsˈpærənt/",
+      "part": "adjective",
+      "definition": "Open and easy to understand rather than hidden.",
+      "example": "A transparent process helps everyone understand the decision.",
+      "level": "C1",
+      "synonyms": ["clear"]
+    },
+    {
+      "id": "unprecedented",
+      "word": "unprecedented",
+      "phonetic": "/ʌnˈpresɪdentɪd/",
+      "part": "adjective",
+      "definition": "Never having happened or been known before.",
+      "example": "The library received an unprecedented number of visitors.",
+      "level": "C1",
+      "synonyms": ["never seen before"]
+    },
+    {
+      "id": "versatile",
+      "word": "versatile",
+      "phonetic": "/ˈvɜːsətaɪl/",
+      "part": "adjective",
+      "definition": "Able to be used for many purposes or do different things.",
+      "example": "A notebook is a versatile tool for language study.",
+      "level": "C1",
+      "synonyms": ["multipurpose"]
+    }
+  ],
+  "books": [
+    {
+      "id": "beyond-the-everyday",
+      "title": "Beyond the Everyday",
+      "subtitle": "Language with a little more depth",
+      "description": "Explore nuanced ideas and sharpen your command of advanced vocabulary and natural expression.",
+      "level": "C1",
+      "color": "rose",
+      "category": "Advanced",
+      "resources": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "register-shift",
+      "title": "Choose the right register",
+      "description": "Adapt your wording to the audience and purpose.",
+      "level": "C1",
+      "category": "Vocabulary",
+      "wordIds": [
+        "elaborate",
+        "coherent",
+        "transparent",
+        "nuance",
+        "versatile",
+        "meticulous"
+      ],
+      "minutes": 6,
+      "sections": [
+        {
+          "title": "What register means",
+          "body": "Register is the level and style of language suited to a situation. 'Can you explain that?' works in a friendly conversation. 'Could you elaborate on that point?' fits a formal discussion. Both can be clear and respectful."
+        },
+        {
+          "title": "Change style without changing meaning",
+          "body": "Rewrite a request for a classmate and then for an unfamiliar organisation. Keep the core request clear. Adjust the greeting, word choice, and closing. Formal language should still be coherent and concise, rather than unnecessarily elaborate."
+        }
+      ],
+      "question": "Which request best suits a formal discussion?",
+      "options": [
+        "Could you clarify the reasoning behind your proposal?",
+        "Can you tell me a bit more about your idea?",
+        "What is up with your idea?"
+      ],
+      "answer": 0,
+      "explanation": "The wording is precise and polite, using a formal register. The second option is polite but more conversational."
+    },
+    {
+      "id": "critical-claims",
+      "title": "Read a claim closely",
+      "description": "Separate a plausible claim from a justified conclusion.",
+      "level": "C1",
+      "category": "Reading",
+      "wordIds": [
+        "compelling",
+        "plausible",
+        "unprecedented",
+        "discrepancy",
+        "scrutiny",
+        "tentative"
+      ],
+      "minutes": 7,
+      "sections": [
+        {
+          "title": "Look beneath the wording",
+          "body": "A compelling sentence can still rest on weak evidence. Identify its claim, source, and assumptions. Notice words such as all, never, and unprecedented. Ask what would be needed to justify them and whether an alternative explanation is plausible."
+        },
+        {
+          "title": "Compare explanations",
+          "body": "When two reports disagree, examine the discrepancy before choosing one. They may measure different groups or time periods. Write a tentative conclusion that acknowledges the available evidence. Keep any uncertainty explicit rather than hiding it behind confident wording."
+        }
+      ],
+      "question": "Two reports reach different conclusions about the same programme. What should you check first?",
+      "options": [
+        "Which report has the more dramatic headline.",
+        "Whether they studied comparable groups, periods, and measures.",
+        "Which conclusion you already agree with."
+      ],
+      "answer": 1,
+      "explanation": "Differences in groups, periods, or measures can explain a discrepancy and affect whether the conclusions can be compared."
+    }
+  ]
+}

@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "curious",
+      "word": "curious",
+      "phonetic": "/ˈkjʊəriəs/",
+      "part": "adjective",
+      "definition": "Eager to know or learn something.",
+      "example": "Stay curious and ask one more question.",
+      "level": "A2",
+      "synonyms": ["inquisitive", "interested"]
+    },
+    {
+      "id": "journey",
+      "word": "journey",
+      "phonetic": "/ˈdʒɜːrni/",
+      "part": "noun",
+      "definition": "An act of travelling from one place to another.",
+      "example": "Our journey began at the train station.",
+      "level": "A2",
+      "synonyms": ["trip", "voyage"]
+    },
+    {
+      "id": "discover",
+      "word": "discover",
+      "phonetic": "/dɪˈskʌvər/",
+      "part": "verb",
+      "definition": "To find something for the first time.",
+      "example": "We discovered a quiet cafe near the school.",
+      "level": "A2",
+      "synonyms": ["find", "uncover"]
+    },
+    {
+      "id": "improve",
+      "word": "improve",
+      "phonetic": "/ɪmˈpruːv/",
+      "part": "verb",
+      "definition": "To become better or make something better.",
+      "example": "Reading every day will improve your vocabulary.",
+      "level": "A2",
+      "synonyms": ["develop", "enhance"]
+    },
+    {
+      "id": "borrow",
+      "word": "borrow",
+      "phonetic": "/ˈbɒrəʊ/",
+      "part": "verb",
+      "definition": "To take something with the intention of returning it.",
+      "example": "May I borrow your dictionary?",
+      "level": "A2",
+      "synonyms": ["take on loan"]
+    },
+    {
+      "id": "explore",
+      "word": "explore",
+      "phonetic": "/ɪkˈsplɔːr/",
+      "part": "verb",
+      "definition": "To travel through or examine a place to learn about it.",
+      "example": "Let us explore a new neighbourhood.",
+      "level": "A2",
+      "synonyms": ["investigate", "discover"]
+    },
+    {
+      "id": "habit",
+      "word": "habit",
+      "phonetic": "/ˈhæbɪt/",
+      "part": "noun",
+      "definition": "Something you do regularly, often without thinking.",
+      "example": "Learning five words each morning is a useful habit.",
+      "level": "A2",
+      "synonyms": ["routine", "practice"]
+    },
+    {
+      "id": "tomorrow",
+      "word": "tomorrow",
+      "phonetic": "/təˈmɒrəʊ/",
+      "part": "adverb",
+      "definition": "On the day after today.",
+      "example": "We will visit the library tomorrow.",
+      "level": "A1",
+      "synonyms": ["the next day"]
+    },
+    {
+      "id": "arrive",
+      "word": "arrive",
+      "phonetic": "/əˈraɪv/",
+      "part": "verb",
+      "definition": "To reach the place you are going to.",
+      "example": "We arrive at the station before noon.",
+      "level": "A2",
+      "synonyms": ["reach"]
+    },
+    {
+      "id": "appointment",
+      "word": "appointment",
+      "phonetic": "/əˈpɔɪntmənt/",
+      "part": "noun",
+      "definition": "An agreed time to meet someone.",
+      "example": "I have an appointment at three o'clock.",
+      "level": "A2",
+      "synonyms": ["scheduled meeting"]
+    },
+    {
+      "id": "backpack",
+      "word": "backpack",
+      "phonetic": "/ˈbækpæk/",
+      "part": "noun",
+      "definition": "A bag carried on your back.",
+      "example": "My notebook is in my backpack.",
+      "level": "A2",
+      "synonyms": ["rucksack"]
+    },
+    {
+      "id": "believe",
+      "word": "believe",
+      "phonetic": "/bɪˈliːv/",
+      "part": "verb",
+      "definition": "To think something is true.",
+      "example": "I believe your story.",
+      "level": "A2",
+      "synonyms": ["accept as true"]
+    },
+    {
+      "id": "careful",
+      "word": "careful",
+      "phonetic": "/ˈkeəfəl/",
+      "part": "adjective",
+      "definition": "Taking care to avoid mistakes or harm.",
+      "example": "Be careful when you cross the road.",
+      "level": "A2",
+      "synonyms": ["cautious"]
+    },
+    {
+      "id": "comfortable",
+      "word": "comfortable",
+      "phonetic": "/ˈkʌmftəbəl/",
+      "part": "adjective",
+      "definition": "Giving or feeling physical ease.",
+      "example": "This chair is comfortable for reading.",
+      "level": "A2",
+      "synonyms": ["at ease"]
+    },
+    {
+      "id": "compare",
+      "word": "compare",
+      "phonetic": "/kəmˈpeə/",
+      "part": "verb",
+      "definition": "To look at things together to find similarities and differences.",
+      "example": "Compare the two pictures with your partner.",
+      "level": "A2",
+      "synonyms": ["look at side by side"]
+    },
+    {
+      "id": "customer",
+      "word": "customer",
+      "phonetic": "/ˈkʌstəmə/",
+      "part": "noun",
+      "definition": "A person who buys goods or services.",
+      "example": "The customer asks for a cup of tea.",
+      "level": "A2",
+      "synonyms": ["buyer"]
+    },
+    {
+      "id": "decide",
+      "word": "decide",
+      "phonetic": "/dɪˈsaɪd/",
+      "part": "verb",
+      "definition": "To choose after thinking about the options.",
+      "example": "We need to decide which bus to take.",
+      "level": "A2",
+      "synonyms": ["choose"]
+    },
+    {
+      "id": "delicious",
+      "word": "delicious",
+      "phonetic": "/dɪˈlɪʃəs/",
+      "part": "adjective",
+      "definition": "Very pleasant to taste.",
+      "example": "This vegetable soup is delicious.",
+      "level": "A2",
+      "synonyms": ["tasty"]
+    },
+    {
+      "id": "describe",
+      "word": "describe",
+      "phonetic": "/dɪˈskraɪb/",
+      "part": "verb",
+      "definition": "To say what someone or something is like.",
+      "example": "Describe your favourite place to your partner.",
+      "level": "A2",
+      "synonyms": ["tell about"]
+    },
+    {
+      "id": "direction",
+      "word": "direction",
+      "phonetic": "/dɪˈrekʃən/",
+      "part": "noun",
+      "definition": "The way something moves or points.",
+      "example": "The arrow shows the direction of the station.",
+      "level": "A2",
+      "synonyms": ["way"]
+    },
+    {
+      "id": "enough",
+      "word": "enough",
+      "phonetic": "/ɪˈnʌf/",
+      "part": "determiner",
+      "definition": "As much or as many as needed.",
+      "example": "We have enough chairs for everyone.",
+      "level": "A2",
+      "synonyms": ["sufficient"]
+    },
+    {
+      "id": "explain",
+      "word": "explain",
+      "phonetic": "/ɪkˈspleɪn/",
+      "part": "verb",
+      "definition": "To make an idea or situation clear.",
+      "example": "Can you explain the rules again?",
+      "level": "A2",
+      "synonyms": ["make clear"]
+    },
+    {
+      "id": "favourite",
+      "word": "favourite",
+      "phonetic": "/ˈfeɪvərɪt/",
+      "part": "adjective",
+      "definition": "Liked more than the other choices.",
+      "example": "My favourite colour is green.",
+      "level": "A2",
+      "synonyms": ["preferred"]
+    },
+    {
+      "id": "festival",
+      "word": "festival",
+      "phonetic": "/ˈfestɪvəl/",
+      "part": "noun",
+      "definition": "An event with activities to celebrate something.",
+      "example": "We hear music at the spring festival.",
+      "level": "A2",
+      "synonyms": ["celebration"]
+    },
+    {
+      "id": "healthy",
+      "word": "healthy",
+      "phonetic": "/ˈhelθi/",
+      "part": "adjective",
+      "definition": "In good physical condition.",
+      "example": "Regular walks help us stay healthy.",
+      "level": "A2",
+      "synonyms": ["well"]
+    },
+    {
+      "id": "invite",
+      "word": "invite",
+      "phonetic": "/ɪnˈvaɪt/",
+      "part": "verb",
+      "definition": "To ask someone to come to an event or place.",
+      "example": "We invite our neighbours to dinner.",
+      "level": "A2",
+      "synonyms": ["ask to join"]
+    },
+    {
+      "id": "language",
+      "word": "language",
+      "phonetic": "/ˈlæŋɡwɪdʒ/",
+      "part": "noun",
+      "definition": "A system of words people use to communicate.",
+      "example": "Learning a language takes regular practice.",
+      "level": "A2",
+      "synonyms": ["way of communicating"]
+    },
+    {
+      "id": "luggage",
+      "word": "luggage",
+      "phonetic": "/ˈlʌɡɪdʒ/",
+      "part": "noun",
+      "definition": "Bags and cases taken on a journey.",
+      "example": "Put your luggage beside the door.",
+      "level": "A2",
+      "synonyms": ["baggage"]
+    },
+    {
+      "id": "message",
+      "word": "message",
+      "phonetic": "/ˈmesɪdʒ/",
+      "part": "noun",
+      "definition": "Information sent or given to another person.",
+      "example": "I leave a message for my friend.",
+      "level": "A2",
+      "synonyms": ["note"]
+    },
+    {
+      "id": "neighbour",
+      "word": "neighbour",
+      "phonetic": "/ˈneɪbə/",
+      "part": "noun",
+      "definition": "Someone who lives near you.",
+      "example": "Our neighbour lends us a ladder.",
+      "level": "A2",
+      "synonyms": ["person next door"]
+    },
+    {
+      "id": "notice",
+      "word": "notice",
+      "phonetic": "/ˈnəʊtɪs/",
+      "part": "verb",
+      "definition": "To become aware of something.",
+      "example": "Did you notice the new painting?",
+      "level": "A2",
+      "synonyms": ["spot"]
+    },
+    {
+      "id": "offer",
+      "word": "offer",
+      "phonetic": "/ˈɒfə/",
+      "part": "verb",
+      "definition": "To say you are willing to give or do something.",
+      "example": "I can offer you a seat.",
+      "level": "A2",
+      "synonyms": ["propose"]
+    },
+    {
+      "id": "prepare",
+      "word": "prepare",
+      "phonetic": "/prɪˈpeə/",
+      "part": "verb",
+      "definition": "To make something ready.",
+      "example": "We prepare lunch before our guests arrive.",
+      "level": "A2",
+      "synonyms": ["get ready"]
+    },
+    {
+      "id": "promise",
+      "word": "promise",
+      "phonetic": "/ˈprɒmɪs/",
+      "part": "verb",
+      "definition": "To say firmly that you will do something.",
+      "example": "I promise to return your book tomorrow.",
+      "level": "A2",
+      "synonyms": ["give your word"]
+    },
+    {
+      "id": "receipt",
+      "word": "receipt",
+      "phonetic": "/rɪˈsiːt/",
+      "part": "noun",
+      "definition": "A document showing that you paid for something.",
+      "example": "Keep the receipt for your new bag.",
+      "level": "A2",
+      "synonyms": ["proof of payment"]
+    },
+    {
+      "id": "remember",
+      "word": "remember",
+      "phonetic": "/rɪˈmembə/",
+      "part": "verb",
+      "definition": "To keep or bring something back into your mind.",
+      "example": "I remember our first English lesson.",
+      "level": "A2",
+      "synonyms": ["recall"]
+    },
+    {
+      "id": "repair",
+      "word": "repair",
+      "phonetic": "/rɪˈpeə/",
+      "part": "verb",
+      "definition": "To make something work again after damage.",
+      "example": "Can you repair my bicycle?",
+      "level": "A2",
+      "synonyms": ["fix"]
+    },
+    {
+      "id": "return",
+      "word": "return",
+      "phonetic": "/rɪˈtɜːn/",
+      "part": "verb",
+      "definition": "To give something back.",
+      "example": "Please return the key after your visit.",
+      "level": "A2",
+      "synonyms": ["give back"]
+    },
+    {
+      "id": "share",
+      "word": "share",
+      "phonetic": "/ʃeə/",
+      "part": "verb",
+      "definition": "To use or enjoy something with another person.",
+      "example": "We share our ideas with the class.",
+      "level": "A2",
+      "synonyms": ["use together"]
+    },
+    {
+      "id": "suggest",
+      "word": "suggest",
+      "phonetic": "/səˈdʒest/",
+      "part": "verb",
+      "definition": "To put forward an idea for someone to consider.",
+      "example": "I suggest a short break.",
+      "level": "A2",
+      "synonyms": ["propose"]
+    },
+    {
+      "id": "ticket",
+      "word": "ticket",
+      "phonetic": "/ˈtɪkɪt/",
+      "part": "noun",
+      "definition": "A document that lets you travel or enter an event.",
+      "example": "Show your ticket before you get on the train.",
+      "level": "A2",
+      "synonyms": ["pass"]
+    },
+    {
+      "id": "useful",
+      "word": "useful",
+      "phonetic": "/ˈjuːsfəl/",
+      "part": "adjective",
+      "definition": "Helping you do or achieve something.",
+      "example": "This map is useful when we travel.",
+      "level": "A2",
+      "synonyms": ["helpful"]
+    },
+    {
+      "id": "visitor",
+      "word": "visitor",
+      "phonetic": "/ˈvɪzɪtə/",
+      "part": "noun",
+      "definition": "Someone who comes to a place for a short time.",
+      "example": "The visitor asks where the library is.",
+      "level": "A2",
+      "synonyms": ["guest"]
+    },
+    {
+      "id": "wonderful",
+      "word": "wonderful",
+      "phonetic": "/ˈwʌndəfəl/",
+      "part": "adjective",
+      "definition": "Very good or enjoyable.",
+      "example": "We had a wonderful afternoon in the park.",
+      "level": "A2",
+      "synonyms": ["lovely"]
+    }
+  ],
+  "books": [
+    {
+      "id": "the-open-road",
+      "title": "The Open Road",
+      "subtitle": "English for your next adventure",
+      "description": "Explore the language of travel through original dialogues, practical phrases, and listening activities.",
+      "level": "A2",
+      "color": "mint",
+      "category": "Travel",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:22",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "travel-phrases",
+      "title": "Your next stop",
+      "description": "Useful phrases for finding your way in a new city.",
+      "level": "A2",
+      "category": "Vocabulary",
+      "minutes": 7,
+      "sections": [
+        {
+          "title": "Ask for directions",
+          "body": "Begin politely. 'Excuse me, could you tell me how to get to the station?' Useful direction words include straight ahead, turn left, turn right, next to, and opposite."
+        },
+        {
+          "title": "Check you understood",
+          "body": "Repeat the key information. 'So I turn left at the cafe?' If you need help, say 'Could you repeat that, please?' Thank the person before you leave."
+        }
+      ],
+      "question": "What does 'opposite the library' mean?",
+      "options": [
+        "Inside the library",
+        "Across from the library",
+        "Far away from the library"
+      ],
+      "answer": 1,
+      "explanation": "Opposite means on the other side, facing something."
+    },
+    {
+      "id": "past-time",
+      "title": "Yesterday in a few words",
+      "description": "Describe a finished day using the past simple.",
+      "level": "A2",
+      "category": "Grammar",
+      "wordIds": [
+        "neighbour",
+        "festival",
+        "visitor",
+        "arrive",
+        "journey",
+        "return"
+      ],
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Talk about a finished action",
+          "body": "Use the past simple for an action completed at a known past time. 'We visited our neighbour yesterday.' Regular verbs usually add -ed. Irregular verbs change. Go becomes went. 'I went to the festival on Saturday.'"
+        },
+        {
+          "title": "Ask about yesterday",
+          "body": "Use did and the base verb. 'Did you enjoy the festival?' For a negative, use did not. 'We did not stay late.' Tell a partner about yesterday using three finished actions."
+        }
+      ],
+      "question": "Choose the correct past-simple question.",
+      "options": [
+        "Did you visited the festival?",
+        "Do you visited the festival?",
+        "Did you visit the festival?"
+      ],
+      "answer": 2,
+      "explanation": "After did, use the base verb visit rather than visited."
+    },
+    {
+      "id": "future-plans",
+      "title": "Plans for the weekend",
+      "description": "Talk about intentions with going to.",
+      "level": "A2",
+      "category": "Speaking",
+      "wordIds": [
+        "invite",
+        "prepare",
+        "repair",
+        "tomorrow",
+        "appointment",
+        "decide"
+      ],
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Say what you intend to do",
+          "body": "Use am, is, or are with going to and the base verb. 'I am going to invite a friend.' 'We are going to prepare lunch.' These are plans you have already thought about."
+        },
+        {
+          "title": "Ask and respond",
+          "body": "Ask 'What are you going to do tomorrow?' Add a time or a place to your answer. 'I am going to repair my bicycle in the garden.' Share one plan with a partner and ask a follow-up question."
+        }
+      ],
+      "question": "Which sentence describes a future intention?",
+      "options": [
+        "We prepare lunch every day.",
+        "We are going to prepare lunch tomorrow.",
+        "We prepared lunch yesterday."
+      ],
+      "answer": 1,
+      "explanation": "Going to describes the intention, and tomorrow makes the future time clear."
+    }
+  ]
+}

@@ -112,6 +112,8 @@ Media files travel separately. The bundled collection contains six original book
 
 [Read the content guide](docs/CONTENT.md) for the pack format, large files, and migration from the previous Python app.
 
+[Browse the original pack gallery](examples/packs/README.md) for ready-to-edit A1, A2, B1, B2, and C1 collections. Owners can also export a level from their own curriculum without changing the installed collection.
+
 ## How it works
 
 ```text

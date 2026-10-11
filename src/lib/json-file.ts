@@ -16,9 +16,18 @@ export async function readValidatedJson<T>(
 export async function writeJsonAtomically(
   file: string,
   value: unknown,
-  options: { overwrite?: boolean } = {},
+  options: { overwrite?: boolean; pretty?: boolean; limit?: number } = {},
 ) {
-  const serialized = JSON.stringify(value);
+  const serialized = JSON.stringify(
+    value,
+    null,
+    options.pretty ? 2 : undefined,
+  );
   if (serialized === undefined) throw new Error("A JSON value is required.");
+  if (
+    options.limit !== undefined &&
+    Buffer.byteLength(serialized) > options.limit
+  )
+    throw new Error("JSON output exceeds the size limit.");
   await writeFileAtomically(file, serialized, options);
 }

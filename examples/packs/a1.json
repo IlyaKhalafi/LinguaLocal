@@ -1,0 +1,561 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "kind",
+      "word": "kind",
+      "phonetic": "/kaɪnd/",
+      "part": "adjective",
+      "definition": "Friendly, generous, and caring toward others.",
+      "example": "A kind classmate helped me with my homework.",
+      "level": "A1",
+      "synonyms": ["caring", "generous"]
+    },
+    {
+      "id": "bright",
+      "word": "bright",
+      "phonetic": "/braɪt/",
+      "part": "adjective",
+      "definition": "Full of light, or showing intelligence.",
+      "example": "It was a bright morning in the city.",
+      "level": "A1",
+      "synonyms": ["shining", "clever"]
+    },
+    {
+      "id": "quiet",
+      "word": "quiet",
+      "phonetic": "/ˈkwaɪət/",
+      "part": "adjective",
+      "definition": "Making little or no noise.",
+      "example": "Please find a quiet place to read.",
+      "level": "A1",
+      "synonyms": ["silent", "peaceful"]
+    },
+    {
+      "id": "hello",
+      "word": "hello",
+      "phonetic": "/həˈləʊ/",
+      "part": "exclamation",
+      "definition": "A greeting used when you meet someone.",
+      "example": "Hello! It is nice to meet you.",
+      "level": "A1",
+      "synonyms": ["hi"]
+    },
+    {
+      "id": "friend",
+      "word": "friend",
+      "phonetic": "/frend/",
+      "part": "noun",
+      "definition": "A person you know well and enjoy spending time with.",
+      "example": "My friend and I study together.",
+      "level": "A1",
+      "synonyms": ["companion"]
+    },
+    {
+      "id": "listen",
+      "word": "listen",
+      "phonetic": "/ˈlɪsən/",
+      "part": "verb",
+      "definition": "To pay attention to a sound.",
+      "example": "Listen carefully to the conversation.",
+      "level": "A1",
+      "synonyms": ["hear", "pay attention"]
+    },
+    {
+      "id": "apple",
+      "word": "apple",
+      "phonetic": "/ˈæpəl/",
+      "part": "noun",
+      "definition": "A round fruit with red, green, or yellow skin.",
+      "example": "I pack an apple in my lunch box.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "bread",
+      "word": "bread",
+      "phonetic": "/bred/",
+      "part": "noun",
+      "definition": "A food made from flour and water and baked.",
+      "example": "We eat bread with soup.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "breakfast",
+      "word": "breakfast",
+      "phonetic": "/ˈbrekfəst/",
+      "part": "noun",
+      "definition": "The first meal of the day.",
+      "example": "I have breakfast before school.",
+      "level": "A1",
+      "synonyms": ["morning meal"]
+    },
+    {
+      "id": "classroom",
+      "word": "classroom",
+      "phonetic": "/ˈklɑːsruːm/",
+      "part": "noun",
+      "definition": "A room where students have lessons.",
+      "example": "Our classroom has a large window.",
+      "level": "A1",
+      "synonyms": ["schoolroom"]
+    },
+    {
+      "id": "family",
+      "word": "family",
+      "phonetic": "/ˈfæməli/",
+      "part": "noun",
+      "definition": "A group of people related to one another.",
+      "example": "My family cooks dinner together.",
+      "level": "A1",
+      "synonyms": ["relatives"]
+    },
+    {
+      "id": "garden",
+      "word": "garden",
+      "phonetic": "/ˈɡɑːdən/",
+      "part": "noun",
+      "definition": "An area where flowers or vegetables grow.",
+      "example": "We grow tomatoes in the garden.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "happy",
+      "word": "happy",
+      "phonetic": "/ˈhæpi/",
+      "part": "adjective",
+      "definition": "Feeling pleasure or joy.",
+      "example": "I am happy to see my classmates.",
+      "level": "A1",
+      "synonyms": ["glad"]
+    },
+    {
+      "id": "hungry",
+      "word": "hungry",
+      "phonetic": "/ˈhʌŋɡri/",
+      "part": "adjective",
+      "definition": "Wanting or needing food.",
+      "example": "I feel hungry after our walk.",
+      "level": "A1",
+      "synonyms": ["ready to eat"]
+    },
+    {
+      "id": "kitchen",
+      "word": "kitchen",
+      "phonetic": "/ˈkɪtʃɪn/",
+      "part": "noun",
+      "definition": "A room where people prepare food.",
+      "example": "The plates are in the kitchen.",
+      "level": "A1",
+      "synonyms": ["cooking room"]
+    },
+    {
+      "id": "learn",
+      "word": "learn",
+      "phonetic": "/lɜːn/",
+      "part": "verb",
+      "definition": "To gain knowledge or a new skill.",
+      "example": "We learn a new song in class.",
+      "level": "A1",
+      "synonyms": ["pick up"]
+    },
+    {
+      "id": "morning",
+      "word": "morning",
+      "phonetic": "/ˈmɔːnɪŋ/",
+      "part": "noun",
+      "definition": "The early part of the day before noon.",
+      "example": "I read for ten minutes every morning.",
+      "level": "A1",
+      "synonyms": ["early day"]
+    },
+    {
+      "id": "open",
+      "word": "open",
+      "phonetic": "/ˈəʊpən/",
+      "part": "verb",
+      "definition": "To move something so people can enter or see inside.",
+      "example": "Please open the window.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "pencil",
+      "word": "pencil",
+      "phonetic": "/ˈpensəl/",
+      "part": "noun",
+      "definition": "A tool with a narrow core used for writing or drawing.",
+      "example": "I draw a tree with a pencil.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "read",
+      "word": "read",
+      "phonetic": "/riːd/",
+      "part": "verb",
+      "definition": "To understand written words by looking at them.",
+      "example": "I read a short story every evening.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "school",
+      "word": "school",
+      "phonetic": "/skuːl/",
+      "part": "noun",
+      "definition": "A place where students learn with teachers.",
+      "example": "We walk to school together.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "shirt",
+      "word": "shirt",
+      "phonetic": "/ʃɜːt/",
+      "part": "noun",
+      "definition": "A piece of clothing worn on the upper body.",
+      "example": "He wears a blue shirt today.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "sister",
+      "word": "sister",
+      "phonetic": "/ˈsɪstə/",
+      "part": "noun",
+      "definition": "A female sibling.",
+      "example": "My sister plays the guitar.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "small",
+      "word": "small",
+      "phonetic": "/smɔːl/",
+      "part": "adjective",
+      "definition": "Having little size or amount.",
+      "example": "The cafe has a small table by the door.",
+      "level": "A1",
+      "synonyms": ["little"]
+    },
+    {
+      "id": "smile",
+      "word": "smile",
+      "phonetic": "/smaɪl/",
+      "part": "verb",
+      "definition": "To lift the corners of your mouth when you are pleased.",
+      "example": "We smile when our friend arrives.",
+      "level": "A1",
+      "synonyms": ["beam"]
+    },
+    {
+      "id": "sorry",
+      "word": "sorry",
+      "phonetic": "/ˈsɒri/",
+      "part": "adjective",
+      "definition": "Feeling regret about a mistake or an unhappy event.",
+      "example": "I am sorry I lost your pen.",
+      "level": "A1",
+      "synonyms": ["apologetic"]
+    },
+    {
+      "id": "street",
+      "word": "street",
+      "phonetic": "/striːt/",
+      "part": "noun",
+      "definition": "A road in a town with buildings beside it.",
+      "example": "The library is on our street.",
+      "level": "A1",
+      "synonyms": ["road"]
+    },
+    {
+      "id": "teacher",
+      "word": "teacher",
+      "phonetic": "/ˈtiːtʃə/",
+      "part": "noun",
+      "definition": "A person whose job is to teach students.",
+      "example": "Our teacher explains the new words.",
+      "level": "A1",
+      "synonyms": ["educator"]
+    },
+    {
+      "id": "thirsty",
+      "word": "thirsty",
+      "phonetic": "/ˈθɜːsti/",
+      "part": "adjective",
+      "definition": "Wanting or needing a drink.",
+      "example": "I am thirsty after the game.",
+      "level": "A1",
+      "synonyms": ["needing water"]
+    },
+    {
+      "id": "tired",
+      "word": "tired",
+      "phonetic": "/ˈtaɪəd/",
+      "part": "adjective",
+      "definition": "Needing rest or sleep.",
+      "example": "I feel tired after a long day.",
+      "level": "A1",
+      "synonyms": ["sleepy"]
+    },
+    {
+      "id": "today",
+      "word": "today",
+      "phonetic": "/təˈdeɪ/",
+      "part": "adverb",
+      "definition": "On the day that is happening now.",
+      "example": "We have a speaking lesson today.",
+      "level": "A1",
+      "synonyms": ["this day"]
+    },
+    {
+      "id": "tomorrow",
+      "word": "tomorrow",
+      "phonetic": "/təˈmɒrəʊ/",
+      "part": "adverb",
+      "definition": "On the day after today.",
+      "example": "We will visit the library tomorrow.",
+      "level": "A1",
+      "synonyms": ["the next day"]
+    },
+    {
+      "id": "water",
+      "word": "water",
+      "phonetic": "/ˈwɔːtə/",
+      "part": "noun",
+      "definition": "The clear liquid people drink and use for washing.",
+      "example": "Please bring a bottle of water.",
+      "level": "A1",
+      "synonyms": []
+    },
+    {
+      "id": "weather",
+      "word": "weather",
+      "phonetic": "/ˈweðə/",
+      "part": "noun",
+      "definition": "The conditions outside, such as rain, sunshine, or wind.",
+      "example": "The weather is warm this morning.",
+      "level": "A1",
+      "synonyms": ["outdoor conditions"]
+    },
+    {
+      "id": "window",
+      "word": "window",
+      "phonetic": "/ˈwɪndəʊ/",
+      "part": "noun",
+      "definition": "An opening with glass that lets light into a building.",
+      "example": "The cat sits beside the window.",
+      "level": "A1",
+      "synonyms": ["glass opening"]
+    },
+    {
+      "id": "write",
+      "word": "write",
+      "phonetic": "/raɪt/",
+      "part": "verb",
+      "definition": "To form words on paper or a screen.",
+      "example": "Please write your answer in a full sentence.",
+      "level": "A1",
+      "synonyms": ["note down"]
+    },
+    {
+      "id": "backpack",
+      "word": "backpack",
+      "phonetic": "/ˈbækpæk/",
+      "part": "noun",
+      "definition": "A bag carried on your back.",
+      "example": "My notebook is in my backpack.",
+      "level": "A2",
+      "synonyms": ["rucksack"]
+    },
+    {
+      "id": "customer",
+      "word": "customer",
+      "phonetic": "/ˈkʌstəmə/",
+      "part": "noun",
+      "definition": "A person who buys goods or services.",
+      "example": "The customer asks for a cup of tea.",
+      "level": "A2",
+      "synonyms": ["buyer"]
+    },
+    {
+      "id": "receipt",
+      "word": "receipt",
+      "phonetic": "/rɪˈsiːt/",
+      "part": "noun",
+      "definition": "A document showing that you paid for something.",
+      "example": "Keep the receipt for your new bag.",
+      "level": "A2",
+      "synonyms": ["proof of payment"]
+    }
+  ],
+  "books": [
+    {
+      "id": "everyday-english",
+      "title": "Everyday English",
+      "subtitle": "Small conversations, big connections",
+      "description": "Build confidence in the conversations that happen every day, from introductions to ordering a coffee.",
+      "level": "A1",
+      "color": "peach",
+      "category": "General English",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:22",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        },
+        {
+          "id": "greetings-video",
+          "title": "Start with hello",
+          "kind": "video",
+          "file": "greetings.mp4",
+          "duration": "0:12",
+          "unit": "Unit 1",
+          "transcript": "Hello. A new conversation starts here.\nHow are you today?\nI am well. Thank you for asking.",
+          "captions": "greetings.vtt"
+        },
+        {
+          "id": "greetings-reading",
+          "title": "Your first conversation",
+          "kind": "pdf",
+          "file": "greetings.pdf",
+          "duration": "1 page",
+          "unit": "Unit 1"
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "small-talk",
+      "title": "The art of small talk",
+      "description": "Turn a simple hello into a real conversation.",
+      "level": "A1",
+      "category": "Speaking",
+      "minutes": 6,
+      "sections": [
+        {
+          "title": "Start with something you share",
+          "body": "Small talk helps people feel comfortable. Start with the place you are in, the weather, or an activity you share. Try saying 'This is a lovely classroom' or 'How was your weekend?'"
+        },
+        {
+          "title": "Keep the conversation going",
+          "body": "Ask an open question. Instead of 'Do you like books?', try 'What kind of books do you enjoy?' Listen to the answer and ask one more question. Share a little about yourself too."
+        },
+        {
+          "title": "Try it with a partner",
+          "body": "Say hello to a classmate. Ask about their favourite food, a place they want to visit, or something they did yesterday. Spend two minutes listening before you switch roles."
+        }
+      ],
+      "question": "Which question is most likely to start a longer conversation?",
+      "options": [
+        "Are you tired?",
+        "What do you enjoy doing after class?",
+        "Is this your pen?"
+      ],
+      "answer": 1,
+      "explanation": "An open question invites the other person to share more than a yes or no answer."
+    },
+    {
+      "id": "present-simple",
+      "title": "Everyday habits, simple sentences",
+      "description": "Talk about the things you do, day after day.",
+      "level": "A1",
+      "category": "Grammar",
+      "minutes": 8,
+      "sections": [
+        {
+          "title": "Meet the present simple",
+          "body": "Use the present simple for habits and facts. 'I walk to school.' 'They study English.' With he, she, and it, add -s or -es. 'She reads every morning.' 'He watches films.'"
+        },
+        {
+          "title": "Questions and negatives",
+          "body": "Use do or does to ask a question. 'Do you like music?' 'Does she play tennis?' Use do not or does not for a negative. 'I do not drink coffee.' After does, use the base verb without -s."
+        }
+      ],
+      "question": "Choose the correct sentence.",
+      "options": [
+        "She walk to school.",
+        "She walks to school.",
+        "She walking to school."
+      ],
+      "answer": 1,
+      "explanation": "With she, add -s to the verb in the present simple."
+    },
+    {
+      "id": "asking-questions",
+      "title": "Ask a little more",
+      "description": "Use who, what, and where in everyday questions.",
+      "level": "A1",
+      "category": "Grammar",
+      "wordIds": [
+        "classroom",
+        "kitchen",
+        "garden",
+        "teacher",
+        "backpack",
+        "sister"
+      ],
+      "minutes": 4,
+      "sections": [
+        {
+          "title": "Choose a question word",
+          "body": "Use who for a person, what for a thing, and where for a place. 'Who is your teacher?' 'What is in your backpack?' 'Where is the classroom?'"
+        },
+        {
+          "title": "Keep the question in order",
+          "body": "With be, put the verb before the subject. 'Where is the kitchen?' With other present-simple verbs, use do or does. 'What do you read?' Ask a partner three questions and listen to each answer."
+        }
+      ],
+      "question": "Choose the question that asks about a place.",
+      "options": [
+        "Who is your sister?",
+        "Where is the garden?",
+        "What is your favourite food?"
+      ],
+      "answer": 1,
+      "explanation": "Where asks about a place, and a garden is a place."
+    },
+    {
+      "id": "ordering-food",
+      "title": "Ordering a meal",
+      "description": "Ask for food and drinks politely.",
+      "level": "A1",
+      "category": "Speaking",
+      "wordIds": [
+        "bread",
+        "water",
+        "hungry",
+        "breakfast",
+        "receipt",
+        "customer"
+      ],
+      "minutes": 4,
+      "sections": [
+        {
+          "title": "Make a simple request",
+          "body": "Say 'I would like' when ordering. 'I would like some bread, please.' Use 'Can I have' for a friendly request. 'Can I have some water, please?'"
+        },
+        {
+          "title": "Check and finish",
+          "body": "Ask 'How much is it?' when you need the price. Say 'Thank you' when the food arrives. Practise with a partner. One person is hungry and orders breakfast. The other takes the order. Then switch."
+        }
+      ],
+      "question": "Which request sounds polite?",
+      "options": [
+        "Can I have some water, please?",
+        "You must give me water.",
+        "Water now."
+      ],
+      "answer": 0,
+      "explanation": "Can I have and please make this a polite request."
+    }
+  ]
+}

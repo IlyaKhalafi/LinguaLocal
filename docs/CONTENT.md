@@ -82,9 +82,15 @@ The packaged commands are `node scripts/subtitle-tools.mjs convert INPUT.srt OUT
 
 ### Lessons
 
-Each lesson has a title, description, level, category, reading time, and text sections. Its practice question contains two to six options, a zero-based correct answer index, and an explanation. Categories are Grammar, Vocabulary, Reading, and Speaking.
+Each lesson has a title, description, level, category, reading time, and text sections. Its practice question contains two to six options, a zero-based correct answer index, and an explanation. Categories are Grammar, Vocabulary, Reading, Speaking, and Writing.
 
-Each question supports two to six answer options.
+### Choosing or exporting a level pack
+
+The [original pack gallery](../examples/packs/README.md) offers A1, A2, B1, B2, and C1 collections. Each uses the same validated format as the full starter pack. Download a pack and edit a working copy before installing it.
+
+Run `npm run content:export -- collection.json new-b1.json B1` to extract a level from any valid collection. The source stays intact and the output must be a new file. Books and lessons match the selected level. Vocabulary includes that level and any other words referenced by its lessons. An export still needs at least four dictionary entries. Exports include the documented version 1 fields. Use a snapshot to preserve additional custom JSON fields.
+
+In Docker, use `node scripts/export-content.mjs /tmp/collection.json /tmp/new-b1.json B1`. Exported JSON contains resource paths. Copy the matching media separately, or use a server snapshot when moving the whole school collection.
 
 ## Media files
 

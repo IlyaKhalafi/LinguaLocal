@@ -1,0 +1,461 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "id": "bloom",
+      "word": "bloom",
+      "phonetic": "/bluːm/",
+      "part": "verb",
+      "definition": "To produce flowers or develop successfully.",
+      "example": "With regular practice, your confidence will bloom.",
+      "level": "B1",
+      "synonyms": ["flourish", "blossom"]
+    },
+    {
+      "id": "gather",
+      "word": "gather",
+      "phonetic": "/ˈɡæðər/",
+      "part": "verb",
+      "definition": "To bring people or things together.",
+      "example": "We gather in the library every Friday.",
+      "level": "B1",
+      "synonyms": ["collect", "assemble"]
+    },
+    {
+      "id": "purpose",
+      "word": "purpose",
+      "phonetic": "/ˈpɜːrpəs/",
+      "part": "noun",
+      "definition": "The reason for which something is done.",
+      "example": "The purpose of this game is to practise vocabulary.",
+      "level": "B1",
+      "synonyms": ["aim", "intention"]
+    },
+    {
+      "id": "wander",
+      "word": "wander",
+      "phonetic": "/ˈwɒndər/",
+      "part": "verb",
+      "definition": "To walk around without a fixed destination.",
+      "example": "We like to wander through the old town.",
+      "level": "B1",
+      "synonyms": ["roam", "stroll"]
+    },
+    {
+      "id": "improve",
+      "word": "improve",
+      "phonetic": "/ɪmˈpruːv/",
+      "part": "verb",
+      "definition": "To become better or make something better.",
+      "example": "Reading every day will improve your vocabulary.",
+      "level": "A2",
+      "synonyms": ["develop", "enhance"]
+    },
+    {
+      "id": "achieve",
+      "word": "achieve",
+      "phonetic": "/əˈtʃiːv/",
+      "part": "verb",
+      "definition": "To succeed in reaching a goal through effort.",
+      "example": "You can achieve your goal with steady practice.",
+      "level": "B1",
+      "synonyms": ["accomplish", "attain"]
+    },
+    {
+      "id": "essential",
+      "word": "essential",
+      "phonetic": "/ɪˈsenʃəl/",
+      "part": "adjective",
+      "definition": "Completely necessary or very important.",
+      "example": "Water is essential for life.",
+      "level": "B1",
+      "synonyms": ["necessary", "vital"]
+    },
+    {
+      "id": "habit",
+      "word": "habit",
+      "phonetic": "/ˈhæbɪt/",
+      "part": "noun",
+      "definition": "Something you do regularly, often without thinking.",
+      "example": "Learning five words each morning is a useful habit.",
+      "level": "A2",
+      "synonyms": ["routine", "practice"]
+    },
+    {
+      "id": "adapt",
+      "word": "adapt",
+      "phonetic": "/əˈdæpt/",
+      "part": "verb",
+      "definition": "To change to suit a new situation.",
+      "example": "We adapt our plans when the weather changes.",
+      "level": "B1",
+      "synonyms": ["adjust"]
+    },
+    {
+      "id": "advantage",
+      "word": "advantage",
+      "phonetic": "/ədˈvɑːntɪdʒ/",
+      "part": "noun",
+      "definition": "Something that makes a situation better or easier.",
+      "example": "A small class has the advantage of more speaking time.",
+      "level": "B1",
+      "synonyms": ["benefit"]
+    },
+    {
+      "id": "balance",
+      "word": "balance",
+      "phonetic": "/ˈbæləns/",
+      "part": "noun",
+      "definition": "A situation in which different parts receive suitable attention.",
+      "example": "I try to keep a balance between study and rest.",
+      "level": "B1",
+      "synonyms": ["equilibrium"]
+    },
+    {
+      "id": "challenge",
+      "word": "challenge",
+      "phonetic": "/ˈtʃælɪndʒ/",
+      "part": "noun",
+      "definition": "A task or situation that tests your ability.",
+      "example": "Reading my first novel was a challenge.",
+      "level": "B1",
+      "synonyms": ["test"]
+    },
+    {
+      "id": "community",
+      "word": "community",
+      "phonetic": "/kəˈmjuːnəti/",
+      "part": "noun",
+      "definition": "People connected by a place or a shared interest.",
+      "example": "Our community meets to clean the park.",
+      "level": "B1",
+      "synonyms": ["group"]
+    },
+    {
+      "id": "confident",
+      "word": "confident",
+      "phonetic": "/ˈkɒnfɪdənt/",
+      "part": "adjective",
+      "definition": "Feeling sure about your ability or an outcome.",
+      "example": "I feel confident when I practise before a presentation.",
+      "level": "B1",
+      "synonyms": ["self-assured"]
+    },
+    {
+      "id": "consequence",
+      "word": "consequence",
+      "phonetic": "/ˈkɒnsɪkwəns/",
+      "part": "noun",
+      "definition": "A result caused by an action or event.",
+      "example": "Missing the bus was a consequence of leaving late.",
+      "level": "B1",
+      "synonyms": ["result"]
+    },
+    {
+      "id": "creative",
+      "word": "creative",
+      "phonetic": "/kriˈeɪtɪv/",
+      "part": "adjective",
+      "definition": "Able to produce new and interesting ideas.",
+      "example": "Our group found a creative solution.",
+      "level": "B1",
+      "synonyms": ["inventive"]
+    },
+    {
+      "id": "efficient",
+      "word": "efficient",
+      "phonetic": "/ɪˈfɪʃənt/",
+      "part": "adjective",
+      "definition": "Working well without wasting time or effort.",
+      "example": "The new bus route is more efficient.",
+      "level": "B1",
+      "synonyms": ["economical"]
+    },
+    {
+      "id": "encourage",
+      "word": "encourage",
+      "phonetic": "/ɪnˈkʌrɪdʒ/",
+      "part": "verb",
+      "definition": "To give someone support or confidence.",
+      "example": "We encourage each other to speak English.",
+      "level": "B1",
+      "synonyms": ["support"]
+    },
+    {
+      "id": "environment",
+      "word": "environment",
+      "phonetic": "/ɪnˈvaɪrənmənt/",
+      "part": "noun",
+      "definition": "The surroundings or conditions in which a person, animal, or plant lives.",
+      "example": "Plants need a suitable environment to grow.",
+      "level": "B1",
+      "synonyms": ["surroundings"]
+    },
+    {
+      "id": "experience",
+      "word": "experience",
+      "phonetic": "/ɪkˈspɪəriəns/",
+      "part": "noun",
+      "definition": "Knowledge gained from doing or seeing things.",
+      "example": "She has experience of working with children.",
+      "level": "B1",
+      "synonyms": ["practical knowledge"]
+    },
+    {
+      "id": "flexible",
+      "word": "flexible",
+      "phonetic": "/ˈfleksəbəl/",
+      "part": "adjective",
+      "definition": "Able or willing to change when needed.",
+      "example": "A flexible timetable helps busy learners.",
+      "level": "B1",
+      "synonyms": ["adaptable"]
+    },
+    {
+      "id": "generous",
+      "word": "generous",
+      "phonetic": "/ˈdʒenərəs/",
+      "part": "adjective",
+      "definition": "Willing to give time, help, or money.",
+      "example": "Our generous neighbour shares vegetables from her garden.",
+      "level": "B1",
+      "synonyms": ["giving"]
+    },
+    {
+      "id": "independent",
+      "word": "independent",
+      "phonetic": "/ˌɪndɪˈpendənt/",
+      "part": "adjective",
+      "definition": "Able to act without needing others to help.",
+      "example": "The project helps students become independent learners.",
+      "level": "B1",
+      "synonyms": ["self-reliant"]
+    },
+    {
+      "id": "opportunity",
+      "word": "opportunity",
+      "phonetic": "/ˌɒpəˈtjuːnəti/",
+      "part": "noun",
+      "definition": "A situation that allows you to do something.",
+      "example": "The trip is an opportunity to practise English.",
+      "level": "B1",
+      "synonyms": ["chance"]
+    },
+    {
+      "id": "patient",
+      "word": "patient",
+      "phonetic": "/ˈpeɪʃənt/",
+      "part": "adjective",
+      "definition": "Able to wait calmly or keep trying.",
+      "example": "Be patient while your partner finds the right word.",
+      "level": "B1",
+      "synonyms": ["calm"]
+    },
+    {
+      "id": "reliable",
+      "word": "reliable",
+      "phonetic": "/rɪˈlaɪəbəl/",
+      "part": "adjective",
+      "definition": "Able to be trusted to work well or do what is expected.",
+      "example": "We need a reliable bus service.",
+      "level": "B1",
+      "synonyms": ["dependable"]
+    },
+    {
+      "id": "solution",
+      "word": "solution",
+      "phonetic": "/səˈluːʃən/",
+      "part": "noun",
+      "definition": "A way of dealing with a problem.",
+      "example": "Drawing a map was a simple solution.",
+      "level": "B1",
+      "synonyms": ["answer"]
+    },
+    {
+      "id": "volunteer",
+      "word": "volunteer",
+      "phonetic": "/ˌvɒlənˈtɪə/",
+      "part": "noun",
+      "definition": "Someone who offers to help without being paid.",
+      "example": "A volunteer reads stories at the library.",
+      "level": "B1",
+      "synonyms": ["unpaid helper"]
+    },
+    {
+      "id": "message",
+      "word": "message",
+      "phonetic": "/ˈmesɪdʒ/",
+      "part": "noun",
+      "definition": "Information sent or given to another person.",
+      "example": "I leave a message for my friend.",
+      "level": "A2",
+      "synonyms": ["note"]
+    },
+    {
+      "id": "suggest",
+      "word": "suggest",
+      "phonetic": "/səˈdʒest/",
+      "part": "verb",
+      "definition": "To put forward an idea for someone to consider.",
+      "example": "I suggest a short break.",
+      "level": "A2",
+      "synonyms": ["propose"]
+    },
+    {
+      "id": "useful",
+      "word": "useful",
+      "phonetic": "/ˈjuːsfəl/",
+      "part": "adjective",
+      "definition": "Helping you do or achieve something.",
+      "example": "This map is useful when we travel.",
+      "level": "A2",
+      "synonyms": ["helpful"]
+    }
+  ],
+  "books": [
+    {
+      "id": "words-in-bloom",
+      "title": "Words in Bloom",
+      "subtitle": "Grow a richer vocabulary",
+      "description": "Make new words your own with memorable examples, themed word lists, and guided practice.",
+      "level": "B1",
+      "color": "lavender",
+      "category": "Vocabulary",
+      "resources": [
+        {
+          "id": "welcome",
+          "title": "A new beginning",
+          "kind": "audio",
+          "file": "sample-dialogue.wav",
+          "duration": "0:22",
+          "unit": "Unit 1",
+          "transcript": "Hello! Welcome to your English class. My name is Alex. I am curious about the world, and I love learning new things. Today, we will start a new journey together. Listen carefully, ask questions, and be kind to your classmates. A little practice every day makes a big difference. Let us begin."
+        }
+      ]
+    },
+    {
+      "id": "a-world-of-stories",
+      "title": "A World of Stories",
+      "subtitle": "Read, imagine, discover",
+      "description": "Find your next favourite story and practise reading for meaning, detail, and new perspectives.",
+      "level": "B1",
+      "color": "blue",
+      "category": "Reading",
+      "resources": []
+    }
+  ],
+  "lessons": [
+    {
+      "id": "reading-between-lines",
+      "title": "Reading between the lines",
+      "description": "Find the meaning that a writer leaves unsaid.",
+      "level": "B1",
+      "category": "Reading",
+      "minutes": 10,
+      "sections": [
+        {
+          "title": "Look for clues",
+          "body": "Writers do not always tell you everything directly. Read this sentence. 'Mia looked at the dark clouds and put an umbrella in her bag.' We can infer that Mia thinks it might rain."
+        },
+        {
+          "title": "Use evidence",
+          "body": "An inference is a conclusion based on clues. It is different from a random guess. Look for actions, descriptions, and word choices that support your idea. Ask yourself what you know and what the text shows."
+        }
+      ],
+      "question": "'Leo checked his watch three times while waiting.' What can you infer?",
+      "options": [
+        "Leo is probably impatient or worried about time.",
+        "Leo has three watches.",
+        "Leo is learning to tell time."
+      ],
+      "answer": 0,
+      "explanation": "Repeatedly checking a watch suggests that time matters to Leo in this moment."
+    },
+    {
+      "id": "word-families",
+      "title": "One word, many possibilities",
+      "description": "Build your vocabulary through word families.",
+      "level": "B1",
+      "category": "Vocabulary",
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Meet a word family",
+          "body": "Words often belong to a family. Think of create, creative, creativity, and creation. They share a central meaning, but their roles in a sentence differ. Create is a verb. Creative is an adjective. Creativity and creation are nouns."
+        },
+        {
+          "title": "Notice the ending",
+          "body": "Endings can give you clues. Many nouns end in -tion or -ity. Many adjectives end in -ful or -ive. Learn a word with its family and write one sentence for each form."
+        }
+      ],
+      "question": "Which word is an adjective?",
+      "options": ["Creativity", "Create", "Creative"],
+      "answer": 2,
+      "explanation": "Creative describes a person or thing, so it is an adjective."
+    },
+    {
+      "id": "linking-ideas",
+      "title": "Make your ideas flow",
+      "description": "Connect a reason, a result, and a contrast.",
+      "level": "B1",
+      "category": "Grammar",
+      "wordIds": [
+        "challenge",
+        "solution",
+        "confident",
+        "consequence",
+        "habit",
+        "improve"
+      ],
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Choose the right connection",
+          "body": "Although introduces a contrast within a sentence. 'Although the task was a challenge, we found a solution.' However introduces a contrasting sentence. 'The plan was ambitious. However, our group had enough time.' As a result introduces a consequence. 'We practised daily. As a result, we felt more confident.'"
+        },
+        {
+          "title": "Build a short paragraph",
+          "body": "Write three sentences about learning a language. Explain one reason, one result, and one contrast. Check that each linking phrase matches the relationship between your ideas. Read the paragraph aloud."
+        }
+      ],
+      "question": "Which phrase correctly completes the second sentence? We practised daily. _____, we felt more confident.",
+      "options": ["As a result", "Although", "However"],
+      "answer": 0,
+      "explanation": "Feeling more confident is a consequence of daily practice, so as a result fits the relationship."
+    },
+    {
+      "id": "email-request",
+      "title": "A clear request",
+      "description": "Write a short message that is easy to answer.",
+      "level": "B1",
+      "category": "Writing",
+      "wordIds": [
+        "independent",
+        "opportunity",
+        "volunteer",
+        "suggest",
+        "useful",
+        "message"
+      ],
+      "minutes": 5,
+      "sections": [
+        {
+          "title": "Give just enough context",
+          "body": "Start with why you are writing. 'I am organising our reading group.' Then make one clear request. 'Could you suggest a book for independent learners?' Include a useful date if you need a reply by a particular time."
+        },
+        {
+          "title": "Read it as the recipient",
+          "body": "Check that the reader can tell what you want and when you need it. Finish politely. 'Thank you for your help.' Write a message asking about an opportunity to volunteer. Remove any details the reader does not need."
+        }
+      ],
+      "question": "Which request is easiest to answer?",
+      "options": [
+        "Please help with everything.",
+        "I have many questions about our group.",
+        "Could you suggest one book for our reading group by Friday?"
+      ],
+      "answer": 2,
+      "explanation": "The request specifies one action, the purpose, and a useful reply date."
+    }
+  ]
+}

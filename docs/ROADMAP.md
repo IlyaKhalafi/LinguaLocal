@@ -36,7 +36,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [x] Local address discovery and join QR codes
 - [x] Server configuration archives and storage diagnostics
 - [x] Content diagnostics for missing media and unused files
-- [ ] At least 150 original words, 10 new lessons, a pack gallery, and validation tools
+- [x] At least 150 original words, 10 new lessons, a pack gallery, and validation tools
 - [ ] Contributor templates, changelog, and release packaging
 
 Offline browser storage and microphone recording depend on browser capabilities. HTTPS on the school network enables service workers and microphone access. Plain HTTP continues to support the local learning hub. Personal reports contain the information students choose to share and do not verify identity.
