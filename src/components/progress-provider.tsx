@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { useLocale } from "./locale-provider";
-import { z } from "zod";
+import { progressSchema } from "@/lib/progress-schema";
 import {
   dayKey,
   emptyProgress,
@@ -17,31 +17,6 @@ import {
 } from "@/lib/learning";
 
 const STORAGE_KEY = "lingualocal.progress.v1";
-const progressSchema = z.object({
-  saved: z.array(z.string()).max(20000),
-  completed: z.array(z.string()).max(1000),
-  reviews: z.record(
-    z.string(),
-    z.object({
-      interval: z.number().min(0).max(180),
-      due: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-      repetitions: z.number().int().nonnegative(),
-    }),
-  ),
-  attempts: z
-    .array(
-      z.object({
-        id: z.string(),
-        title: z.string(),
-        score: z.number().nonnegative(),
-        total: z.number().positive(),
-        date: z.iso.datetime(),
-      }),
-    )
-    .max(100),
-  activity: z.record(z.string(), z.number().nonnegative()),
-  goal: z.number().int().min(1).max(100),
-});
 let cachedRaw: string | null | undefined;
 let cached = emptyProgress;
 let memoryFallback = false;
