@@ -3,6 +3,7 @@ import { useLocale } from "@/components/locale-provider";
 import { useEffect, useRef, useState } from "react";
 import { Repeat2, RotateCcw } from "lucide-react";
 import type { Resource } from "@/lib/schema";
+import { useMediaLoop } from "@/lib/use-media-loop";
 
 export function mediaUrl(file: string) {
   return `/api/media/${file.split("/").map(encodeURIComponent).join("/")}`;
@@ -19,13 +20,34 @@ export function MediaPlayer({
   const { t } = useLocale();
   const audio = useRef<HTMLAudioElement>(null);
   const video = useRef<HTMLVideoElement>(null);
+  const captionTrack = useRef<HTMLTrackElement>(null);
   const [speed, setSpeed] = useState(1);
   const [error, setError] = useState("");
+  const [captionError, setCaptionError] = useState("");
   const [start, setStart] = useState<number | null>(null);
   const [end, setEnd] = useState<number | null>(null);
   const [loop, setLoop] = useState(false);
   const [captions, setCaptions] = useState(false);
+  useMediaLoop(resource.kind === "video" ? video : audio, loop, start, end);
   const section = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const track = captionTrack.current;
+    if (!track) return;
+    let mounted = true;
+    const failed = () => {
+      if (!mounted) return;
+      setCaptionError(
+        "Captions could not be loaded. Ask your school to check the caption file.",
+      );
+      setCaptions(false);
+    };
+    track.addEventListener("error", failed);
+    if (track.readyState === HTMLTrackElement.ERROR) queueMicrotask(failed);
+    return () => {
+      mounted = false;
+      track.removeEventListener("error", failed);
+    };
+  }, []);
   useEffect(() => {
     const player = audio.current ?? video.current;
     void player?.play().catch(() => setError("Press play to start playback."));
@@ -129,15 +151,11 @@ export function MediaPlayer({
         <video {...properties} ref={video} playsInline>
           {resource.captions && (
             <track
+              ref={captionTrack}
               kind="captions"
               src={mediaUrl(resource.captions)}
               srcLang="en"
               label="English"
-              onError={() =>
-                setError(
-                  "Captions could not be loaded. Ask your school to check the caption file.",
-                )
-              }
             />
           )}
         </video>
@@ -149,6 +167,7 @@ export function MediaPlayer({
           <button
             className={`button ${captions ? "primary" : "secondary"}`}
             aria-pressed={captions}
+            disabled={Boolean(captionError)}
             onClick={() => {
               const player = media();
               const track =
@@ -163,15 +182,18 @@ export function MediaPlayer({
         )}
         <label htmlFor="playback-speed">{t("Playback speed")}</label>
         <select
+          dir="ltr"
           id="playback-speed"
           value={speed}
           onChange={(e) => changeSpeed(Number(e.target.value))}
         >
-          {[0.5, 0.75, 1, 1.25, 1.5, 2].map((value) => (
-            <option key={value} value={value}>
-              {t("{count}", { count: value })}×
-            </option>
-          ))}
+          {[...new Set([0.5, 0.75, 1, 1.25, 1.5, 2, speed])]
+            .sort((a, b) => a - b)
+            .map((value) => (
+              <option key={value} value={value}>
+                {t("{count}", { count: value })}×
+              </option>
+            ))}
         </select>
         <button
           className="button secondary"
@@ -219,6 +241,11 @@ export function MediaPlayer({
       {error && (
         <p className="inline-message" role="alert">
           {t(error)}
+        </p>
+      )}
+      {captionError && (
+        <p className="inline-message" role="alert">
+          {t(captionError)}
         </p>
       )}
       {resource.transcript && (
