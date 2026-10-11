@@ -140,7 +140,6 @@
   "Show captions": "Altyazıları göster",
   "Show network address": "Ağ adresini göster",
   "Show word. {definition} {example}": "Kelimeyi göster. {definition} {example}",
-  "Showing the first 100 matches. Refine your search to find a specific word.": "İlk 100 sonuç gösteriliyor. Belirli bir kelimeyi bulmak için aramayı daraltın.",
   "Skip to content": "İçeriğe geç",
   "Speaking": "Konuşma",
   "Start": "Başla",
@@ -213,5 +212,9 @@
   "Scan to open LinguaLocal": "LinguaLocal uygulamasını açmak için tarayın",
   "QR code unavailable. Use the address above.": "QR kodu kullanılamıyor. Yukarıdaki adresi kullanın.",
   "School address": "Okul adresi",
-  "Hide network address": "Ağ adresini gizle"
+  "Hide network address": "Ağ adresini gizle",
+  "Result pages": "Sonuç sayfaları",
+  "Previous page": "Önceki sayfa",
+  "Next page": "Sonraki sayfa",
+  "Page {current} of {total}": "{total} sayfadan {current}. sayfa"
 }

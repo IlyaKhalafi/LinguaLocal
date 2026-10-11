@@ -2961,3 +2961,32 @@ button:disabled {
 .resource-list .tabs {
   margin-block-end: 18px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+[dir="rtl"] .pagination .lucide-arrow-left {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 600px) {
+  .pagination {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .pagination > span {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+  }
+  .pagination .button {
+    padding-inline: 12px;
+  }
+}

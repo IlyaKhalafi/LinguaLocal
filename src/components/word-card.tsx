@@ -1,7 +1,7 @@
 "use client";
 import { useLocale } from "./locale-provider";
 import { Bookmark, Check, Volume2 } from "lucide-react";
-import { useState } from "react";
+import { useState, type Ref } from "react";
 import type { Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { Badge } from "./ui";
@@ -10,9 +10,13 @@ import { localEnglishVoice } from "@/lib/pronunciation";
 export function WordCard({
   word,
   featured = false,
+  onSavedChange,
+  saveButtonRef,
 }: {
   word: Word;
   featured?: boolean;
+  onSavedChange?: () => void;
+  saveButtonRef?: Ref<HTMLButtonElement>;
 }) {
   const { t, locale, dir } = useLocale();
   const { progress, toggleSaved } = useProgress();
@@ -62,12 +66,16 @@ export function WordCard({
         </div>
         <button
           lang={locale}
+          ref={saveButtonRef}
           className={`icon-button save-button ${saved ? "saved" : ""}`}
           aria-label={t(saved ? "Unsave {word}" : "Save {word}", {
             word: word.word,
           })}
           aria-pressed={saved}
-          onClick={() => toggleSaved(word.id)}
+          onClick={() => {
+            toggleSaved(word.id);
+            onSavedChange?.();
+          }}
         >
           {saved ? <Check size={18} /> : <Bookmark size={18} />}
         </button>

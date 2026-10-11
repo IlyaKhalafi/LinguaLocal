@@ -140,7 +140,6 @@
   "Show captions": "إظهار الترجمة",
   "Show network address": "إظهار عنوان الشبكة",
   "Show word. {definition} {example}": "إظهار الكلمة. {definition} {example}",
-  "Showing the first 100 matches. Refine your search to find a specific word.": "يتم عرض أول ١٠٠ نتيجة. دقّق البحث للعثور على كلمة محددة.",
   "Skip to content": "انتقل إلى المحتوى",
   "Speaking": "المحادثة",
   "Start": "ابدأ",
@@ -213,5 +212,9 @@
   "Scan to open LinguaLocal": "امسح الرمز لفتح LinguaLocal",
   "QR code unavailable. Use the address above.": "رمز QR غير متاح. استخدم العنوان أعلاه.",
   "School address": "عنوان المدرسة",
-  "Hide network address": "إخفاء عنوان الشبكة"
+  "Hide network address": "إخفاء عنوان الشبكة",
+  "Result pages": "صفحات النتائج",
+  "Previous page": "الصفحة السابقة",
+  "Next page": "الصفحة التالية",
+  "Page {current} of {total}": "الصفحة {current} من {total}"
 }

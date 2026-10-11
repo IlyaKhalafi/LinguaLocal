@@ -140,7 +140,6 @@
   "Show captions": "Show captions",
   "Show network address": "Show network address",
   "Show word. {definition} {example}": "Show word. {definition} {example}",
-  "Showing the first 100 matches. Refine your search to find a specific word.": "Showing the first 100 matches. Refine your search to find a specific word.",
   "Skip to content": "Skip to content",
   "Speaking": "Speaking",
   "Start": "Start",
@@ -213,5 +212,9 @@
   "Scan to open LinguaLocal": "Scan to open LinguaLocal",
   "QR code unavailable. Use the address above.": "QR code unavailable. Use the address above.",
   "School address": "School address",
-  "Hide network address": "Hide network address"
+  "Hide network address": "Hide network address",
+  "Result pages": "Result pages",
+  "Previous page": "Previous page",
+  "Next page": "Next page",
+  "Page {current} of {total}": "Page {current} of {total}"
 }
