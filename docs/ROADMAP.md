@@ -28,7 +28,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [ ] Keyboard and accessibility coverage for every new workflow
 - [x] Reading size, spacing, bundled reading font, and contrast
 - [x] Quiet mode with reduced decoration and motion
-- [ ] Dark appearance
+- [x] Dark appearance
 - [x] English, Persian, Arabic, and Turkish interfaces with right-to-left support
 
 ## Owning the hub

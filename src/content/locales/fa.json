@@ -251,5 +251,11 @@
   "Local pronunciation is unavailable in this browser.": "تلفظ محلی در این مرورگر در دسترس نیست.",
   "Install an English voice on this device to use listening practice.": "برای تمرین شنیداری، صدای انگلیسی را روی این دستگاه نصب کنید.",
   "Spell, listen, and complete sentences.": "املا، شنیدن و کامل کردن جمله‌ها.",
-  "Choose another practice": "انتخاب تمرین دیگر"
+  "Choose another practice": "انتخاب تمرین دیگر",
+  "Appearance": "ظاهر",
+  "Light": "روشن",
+  "Dark": "تیره",
+  "Device setting": "تنظیم دستگاه",
+  "Dark appearance is unavailable in this browser.": "ظاهر تیره در این مرورگر در دسترس نیست.",
+  "Preferences will reset when this page is reloaded.": "با بارگذاری دوباره صفحه، تنظیمات بازنشانی می‌شوند."
 }

@@ -180,7 +180,7 @@ export function ProgressDashboard({
         </div>
         <aside>
           <section className="panel goal-panel">
-            <h3>{t("Daily goal")}</h3>
+            <h2>{t("Daily goal")}</h2>
             <div
               className="goal-circle"
               style={

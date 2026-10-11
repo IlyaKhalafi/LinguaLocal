@@ -251,5 +251,11 @@
   "Local pronunciation is unavailable in this browser.": "النطق المحلي غير متاح في هذا المتصفح.",
   "Install an English voice on this device to use listening practice.": "ثبّت صوتًا إنجليزيًا على هذا الجهاز لاستخدام تدريب الاستماع.",
   "Spell, listen, and complete sentences.": "تدرّب على الإملاء والاستماع وإكمال الجمل.",
-  "Choose another practice": "اختر تدريبًا آخر"
+  "Choose another practice": "اختر تدريبًا آخر",
+  "Appearance": "المظهر",
+  "Light": "فاتح",
+  "Dark": "داكن",
+  "Device setting": "إعداد الجهاز",
+  "Dark appearance is unavailable in this browser.": "المظهر الداكن غير متاح في هذا المتصفح.",
+  "Preferences will reset when this page is reloaded.": "ستُعاد التفضيلات إلى الإعدادات الافتراضية عند إعادة تحميل الصفحة."
 }

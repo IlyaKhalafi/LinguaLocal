@@ -251,5 +251,11 @@
   "Local pronunciation is unavailable in this browser.": "Bu tarayıcıda yerel telaffuz kullanılamıyor.",
   "Install an English voice on this device to use listening practice.": "Dinleme alıştırması için bu cihaza İngilizce bir ses yükleyin.",
   "Spell, listen, and complete sentences.": "Yaz, dinle ve cümleleri tamamla.",
-  "Choose another practice": "Başka bir alıştırma seç"
+  "Choose another practice": "Başka bir alıştırma seç",
+  "Appearance": "Görünüm",
+  "Light": "Açık",
+  "Dark": "Koyu",
+  "Device setting": "Cihaz ayarı",
+  "Dark appearance is unavailable in this browser.": "Bu tarayıcıda koyu görünüm kullanılamıyor.",
+  "Preferences will reset when this page is reloaded.": "Sayfa yeniden yüklendiğinde tercihler sıfırlanır."
 }

@@ -81,3 +81,9 @@ Replay a captioned passage by its timestamp. Select text to look it up in the di
 Choose spelling, local listening, or gap fill. Use the whole dictionary, a level, or your saved words. Keyboard answers receive immediate feedback. Listening uses an English voice installed on the device.
 
 ![Practice](screenshots/practice-playing.png)
+
+### Dark appearance
+
+Use light or dark colours, or follow the device setting. Preferences survive a reload, while print views use light colours. Books retain their recognisable covers.
+
+![Dark appearance](screenshots/dark-overview.png)

@@ -5,6 +5,15 @@ import { usePreferences } from "./preferences-provider";
 import type { Preferences } from "@/lib/preferences";
 const choices = [
   {
+    key: "appearance",
+    label: "Appearance",
+    options: [
+      ["light", "Light"],
+      ["dark", "Dark"],
+      ["system", "Device setting"],
+    ],
+  },
+  {
     key: "size",
     label: "Reading size",
     options: [

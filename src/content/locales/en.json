@@ -251,5 +251,11 @@
   "Local pronunciation is unavailable in this browser.": "Local pronunciation is unavailable in this browser.",
   "Install an English voice on this device to use listening practice.": "Install an English voice on this device to use listening practice.",
   "Spell, listen, and complete sentences.": "Spell, listen, and complete sentences.",
-  "Choose another practice": "Choose another practice"
+  "Choose another practice": "Choose another practice",
+  "Appearance": "Appearance",
+  "Light": "Light",
+  "Dark": "Dark",
+  "Device setting": "Device setting",
+  "Dark appearance is unavailable in this browser.": "Dark appearance is unavailable in this browser.",
+  "Preferences will reset when this page is reloaded.": "Preferences will reset when this page is reloaded."
 }

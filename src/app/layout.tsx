@@ -3,6 +3,7 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/noto-sans-arabic";
 import "@fontsource-variable/atkinson-hyperlegible-next";
 import "./globals.css";
+import "./theme.css";
 import "./reading.css";
 import { getRequestPreferences } from "@/lib/preferences-server";
 import { preferenceAttributes } from "@/lib/preferences";

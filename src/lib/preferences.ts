@@ -1,6 +1,7 @@
 import { z } from "zod";
 export const PREFERENCES_COOKIE = "lingualocal.preferences";
 export const preferencesSchema = z.object({
+  appearance: z.enum(["light", "dark", "system"]).default("light"),
   size: z.enum(["standard", "large"]).default("standard"),
   spacing: z.enum(["standard", "relaxed"]).default("standard"),
   font: z.enum(["default", "readable"]).default("default"),
@@ -22,6 +23,7 @@ export function parsePreferences(value?: string): Preferences {
 }
 export function preferenceAttributes(preferences: Preferences) {
   return {
+    "data-appearance": preferences.appearance,
     "data-reading-size": preferences.size,
     "data-reading-spacing": preferences.spacing,
     "data-reading-font": preferences.font,

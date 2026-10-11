@@ -14,6 +14,8 @@ const translatedPreviews = new Set([
   "settings",
   "join-network",
   "reading-settings",
+  "dark-settings",
+  "dark-overview",
 ]);
 
 async function capture(page: Page, name: string, locale: Locale) {
@@ -133,6 +135,27 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
     .getByLabel(translate(locale, "Quiet mode"), { exact: true })
     .check();
   await capture(page, "reading-settings", locale);
+  await page
+    .getByLabel(translate(locale, "Reading size"))
+    .selectOption("standard");
+  await page
+    .getByLabel(translate(locale, "Line spacing"))
+    .selectOption("standard");
+  await page
+    .getByLabel(translate(locale, "Reading font"))
+    .selectOption("default");
+  await page
+    .getByLabel(translate(locale, "High contrast"), { exact: true })
+    .uncheck();
+  await page
+    .getByLabel(translate(locale, "Quiet mode"), { exact: true })
+    .uncheck();
+  await page
+    .getByLabel(translate(locale, "Appearance"), { exact: true })
+    .selectOption("dark");
+  await capture(page, "dark-settings", locale);
+  await page.goto(base + "/");
+  await capture(page, "dark-overview", locale);
   await page.close();
 }
 

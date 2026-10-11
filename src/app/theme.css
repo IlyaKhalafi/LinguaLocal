@@ -1,0 +1,81 @@
+:root {
+  color-scheme: light;
+  --radius: 16px;
+  --bg: light-dark(#f8f9f7, #111a16);
+  --surface: light-dark(#fff, #19261f);
+  --ink: light-dark(#243f36, #e7efe8);
+  --text: light-dark(#34433e, #d4dfd7);
+  --muted: light-dark(#667362, #a8b8aa);
+  --green: light-dark(#356d52, #a0c9ac);
+  --green-dark: light-dark(#214d39, #a0c9ac);
+  --line: light-dark(#e7ebe5, #435449);
+  --control-line: light-dark(#81907a, #72947d);
+  --soft: light-dark(#eef3ec, #26382d);
+  --on-accent: light-dark(white, #14291c);
+  --subtle: light-dark(#5c6c53, #b2bfac);
+  --accent-hover: light-dark(#34684d, #b5d8be);
+  --nav-text: light-dark(#62705c, #b2bfac);
+  --badge-text: light-dark(#54614c, #b2bfac);
+  --success-text: light-dark(#4a744a, #b1d5a3);
+  --choice-text: light-dark(#65755f, #c7d5c0);
+  --matching-text: light-dark(#677b5a, #c7d5c0);
+  --flashcard-text: light-dark(#3d5934, #e3efd9);
+  --score-text: light-dark(#6b8b51, #b6d7a0);
+  --goal-text: light-dark(#5e7d4b, #b6d7a0);
+  --summary-text: light-dark(#607451, #b6d7a0);
+  --network-text: light-dark(#3f6032, #c0ddad);
+  --file-text: light-dark(#385532, #c0ddad);
+  --hero-text: light-dark(#587547, #b6d7a0);
+  --goal-subtext: light-dark(#65765a, #b2bfac);
+  --lesson-caption: light-dark(#526946, #b2bfac);
+  --hover-surface: light-dark(#f6f8f4, #223127);
+  --header: light-dark(#fbfcfa, #17231c);
+}
+html[data-appearance="dark"] {
+  color-scheme: dark;
+}
+html[data-appearance="system"] {
+  color-scheme: light dark;
+}
+@media print {
+  :root {
+    color-scheme: light !important;
+  }
+}
+
+@supports not (color: light-dark(white, black)) {
+  :root {
+    --bg: #f8f9f7;
+    --surface: #fff;
+    --ink: #243f36;
+    --text: #34433e;
+    --muted: #667362;
+    --green: #356d52;
+    --green-dark: #214d39;
+    --line: #e7ebe5;
+    --control-line: #81907a;
+    --soft: #eef3ec;
+    --on-accent: white;
+    --subtle: #5c6c53;
+    --accent-hover: #34684d;
+    --nav-text: #62705c;
+    --badge-text: #54614c;
+    --success-text: #4a744a;
+    --choice-text: #65755f;
+    --matching-text: #677b5a;
+    --flashcard-text: #3d5934;
+    --score-text: #6b8b51;
+    --goal-text: #5e7d4b;
+    --summary-text: #607451;
+    --network-text: #3f6032;
+    --file-text: #385532;
+    --hero-text: #587547;
+    --goal-subtext: #65765a;
+    --lesson-caption: #526946;
+    --hover-surface: #f6f8f4;
+    --header: #fbfcfa;
+  }
+  html[data-appearance] {
+    color-scheme: light !important;
+  }
+}

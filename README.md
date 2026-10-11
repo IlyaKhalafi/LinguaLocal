@@ -45,6 +45,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Matching game                  | Pair words and definitions without a timer or leaderboard                                               | [Matching](docs/screenshots/matching-playing.png)            |
 | Spaced flashcards              | Study all words, saved words, or cards ready for review                                                 | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Written and listening practice | Spell words, complete sentences, and use a local English voice                                          | [Practice](docs/screenshots/practice-playing.png)            |
+| Appearance                     | Choose light, dark, or your device setting alongside reading and quiet preferences                      | [Dark appearance](docs/screenshots/dark-overview.png)        |
 | Owner content tools            | Import vocabulary spreadsheets, convert subtitles, diagnose files, and create portable server snapshots | [Content tools](docs/CONTENT.md)                             |
 | Learning progress              | See an eight-week activity map, streaks, completed lessons, and recent results                          | [Progress](docs/screenshots/progress.png)                    |
 | School network                 | Reveal a shareable school address and scan a local QR code                                              | [Join the school network](docs/screenshots/join-network.png) |

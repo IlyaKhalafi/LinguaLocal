@@ -106,16 +106,23 @@ export function Cover({
     </div>
   );
 }
-export function BookCard({ book }: { book: Book }) {
+export function BookCard({
+  book,
+  headingLevel = 2,
+}: {
+  book: Book;
+  headingLevel?: 2 | 3;
+}) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   const { t } = useLocale();
   return (
     <Link className="book-card" href={`/library/${book.id}`}>
       <Cover book={book} />
       <div className="book-info">
         <div>
-          <h3 lang="en" dir="ltr">
+          <Heading lang="en" dir="ltr">
             {book.title}
-          </h3>
+          </Heading>
           <p lang="en" dir="ltr">
             {book.category}
           </p>

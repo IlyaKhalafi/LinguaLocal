@@ -90,9 +90,9 @@ export function Lessons({ lessons }: { lessons: Lesson[] }) {
                 </Badge>
                 <Badge>{lesson.level}</Badge>
               </div>
-              <h3 lang="en" dir="ltr">
+              <h2 lang="en" dir="ltr">
                 {lesson.title}
-              </h3>
+              </h2>
               <p lang="en" dir="ltr">
                 {lesson.description}
               </p>

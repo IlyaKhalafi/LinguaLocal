@@ -139,6 +139,7 @@ export function Shell({
       )}
       <aside
         id="school-navigation"
+        aria-label={settings.name}
         ref={sidebar}
         className={`sidebar ${open ? "is-open" : ""}`}
         inert={mobile && !open}

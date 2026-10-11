@@ -52,16 +52,16 @@ export function Overview({
           </div>
           <div className="book-grid">
             {content.books.slice(0, 3).map((book) => (
-              <BookCard book={book} key={book.id} />
+              <BookCard headingLevel={3} book={book} key={book.id} />
             ))}
           </div>
           {!content.books.length && (
             <p className="muted">{t("No books available.")}</p>
           )}
         </section>
-        <aside className="dashboard-aside">
+        <div className="dashboard-aside">
           <div className="panel goal-panel">
-            <h3>{t("Daily goal")}</h3>
+            <h2>{t("Daily goal")}</h2>
             <div
               className="goal-circle"
               style={
@@ -84,7 +84,7 @@ export function Overview({
             <h2 className="section-title">{t("Word of the day")}</h2>
             <WordCard featured word={word} />
           </div>
-        </aside>
+        </div>
       </div>
     </>
   );

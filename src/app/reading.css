@@ -16,7 +16,7 @@
 }
 .reading-controls {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
@@ -75,9 +75,10 @@ html[data-reading-spacing="relaxed"] :is(:lang(fa), :lang(ar)) {
   letter-spacing: normal;
 }
 html[data-contrast="true"] {
-  --line: #839384;
-  --text: #142f24;
-  --muted: #243f36;
+  --line: light-dark(#839384, #94b29e);
+  --text: light-dark(#142f24, #f1faf3);
+  --muted: light-dark(#243f36, #e1efe5);
+  --subtle: light-dark(#243f36, #e1efe5);
 }
 html[data-contrast="true"]
   :is(
@@ -85,7 +86,8 @@ html[data-contrast="true"]
     .word-example,
     .word-bottom,
     .matching-tile,
-    .detail-description
+    .detail-description,
+    .lesson-section p
   ) {
   color: var(--ink);
 }
@@ -121,5 +123,14 @@ html[data-quiet="true"] *::after {
 @media (max-width: 700px) {
   .reading-controls {
     grid-template-columns: 1fr;
+  }
+}
+
+@supports not (color: light-dark(white, black)) {
+  html[data-contrast="true"] {
+    --line: #839384;
+    --text: #142f24;
+    --muted: #243f36;
+    --subtle: #243f36;
   }
 }

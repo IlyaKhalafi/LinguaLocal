@@ -53,7 +53,7 @@ export function Games() {
               <Sparkles size={28} strokeWidth={1} />
             </div>
             <div className="game-card-copy">
-              <h3>{t(title)}</h3>
+              <h2>{t(title)}</h2>
               <p>{t(description)}</p>
               <Link
                 className="button secondary"

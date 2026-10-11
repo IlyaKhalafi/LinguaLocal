@@ -19,6 +19,7 @@ export function WordCard({
   saveButtonRef?: Ref<HTMLButtonElement>;
 }) {
   const { t, locale, dir } = useLocale();
+  const Heading = featured ? "h3" : "h2";
   const { progress, toggleSaved } = useProgress();
   const [message, setMessage] = useState("");
   const saved = progress.saved.includes(word.id);
@@ -50,7 +51,7 @@ export function WordCard({
       <div className="word-top">
         <div>
           <div className="word-title">
-            <h2>{word.word}</h2>
+            <Heading>{word.word}</Heading>
             <button
               className="icon-button"
               lang={locale}
