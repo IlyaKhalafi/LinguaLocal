@@ -96,6 +96,7 @@ export function ContentStudio({
         event.target instanceof Element
           ? event.target.closest("a[href]")
           : null;
+      if (anchor?.hasAttribute("download")) return;
       if (
         anchor &&
         !window.confirm(
@@ -449,7 +450,8 @@ export function ContentStudio({
                 <div>
                   <h3>{item.title}</h3>
                   <p>
-                    {item.level} · {item.resources.length} resources
+                    {item.level} · {item.resources.length}{" "}
+                    {item.resources.length === 1 ? "resource" : "resources"}
                   </p>
                 </div>
                 <button
@@ -693,6 +695,7 @@ export function ContentStudio({
                 </p>
               </div>
               <a
+                download
                 className="icon-button"
                 href={`/api/media/${file.file.split("/").map(encodeURIComponent).join("/")}?download=1`}
                 aria-label={`Download ${file.file}`}
