@@ -8,7 +8,6 @@ import {
   Download,
   Plus,
   Save,
-  Trash2,
   Upload,
 } from "lucide-react";
 import {
@@ -27,6 +26,7 @@ import { Badge, downloadJson, PageHeading } from "./ui";
 import { BookEditor } from "./book-editor";
 import { WordEditor } from "./word-editor";
 import { LessonEditor } from "./lesson-editor";
+import { StudioRemove } from "./studio-remove";
 import { clearDraft, storeDraft, useStudioDraft } from "@/lib/studio-draft";
 
 function slug(value: string) {
@@ -81,6 +81,7 @@ export function ContentStudio({
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [draftStored, setDraftStored] = useState(true);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const draft = useStudioDraft();
   useEffect(() => {
@@ -90,7 +91,7 @@ export function ContentStudio({
     }
     window.addEventListener("beforeunload", warn);
     function guard(event: MouseEvent) {
-      if (!book && !word && !lesson) return;
+      if (!book && !word && !lesson && (!dirty || draftStored)) return;
       const anchor =
         event.target instanceof Element
           ? event.target.closest("a[href]")
@@ -98,7 +99,9 @@ export function ContentStudio({
       if (
         anchor &&
         !window.confirm(
-          "This item has not been kept in the draft. Leave this edit?",
+          book || word || lesson
+            ? "This item has not been kept in the draft. Leave this edit?"
+            : "Browser storage is unavailable. Leave this page and lose your draft? Download a copy to keep it.",
         )
       ) {
         event.preventDefault();
@@ -110,11 +113,12 @@ export function ContentStudio({
       window.removeEventListener("beforeunload", warn);
       document.removeEventListener("click", guard, true);
     };
-  }, [dirty, book, word, lesson]);
+  }, [dirty, draftStored, book, word, lesson]);
   function change(next: ContentPack) {
     setContent(next);
     setDirty(true);
     const stored = storeDraft(next, version);
+    setDraftStored(stored);
     setMessage(
       stored
         ? "Your draft is kept in this browser. Save the collection to make it available to everyone."
@@ -123,7 +127,15 @@ export function ContentStudio({
   }
   async function loadFiles() {
     try {
-      setFiles((await requestJson<{ files: MediaFile[] }>("/api/media")).files);
+      const result = await requestJson<{
+        files: MediaFile[];
+        truncated: boolean;
+      }>("/api/media");
+      setFiles(result.files);
+      if (result.truncated)
+        setMessage(
+          "Showing the first 2,000 media files. You can enter another relative filename directly in a resource.",
+        );
     } catch (error) {
       setMessage(
         error instanceof Error ? error.message : "Unable to load files.",
@@ -288,6 +300,19 @@ export function ContentStudio({
     setLesson(null);
     setEditingId(null);
   }
+  function removeItem(kind: "books" | "words" | "lessons", id: string) {
+    if (kind === "words" && content.words.length <= 4) {
+      setMessage(
+        "Keep at least four words so vocabulary games remain available.",
+      );
+      return;
+    }
+    change({
+      ...content,
+      [kind]: content[kind].filter((item) => item.id !== id),
+    });
+    setConfirmDelete(null);
+  }
   return (
     <>
       <Link className="back-link" href="/settings">
@@ -339,10 +364,12 @@ export function ContentStudio({
           <div className="button-row" style={{ marginTop: 12 }}>
             <button
               className="button secondary"
+              disabled={!!book || !!word || !!lesson || busy}
               onClick={() => {
                 setContent(draft.content);
                 setVersion(draft.version);
                 setDirty(true);
+                setDraftStored(true);
                 setMessage(
                   "Draft restored. Save it to share your collection. If the school collection changed, download this draft and reapply it to the latest version.",
                 );
@@ -395,15 +422,13 @@ export function ContentStudio({
           </button>
         ))}
       </div>
-      {message && (
-        <p
-          className="inline-message"
-          role="status"
-          style={{ marginBottom: 22 }}
-        >
-          {message}
-        </p>
-      )}
+      <p
+        className={message ? "inline-message" : "sr-only"}
+        role="status"
+        style={message ? { marginBottom: 22 } : undefined}
+      >
+        {message}
+      </p>
       {tab === "books" && (
         <div className="studio-layout">
           <section className="panel">
@@ -435,40 +460,15 @@ export function ContentStudio({
                 >
                   Edit
                 </button>
-                <button
-                  className="icon-button"
-                  aria-label={`Remove ${item.title}`}
-                  onClick={() => setConfirmDelete(item.id)}
-                >
-                  <Trash2 size={15} />
-                </button>
-                {confirmDelete === item.id && (
-                  <div className="studio-delete">
-                    <p>
-                      Remove this book from the draft? Media files will stay on
-                      the server.
-                    </p>
-                    <button
-                      className="button secondary"
-                      onClick={() => setConfirmDelete(null)}
-                    >
-                      Keep book
-                    </button>
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        change({
-                          ...content,
-                          books: content.books.filter((b) => b.id !== item.id),
-                        });
-                        setConfirmDelete(null);
-                        if (book?.id === item.id) setBook(null);
-                      }}
-                    >
-                      Remove book
-                    </button>
-                  </div>
-                )}
+                <StudioRemove
+                  title={item.title}
+                  noun="book"
+                  disabled={!!book || !!word || !!lesson || busy}
+                  confirmed={confirmDelete === item.id}
+                  onConfirm={() => setConfirmDelete(item.id)}
+                  onCancel={() => setConfirmDelete(null)}
+                  onRemove={() => removeItem("books", item.id)}
+                />
               </div>
             ))}
           </section>
@@ -539,6 +539,15 @@ export function ContentStudio({
                   >
                     Edit
                   </button>
+                  <StudioRemove
+                    title={item.word}
+                    noun="word"
+                    disabled={!!book || !!word || !!lesson || busy}
+                    confirmed={confirmDelete === item.id}
+                    onConfirm={() => setConfirmDelete(item.id)}
+                    onCancel={() => setConfirmDelete(null)}
+                    onRemove={() => removeItem("words", item.id)}
+                  />
                 </div>
               ))}
             {content.words.length > 200 && (
@@ -597,6 +606,15 @@ export function ContentStudio({
                 >
                   Edit
                 </button>
+                <StudioRemove
+                  title={item.title}
+                  noun="lesson"
+                  disabled={!!book || !!word || !!lesson || busy}
+                  confirmed={confirmDelete === item.id}
+                  onConfirm={() => setConfirmDelete(item.id)}
+                  onCancel={() => setConfirmDelete(null)}
+                  onRemove={() => removeItem("lessons", item.id)}
+                />
               </div>
             ))}
           </section>
@@ -626,34 +644,37 @@ export function ContentStudio({
               <h2>Your media collection</h2>
               <p>Upload a file, then connect it to a book.</p>
             </div>
-            <label className="button secondary" htmlFor="studio-upload">
+            <label
+              className="button secondary upload-control"
+              htmlFor="studio-upload"
+            >
               <Upload size={14} />
               {busy ? "Uploading..." : "Add media"}
+              <input
+                className="sr-only"
+                id="studio-upload"
+                type="file"
+                accept=".mp3,.wav,.ogg,.m4a,.flac,.mp4,.webm,.pdf,.vtt"
+                disabled={busy}
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setBusy(true);
+                  try {
+                    const result = await uploadMedia(file);
+                    setMessage(`Your file is ready to connect ${result.file}`);
+                    await loadFiles();
+                  } catch (error) {
+                    setMessage(
+                      error instanceof Error ? error.message : "Upload failed.",
+                    );
+                  } finally {
+                    setBusy(false);
+                    e.target.value = "";
+                  }
+                }}
+              />
             </label>
-            <input
-              className="sr-only"
-              id="studio-upload"
-              type="file"
-              accept=".mp3,.wav,.ogg,.m4a,.flac,.mp4,.webm,.pdf,.vtt"
-              disabled={busy}
-              onChange={async (e) => {
-                const file = e.target.files?.[0];
-                if (!file) return;
-                setBusy(true);
-                try {
-                  const result = await uploadMedia(file);
-                  setMessage(`Your file is ready to connect ${result.file}`);
-                  await loadFiles();
-                } catch (error) {
-                  setMessage(
-                    error instanceof Error ? error.message : "Upload failed.",
-                  );
-                } finally {
-                  setBusy(false);
-                  e.target.value = "";
-                }
-              }}
-            />
           </div>
           {files.map((file) => (
             <div className="studio-row" key={file.file}>

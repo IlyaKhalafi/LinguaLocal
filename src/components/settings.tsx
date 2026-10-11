@@ -75,6 +75,16 @@ export function SchoolSettings({
   }
   return (
     <>
+      <p className="sr-only" role="status">
+        {[
+          message,
+          packMessage,
+          uploadBusy ? "Bringing your file into the library..." : uploadMessage,
+          backupMessage,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      </p>
       <PageHeading
         eyebrow="MAKE THIS SPACE YOUR OWN"
         title="A home for your school’s learning."
@@ -128,11 +138,7 @@ export function SchoolSettings({
                 <Save size={14} />
                 {busy ? "Saving..." : "Save your welcome"}
               </button>
-              {message && (
-                <p className="inline-message" role="status">
-                  {message}
-                </p>
-              )}
+              {message && <p className="inline-message">{message}</p>}
             </form>
           </section>
           <section className="panel settings-panel">
@@ -192,11 +198,7 @@ export function SchoolSettings({
                 </strong>
               </div>
             )}
-            {packMessage && (
-              <p className="inline-message" role="status">
-                {packMessage}
-              </p>
-            )}
+            {packMessage && <p className="inline-message">{packMessage}</p>}
             <button
               className="button primary"
               style={{ marginTop: 15 }}
@@ -280,7 +282,7 @@ export function SchoolSettings({
               </small>
             </div>
             {uploadBusy && (
-              <p className="inline-message" role="status">
+              <p className="inline-message">
                 Bringing your file into the library...
               </p>
             )}
@@ -288,7 +290,6 @@ export function SchoolSettings({
               <p
                 className="inline-message"
                 style={{ overflowWrap: "anywhere" }}
-                role="status"
               >
                 {uploadMessage}
               </p>
@@ -339,11 +340,7 @@ export function SchoolSettings({
                 }}
               />
             </div>
-            {backupMessage && (
-              <p className="inline-message" role="status">
-                {backupMessage}
-              </p>
-            )}
+            {backupMessage && <p className="inline-message">{backupMessage}</p>}
             {confirmReset ? (
               <div className="inline-message">
                 <p>

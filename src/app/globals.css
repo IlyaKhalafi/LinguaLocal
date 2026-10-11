@@ -580,7 +580,7 @@ label {
 }
 .hero-book.book-front {
   background: #edc7a4;
-  right: 133px;
+  right: 166px;
   top: 80px;
   transform: rotate(-14deg);
   color: #5c6c53;
@@ -2027,16 +2027,17 @@ label {
   }
   .hero-art {
     width: 35%;
-    opacity: 0.75;
+    opacity: 1;
   }
   .hero-book.book-front {
-    right: 39px;
+    right: 15px;
     top: 93px;
     width: 82px;
     height: 113px;
     font-size: 16px;
   }
   .hero-book.book-back {
+    display: none;
     right: -14px;
     top: 48px;
     width: 85px;
@@ -2618,6 +2619,10 @@ label {
   flex-wrap: wrap;
   gap: 10px;
 }
+.upload-control:focus-within {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
 .studio-delete p {
   width: 100%;
   margin-bottom: 8px;
@@ -2781,6 +2786,7 @@ label {
 }
 .word-preview > span:first-child {
   margin-right: 5px;
+  flex-basis: 100%;
 }
 .topbar-search {
   padding: 7px 9px;
@@ -2818,6 +2824,22 @@ label {
   }
   .practice-banner {
     padding: 17px;
+  }
+  .practice-banner .button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .toolbar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .toolbar .search-field {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+  .toolbar select {
+    width: 100%;
+    max-width: none;
   }
 }
 @media (max-width: 420px) {

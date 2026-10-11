@@ -20,6 +20,7 @@ export function MediaPlayer({
   const [start, setStart] = useState<number | null>(null);
   const [end, setEnd] = useState<number | null>(null);
   const [loop, setLoop] = useState(false);
+  const [captions, setCaptions] = useState(false);
   const section = useRef<HTMLElement>(null);
   useEffect(() => {
     section.current?.scrollIntoView({
@@ -29,6 +30,13 @@ export function MediaPlayer({
       block: "nearest",
     });
     section.current?.focus({ preventScroll: true });
+  }, []);
+  useEffect(() => {
+    const tracks = video.current?.textTracks;
+    if (!tracks) return;
+    const sync = () => setCaptions(tracks[0]?.mode === "showing");
+    tracks.addEventListener("change", sync);
+    return () => tracks.removeEventListener("change", sync);
   }, []);
   const media = () =>
     resource.kind === "video" ? video.current : audio.current;
@@ -66,7 +74,10 @@ export function MediaPlayer({
     preload: "metadata",
     src: mediaUrl(resource.file),
     onTimeUpdate: updateTime,
-    onLoadedMetadata: () => changeSpeed(speed),
+    onLoadedMetadata: () => {
+      changeSpeed(speed);
+      setCaptions(video.current?.textTracks[0]?.mode === "showing");
+    },
     onRateChange: () => {
       const player = media();
       if (player) setSpeed(player.playbackRate);
@@ -112,7 +123,11 @@ export function MediaPlayer({
               src={mediaUrl(resource.captions)}
               srcLang="en"
               label="English"
-              default
+              onError={() =>
+                setError(
+                  "Captions could not be loaded. Ask your school to check the caption file.",
+                )
+              }
             />
           )}
         </video>
@@ -120,6 +135,22 @@ export function MediaPlayer({
         <audio {...properties} ref={audio} />
       )}
       <div className="listening-controls">
+        {resource.kind === "video" && resource.captions && (
+          <button
+            className={`button ${captions ? "primary" : "secondary"}`}
+            aria-pressed={captions}
+            onClick={() => {
+              const player = media();
+              const track =
+                player instanceof HTMLVideoElement
+                  ? player.textTracks[0]
+                  : undefined;
+              if (track) track.mode = captions ? "disabled" : "showing";
+            }}
+          >
+            {captions ? "Hide captions" : "Show captions"}
+          </button>
+        )}
         <label htmlFor="playback-speed">Playback speed</label>
         <select
           id="playback-speed"

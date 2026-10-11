@@ -33,7 +33,10 @@ export function BookDetail({ book }: { book: Book }) {
           <p className="detail-description">{book.description}</p>
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
-            <Badge>{book.resources.length} resources</Badge>
+            <Badge>
+              {book.resources.length}{" "}
+              {book.resources.length === 1 ? "resource" : "resources"}
+            </Badge>
             <Badge>Available on your school network</Badge>
           </div>
           <div className="resource-list">
