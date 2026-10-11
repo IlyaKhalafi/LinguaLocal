@@ -36,3 +36,13 @@ test("settings are trimmed and bounded", () => {
     false,
   );
 });
+
+test("lesson vocabulary references cannot be missing or duplicated", () => {
+  const pack = packSchema.parse(seed);
+  pack.lessons[0].wordIds = ["missing-word"];
+  assert.equal(packSchema.safeParse(pack).success, false);
+  pack.lessons[0].wordIds = [pack.words[0].id, pack.words[0].id];
+  assert.equal(packSchema.safeParse(pack).success, false);
+  pack.lessons[0].wordIds = [pack.words[0].id];
+  assert.equal(packSchema.safeParse(pack).success, true);
+});

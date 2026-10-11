@@ -10,12 +10,8 @@ export default async function DictionaryPage({
   const params = await searchParams;
   return (
     <Dictionary
-      key={params.search ?? ""}
       words={(await getContent()).words}
       focusSearch={params.focus === "search"}
-      initialQuery={
-        typeof params.search === "string" ? params.search.slice(0, 200) : ""
-      }
     />
   );
 }

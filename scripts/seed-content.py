@@ -57,6 +57,8 @@ books[0]["resources"].extend([
 ])
 
 pack = {"version": 1, "words": [dict(id=w[0], word=w[0], phonetic=w[1], part=w[2], definition=w[3], example=w[4], level=w[5], synonyms=w[6]) for w in words], "books": books, "lessons": lessons}
+pack["lessons"].extend(json.loads((ROOT / "src/content/lessons.json").read_text(encoding="utf-8")))
+
 for vocabulary in sorted((ROOT / "src/content/vocabulary").glob("*.json")):
     pack["words"].extend(json.loads(vocabulary.read_text(encoding="utf-8")))
 

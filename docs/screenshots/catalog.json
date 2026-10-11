@@ -1,94 +1,172 @@
 [
   {
     "name": "overview",
-    "path": "/"
+    "path": "/",
+    "heading": "Home"
   },
   {
     "name": "library",
-    "path": "/library"
+    "path": "/library",
+    "heading": "Library"
   },
   {
     "name": "dictionary",
-    "path": "/dictionary"
+    "path": "/dictionary",
+    "heading": "Dictionary"
   },
   {
     "name": "lessons",
-    "path": "/lessons"
+    "path": "/lessons",
+    "heading": "Lessons"
   },
   {
     "name": "games",
-    "path": "/games"
+    "path": "/games",
+    "heading": "Games"
+  },
+  {
+    "name": "practice",
+    "path": "/games/practice",
+    "heading": "Practice"
   },
   {
     "name": "quiz",
-    "path": "/games/quiz"
+    "path": "/games/quiz",
+    "heading": "Vocabulary quiz"
   },
   {
     "name": "matching",
-    "path": "/games/match"
+    "path": "/games/match",
+    "heading": "Matching"
   },
   {
     "name": "flashcards",
-    "path": "/flashcards"
+    "path": "/flashcards",
+    "heading": "Flashcards"
   },
   {
     "name": "progress",
-    "path": "/progress"
+    "path": "/progress",
+    "heading": "Progress"
   },
   {
     "name": "settings",
-    "path": "/settings"
+    "path": "/settings",
+    "heading": "Settings"
   },
   {
     "name": "book-everyday-english",
-    "path": "/library/everyday-english"
+    "path": "/library/everyday-english",
+    "heading": "Everyday English"
   },
   {
     "name": "book-the-open-road",
-    "path": "/library/the-open-road"
+    "path": "/library/the-open-road",
+    "heading": "The Open Road"
   },
   {
     "name": "book-words-in-bloom",
-    "path": "/library/words-in-bloom"
+    "path": "/library/words-in-bloom",
+    "heading": "Words in Bloom"
   },
   {
     "name": "book-a-world-of-stories",
-    "path": "/library/a-world-of-stories"
+    "path": "/library/a-world-of-stories",
+    "heading": "A World of Stories"
   },
   {
     "name": "book-speak-your-mind",
-    "path": "/library/speak-your-mind"
+    "path": "/library/speak-your-mind",
+    "heading": "Speak Your Mind"
   },
   {
     "name": "book-beyond-the-everyday",
-    "path": "/library/beyond-the-everyday"
+    "path": "/library/beyond-the-everyday",
+    "heading": "Beyond the Everyday"
   },
   {
     "name": "lesson-small-talk",
-    "path": "/lessons/small-talk"
+    "path": "/lessons/small-talk",
+    "heading": "The art of small talk"
   },
   {
     "name": "lesson-present-simple",
-    "path": "/lessons/present-simple"
+    "path": "/lessons/present-simple",
+    "heading": "Everyday habits, simple sentences"
   },
   {
     "name": "lesson-travel-phrases",
-    "path": "/lessons/travel-phrases"
+    "path": "/lessons/travel-phrases",
+    "heading": "Your next stop"
   },
   {
     "name": "lesson-reading-between-lines",
-    "path": "/lessons/reading-between-lines"
+    "path": "/lessons/reading-between-lines",
+    "heading": "Reading between the lines"
   },
   {
     "name": "lesson-giving-opinions",
-    "path": "/lessons/giving-opinions"
+    "path": "/lessons/giving-opinions",
+    "heading": "Make your point"
   },
   {
     "name": "lesson-word-families",
-    "path": "/lessons/word-families"
+    "path": "/lessons/word-families",
+    "heading": "One word, many possibilities"
+  },
+  {
+    "name": "lesson-asking-questions",
+    "path": "/lessons/asking-questions",
+    "heading": "Ask a little more"
+  },
+  {
+    "name": "lesson-ordering-food",
+    "path": "/lessons/ordering-food",
+    "heading": "Ordering a meal"
+  },
+  {
+    "name": "lesson-past-time",
+    "path": "/lessons/past-time",
+    "heading": "Yesterday in a few words"
+  },
+  {
+    "name": "lesson-future-plans",
+    "path": "/lessons/future-plans",
+    "heading": "Plans for the weekend"
+  },
+  {
+    "name": "lesson-linking-ideas",
+    "path": "/lessons/linking-ideas",
+    "heading": "Make your ideas flow"
+  },
+  {
+    "name": "lesson-email-request",
+    "path": "/lessons/email-request",
+    "heading": "A clear request"
+  },
+  {
+    "name": "lesson-argument-structure",
+    "path": "/lessons/argument-structure",
+    "heading": "An argument with support"
+  },
+  {
+    "name": "lesson-careful-claims",
+    "path": "/lessons/careful-claims",
+    "heading": "Leave room for uncertainty"
+  },
+  {
+    "name": "lesson-register-shift",
+    "path": "/lessons/register-shift",
+    "heading": "Choose the right register"
+  },
+  {
+    "name": "lesson-critical-claims",
+    "path": "/lessons/critical-claims",
+    "heading": "Read a claim closely"
   },
   {
     "name": "not-found",
-    "path": "/not-a-page"
+    "path": "/not-a-page",
+    "heading": "Page not found"
   }
 ]

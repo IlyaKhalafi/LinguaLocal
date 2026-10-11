@@ -19,7 +19,7 @@ const content = packSchema.parse(seed);
 test("starter content is valid and contains only unique records", () => {
   assert.equal(content.words.length, 150);
   assert.equal(content.books.length, 6);
-  assert.equal(content.lessons.length, 6);
+  assert.equal(content.lessons.length, 16);
 });
 test("every level supports a full quiz and new examples support gap practice", () => {
   for (const level of levels) {

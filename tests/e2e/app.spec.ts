@@ -3,14 +3,15 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import seed from "../../src/content/starter.json";
 
-const routes = pageCatalogue.map((page) => page.path);
+const routes = pageCatalogue;
 
-for (const route of routes) {
+for (const item of routes) {
+  const route = item.path;
   test(`page works on desktop and mobile ${route}`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto(route);
-    await expect(page.locator("h1:visible")).toBeVisible();
+    await expect(page.locator("h1:visible")).toHaveText(item.heading);
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();
@@ -21,7 +22,7 @@ for (const route of routes) {
       })),
     ).toEqual([]);
     await page.setViewportSize({ width: 390, height: 844 });
-    await expect(page.locator("h1:visible")).toBeVisible();
+    await expect(page.locator("h1:visible")).toHaveText(item.heading);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -232,7 +233,7 @@ test("corrupt progress recovers and storage failures remain usable", async ({
     localStorage.setItem("lingualocal.progress.v1", "broken"),
   );
   await page.reload();
-  await expect(page.locator("h1:visible")).toBeVisible();
+  await expect(page.locator("h1:visible")).toHaveText("Home");
   await page.goto("/dictionary");
   await page.getByRole("button", { name: "Save curious", exact: true }).click();
   await expect(
@@ -261,7 +262,9 @@ test("all learning pages and assets work with external requests blocked", async 
     "/progress",
   ]) {
     await page.goto(route);
-    await expect(page.locator("h1:visible")).toBeVisible();
+    await expect(page.locator("h1:visible")).toHaveText(
+      pageCatalogue.find((item) => item.path === route)!.heading,
+    );
     await page.evaluate(() => document.fonts.ready);
   }
   expect(external).toEqual([]);

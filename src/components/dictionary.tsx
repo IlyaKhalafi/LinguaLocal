@@ -10,26 +10,22 @@ import { EmptyState, PageHeading } from "./ui";
 import { createSearchIndex, searchIndex } from "@/lib/search";
 import { Pagination } from "./pagination";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
+import { useListQuery } from "@/lib/use-list-query";
 
 const pageSize = 12;
 
 export function Dictionary({
   words,
   focusSearch = false,
-  initialQuery = "",
 }: {
   words: Word[];
   focusSearch?: boolean;
-  initialQuery?: string;
 }) {
   const { t } = useLocale();
-  const [query, setQuery] = useState(initialQuery);
-  const [level, setLevel] = useState("");
-  const [page, setPage] = useState(0);
+  const { search: query, level, page, saved, update } = useListQuery();
   const [focusRequest, setFocusRequest] = useState(0);
   const [focusWord, setFocusWord] = useState<string | null>(null);
   const resultsRef = useFocusOnChange(focusRequest, false);
-  const [saved, setSaved] = useState(false);
   const { progress } = useProgress();
   const savedIds = useMemo(() => new Set(progress.saved), [progress.saved]);
   const search = useDeferredValue(query);
@@ -54,10 +50,11 @@ export function Dictionary({
   );
   const pages = Math.ceil(filtered.length / pageSize);
   const currentPage = Math.max(0, Math.min(page, pages - 1));
-  if (page !== currentPage) setPage(currentPage);
   function focusAfterRemoval(id: string) {
     const index = filtered.findIndex((word) => word.id === id);
     const remaining = filtered.filter((word) => word.id !== id);
+    const lastPage = Math.max(0, Math.ceil(remaining.length / pageSize) - 1);
+    if (page > lastPage) update({ page: lastPage }, "replace");
     const next = remaining[Math.min(index, remaining.length - 1)];
     setFocusWord(next?.id ?? null);
     setFocusRequest((request) => request + 1);
@@ -72,18 +69,16 @@ export function Dictionary({
           placeholder={t("Search words or meanings")}
           value={query}
           onChange={(value) => {
-            setQuery(value);
+            update({ search: value, page: 0 }, "replace");
             setFocusWord(null);
-            setPage(0);
           }}
         />
         <select
           aria-label={t("Filter words by level")}
           value={level}
           onChange={(e) => {
-            setLevel(e.target.value);
+            update({ level: e.target.value, page: 0 });
             setFocusWord(null);
-            setPage(0);
           }}
         >
           <option value="">{t("All levels")}</option>
@@ -95,8 +90,8 @@ export function Dictionary({
           className={`button ${saved ? "primary" : "secondary"}`}
           aria-pressed={saved}
           onClick={() => {
-            setSaved((value) => !value);
-            setPage(0);
+            update({ saved: !saved, page: 0 });
+            setFocusWord(null);
           }}
         >
           <Bookmark size={14} />
@@ -147,10 +142,8 @@ export function Dictionary({
             <button
               className="button secondary"
               onClick={() => {
-                setQuery("");
-                setSaved(false);
-                setLevel("");
-                setPage(0);
+                update({ search: "", saved: false, level: "", page: 0 });
+                setFocusWord(null);
               }}
             >
               {t("Clear filters")}
@@ -162,7 +155,7 @@ export function Dictionary({
         page={currentPage}
         pages={pages}
         onChange={(value) => {
-          setPage(value);
+          update({ page: value }, "push");
           setFocusWord(null);
           setFocusRequest((request) => request + 1);
         }}

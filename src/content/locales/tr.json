@@ -257,5 +257,8 @@
   "Dark": "Koyu",
   "Device setting": "Cihaz ayarı",
   "Dark appearance is unavailable in this browser.": "Bu tarayıcıda koyu görünüm kullanılamıyor.",
-  "Preferences will reset when this page is reloaded.": "Sayfa yeniden yüklendiğinde tercihler sıfırlanır."
+  "Preferences will reset when this page is reloaded.": "Sayfa yeniden yüklendiğinde tercihler sıfırlanır.",
+  "Writing": "Yazma",
+  "Filter lessons by subject": "Dersleri konuya göre filtrele",
+  "{count} lessons": "{count} ders"
 }

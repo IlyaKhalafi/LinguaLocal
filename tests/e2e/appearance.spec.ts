@@ -130,7 +130,7 @@ test("all pages retain contrast and fit in dark appearance", async ({
   ]);
   for (const route of pageCatalogue) {
     await page.goto(route.path);
-    await expect(page.locator("h1:visible")).toBeVisible();
+    await expect(page.locator("h1:visible")).toHaveText(route.heading);
     expect(
       (await new AxeBuilder({ page }).analyze()).violations,
       route.name,

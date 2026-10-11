@@ -132,3 +132,9 @@ Content commands load the project’s `.env` file, with exported environment var
 The starter pack includes 150 entries across A1, A2, B1, B2, and C1. The everyday collection adds 66 words for home, school, travel, food, and conversations. The advanced collection adds 60 words for discussion, collaboration, decision-making, and critical reading. Each has an original definition, pronunciation, example, and related wording. Level labels guide practice rather than certify a learner's proficiency.
 
 The source collections live in `src/content/vocabulary`. Rebuild the bundled pack with `python3 scripts/seed-content.py`, then validate it with `npm run content:validate -- src/content/starter.json`. Stable IDs keep saved words intact when the pack grows. School content files are never replaced by rebuilding the starter pack.
+
+## Linked lesson vocabulary
+
+The 16 included lessons cover grammar, vocabulary, reading, speaking, and writing from A1 to C1. New lessons live in `src/content/lessons.json` and are included when the starter pack is rebuilt.
+
+A lesson can optionally include `wordIds` containing up to 200 unique dictionary IDs from the same pack. Validation rejects missing or repeated references. Older packs without this field continue to work. Keep lesson IDs stable to preserve completed lessons in student browsers.

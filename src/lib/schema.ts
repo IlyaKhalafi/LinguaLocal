@@ -1,6 +1,13 @@
 import { z } from "zod";
 
 export const levels = ["A1", "A2", "B1", "B2", "C1"] as const;
+export const lessonCategories = [
+  "Grammar",
+  "Vocabulary",
+  "Reading",
+  "Speaking",
+  "Writing",
+] as const;
 const id = z.string().regex(/^[a-z0-9][a-z0-9-]{0,79}$/);
 const text = z.string().trim().min(1).max(2000);
 export const mediaPathSchema = z
@@ -68,7 +75,8 @@ export const lessonSchema = z
     title: text,
     description: text,
     level: z.enum(levels),
-    category: z.enum(["Grammar", "Vocabulary", "Reading", "Speaking"]),
+    category: z.enum(lessonCategories),
+    wordIds: z.array(id).max(200).optional(),
     minutes: z.number().int().min(1).max(120),
     sections: z
       .array(z.object({ title: text, body: z.string().min(1).max(10000) }))
@@ -111,6 +119,19 @@ export const packSchema = z
           message: "Resource IDs must be unique within each book",
         });
     }
+    const wordIds = new Set(pack.words.map((word) => word.id));
+    pack.lessons.forEach((lesson, index) => {
+      if (
+        lesson.wordIds &&
+        (new Set(lesson.wordIds).size !== lesson.wordIds.length ||
+          lesson.wordIds.some((id) => !wordIds.has(id)))
+      )
+        ctx.addIssue({
+          code: "custom",
+          path: ["lessons", index, "wordIds"],
+          message: "Lesson words must be unique IDs from this pack",
+        });
+    });
   });
 export const settingsSchema = z.object({
   name: z.string().trim().min(1).max(60),

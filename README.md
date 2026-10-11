@@ -40,7 +40,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Listening and watching         | Play local audio and video, change speed, repeat a passage, and jump through timed transcripts          | [Listening](docs/screenshots/listening.png)                  |
 | Reading materials              | Open and download local PDF worksheets alongside book media                                             | [Book resources](docs/screenshots/book-everyday-english.png) |
 | Offline dictionary             | Search curated meanings and synonyms, see examples, and bookmark words                                  | [Dictionary](docs/screenshots/dictionary.png)                |
-| Guided lessons                 | Explore grammar, reading, vocabulary, and speaking with practice questions                              | [Lesson](docs/screenshots/lesson-present-simple.png)         |
+| Guided lessons                 | Explore grammar, reading, vocabulary, speaking, and writing with practice questions                     | [Lesson](docs/screenshots/lesson-present-simple.png)         |
 | Vocabulary quiz                | Choose a level, discover meanings, get feedback, and save your score                                    | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
 | Matching game                  | Pair words and definitions without a timer or leaderboard                                               | [Matching](docs/screenshots/matching-playing.png)            |
 | Spaced flashcards              | Study all words, saved words, or cards ready for review                                                 | [Flashcards](docs/screenshots/flashcards-playing.png)        |
@@ -108,7 +108,7 @@ For development, run `npm run dev`.
 3. Set each book resource’s file path relative to that directory.
 4. Validate and install the collection using the content guide.
 
-Media files travel separately. The bundled collection contains six original book shells, six lessons, 150 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
+Media files travel separately. The bundled collection contains six original book shells, 16 lessons, 150 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
 
 [Read the content guide](docs/CONTENT.md) for the pack format, large files, and migration from the previous Python app.
 

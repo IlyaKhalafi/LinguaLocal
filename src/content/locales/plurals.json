@@ -27,6 +27,10 @@
     "{day} · {count} activities": {
       "one": "{day} · {count} activity",
       "other": "{day} · {count} activities"
+    },
+    "{count} lessons": {
+      "one": "{count} lesson",
+      "other": "{count} lessons"
     }
   },
   "fa": {},
@@ -86,6 +90,14 @@
       "few": "مدة القراءة {count} دقائق",
       "many": "مدة القراءة {count} دقيقة",
       "other": "مدة القراءة {count} دقيقة"
+    },
+    "{count} lessons": {
+      "zero": "{count} دروس",
+      "one": "{count} درس",
+      "two": "{count} درسان",
+      "few": "{count} دروس",
+      "many": "{count} درسًا",
+      "other": "{count} درس"
     }
   },
   "tr": {}

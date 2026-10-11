@@ -3,14 +3,14 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { direction, translate } from "../../src/lib/locale";
 
-const routes = pageCatalogue.map((page) => page.path);
+const routes = pageCatalogue;
 
 for (const locale of ["fa", "ar", "tr"] as const) {
   test(`every page works in ${locale} on desktop and mobile`, async ({
     page,
     context,
   }) => {
-    test.setTimeout(180_000);
+    test.setTimeout(pageCatalogue.length * 8000);
     await context.addCookies([
       {
         name: "lingualocal.locale",
@@ -20,8 +20,9 @@ for (const locale of ["fa", "ar", "tr"] as const) {
     ]);
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
-    for (const route of routes)
-      await test.step(route, async () => {
+    for (const item of routes)
+      await test.step(item.path, async () => {
+        const route = item.path;
         await page.setViewportSize({ width: 1440, height: 1040 });
         await page.goto(route);
         await expect(page.locator("html")).toHaveAttribute("lang", locale);
@@ -29,7 +30,9 @@ for (const locale of ["fa", "ar", "tr"] as const) {
           "dir",
           direction(locale),
         );
-        await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+        await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+          translate(locale, item.heading),
+        );
         if (route === "/" || route === "/progress") {
           const ratio = page.locator(".goal-circle strong:visible");
           await expect(ratio).toHaveText(

@@ -1,5 +1,5 @@
 import { chromium, type BrowserContext, type Page } from "@playwright/test";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { locales, translate, type Locale } from "../src/lib/locale";
 import { pageCatalogue } from "./page-catalogue";
@@ -180,6 +180,11 @@ async function main() {
       for (const route of pageCatalogue) {
         await page.goto(base + route.path);
         await page.locator("h1:visible").waitFor();
+        if (
+          (await page.locator("h1:visible").innerText()) !==
+          translate(locale, route.heading)
+        )
+          throw new Error(`Unexpected page at ${route.path}`);
         await capture(page, route.name, locale);
       }
       await capturePractice(context, locale);
@@ -189,6 +194,23 @@ async function main() {
     await writeFile(
       path.join(folder, "catalog.json"),
       JSON.stringify(pageCatalogue, null, 2) + "\n",
+    );
+    const featuresPath = "docs/FEATURES.md";
+    const table = [
+      "| Page | Route | Desktop | Mobile |",
+      "| --- | --- | --- | --- |",
+      ...pageCatalogue.map(
+        (route) =>
+          `| ${route.heading} | \`${route.path}\` | [View](screenshots/${route.name}.png) | [View](screenshots/${route.name}-mobile.png) |`,
+      ),
+    ].join("\n");
+    const features = await readFile(featuresPath, "utf8");
+    await writeFile(
+      featuresPath,
+      features.replace(
+        /\| Page\s+\|[\s\S]*?(?=\n## A little practice)/,
+        table + "\n",
+      ),
     );
     if (errors.length) throw new Error(errors.join("\n"));
   } finally {
