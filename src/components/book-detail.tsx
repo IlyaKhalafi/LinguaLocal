@@ -34,13 +34,9 @@ export function BookDetail({ book }: { book: Book }) {
       </Link>
       <div className="book-detail">
         <Cover book={book} />
-        <div className="book-summary">
-          <h1 lang="en" dir="ltr">
-            {book.title}
-          </h1>
-          <p className="detail-description" lang="en" dir="ltr">
-            {book.description}
-          </p>
+        <div className="book-summary" lang="en" dir="ltr">
+          <h1>{book.title}</h1>
+          <p className="detail-description">{book.description}</p>
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
           </div>

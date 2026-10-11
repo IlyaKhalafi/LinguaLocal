@@ -20,7 +20,7 @@ export function PageHeading({
   contentLanguage,
 }: {
   contentLanguage?: string;
-  eyebrow?: string;
+  eyebrow?: ReactNode;
   title: string;
   description?: string;
   action?: ReactNode;

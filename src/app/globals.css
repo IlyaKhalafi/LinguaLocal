@@ -469,6 +469,12 @@ label {
 .page-heading .eyebrow {
   margin-bottom: 9px;
 }
+.lesson-metadata {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 .section-heading {
   display: flex;
   align-items: center;

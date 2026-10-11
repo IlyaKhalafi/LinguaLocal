@@ -24,7 +24,15 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
       </Link>
       <PageHeading
         contentLanguage="en"
-        eyebrow={`${t(lesson.category)} · ${lesson.level} · ${t("{count} min read", { count: lesson.minutes })}`}
+        eyebrow={
+          <span className="lesson-metadata">
+            <bdi>{t(lesson.category)}</bdi>
+            <span aria-hidden="true">·</span>
+            <bdi dir="ltr">{lesson.level}</bdi>
+            <span aria-hidden="true">·</span>
+            <bdi>{t("{count} min read", { count: lesson.minutes })}</bdi>
+          </span>
+        }
         title={lesson.title}
         description={lesson.description}
       />
