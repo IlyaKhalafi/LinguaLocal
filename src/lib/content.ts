@@ -1,3 +1,4 @@
+import { storagePaths } from "../../scripts/storage-paths.mjs";
 import { stat } from "node:fs/promises";
 import type { ZodType } from "zod";
 import path from "node:path";
@@ -12,14 +13,7 @@ import seed from "@/content/starter.json";
 import { defaultSettings } from "./default-settings";
 export { defaultSettings } from "./default-settings";
 
-export const dataDirectory = path.resolve(
-  /* turbopackIgnore: true */
-  process.env.LINGUALOCAL_DATA_DIR || "data",
-);
-export const mediaDirectory = path.resolve(
-  /* turbopackIgnore: true */
-  process.env.LINGUALOCAL_MEDIA_DIR || path.join(dataDirectory, "media"),
-);
+export const { dataDirectory, mediaDirectory } = storagePaths();
 
 const starterContent = packSchema.parse(seed);
 const documentCache = new Map<

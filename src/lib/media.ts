@@ -1,18 +1,7 @@
-import { realpath, stat } from "node:fs/promises";
 import path from "node:path";
 import { mediaDirectory } from "./content";
-
-export const mimeTypes: Record<string, string> = {
-  ".mp3": "audio/mpeg",
-  ".wav": "audio/wav",
-  ".ogg": "audio/ogg",
-  ".m4a": "audio/mp4",
-  ".flac": "audio/flac",
-  ".mp4": "video/mp4",
-  ".webm": "video/webm",
-  ".pdf": "application/pdf",
-  ".vtt": "text/vtt; charset=utf-8",
-};
+import { resolveMediaFile } from "./media-files";
+export { mimeTypes } from "./media-files";
 
 export function parseRange(
   header: string | null,
@@ -43,43 +32,9 @@ export function parseRange(
   return { start, end: Math.min(end, size - 1) };
 }
 
-export async function resolveMedia(segments: string[]) {
-  if (
-    !segments.length ||
-    segments.some(
-      (segment) =>
-        !segment ||
-        segment === "." ||
-        segment === ".." ||
-        /[\\/\x00]/.test(segment),
-    )
-  )
-    return null;
-  const relative = segments.join("/");
-  const type = mimeTypes[path.extname(relative).toLowerCase()];
-  if (!type) return null;
-  for (const root of [mediaDirectory, path.resolve("public/demo")]) {
-    try {
-      const [realRoot, file] = await Promise.all([
-        realpath(/* turbopackIgnore: true */ root),
-        realpath(
-          /* turbopackIgnore: true */ path.join(
-            /* turbopackIgnore: true */ root,
-            relative,
-          ),
-        ),
-      ]);
-      if (!file.startsWith(`${realRoot}${path.sep}`)) continue;
-      const info = await stat(file);
-      if (info.isFile()) return { file, info, type };
-    } catch (error) {
-      if (
-        !["ENOENT", "ENOTDIR"].includes(
-          (error as NodeJS.ErrnoException).code ?? "",
-        )
-      )
-        throw error;
-    }
-  }
-  return null;
+export function resolveMedia(segments: string[]) {
+  return resolveMediaFile(segments, [
+    mediaDirectory,
+    path.resolve("public/demo"),
+  ]);
 }

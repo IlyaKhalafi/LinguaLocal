@@ -72,6 +72,14 @@ Copy files or folders into the server’s configured media directory. For Docker
 
 Keep publisher materials out of the public repository. Schools should supply files they own or have permission to distribute. The original starter collection is included with the project.
 
+## Checking media and storage
+
+Run `npm run content:diagnose -- collection.json` to check every referenced audio, video, PDF, and caption file. The JSON report lists missing files, empty files, bundled fallbacks, unused media, and total media storage. Missing, empty, or unreadable resources make the command exit unsuccessfully. File errors appear in the report while other references continue to be checked. Unused files are reported without deleting them.
+
+The command uses the same media resolution rules as playback. It checks `LINGUALOCAL_MEDIA_DIR`, or the data directory's `media` folder, before bundled samples. Directory symlinks are not followed during storage inventory and appear under `skipped`.
+
+In Docker, use `node scripts/diagnose-content.mjs /tmp/collection.json` after copying your pack into the container.
+
 ## Migrating from the Python app
 
 Copy the old app’s audio folders into the new media directory. Create books and connect tracks using their relative paths. The previous lesson, quiz, and dictionary models need conversion to the current pack format. There is no automatic migration command.
