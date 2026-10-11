@@ -47,3 +47,13 @@ test("server content updates refresh the collection cache", async () => {
   await api.atomicWrite("content.json", changed);
   assert.equal((await api.getContent()).books[0].title, "Updated school book");
 });
+
+test("oversized server documents are rejected without being overwritten", async () => {
+  const api = await service;
+  const location = path.join(directory, "content.json");
+  const original = await api.getContent();
+  await writeFile(location, " ".repeat(2 * 1024 * 1024 + 1));
+  await assert.rejects(api.getContent(), /Unable to read/);
+  assert.equal((await readFile(location)).byteLength, 2 * 1024 * 1024 + 1);
+  await api.atomicWrite("content.json", original);
+});

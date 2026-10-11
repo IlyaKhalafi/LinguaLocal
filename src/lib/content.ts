@@ -1,7 +1,7 @@
-import { mkdir, open, readFile, rename, stat, unlink } from "node:fs/promises";
+import { stat } from "node:fs/promises";
 import type { ZodType } from "zod";
 import path from "node:path";
-import { randomUUID } from "node:crypto";
+import { readValidatedJson, writeJsonAtomically } from "./json-file";
 import {
   packSchema,
   settingsSchema,
@@ -37,9 +37,7 @@ async function readDocument<T>(
     const signature = `${info.mtimeMs}:${info.ctimeMs}:${info.size}:${info.ino}`;
     const cached = documentCache.get(name);
     if (cached?.signature === signature) return (await cached.value) as T;
-    const value = readFile(/* turbopackIgnore: true */ location, "utf8").then(
-      (raw) => schema.parse(JSON.parse(raw)),
-    );
+    const value = readValidatedJson(location, schema);
     documentCache.set(name, { signature, value });
     return await value;
   } catch (error) {
@@ -73,20 +71,6 @@ export async function atomicWrite(
   name: "content.json" | "settings.json",
   value: unknown,
 ) {
-  await mkdir(dataDirectory, { recursive: true });
-  const temporary = path.join(dataDirectory, `${name}.${randomUUID()}.tmp`);
-  const handle = await open(temporary, "wx");
-  try {
-    await handle.writeFile(JSON.stringify(value));
-    await handle.sync();
-    await handle.close();
-    await rename(
-      temporary,
-      path.join(/* turbopackIgnore: true */ dataDirectory, name),
-    );
-    documentCache.delete(name);
-  } finally {
-    await handle.close().catch(() => undefined);
-    await unlink(temporary).catch(() => undefined);
-  }
+  await writeJsonAtomically(path.join(dataDirectory, name), value);
+  documentCache.delete(name);
 }
