@@ -21,7 +21,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [ ] Self-reported progress summaries and classroom roll-ups
 - [ ] Vocabulary spreadsheet import and deck export
 - [x] Subtitle conversion and timing diagnostics
-- [ ] Server content snapshots and restore tools
+- [x] Server content snapshots and restore tools
 
 ## Everyday use
 

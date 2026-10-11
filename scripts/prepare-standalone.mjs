@@ -10,6 +10,10 @@ await cp("node_modules/csv-parse", ".next/standalone/node_modules/csv-parse", {
 });
 const sources = [
   ["scripts/storage-paths.mjs", "storage-paths.mjs"],
+  ["src/content/starter.json", "starter.json"],
+  ["src/lib/default-settings.ts", "default-settings.mjs"],
+  ["src/lib/server-snapshot.ts", "server-snapshot.mjs"],
+  ["scripts/server-snapshot.ts", "snapshot-tools.mjs"],
   ["src/lib/schema.ts", "content-schema.mjs"],
   ["src/lib/atomic-file.ts", "atomic-file.mjs"],
   ["src/lib/document-limits.ts", "document-limits.mjs"],
@@ -42,6 +46,10 @@ for (const [source, target] of sources) {
       return dependency ? `${quote}./${dependency}${quote}` : match;
     },
   );
+  if (source.endsWith(".json")) {
+    await writeFile(`.next/standalone/scripts/${target}`, input);
+    continue;
+  }
   const { outputText } = ts.transpileModule(input, {
     compilerOptions: {
       target: ts.ScriptTarget.ES2022,

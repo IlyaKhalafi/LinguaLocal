@@ -54,6 +54,15 @@ try {
   assert.equal(captionReport.cues, 2);
   assert.deepEqual(captionReport.warnings, []);
   run("subtitle-tools", ["convert", "examples/captions.srt", captions], 1);
+  const snapshot = path.join(directory, "snapshot");
+  const restored = path.join(directory, "restored");
+  run("snapshot-tools", ["create", snapshot]);
+  run("snapshot-tools", ["restore", snapshot, restored]);
+  assert.equal(
+    await readFile(path.join(restored, "content.json"), "utf8"),
+    await readFile(path.join(dataDirectory, "content.json"), "utf8"),
+  );
+  run("snapshot-tools", ["restore", snapshot, restored], 1);
   run("import-vocabulary", [], 1);
   console.log("Packaged content tools passed.");
 } finally {

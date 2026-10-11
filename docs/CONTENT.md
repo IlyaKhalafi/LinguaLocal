@@ -109,3 +109,18 @@ Copy the old app’s audio folders into the new media directory. Create books an
 Progress is exported separately from My progress or Settings. It contains saved words, lesson completions, review schedules, game attempts, activity dates, and a daily goal. Restore it in another browser to continue the same journey.
 
 Shared computers use the same progress when they share a browser profile. Clearing browser storage removes progress. Save a backup first.
+
+## Server snapshots
+
+A snapshot includes school content, school settings, all regular files from the custom media directory, and bundled media referenced by the collection. Original JSON fields are preserved. It records SHA-256 checksums and reports which documents used starter defaults. Check the reported source directories before storing your backup.
+
+```bash
+npm run content:snapshot -- /backups/lingualocal-october
+npm run content:restore -- /backups/lingualocal-october /srv/lingualocal-restored
+```
+
+Both destinations must be new directories. Restore verifies the inventory, required resources, and every checksum before creating the new data directory. It preserves the active collection. Restored media sits in `NEW-DATA-DIRECTORY/media`. Point `LINGUALOCAL_DATA_DIR` there and update `LINGUALOCAL_MEDIA_DIR` if you previously used a separate media location.
+
+Pause content edits and file transfers while taking a snapshot. A changed source file fails the operation and removes its partial output. Move symbolic links into regular media files first. Snapshots keep unused media so source materials are not lost. Student browser progress is backed up separately from Settings.
+
+In the standalone distribution, use `node scripts/snapshot-tools.mjs create NEW-SNAPSHOT-DIRECTORY` or `node scripts/snapshot-tools.mjs restore SNAPSHOT NEW-DATA-DIRECTORY`.
