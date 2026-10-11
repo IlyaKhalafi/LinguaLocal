@@ -6,12 +6,12 @@ await cp("public", ".next/standalone/public", { recursive: true });
 await mkdir(".next/standalone/scripts", { recursive: true });
 for (const [source, target] of [
   ["src/lib/schema.ts", "content-schema.mjs"],
+  ["src/lib/json-file.ts", "json-file.mjs"],
   ["scripts/install-content.ts", "install-content.mjs"],
 ]) {
-  const input = (await readFile(source, "utf8")).replace(
-    '"../src/lib/schema"',
-    '"./content-schema.mjs"',
-  );
+  const input = (await readFile(source, "utf8"))
+    .replace('"../src/lib/schema"', '"./content-schema.mjs"')
+    .replace('"../src/lib/json-file"', '"./json-file.mjs"');
   const { outputText } = ts.transpileModule(input, {
     compilerOptions: {
       target: ts.ScriptTarget.ES2022,
