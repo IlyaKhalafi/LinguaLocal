@@ -7,7 +7,6 @@ import {
   BookOpen,
   Headphones,
   Leaf,
-  Sparkles,
   Volume2,
 } from "lucide-react";
 import type { Book, Word } from "@/lib/schema";
@@ -104,10 +103,6 @@ export function Cover({
       </div>
       <div className="cover-title">{book.title}</div>
       <div className="cover-subtitle">{book.subtitle}</div>
-      <div className="cover-footer">
-        <span aria-hidden="true" />
-        <Sparkles size={14} />
-      </div>
     </div>
   );
 }

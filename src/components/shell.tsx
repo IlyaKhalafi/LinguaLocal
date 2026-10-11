@@ -184,11 +184,13 @@ export function Shell({
           </div>
           <div className="topbar-right">
             <LanguageSelect />
-            <Link className="topbar-search" href="/dictionary">
-              <Search size={16} />
-              {t("Find a word")}
-              <kbd>/</kbd>
-            </Link>
+            {pathname !== "/dictionary" && (
+              <Link className="topbar-search" href="/dictionary">
+                <Search size={16} />
+                {t("Find a word")}
+                <kbd>/</kbd>
+              </Link>
+            )}
           </div>
         </header>
         <main id="main-content" className="main-content">

@@ -6,7 +6,6 @@ import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { WordCard } from "./word-card";
 import { EmptyState, PageHeading } from "./ui";
-import Link from "next/link";
 
 export function Dictionary({ words }: { words: Word[] }) {
   const { t } = useLocale();
@@ -28,15 +27,7 @@ export function Dictionary({ words }: { words: Word[] }) {
   );
   return (
     <>
-      <PageHeading
-        title={t("Dictionary")}
-        action={
-          <Link className="button secondary" href="/flashcards">
-            <Bookmark size={14} />
-            {t("Flashcards")}
-          </Link>
-        }
-      />
+      <PageHeading title={t("Dictionary")} />
       <div className="toolbar">
         <label className="search-field">
           <Search size={17} />

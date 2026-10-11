@@ -30,7 +30,9 @@ export function BookDetail({ book }: { book: Book }) {
       <div className="book-detail">
         <Cover book={book} />
         <div>
-          <p className="eyebrow">{book.category.toUpperCase()}</p>
+          <p className="eyebrow" lang="en" dir="ltr">
+            {book.category.toUpperCase()}
+          </p>
           <h1 lang="en" dir="ltr">
             {book.title}
           </h1>
@@ -39,9 +41,11 @@ export function BookDetail({ book }: { book: Book }) {
           </p>
           <div className="button-row">
             <Badge tone="green">{book.level}</Badge>
-            <Badge>
-              {t("{count} resources", { count: book.resources.length })}
-            </Badge>
+            {book.resources.length > 0 && (
+              <Badge>
+                {t("{count} resources", { count: book.resources.length })}
+              </Badge>
+            )}
           </div>
           <div className="resource-list">
             <div className="section-heading">
@@ -119,12 +123,7 @@ export function BookDetail({ book }: { book: Book }) {
                 </div>
               );
             })}
-            {resources.length === 0 && (
-              <EmptyState
-                title={t("No resources")}
-                description={t("No resources in this category.")}
-              />
-            )}
+            {resources.length === 0 && <EmptyState title={t("No resources")} />}
           </div>
         </div>
       </div>

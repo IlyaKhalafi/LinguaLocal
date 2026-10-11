@@ -2935,3 +2935,11 @@ button:disabled {
     width: 44px;
   }
 }
+
+[dir="rtl"] .lesson-card-bottom .lucide-arrow-right,
+[dir="rtl"] .book-info > .lucide-arrow-up-right {
+  transform: scaleX(-1);
+}
+.resource-list .tabs {
+  margin-block-end: 18px;
+}
