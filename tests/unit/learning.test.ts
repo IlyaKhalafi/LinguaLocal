@@ -10,12 +10,31 @@ import {
 } from "../../src/lib/learning";
 import { packSchema } from "../../src/lib/schema";
 import seed from "../../src/content/starter.json";
+import { levels } from "../../src/lib/schema";
+import { gapSentence } from "../../src/lib/practice";
+import everyday from "../../src/content/vocabulary/everyday.json";
+import advanced from "../../src/content/vocabulary/advanced.json";
 
 const content = packSchema.parse(seed);
 test("starter content is valid and contains only unique records", () => {
-  assert.equal(content.words.length, 90);
+  assert.equal(content.words.length, 150);
   assert.equal(content.books.length, 6);
   assert.equal(content.lessons.length, 6);
+});
+test("every level supports a full quiz and new examples support gap practice", () => {
+  for (const level of levels) {
+    const questions = makeQuiz(
+      content.words.filter((word) => word.level === level),
+    );
+    assert.equal(questions.length, 8, level);
+    assert.ok(
+      questions.every((question) => question.options.length === 4),
+      level,
+    );
+  }
+  for (const word of [...everyday, ...advanced]) {
+    assert.ok(gapSentence(word), word.id);
+  }
 });
 test("reviews progress through intervals and forgetting resets the schedule", () => {
   const now = new Date(2026, 9, 11, 12);

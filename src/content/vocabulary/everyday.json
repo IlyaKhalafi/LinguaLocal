@@ -5,9 +5,9 @@
     "phonetic": "/ˈæpəl/",
     "part": "noun",
     "definition": "A round fruit with red, green, or yellow skin.",
-    "example": "I put an apple in my lunch box.",
+    "example": "I pack an apple in my lunch box.",
     "level": "A1",
-    "synonyms": ["fruit"]
+    "synonyms": []
   },
   {
     "id": "bread",
@@ -17,7 +17,7 @@
     "definition": "A food made from flour and water and baked.",
     "example": "We eat bread with soup.",
     "level": "A1",
-    "synonyms": ["loaf"]
+    "synonyms": []
   },
   {
     "id": "breakfast",
@@ -57,7 +57,7 @@
     "definition": "An area where flowers or vegetables grow.",
     "example": "We grow tomatoes in the garden.",
     "level": "A1",
-    "synonyms": ["yard"]
+    "synonyms": []
   },
   {
     "id": "happy",
@@ -97,7 +97,7 @@
     "definition": "To gain knowledge or a new skill.",
     "example": "We learn a new song in class.",
     "level": "A1",
-    "synonyms": ["study"]
+    "synonyms": ["pick up"]
   },
   {
     "id": "morning",
@@ -117,7 +117,7 @@
     "definition": "To move something so people can enter or see inside.",
     "example": "Please open the window.",
     "level": "A1",
-    "synonyms": ["uncover"]
+    "synonyms": []
   },
   {
     "id": "pencil",
@@ -127,7 +127,7 @@
     "definition": "A tool with a narrow core used for writing or drawing.",
     "example": "I draw a tree with a pencil.",
     "level": "A1",
-    "synonyms": ["writing tool"]
+    "synonyms": []
   },
   {
     "id": "read",
@@ -135,9 +135,9 @@
     "phonetic": "/riːd/",
     "part": "verb",
     "definition": "To understand written words by looking at them.",
-    "example": "I read a short story before bed.",
+    "example": "I read a short story every evening.",
     "level": "A1",
-    "synonyms": ["study"]
+    "synonyms": []
   },
   {
     "id": "school",
@@ -147,7 +147,7 @@
     "definition": "A place where students learn with teachers.",
     "example": "We walk to school together.",
     "level": "A1",
-    "synonyms": ["learning centre"]
+    "synonyms": []
   },
   {
     "id": "shirt",
@@ -157,7 +157,7 @@
     "definition": "A piece of clothing worn on the upper body.",
     "example": "He wears a blue shirt today.",
     "level": "A1",
-    "synonyms": ["top"]
+    "synonyms": []
   },
   {
     "id": "sister",
@@ -167,7 +167,7 @@
     "definition": "A female sibling.",
     "example": "My sister plays the guitar.",
     "level": "A1",
-    "synonyms": ["sibling"]
+    "synonyms": []
   },
   {
     "id": "small",
@@ -214,7 +214,7 @@
     "word": "teacher",
     "phonetic": "/ˈtiːtʃə/",
     "part": "noun",
-    "definition": "Someone who helps others learn.",
+    "definition": "A person whose job is to teach students.",
     "example": "Our teacher explains the new words.",
     "level": "A1",
     "synonyms": ["educator"]
@@ -267,7 +267,7 @@
     "definition": "The clear liquid people drink and use for washing.",
     "example": "Please bring a bottle of water.",
     "level": "A1",
-    "synonyms": ["drinking water"]
+    "synonyms": []
   },
   {
     "id": "weather",
@@ -297,7 +297,7 @@
     "definition": "To form words on paper or a screen.",
     "example": "Please write your answer in a full sentence.",
     "level": "A1",
-    "synonyms": ["put into words"]
+    "synonyms": ["note down"]
   },
   {
     "id": "arrive",
@@ -337,14 +337,14 @@
     "definition": "To think something is true.",
     "example": "I believe your story.",
     "level": "A2",
-    "synonyms": ["trust"]
+    "synonyms": ["accept as true"]
   },
   {
     "id": "careful",
     "word": "careful",
     "phonetic": "/ˈkeəfəl/",
     "part": "adjective",
-    "definition": "Taking attention to avoid mistakes or harm.",
+    "definition": "Taking care to avoid mistakes or harm.",
     "example": "Be careful when you cross the road.",
     "level": "A2",
     "synonyms": ["cautious"]
@@ -354,10 +354,10 @@
     "word": "comfortable",
     "phonetic": "/ˈkʌmftəbəl/",
     "part": "adjective",
-    "definition": "Feeling physically relaxed and at ease.",
+    "definition": "Giving or feeling physical ease.",
     "example": "This chair is comfortable for reading.",
     "level": "A2",
-    "synonyms": ["cosy"]
+    "synonyms": ["at ease"]
   },
   {
     "id": "compare",
@@ -407,7 +407,7 @@
     "definition": "To say what someone or something is like.",
     "example": "Describe your favourite place to your partner.",
     "level": "A2",
-    "synonyms": ["explain"]
+    "synonyms": ["tell about"]
   },
   {
     "id": "direction",
@@ -423,7 +423,7 @@
     "id": "enough",
     "word": "enough",
     "phonetic": "/ɪˈnʌf/",
-    "part": "adjective",
+    "part": "determiner",
     "definition": "As much or as many as needed.",
     "example": "We have enough chairs for everyone.",
     "level": "A2",
@@ -527,7 +527,7 @@
     "definition": "To become aware of something.",
     "example": "Did you notice the new painting?",
     "level": "A2",
-    "synonyms": ["observe"]
+    "synonyms": ["spot"]
   },
   {
     "id": "offer",
@@ -594,7 +594,7 @@
     "word": "return",
     "phonetic": "/rɪˈtɜːn/",
     "part": "verb",
-    "definition": "To go or give something back.",
+    "definition": "To give something back.",
     "example": "Please return the key after your visit.",
     "level": "A2",
     "synonyms": ["give back"]

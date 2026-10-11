@@ -242,14 +242,614 @@
       "synonyms": ["articulate", "expressive"]
     },
     {
+      "id": "adapt",
+      "word": "adapt",
+      "phonetic": "/əˈdæpt/",
+      "part": "verb",
+      "definition": "To change to suit a new situation.",
+      "example": "We adapt our plans when the weather changes.",
+      "level": "B1",
+      "synonyms": ["adjust"]
+    },
+    {
+      "id": "advantage",
+      "word": "advantage",
+      "phonetic": "/ədˈvɑːntɪdʒ/",
+      "part": "noun",
+      "definition": "Something that makes a situation better or easier.",
+      "example": "A small class has the advantage of more speaking time.",
+      "level": "B1",
+      "synonyms": ["benefit"]
+    },
+    {
+      "id": "balance",
+      "word": "balance",
+      "phonetic": "/ˈbæləns/",
+      "part": "noun",
+      "definition": "A situation in which different parts receive suitable attention.",
+      "example": "I try to keep a balance between study and rest.",
+      "level": "B1",
+      "synonyms": ["equilibrium"]
+    },
+    {
+      "id": "challenge",
+      "word": "challenge",
+      "phonetic": "/ˈtʃælɪndʒ/",
+      "part": "noun",
+      "definition": "A task or situation that tests your ability.",
+      "example": "Reading my first novel was a challenge.",
+      "level": "B1",
+      "synonyms": ["test"]
+    },
+    {
+      "id": "community",
+      "word": "community",
+      "phonetic": "/kəˈmjuːnəti/",
+      "part": "noun",
+      "definition": "People connected by a place or a shared interest.",
+      "example": "Our community meets to clean the park.",
+      "level": "B1",
+      "synonyms": ["group"]
+    },
+    {
+      "id": "confident",
+      "word": "confident",
+      "phonetic": "/ˈkɒnfɪdənt/",
+      "part": "adjective",
+      "definition": "Feeling sure about your ability or an outcome.",
+      "example": "I feel confident when I practise before a presentation.",
+      "level": "B1",
+      "synonyms": ["self-assured"]
+    },
+    {
+      "id": "consequence",
+      "word": "consequence",
+      "phonetic": "/ˈkɒnsɪkwəns/",
+      "part": "noun",
+      "definition": "A result caused by an action or event.",
+      "example": "Missing the bus was a consequence of leaving late.",
+      "level": "B1",
+      "synonyms": ["result"]
+    },
+    {
+      "id": "creative",
+      "word": "creative",
+      "phonetic": "/kriˈeɪtɪv/",
+      "part": "adjective",
+      "definition": "Able to produce new and interesting ideas.",
+      "example": "Our group found a creative solution.",
+      "level": "B1",
+      "synonyms": ["inventive"]
+    },
+    {
+      "id": "efficient",
+      "word": "efficient",
+      "phonetic": "/ɪˈfɪʃənt/",
+      "part": "adjective",
+      "definition": "Working well without wasting time or effort.",
+      "example": "The new bus route is more efficient.",
+      "level": "B1",
+      "synonyms": ["economical"]
+    },
+    {
+      "id": "encourage",
+      "word": "encourage",
+      "phonetic": "/ɪnˈkʌrɪdʒ/",
+      "part": "verb",
+      "definition": "To give someone support or confidence.",
+      "example": "We encourage each other to speak English.",
+      "level": "B1",
+      "synonyms": ["support"]
+    },
+    {
+      "id": "environment",
+      "word": "environment",
+      "phonetic": "/ɪnˈvaɪrənmənt/",
+      "part": "noun",
+      "definition": "The surroundings or conditions in which a person, animal, or plant lives.",
+      "example": "Plants need a suitable environment to grow.",
+      "level": "B1",
+      "synonyms": ["surroundings"]
+    },
+    {
+      "id": "experience",
+      "word": "experience",
+      "phonetic": "/ɪkˈspɪəriəns/",
+      "part": "noun",
+      "definition": "Knowledge gained from doing or seeing things.",
+      "example": "She has experience of working with children.",
+      "level": "B1",
+      "synonyms": ["practical knowledge"]
+    },
+    {
+      "id": "flexible",
+      "word": "flexible",
+      "phonetic": "/ˈfleksəbəl/",
+      "part": "adjective",
+      "definition": "Able or willing to change when needed.",
+      "example": "A flexible timetable helps busy learners.",
+      "level": "B1",
+      "synonyms": ["adaptable"]
+    },
+    {
+      "id": "generous",
+      "word": "generous",
+      "phonetic": "/ˈdʒenərəs/",
+      "part": "adjective",
+      "definition": "Willing to give time, help, or money.",
+      "example": "Our generous neighbour shares vegetables from her garden.",
+      "level": "B1",
+      "synonyms": ["giving"]
+    },
+    {
+      "id": "independent",
+      "word": "independent",
+      "phonetic": "/ˌɪndɪˈpendənt/",
+      "part": "adjective",
+      "definition": "Able to act without needing others to help.",
+      "example": "The project helps students become independent learners.",
+      "level": "B1",
+      "synonyms": ["self-reliant"]
+    },
+    {
+      "id": "opportunity",
+      "word": "opportunity",
+      "phonetic": "/ˌɒpəˈtjuːnəti/",
+      "part": "noun",
+      "definition": "A situation that allows you to do something.",
+      "example": "The trip is an opportunity to practise English.",
+      "level": "B1",
+      "synonyms": ["chance"]
+    },
+    {
+      "id": "patient",
+      "word": "patient",
+      "phonetic": "/ˈpeɪʃənt/",
+      "part": "adjective",
+      "definition": "Able to wait calmly or keep trying.",
+      "example": "Be patient while your partner finds the right word.",
+      "level": "B1",
+      "synonyms": ["calm"]
+    },
+    {
+      "id": "reliable",
+      "word": "reliable",
+      "phonetic": "/rɪˈlaɪəbəl/",
+      "part": "adjective",
+      "definition": "Able to be trusted to work well or do what is expected.",
+      "example": "We need a reliable bus service.",
+      "level": "B1",
+      "synonyms": ["dependable"]
+    },
+    {
+      "id": "solution",
+      "word": "solution",
+      "phonetic": "/səˈluːʃən/",
+      "part": "noun",
+      "definition": "A way of dealing with a problem.",
+      "example": "Drawing a map was a simple solution.",
+      "level": "B1",
+      "synonyms": ["answer"]
+    },
+    {
+      "id": "volunteer",
+      "word": "volunteer",
+      "phonetic": "/ˌvɒlənˈtɪə/",
+      "part": "noun",
+      "definition": "Someone who offers to help without being paid.",
+      "example": "A volunteer reads stories at the library.",
+      "level": "B1",
+      "synonyms": ["unpaid helper"]
+    },
+    {
+      "id": "ambiguous",
+      "word": "ambiguous",
+      "phonetic": "/æmˈbɪɡjuəs/",
+      "part": "adjective",
+      "definition": "Having more than one possible meaning.",
+      "example": "The ambiguous instruction confused the group.",
+      "level": "B2",
+      "synonyms": ["open to more than one reading"]
+    },
+    {
+      "id": "analyse",
+      "word": "analyse",
+      "phonetic": "/ˈænəlaɪz/",
+      "part": "verb",
+      "definition": "To examine something carefully to understand it.",
+      "example": "We analyse the results before making a decision.",
+      "level": "B2",
+      "synonyms": ["examine"]
+    },
+    {
+      "id": "anticipate",
+      "word": "anticipate",
+      "phonetic": "/ænˈtɪsɪpeɪt/",
+      "part": "verb",
+      "definition": "To expect something and prepare for it.",
+      "example": "We anticipate a busy afternoon, so we have extra staff ready.",
+      "level": "B2",
+      "synonyms": ["expect"]
+    },
+    {
+      "id": "assumption",
+      "word": "assumption",
+      "phonetic": "/əˈsʌmpʃən/",
+      "part": "noun",
+      "definition": "Something accepted as true without enough proof.",
+      "example": "Our plan relied on the assumption that everyone had a phone.",
+      "level": "B2",
+      "synonyms": ["supposition"]
+    },
+    {
+      "id": "collaborate",
+      "word": "collaborate",
+      "phonetic": "/kəˈlæbəreɪt/",
+      "part": "verb",
+      "definition": "To work with others on a shared task.",
+      "example": "The two classes collaborate on a school newspaper.",
+      "level": "B2",
+      "synonyms": ["work together"]
+    },
+    {
+      "id": "compromise",
+      "word": "compromise",
+      "phonetic": "/ˈkɒmprəmaɪz/",
+      "part": "noun",
+      "definition": "An agreement in which each side gives up part of what it wants.",
+      "example": "We reached a compromise about the meeting time.",
+      "level": "B2",
+      "synonyms": ["middle ground"]
+    },
+    {
+      "id": "consistent",
+      "word": "consistent",
+      "phonetic": "/kənˈsɪstənt/",
+      "part": "adjective",
+      "definition": "Acting or happening in a similar way over time.",
+      "example": "Consistent practice helps new words stay in your memory.",
+      "level": "B2",
+      "synonyms": ["steady"]
+    },
+    {
+      "id": "contribute",
+      "word": "contribute",
+      "phonetic": "/kənˈtrɪbjuːt/",
+      "part": "verb",
+      "definition": "To give something as part of a shared effort.",
+      "example": "Everyone can contribute an idea to the discussion.",
+      "level": "B2",
+      "synonyms": ["add"]
+    },
+    {
+      "id": "convincing",
+      "word": "convincing",
+      "phonetic": "/kənˈvɪnsɪŋ/",
+      "part": "adjective",
+      "definition": "Making someone believe that an idea is true or reasonable.",
+      "example": "She gave a convincing reason for changing the timetable.",
+      "level": "B2",
+      "synonyms": ["persuasive"]
+    },
+    {
+      "id": "criteria",
+      "word": "criteria",
+      "phonetic": "/kraɪˈtɪəriə/",
+      "part": "plural noun",
+      "definition": "Standards used to judge or choose something.",
+      "example": "We agreed on three criteria for choosing a book.",
+      "level": "B2",
+      "synonyms": ["standards"]
+    },
+    {
+      "id": "distinguish",
+      "word": "distinguish",
+      "phonetic": "/dɪˈstɪŋɡwɪʃ/",
+      "part": "verb",
+      "definition": "To recognise or show the difference between things.",
+      "example": "Can you distinguish a fact from an opinion?",
+      "level": "B2",
+      "synonyms": ["tell apart"]
+    },
+    {
+      "id": "emphasise",
+      "word": "emphasise",
+      "phonetic": "/ˈemfəsaɪz/",
+      "part": "verb",
+      "definition": "To give particular attention or importance to something.",
+      "example": "I want to emphasise the value of regular practice.",
+      "level": "B2",
+      "synonyms": ["stress"]
+    },
+    {
+      "id": "evaluate",
+      "word": "evaluate",
+      "phonetic": "/ɪˈvæljueɪt/",
+      "part": "verb",
+      "definition": "To judge the quality or value of something.",
+      "example": "We evaluate our project after each lesson.",
+      "level": "B2",
+      "synonyms": ["assess"]
+    },
+    {
+      "id": "evidence",
+      "word": "evidence",
+      "phonetic": "/ˈevɪdəns/",
+      "part": "noun",
+      "definition": "Information that supports a belief or conclusion.",
+      "example": "The writer uses evidence to support the argument.",
+      "level": "B2",
+      "synonyms": ["supporting information"]
+    },
+    {
+      "id": "implement",
+      "word": "implement",
+      "phonetic": "/ˈɪmplɪment/",
+      "part": "verb",
+      "definition": "To put a plan or decision into action.",
+      "example": "We will implement the new timetable next week.",
+      "level": "B2",
+      "synonyms": ["carry out"]
+    },
+    {
+      "id": "interpret",
+      "word": "interpret",
+      "phonetic": "/ɪnˈtɜːprɪt/",
+      "part": "verb",
+      "definition": "To explain or understand the meaning of something.",
+      "example": "Readers may interpret the ending in different ways.",
+      "level": "B2",
+      "synonyms": ["make sense of"]
+    },
+    {
+      "id": "negotiate",
+      "word": "negotiate",
+      "phonetic": "/nɪˈɡəʊʃieɪt/",
+      "part": "verb",
+      "definition": "To discuss something in order to reach an agreement.",
+      "example": "The students negotiate the division of work.",
+      "level": "B2",
+      "synonyms": ["discuss terms"]
+    },
+    {
+      "id": "priority",
+      "word": "priority",
+      "phonetic": "/praɪˈɒrəti/",
+      "part": "noun",
+      "definition": "Something treated as more important than other things.",
+      "example": "Making the instructions clear is our first priority.",
+      "level": "B2",
+      "synonyms": ["main concern"]
+    },
+    {
+      "id": "resourceful",
+      "word": "resourceful",
+      "phonetic": "/rɪˈsɔːsfəl/",
+      "part": "adjective",
+      "definition": "Good at finding ways to solve a problem.",
+      "example": "Our resourceful group made a game from old cards.",
+      "level": "B2",
+      "synonyms": ["ingenious"]
+    },
+    {
+      "id": "sustainable",
+      "word": "sustainable",
+      "phonetic": "/səˈsteɪnəbəl/",
+      "part": "adjective",
+      "definition": "Able to continue without exhausting resources.",
+      "example": "Cycling is a sustainable way to travel short distances.",
+      "level": "B2",
+      "synonyms": ["maintainable"]
+    },
+    {
+      "id": "alleviate",
+      "word": "alleviate",
+      "phonetic": "/əˈliːvieɪt/",
+      "part": "verb",
+      "definition": "To make a problem or discomfort less severe.",
+      "example": "A short break can alleviate stress.",
+      "level": "C1",
+      "synonyms": ["ease"]
+    },
+    {
+      "id": "coherent",
+      "word": "coherent",
+      "phonetic": "/kəʊˈhɪərənt/",
+      "part": "adjective",
+      "definition": "Clear and organised so its parts fit together.",
+      "example": "The essay presents a coherent argument.",
+      "level": "C1",
+      "synonyms": ["well-organised"]
+    },
+    {
+      "id": "compelling",
+      "word": "compelling",
+      "phonetic": "/kəmˈpelɪŋ/",
+      "part": "adjective",
+      "definition": "Strong enough to attract attention or persuade.",
+      "example": "She offered a compelling reason to protect the park.",
+      "level": "C1",
+      "synonyms": ["persuasive"]
+    },
+    {
+      "id": "contemplate",
+      "word": "contemplate",
+      "phonetic": "/ˈkɒntəmpleɪt/",
+      "part": "verb",
+      "definition": "To think carefully about an idea or possibility.",
+      "example": "Take a moment to contemplate the question.",
+      "level": "C1",
+      "synonyms": ["consider"]
+    },
+    {
+      "id": "discrepancy",
+      "word": "discrepancy",
+      "phonetic": "/dɪˈskrepənsi/",
+      "part": "noun",
+      "definition": "A difference between things that should agree.",
+      "example": "We found a discrepancy between the two reports.",
+      "level": "C1",
+      "synonyms": ["inconsistency"]
+    },
+    {
+      "id": "elaborate",
+      "word": "elaborate",
+      "phonetic": "/ɪˈlæbəreɪt/",
+      "part": "verb",
+      "definition": "To give more information about an idea.",
+      "example": "Could you elaborate on your suggestion?",
+      "level": "C1",
+      "synonyms": ["expand"]
+    },
+    {
+      "id": "feasible",
+      "word": "feasible",
+      "phonetic": "/ˈfiːzəbəl/",
+      "part": "adjective",
+      "definition": "Possible and practical to do.",
+      "example": "A weekly reading club is feasible with our current timetable.",
+      "level": "C1",
+      "synonyms": ["workable"]
+    },
+    {
+      "id": "inherent",
+      "word": "inherent",
+      "phonetic": "/ɪnˈhɪərənt/",
+      "part": "adjective",
+      "definition": "Existing as a natural or essential part of something.",
+      "example": "Every new project has inherent uncertainty.",
+      "level": "C1",
+      "synonyms": ["built-in"]
+    },
+    {
+      "id": "meticulous",
+      "word": "meticulous",
+      "phonetic": "/məˈtɪkjələs/",
+      "part": "adjective",
+      "definition": "Paying very close attention to details.",
+      "example": "The editor made a meticulous check of every page.",
+      "level": "C1",
+      "synonyms": ["thorough"]
+    },
+    {
+      "id": "nuance",
+      "word": "nuance",
+      "phonetic": "/ˈnjuːɑːns/",
+      "part": "noun",
+      "definition": "A small difference in meaning, feeling, or expression.",
+      "example": "A change in tone adds a new nuance to the sentence.",
+      "level": "C1",
+      "synonyms": ["subtle difference"]
+    },
+    {
+      "id": "plausible",
+      "word": "plausible",
+      "phonetic": "/ˈplɔːzəbəl/",
+      "part": "adjective",
+      "definition": "Seeming reasonable or likely to be true.",
+      "example": "That is a plausible explanation for the delay.",
+      "level": "C1",
+      "synonyms": ["credible"]
+    },
+    {
+      "id": "pragmatic",
+      "word": "pragmatic",
+      "phonetic": "/præɡˈmætɪk/",
+      "part": "adjective",
+      "definition": "Dealing with things in a practical way.",
+      "example": "We chose a pragmatic solution that used existing materials.",
+      "level": "C1",
+      "synonyms": ["practical"]
+    },
+    {
+      "id": "profound",
+      "word": "profound",
+      "phonetic": "/prəˈfaʊnd/",
+      "part": "adjective",
+      "definition": "Very deep or having a strong effect.",
+      "example": "The conversation had a profound effect on her outlook.",
+      "level": "C1",
+      "synonyms": ["deep"]
+    },
+    {
+      "id": "reconcile",
+      "word": "reconcile",
+      "phonetic": "/ˈrekənsaɪl/",
+      "part": "verb",
+      "definition": "To find a way for different ideas or needs to fit together.",
+      "example": "We need to reconcile the two groups' expectations.",
+      "level": "C1",
+      "synonyms": ["bring into agreement"]
+    },
+    {
+      "id": "scrutiny",
+      "word": "scrutiny",
+      "phonetic": "/ˈskruːtəni/",
+      "part": "noun",
+      "definition": "Careful and detailed examination.",
+      "example": "The proposal received close scrutiny from the group.",
+      "level": "C1",
+      "synonyms": ["inspection"]
+    },
+    {
+      "id": "subtle",
+      "word": "subtle",
+      "phonetic": "/ˈsʌtəl/",
+      "part": "adjective",
+      "definition": "Not obvious and requiring care to notice.",
+      "example": "There is a subtle difference between the two phrases.",
+      "level": "C1",
+      "synonyms": ["slight"]
+    },
+    {
+      "id": "tentative",
+      "word": "tentative",
+      "phonetic": "/ˈtentətɪv/",
+      "part": "adjective",
+      "definition": "Not yet definite or certain.",
+      "example": "We made a tentative plan for the next meeting.",
+      "level": "C1",
+      "synonyms": ["provisional"]
+    },
+    {
+      "id": "transparent",
+      "word": "transparent",
+      "phonetic": "/trænsˈpærənt/",
+      "part": "adjective",
+      "definition": "Open and easy to understand rather than hidden.",
+      "example": "A transparent process helps everyone understand the decision.",
+      "level": "C1",
+      "synonyms": ["clear"]
+    },
+    {
+      "id": "unprecedented",
+      "word": "unprecedented",
+      "phonetic": "/ʌnˈpresɪdentɪd/",
+      "part": "adjective",
+      "definition": "Never having happened or been known before.",
+      "example": "The library received an unprecedented number of visitors.",
+      "level": "C1",
+      "synonyms": ["never seen before"]
+    },
+    {
+      "id": "versatile",
+      "word": "versatile",
+      "phonetic": "/ˈvɜːsətaɪl/",
+      "part": "adjective",
+      "definition": "Able to be used for many purposes or do different things.",
+      "example": "A notebook is a versatile tool for language study.",
+      "level": "C1",
+      "synonyms": ["multipurpose"]
+    },
+    {
       "id": "apple",
       "word": "apple",
       "phonetic": "/ˈæpəl/",
       "part": "noun",
       "definition": "A round fruit with red, green, or yellow skin.",
-      "example": "I put an apple in my lunch box.",
+      "example": "I pack an apple in my lunch box.",
       "level": "A1",
-      "synonyms": ["fruit"]
+      "synonyms": []
     },
     {
       "id": "bread",
@@ -259,7 +859,7 @@
       "definition": "A food made from flour and water and baked.",
       "example": "We eat bread with soup.",
       "level": "A1",
-      "synonyms": ["loaf"]
+      "synonyms": []
     },
     {
       "id": "breakfast",
@@ -299,7 +899,7 @@
       "definition": "An area where flowers or vegetables grow.",
       "example": "We grow tomatoes in the garden.",
       "level": "A1",
-      "synonyms": ["yard"]
+      "synonyms": []
     },
     {
       "id": "happy",
@@ -339,7 +939,7 @@
       "definition": "To gain knowledge or a new skill.",
       "example": "We learn a new song in class.",
       "level": "A1",
-      "synonyms": ["study"]
+      "synonyms": ["pick up"]
     },
     {
       "id": "morning",
@@ -359,7 +959,7 @@
       "definition": "To move something so people can enter or see inside.",
       "example": "Please open the window.",
       "level": "A1",
-      "synonyms": ["uncover"]
+      "synonyms": []
     },
     {
       "id": "pencil",
@@ -369,7 +969,7 @@
       "definition": "A tool with a narrow core used for writing or drawing.",
       "example": "I draw a tree with a pencil.",
       "level": "A1",
-      "synonyms": ["writing tool"]
+      "synonyms": []
     },
     {
       "id": "read",
@@ -377,9 +977,9 @@
       "phonetic": "/riːd/",
       "part": "verb",
       "definition": "To understand written words by looking at them.",
-      "example": "I read a short story before bed.",
+      "example": "I read a short story every evening.",
       "level": "A1",
-      "synonyms": ["study"]
+      "synonyms": []
     },
     {
       "id": "school",
@@ -389,7 +989,7 @@
       "definition": "A place where students learn with teachers.",
       "example": "We walk to school together.",
       "level": "A1",
-      "synonyms": ["learning centre"]
+      "synonyms": []
     },
     {
       "id": "shirt",
@@ -399,7 +999,7 @@
       "definition": "A piece of clothing worn on the upper body.",
       "example": "He wears a blue shirt today.",
       "level": "A1",
-      "synonyms": ["top"]
+      "synonyms": []
     },
     {
       "id": "sister",
@@ -409,7 +1009,7 @@
       "definition": "A female sibling.",
       "example": "My sister plays the guitar.",
       "level": "A1",
-      "synonyms": ["sibling"]
+      "synonyms": []
     },
     {
       "id": "small",
@@ -456,7 +1056,7 @@
       "word": "teacher",
       "phonetic": "/ˈtiːtʃə/",
       "part": "noun",
-      "definition": "Someone who helps others learn.",
+      "definition": "A person whose job is to teach students.",
       "example": "Our teacher explains the new words.",
       "level": "A1",
       "synonyms": ["educator"]
@@ -509,7 +1109,7 @@
       "definition": "The clear liquid people drink and use for washing.",
       "example": "Please bring a bottle of water.",
       "level": "A1",
-      "synonyms": ["drinking water"]
+      "synonyms": []
     },
     {
       "id": "weather",
@@ -539,7 +1139,7 @@
       "definition": "To form words on paper or a screen.",
       "example": "Please write your answer in a full sentence.",
       "level": "A1",
-      "synonyms": ["put into words"]
+      "synonyms": ["note down"]
     },
     {
       "id": "arrive",
@@ -579,14 +1179,14 @@
       "definition": "To think something is true.",
       "example": "I believe your story.",
       "level": "A2",
-      "synonyms": ["trust"]
+      "synonyms": ["accept as true"]
     },
     {
       "id": "careful",
       "word": "careful",
       "phonetic": "/ˈkeəfəl/",
       "part": "adjective",
-      "definition": "Taking attention to avoid mistakes or harm.",
+      "definition": "Taking care to avoid mistakes or harm.",
       "example": "Be careful when you cross the road.",
       "level": "A2",
       "synonyms": ["cautious"]
@@ -596,10 +1196,10 @@
       "word": "comfortable",
       "phonetic": "/ˈkʌmftəbəl/",
       "part": "adjective",
-      "definition": "Feeling physically relaxed and at ease.",
+      "definition": "Giving or feeling physical ease.",
       "example": "This chair is comfortable for reading.",
       "level": "A2",
-      "synonyms": ["cosy"]
+      "synonyms": ["at ease"]
     },
     {
       "id": "compare",
@@ -649,7 +1249,7 @@
       "definition": "To say what someone or something is like.",
       "example": "Describe your favourite place to your partner.",
       "level": "A2",
-      "synonyms": ["explain"]
+      "synonyms": ["tell about"]
     },
     {
       "id": "direction",
@@ -665,7 +1265,7 @@
       "id": "enough",
       "word": "enough",
       "phonetic": "/ɪˈnʌf/",
-      "part": "adjective",
+      "part": "determiner",
       "definition": "As much or as many as needed.",
       "example": "We have enough chairs for everyone.",
       "level": "A2",
@@ -769,7 +1369,7 @@
       "definition": "To become aware of something.",
       "example": "Did you notice the new painting?",
       "level": "A2",
-      "synonyms": ["observe"]
+      "synonyms": ["spot"]
     },
     {
       "id": "offer",
@@ -836,7 +1436,7 @@
       "word": "return",
       "phonetic": "/rɪˈtɜːn/",
       "part": "verb",
-      "definition": "To go or give something back.",
+      "definition": "To give something back.",
       "example": "Please return the key after your visit.",
       "level": "A2",
       "synonyms": ["give back"]
