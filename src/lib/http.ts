@@ -45,7 +45,7 @@ export function apiError(error: unknown): Response {
   return Response.json(
     {
       error:
-        "Unable to save this change. Check the server’s data directory and try again.",
+        "Unable to complete this request. Check the server’s data directory and try again.",
     },
     { status: 500 },
   );

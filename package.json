@@ -3,16 +3,21 @@
   "version": "2.0.0",
   "private": true,
   "description": "A local learning hub for language schools",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
-    "build": "next build",
-    "start": "next start --hostname 0.0.0.0",
+    "build": "next build && node scripts/prepare-standalone.mjs",
+    "start": "node --env-file-if-exists=.env scripts/start.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/unit/*.test.ts",
     "test:e2e": "playwright test",
     "screenshots": "tsx scripts/screenshots.ts",
-    "check": "npm run lint && npm run typecheck && npm test"
+    "check": "npm run lint && npm run typecheck && npm test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.3.0",
@@ -28,9 +33,11 @@
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "@typescript/native": "npm:typescript@7.0.2",
     "eslint": "10.12.0",
     "eslint-config-next": "16.4.0",
+    "prettier": "3.9.10",
     "tsx": "4.23.15",
-    "typescript": "7.0.2"
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   }
 }
