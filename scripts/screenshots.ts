@@ -15,7 +15,6 @@ const routes = [
   { name: "flashcards", path: "/flashcards" },
   { name: "progress", path: "/progress" },
   { name: "settings", path: "/settings" },
-  { name: "studio", path: "/studio" },
   ...seed.books.map((book) => ({
     name: `book-${book.id}`,
     path: `/library/${book.id}`,

@@ -14,7 +14,6 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 | Flashcards                     | `/flashcards`                    | [View](screenshots/flashcards.png)                   | [View](screenshots/flashcards-mobile.png)                   |
 | Progress                       | `/progress`                      | [View](screenshots/progress.png)                     | [View](screenshots/progress-mobile.png)                     |
 | Settings                       | `/settings`                      | [View](screenshots/settings.png)                     | [View](screenshots/settings-mobile.png)                     |
-| Studio                         | `/studio`                        | [View](screenshots/studio.png)                       | [View](screenshots/studio-mobile.png)                       |
 | Book · Everyday English        | `/library/everyday-english`      | [View](screenshots/book-everyday-english.png)        | [View](screenshots/book-everyday-english-mobile.png)        |
 | Book · The Open Road           | `/library/the-open-road`         | [View](screenshots/book-the-open-road.png)           | [View](screenshots/book-the-open-road-mobile.png)           |
 | Book · Words In Bloom          | `/library/words-in-bloom`        | [View](screenshots/book-words-in-bloom.png)          | [View](screenshots/book-words-in-bloom-mobile.png)          |

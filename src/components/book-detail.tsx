@@ -114,12 +114,7 @@ export function BookDetail({ book }: { book: Book }) {
             {resources.length === 0 && (
               <EmptyState
                 title="Room for something wonderful."
-                description="Your school can add audio, video, and reading materials through a content pack in School settings."
-                action={
-                  <Link href="/studio" className="button secondary">
-                    Add school resources
-                  </Link>
-                }
+                description="Your school can add audio, video, and reading materials by updating its content pack on the server."
               />
             )}
           </div>

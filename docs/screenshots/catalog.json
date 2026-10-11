@@ -40,10 +40,6 @@
     "path": "/settings"
   },
   {
-    "name": "studio",
-    "path": "/studio"
-  },
-  {
     "name": "book-everyday-english",
     "path": "/library/everyday-english"
   },

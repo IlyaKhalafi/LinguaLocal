@@ -13,7 +13,6 @@ const routes = [
   "/flashcards",
   "/progress",
   "/settings",
-  "/studio",
   ...seed.books.map((book) => `/library/${book.id}`),
   ...seed.lessons.map((lesson) => `/lessons/${lesson.id}`),
   "/not-a-page",
@@ -215,49 +214,31 @@ test("quiz and matching games finish and preserve their results", async ({
   ).toEqual([6, 8]);
 });
 
-test("school settings and content imports persist and validate failures", async ({
+test("shared content is read-only through the public hub", async ({
   page,
   request,
 }) => {
-  const initial = await (await request.get("/api/settings")).json();
-  try {
-    await page.goto("/settings");
-    await page
-      .getByRole("textbox", { name: "School name" })
-      .fill("Local Language School");
-    await page.getByRole("button", { name: "Save your welcome" }).click();
-    await expect(page.getByRole("status")).toContainText("has been saved");
-    await page.reload();
-    await expect(
-      page.getByRole("textbox", { name: "School name" }),
-    ).toHaveValue("Local Language School");
-    const invalid = await request.put("/api/content", { data: { version: 1 } });
-    expect(invalid.status()).toBe(400);
-    const malformed = await request.put("/api/content", { data: "{bad" });
-    expect(malformed.status()).toBe(400);
-    const imported = await request.put("/api/content", { data: seed });
-    expect(imported.ok()).toBe(true);
-    expect(
-      (await (await request.get("/api/content")).json()).words,
-    ).toHaveLength(24);
-    const uploaded = await request.post("/api/upload?name=test.pdf", {
-      data: Buffer.from("%PDF-1.4\nlocal sample"),
-      headers: { "X-LinguaLocal-Upload": "1" },
-    });
-    expect(uploaded.ok()).toBe(true);
-    const file = (await uploaded.json()).file;
-    expect((await request.get(`/api/media/${file}`)).status()).toBe(200);
-    expect(
-      (
-        await request.post("/api/upload?name=../bad.pdf", {
-          data: "bad",
-          headers: { "X-LinguaLocal-Upload": "1" },
-        })
-      ).status(),
-    ).toBe(400);
-  } finally {
-    await request.put("/api/settings", { data: initial });
-  }
+  expect((await request.get("/studio")).status()).toBe(404);
+  expect((await request.put("/api/content", { data: seed })).status()).toBe(
+    405,
+  );
+  expect(
+    (
+      await request.put("/api/settings", { data: { name: "Changed" } })
+    ).status(),
+  ).toBe(405);
+  expect(
+    (
+      await request.post("/api/upload?name=test.pdf", { data: "test" })
+    ).status(),
+  ).toBe(404);
+  await page.goto("/settings");
+  await expect(
+    page.getByRole("button", { name: "Export my progress" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Open content studio" }),
+  ).toHaveCount(0);
 });
 
 test("corrupt progress recovers and storage failures remain usable", async ({

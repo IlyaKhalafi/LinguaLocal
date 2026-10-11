@@ -1,27 +1,25 @@
 # Architecture and verification
 
-LinguaLocal is a single Next.js App Router application. Server components load institution content. Client components handle interaction and browser progress. Route handlers validate writes and stream local media.
+LinguaLocal is a single Next.js App Router application. Server components load institution content. Client components handle interaction and browser progress. Route handlers read shared data and stream local media.
 
 ## Source layout
 
-| Directory        | Responsibility                                            |
-| ---------------- | --------------------------------------------------------- |
-| `src/app`        | Routes, layouts, loading states, and error boundaries     |
-| `src/app/api`    | Content, settings, uploads, media listing, and streaming  |
-| `src/components` | Learning screens, navigation, media controls, and editors |
-| `src/lib`        | Schemas, storage, learning logic, and HTTP helpers        |
-| `src/content`    | Original starter collection                               |
-| `public/demo`    | Bundled audio, video, captions, and PDF samples           |
-| `tests`          | Unit tests and browser workflows                          |
-| `scripts`        | Packaging, production startup, and screenshot capture     |
+| Directory        | Responsibility                                                |
+| ---------------- | ------------------------------------------------------------- |
+| `src/app`        | Routes, layouts, loading states, and error boundaries         |
+| `src/app/api`    | Content, settings, media listing, and streaming               |
+| `src/components` | Learning screens, navigation, media controls, and preferences |
+| `src/lib`        | Schemas, storage, learning logic, and HTTP helpers            |
+| `src/content`    | Original starter collection                                   |
+| `public/demo`    | Bundled audio, video, captions, and PDF samples               |
+| `tests`          | Unit tests and browser workflows                              |
+| `scripts`        | Packaging, production startup, and screenshot capture         |
 
 ## Shared content
 
 Settings and content are validated JSON files. Reads share a cache keyed by file metadata and refresh after writes or external changes. Writes use a temporary file, flush it, and rename it over the target. Failed writes clean up temporary files.
 
-The studio sends the version it loaded with each save. Saves are serialised in one process and stale versions receive a conflict response. Pack imports intentionally replace the collection.
-
-Malformed content produces an error on learning pages. School settings and the studio remain available with a recovery message and starter content so a valid backup can be imported. Malformed settings use a visible fallback welcome. Original files remain until replaced.
+Shared writes are performed through server files or the validated command-line installer. Public HTTP endpoints accept no shared-content mutations. Malformed content produces an error on learning pages. Malformed settings use a visible fallback welcome. Original files remain until the owner replaces them.
 
 ## Personal learning
 
@@ -33,7 +31,7 @@ Date-dependent content uses a hydration-safe server snapshot before switching to
 
 ## Media
 
-Uploads stream with a byte limit and unique names. Playback resolves files inside the media or bundled demo directory. It supports full reads, HEAD requests, bounded ranges, suffix ranges, and downloads. Unsupported multi-range requests receive 416. Media is not compressed in transit.
+Playback resolves files inside the media or bundled demo directory. It supports full reads, HEAD requests, bounded ranges, suffix ranges, and downloads. Unsupported multi-range requests receive 416. Media is not compressed in transit.
 
 Native players provide audio and video controls. Extra controls support speed, skipping back, and approximate passage repetition. A/B loops use time-update events and are intended for study rather than sample-accurate editing.
 
@@ -46,7 +44,7 @@ npm run build
 npm run test:e2e
 ```
 
-Browser checks run in Chromium and WebKit and cover every starter book and lesson detail, all main pages, games, settings, the studio, and the not-found page. They check desktop and mobile accessibility, layout and navigation, page errors, real playback, persistent learning, imports, and operation with external requests blocked.
+Browser checks run in Chromium and WebKit and cover every starter book and lesson detail, all main pages, games, personal settings, and the not-found page. They check desktop and mobile accessibility, layout and navigation, page errors, real playback, persistent learning, read-only content, and operation with external requests blocked.
 
 Screenshots can be regenerated from a running production server. The committed catalogue includes desktop and mobile pages plus active game and listening states using the starter collection.
 

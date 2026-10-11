@@ -128,7 +128,7 @@ export function Overview({
           </div>
           {content.books.length === 0 && (
             <p className="muted">
-              Your school can add books in School settings.
+              Your school can add books to its server content pack.
             </p>
           )}
           <div className="practice-banner">

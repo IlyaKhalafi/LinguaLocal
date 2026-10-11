@@ -27,7 +27,7 @@ No accounts. No subscriptions. No runtime cloud services. Fonts, artwork, starte
 
 - **A learning space worth opening** with a calm bookshelf, thoughtful empty states, and layouts that fit phones and desktops.
 - **One computer, a whole classroom** with local audio and video streaming that supports seeking and downloads.
-- **Your curriculum belongs here** with a content studio for books, lessons, vocabulary, transcripts, and captions.
+- **Your curriculum belongs here** with portable packs for books, lessons, vocabulary, transcripts, and captions.
 - **Practice that remembers** with saved words, spaced review, daily goals, streaks, and personal progress backups.
 - **Easy to own** with a single Next.js service, portable JSON content packs, a persistent data directory, and Docker deployment.
 
@@ -45,8 +45,7 @@ No accounts. No subscriptions. No runtime cloud services. Fonts, artwork, starte
 | Matching game          | Pair words and definitions without a timer or leaderboard                          | [Perfect pairs](docs/screenshots/matching-playing.png)       |
 | Spaced flashcards      | Study all words, saved words, or cards ready for review                            | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Learning progress      | See an eight-week activity map, streaks, completed lessons, and recent results     | [Progress](docs/screenshots/progress.png)                    |
-| Content studio         | Create and edit books, resources, words, and lessons in the browser                | [Studio](docs/screenshots/studio.png)                        |
-| School settings        | Personalise the welcome, import packs, upload media, and restore personal backups  | [Settings](docs/screenshots/settings.png)                    |
+| School settings        | Choose personal preferences and export or restore progress backups                 | [Settings](docs/screenshots/settings.png)                    |
 
 <table>
   <tr>
@@ -91,13 +90,12 @@ For development, run `npm run dev`.
 
 ## Bring your school’s books
 
-1. Open **School settings**, then **Open content studio**.
-2. Upload your audio, videos, PDFs, or WebVTT caption files in **Media files**.
-3. Add a book or edit an existing one. Connect its resources using the file picker.
-4. Add vocabulary and lessons that match your curriculum.
-5. Save the collection. It becomes available to every student on the network.
+1. Copy `src/content/starter.json` to a working content pack and edit it on the server.
+2. Place audio, videos, PDFs, and WebVTT captions in `data/media`.
+3. Set each book resource’s file path relative to that directory.
+4. Validate and install the collection using the content guide.
 
-Export a content pack to share your collection with another institution. Media files travel separately. The bundled collection contains six original book shells, six lessons, 24 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
+Media files travel separately. The bundled collection contains six original book shells, six lessons, 24 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
 
 [Read the content guide](docs/CONTENT.md) for the pack format, large files, and migration from the previous Python app.
 
@@ -115,7 +113,7 @@ The server stores the school’s shared content and streams its media. Each brow
 
 The app needs a running server and a connection to the school network. Internet access is needed to install dependencies or build the Docker image initially. Once installed, the learning hub works without internet access. Dictionary pronunciation uses an English voice installed locally on the student’s device when one is available.
 
-There is deliberately no sign-in or access control. Everyone who can reach the hub can use school settings and the content studio. Keep deployment on the intended institution network. Shared computers share the progress saved in that browser.
+There is deliberately no sign-in or access control. The public hub serves shared curriculum without browser editing. Owners manage content and school settings directly on the server. Shared computers share the progress saved in that browser.
 
 ## Development
 
@@ -126,7 +124,7 @@ npx playwright install --with-deps chromium webkit
 npm run test:e2e
 ```
 
-Unit tests cover review scheduling, quiz generation, content validation, concurrent edits, corrupt-data recovery, and HTTP range parsing. Browser tests exercise every starter page, responsive navigation, accessibility, playback, imports, and persistent learning workflows. The offline checks block external requests.
+Unit tests cover review scheduling, quiz generation, content validation, corrupt-data recovery, and HTTP range parsing. Browser tests exercise every starter page, responsive navigation, accessibility, playback, read-only shared content, and persistent learning workflows. The offline checks block external requests.
 
 Capture fresh desktop and mobile screenshots from a running production server with `SCREENSHOT_BASE_URL=http://127.0.0.1:3000 npm run screenshots`.
 

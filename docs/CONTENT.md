@@ -1,35 +1,25 @@
 # Bring your own curriculum
 
-The content studio manages books, words, and lessons. Each book groups local audio, video, and PDF resources. Content packs contain metadata and learning text. They do not embed media files.
+Owners manage shared content on the school server. The browser hub has no content editor, upload form, or shared write endpoints. Students need no accounts.
 
-## Content studio
+## Installing a content pack
 
-Open `/studio` from School settings. Create or edit an item, keep it in the draft, then save the collection. Editor changes are not shared until they have been kept in the draft and the collection has been saved.
+Copy `src/content/starter.json` to a working JSON file. Edit books, vocabulary, and lessons using the examples below. Keep a backup of the previous collection.
 
-Kept drafts are saved in the current browser and can be restored after a reload. An item still open in its editor has not been kept yet. Navigation warns before leaving an unfinished item. If browser storage is unavailable, download the draft before leaving.
+Run `npx tsx scripts/install-content.ts /path/to/collection.json` from the project directory. The command validates the whole pack before replacing `data/content.json`. `LINGUALOCAL_DATA_DIR` selects a different data directory. Updates appear on the next page load.
 
-Books, words, and lessons can be removed with confirmation. Keep at least four dictionary words so vocabulary games remain available. Removing a book does not delete its media files.
+For Docker, edit a local pack and copy it into the running container, then validate and install it.
 
-The media tab lists supported files on the server, including bundled samples. Upload a file and choose it when editing a book resource. Add transcripts for listening material and WebVTT files for video captions.
-
-If another browser saves while you are editing, the studio rejects the stale save. Download your draft, reload the latest collection, and reapply the changes.
-
-## Portable packs
-
-School settings exports and imports JSON collections. Importing replaces the current collection. Export a backup first. Personal progress remains intact, and only entries still present in the new collection appear in learning pages.
-
-Packs have a maximum size of 2 MB. Use the current export as a template. Validation rules are in `src/lib/schema.ts`.
-
-```json
-{
-  "version": 1,
-  "words": [],
-  "books": [],
-  "lessons": []
-}
+```sh
+docker compose cp collection.json lingualocal:/tmp/collection.json
+docker compose exec lingualocal node scripts/install-content.mjs /tmp/collection.json
 ```
 
-This illustrates the three collections. A valid pack needs at least four dictionary entries so games have enough answer choices.
+The packaged installer is generated during the build and uses the same schema as the app.
+
+School branding is stored in `data/settings.json` with `name` and `welcome` fields. Both must be nonempty, with limits of 60 and 180 characters. Remove the file to restore defaults.
+
+Packs must be smaller than 2 MB and contain at least four words. Validation rules are in `src/lib/schema.ts`. Keep entry IDs stable to preserve student bookmarks and reviews.
 
 ### Dictionary entries
 
@@ -72,13 +62,11 @@ For video, add a `captions` field containing a relative `.vtt` path. Duration te
 
 Each lesson has a title, description, level, category, reading time, and text sections. Its practice question contains two to six options, a zero-based correct answer index, and an explanation. Categories are Grammar, Vocabulary, Reading, and Speaking.
 
-New lessons in the editor have a three-option question. Imported packs may use two to six options. Existing options are preserved during editing.
+Each question supports two to six answer options.
 
-## Media files and large uploads
+## Media files
 
-Browser uploads stream to a temporary file, enforce a 100 MB limit, and move into the media directory only when complete. Uploaded names are normalised and prefixed with a unique identifier.
-
-For larger files or a whole textbook, copy a folder into the server’s media directory. The studio lists up to 2,000 files and explores six folder levels. Playback can serve deeper valid paths supplied through a pack.
+Copy files or folders into the server’s configured media directory. For Docker, use `docker compose cp` to place files under `/app/data/media`. Set matching relative paths in the content pack. Bundled demonstration files remain available as fallbacks.
 
 Keep publisher materials out of the public repository. Schools should supply files they own or have permission to distribute. The original starter collection is included with the project.
 
@@ -88,6 +76,6 @@ Copy the old app’s audio folders into the new media directory. Create books an
 
 ## Personal progress
 
-Progress is exported separately from My progress or School settings. It contains saved words, lesson completions, review schedules, game attempts, activity dates, and a daily goal. Restore it in another browser to continue the same journey.
+Progress is exported separately from My progress or Settings. It contains saved words, lesson completions, review schedules, game attempts, activity dates, and a daily goal. Restore it in another browser to continue the same journey.
 
 Shared computers use the same progress when they share a browser profile. Clearing browser storage removes progress. Save a backup first.

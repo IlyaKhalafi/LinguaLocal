@@ -9,8 +9,6 @@ import {
   type Settings,
 } from "./schema";
 import seed from "@/content/starter.json";
-import { contentVersion } from "./content-version";
-import { HttpError } from "./http";
 
 export const dataDirectory = path.resolve(
   /* turbopackIgnore: true */
@@ -61,29 +59,6 @@ export async function getContent(): Promise<ContentPack> {
 export async function getSettings(): Promise<Settings> {
   return readDocument("settings.json", defaultSettings, settingsSchema);
 }
-let contentWriteQueue = Promise.resolve();
-export async function saveContent(
-  content: ContentPack,
-  expectedVersion: string | null,
-) {
-  const task = contentWriteQueue.then(async () => {
-    if (
-      expectedVersion &&
-      expectedVersion !== contentVersion((await getContentState()).content)
-    )
-      throw new HttpError(
-        409,
-        "The collection changed in another browser. Download your draft, reload this page, and apply your changes to the latest collection.",
-      );
-    await atomicWrite("content.json", content);
-    return contentVersion(content);
-  });
-  contentWriteQueue = task.then(
-    () => undefined,
-    () => undefined,
-  );
-  return task;
-}
 export async function getSettingsState() {
   try {
     return { settings: await getSettings(), warning: "" };
@@ -92,7 +67,7 @@ export async function getSettingsState() {
     return {
       settings: defaultSettings,
       warning:
-        "The school settings file could not be read. Save your welcome in School settings to repair it.",
+        "The school settings file could not be read. Ask the school to repair settings.json on the server.",
     };
   }
 }
@@ -104,7 +79,7 @@ export async function getContentState() {
     return {
       content: starterContent,
       warning:
-        "The school’s content file could not be read. The starter collection is shown here so you can import a valid backup to repair it. The original file remains on the server until you replace it.",
+        "The school’s content file could not be read. The starter collection is shown here while the school repairs content.json on the server. The original file remains on the server until you replace it.",
     };
   }
 }

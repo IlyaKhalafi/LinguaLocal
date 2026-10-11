@@ -2526,122 +2526,6 @@ label {
 .hero-book.book-front {
   color: #5b3b25;
 }
-.studio-notice {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 17px 20px;
-  background: #eef3e8;
-  border: 1px solid #e0e8d7;
-  border-radius: 11px;
-  margin-bottom: 25px;
-  font-size: 12px;
-  color: #5c6c53;
-}
-.studio-notice p {
-  flex: 1;
-}
-.studio-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
-  gap: 24px;
-  align-items: start;
-}
-.studio-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 17px 0;
-  border-bottom: 1px solid var(--line);
-  flex-wrap: wrap;
-}
-.studio-row > div:not(.studio-delete) {
-  flex: 1;
-  min-width: 100px;
-}
-.studio-row h3 {
-  font-size: 13px;
-}
-.studio-row p {
-  font-size: 11px;
-  color: #667362;
-  margin-top: 4px;
-}
-.studio-swatch {
-  width: 25px;
-  height: 33px;
-  border-radius: 3px 6px 6px 3px;
-  background: #ead2bc;
-}
-.studio-swatch.mint {
-  background: #d2dfcb;
-}
-.studio-swatch.lavender {
-  background: #ded7e8;
-}
-.studio-swatch.blue {
-  background: #d2dde5;
-}
-.studio-swatch.yellow {
-  background: #ede5c8;
-}
-.studio-swatch.rose {
-  background: #e8d2d4;
-}
-.studio-form h2 {
-  margin-bottom: 25px;
-}
-.studio-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-.studio-form input,
-.studio-form select,
-.studio-form textarea {
-  width: 100%;
-  min-width: 0;
-  font-size: 12px;
-}
-.studio-resource {
-  padding: 18px;
-  background: #f7f9f3;
-  border: 1px solid #e5ebdc;
-  border-radius: 12px;
-  margin: 17px 0;
-}
-.studio-delete {
-  flex-basis: 100%;
-  padding: 15px;
-  background: #faf0e6;
-  border-radius: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.upload-control:focus-within {
-  outline: 2px solid var(--green);
-  outline-offset: 4px;
-}
-.studio-delete p {
-  width: 100%;
-  margin-bottom: 8px;
-}
-.studio-welcome {
-  text-align: center;
-  padding: 50px 28px;
-  background: #f1f5eb;
-  color: #7d9568;
-}
-.studio-welcome h2 {
-  margin: 20px 0 15px;
-  font-size: 22px;
-}
-.studio-welcome p {
-  font-size: 12px;
-  color: #667362;
-  line-height: 1.9;
-}
 .listening-controls {
   display: flex;
   flex-wrap: wrap;
@@ -2661,24 +2545,6 @@ label {
   padding: 9px 11px;
   font-size: 10px;
 }
-@media (max-width: 950px) {
-  .studio-layout {
-    grid-template-columns: 1fr;
-  }
-  .studio-welcome {
-    padding: 35px;
-  }
-}
-@media (max-width: 420px) {
-  .studio-notice {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .studio-form-row {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Cover baselines and practice guidance share the same spacing rhythm. */
 .cover-title {
   min-height: 2.3em;
@@ -2840,15 +2706,6 @@ label {
   .toolbar select {
     width: 100%;
     max-width: none;
-  }
-  .studio-tabs {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .studio-row .icon-button,
-  .studio-row .text-link {
-    min-width: 44px;
-    min-height: 44px;
   }
   .lesson-content .game-controls .button {
     width: 100%;

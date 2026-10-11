@@ -19,16 +19,15 @@ The next release expands student practice, classroom materials, and local deploy
 - [ ] Assignment links with local checklists and optional due dates
 - [ ] Printable vocabulary and lesson worksheets with separate answer keys
 - [ ] Self-reported progress summaries and classroom roll-ups
-- [ ] Multiple-choice, gap-fill, and ordering exercise authoring
 - [ ] Vocabulary spreadsheet import and deck export
 - [ ] Subtitle conversion and timing diagnostics
-- [ ] Content snapshots, restore, and local editing undo
+- [ ] Server content snapshots and restore tools
 
 ## Everyday use
 
 - [ ] Keyboard and accessibility coverage for every new workflow
 - [ ] Reading size, spacing, bundled reading font, contrast, and dark appearance
-- [ ] English and Persian core navigation with right-to-left support
+- [ ] English, Persian, Arabic, and Turkish interfaces with right-to-left support
 
 ## Owning the hub
 
@@ -39,3 +38,5 @@ The next release expands student practice, classroom materials, and local deploy
 - [ ] Contributor templates, changelog, and release packaging
 
 Offline browser storage and microphone recording depend on browser capabilities. HTTPS on the school network enables service workers and microphone access. Plain HTTP continues to support the local learning hub. Personal reports contain the information students choose to share and do not verify identity.
+
+Shared curriculum is managed on the server. Browser tools do not edit the school’s collection. Student pages use concise labels and show instructions only when needed.

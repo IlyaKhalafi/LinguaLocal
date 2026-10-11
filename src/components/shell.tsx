@@ -184,7 +184,7 @@ export function Shell({
             onClick={() => setOpen(false)}
           >
             <Settings2 size={19} />
-            <span>School settings</span>
+            <span>Settings</span>
           </Link>
           <div className="sidebar-footer">
             <span className="avatar">L</span>
@@ -211,11 +211,7 @@ export function Shell({
             <ChevronRight size={14} />
             <strong>
               {current?.label ??
-                (pathname === "/settings"
-                  ? "School settings"
-                  : pathname === "/studio"
-                    ? "Content studio"
-                    : "Explore")}
+                (pathname === "/settings" ? "Settings" : "Explore")}
             </strong>
           </div>
           <div className="topbar-right">

@@ -4,7 +4,6 @@ import { mkdtempSync } from "node:fs";
 import { readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { tmpdir } from "node:os";
-import { contentVersion } from "../../src/lib/content-version";
 
 const directory = mkdtempSync(path.join(tmpdir(), "lingualocal-content-test-"));
 process.env.LINGUALOCAL_DATA_DIR = directory;
@@ -40,19 +39,11 @@ test("corrupt files remain recoverable without being overwritten", async () => {
   assert.ok(recovery.warning);
   assert.equal(await readFile(location, "utf8"), "broken file");
 });
-test("concurrent collection saves reject stale versions", async () => {
+test("server content updates refresh the collection cache", async () => {
   const api = await service;
   const original = await api.getContent();
-  const version = contentVersion(original);
-  const first = structuredClone(original);
-  first.books[0].title = "First edit";
-  const second = structuredClone(original);
-  second.books[0].title = "Second edit";
-  const results = await Promise.allSettled([
-    api.saveContent(first, version),
-    api.saveContent(second, version),
-  ]);
-  assert.equal(results[0].status, "fulfilled");
-  assert.equal(results[1].status, "rejected");
-  assert.equal((await api.getContent()).books[0].title, "First edit");
+  const changed = structuredClone(original);
+  changed.books[0].title = "Updated school book";
+  await api.atomicWrite("content.json", changed);
+  assert.equal((await api.getContent()).books[0].title, "Updated school book");
 });

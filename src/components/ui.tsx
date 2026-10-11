@@ -17,17 +17,17 @@ export function PageHeading({
   description,
   action,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
-  description: string;
+  description?: string;
   action?: ReactNode;
 }) {
   return (
     <div className="page-heading">
       <div>
-        <p className="eyebrow">{eyebrow}</p>
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1>{title}</h1>
-        <p className="muted">{description}</p>
+        {description && <p className="muted">{description}</p>}
       </div>
       {action}
     </div>
@@ -48,14 +48,14 @@ export function EmptyState({
   action,
 }: {
   title: string;
-  description: string;
+  description?: string;
   action?: ReactNode;
 }) {
   return (
     <div className="empty-state">
       <BookOpen size={32} />
       <h2>{title}</h2>
-      <p className="muted">{description}</p>
+      {description && <p className="muted">{description}</p>}
       {action}
     </div>
   );
