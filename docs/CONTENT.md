@@ -126,3 +126,9 @@ Pause content edits and file transfers while taking a snapshot. A changed source
 In the standalone distribution, use `node scripts/snapshot-tools.mjs create NEW-SNAPSHOT-DIRECTORY` or `node scripts/snapshot-tools.mjs restore SNAPSHOT NEW-DATA-DIRECTORY`.
 
 Content commands load the project’s `.env` file, with exported environment variables taking precedence. Snapshots also archive the configured `PORT`, `LINGUALOCAL_HOST`, and public school address. Restore produces `server.env.example` for you to review on the new computer. Set its data paths before copying these values into the deployment environment. Other environment variables are not included.
+
+## Original vocabulary collections
+
+The starter pack includes 66 additional A1 and A2 entries for home, school, travel, food, and everyday conversations. Each has an original definition, pronunciation, example, and related wording. Level labels guide practice rather than certify a learner's proficiency.
+
+The source collections live in `src/content/vocabulary`. Rebuild the bundled pack with `python3 scripts/seed-content.py`, then validate it with `npm run content:validate -- src/content/starter.json`. Stable IDs keep saved words intact when the pack grows. School content files are never replaced by rebuilding the starter pack.

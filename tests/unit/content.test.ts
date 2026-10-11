@@ -4,6 +4,7 @@ import { mkdtempSync } from "node:fs";
 import { readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { tmpdir } from "node:os";
+import seed from "../../src/content/starter.json";
 
 const directory = mkdtempSync(path.join(tmpdir(), "lingualocal-content-test-"));
 process.env.LINGUALOCAL_DATA_DIR = directory;
@@ -12,7 +13,7 @@ after(() => rm(directory, { recursive: true, force: true }));
 
 test("content and settings use defaults before the first write", async () => {
   const api = await service;
-  assert.equal((await api.getContent()).words.length, 24);
+  assert.deepEqual(await api.getContent(), seed);
   assert.equal((await api.getSettings()).name, "LinguaLocal");
 });
 test("writes persist and cached reads refresh after an edit", async () => {

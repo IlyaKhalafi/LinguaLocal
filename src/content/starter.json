@@ -240,6 +240,666 @@
       "example": "The speaker gave an eloquent explanation.",
       "level": "C1",
       "synonyms": ["articulate", "expressive"]
+    },
+    {
+      "id": "apple",
+      "word": "apple",
+      "phonetic": "/ˈæpəl/",
+      "part": "noun",
+      "definition": "A round fruit with red, green, or yellow skin.",
+      "example": "I put an apple in my lunch box.",
+      "level": "A1",
+      "synonyms": ["fruit"]
+    },
+    {
+      "id": "bread",
+      "word": "bread",
+      "phonetic": "/bred/",
+      "part": "noun",
+      "definition": "A food made from flour and water and baked.",
+      "example": "We eat bread with soup.",
+      "level": "A1",
+      "synonyms": ["loaf"]
+    },
+    {
+      "id": "breakfast",
+      "word": "breakfast",
+      "phonetic": "/ˈbrekfəst/",
+      "part": "noun",
+      "definition": "The first meal of the day.",
+      "example": "I have breakfast before school.",
+      "level": "A1",
+      "synonyms": ["morning meal"]
+    },
+    {
+      "id": "classroom",
+      "word": "classroom",
+      "phonetic": "/ˈklɑːsruːm/",
+      "part": "noun",
+      "definition": "A room where students have lessons.",
+      "example": "Our classroom has a large window.",
+      "level": "A1",
+      "synonyms": ["schoolroom"]
+    },
+    {
+      "id": "family",
+      "word": "family",
+      "phonetic": "/ˈfæməli/",
+      "part": "noun",
+      "definition": "A group of people related to one another.",
+      "example": "My family cooks dinner together.",
+      "level": "A1",
+      "synonyms": ["relatives"]
+    },
+    {
+      "id": "garden",
+      "word": "garden",
+      "phonetic": "/ˈɡɑːdən/",
+      "part": "noun",
+      "definition": "An area where flowers or vegetables grow.",
+      "example": "We grow tomatoes in the garden.",
+      "level": "A1",
+      "synonyms": ["yard"]
+    },
+    {
+      "id": "happy",
+      "word": "happy",
+      "phonetic": "/ˈhæpi/",
+      "part": "adjective",
+      "definition": "Feeling pleasure or joy.",
+      "example": "I am happy to see my classmates.",
+      "level": "A1",
+      "synonyms": ["glad"]
+    },
+    {
+      "id": "hungry",
+      "word": "hungry",
+      "phonetic": "/ˈhʌŋɡri/",
+      "part": "adjective",
+      "definition": "Wanting or needing food.",
+      "example": "I feel hungry after our walk.",
+      "level": "A1",
+      "synonyms": ["ready to eat"]
+    },
+    {
+      "id": "kitchen",
+      "word": "kitchen",
+      "phonetic": "/ˈkɪtʃɪn/",
+      "part": "noun",
+      "definition": "A room where people prepare food.",
+      "example": "The plates are in the kitchen.",
+      "level": "A1",
+      "synonyms": ["cooking room"]
+    },
+    {
+      "id": "learn",
+      "word": "learn",
+      "phonetic": "/lɜːn/",
+      "part": "verb",
+      "definition": "To gain knowledge or a new skill.",
+      "example": "We learn a new song in class.",
+      "level": "A1",
+      "synonyms": ["study"]
+    },
+    {
+      "id": "morning",
+      "word": "morning",
+      "phonetic": "/ˈmɔːnɪŋ/",
+      "part": "noun",
+      "definition": "The early part of the day before noon.",
+      "example": "I read for ten minutes every morning.",
+      "level": "A1",
+      "synonyms": ["early day"]
+    },
+    {
+      "id": "open",
+      "word": "open",
+      "phonetic": "/ˈəʊpən/",
+      "part": "verb",
+      "definition": "To move something so people can enter or see inside.",
+      "example": "Please open the window.",
+      "level": "A1",
+      "synonyms": ["uncover"]
+    },
+    {
+      "id": "pencil",
+      "word": "pencil",
+      "phonetic": "/ˈpensəl/",
+      "part": "noun",
+      "definition": "A tool with a narrow core used for writing or drawing.",
+      "example": "I draw a tree with a pencil.",
+      "level": "A1",
+      "synonyms": ["writing tool"]
+    },
+    {
+      "id": "read",
+      "word": "read",
+      "phonetic": "/riːd/",
+      "part": "verb",
+      "definition": "To understand written words by looking at them.",
+      "example": "I read a short story before bed.",
+      "level": "A1",
+      "synonyms": ["study"]
+    },
+    {
+      "id": "school",
+      "word": "school",
+      "phonetic": "/skuːl/",
+      "part": "noun",
+      "definition": "A place where students learn with teachers.",
+      "example": "We walk to school together.",
+      "level": "A1",
+      "synonyms": ["learning centre"]
+    },
+    {
+      "id": "shirt",
+      "word": "shirt",
+      "phonetic": "/ʃɜːt/",
+      "part": "noun",
+      "definition": "A piece of clothing worn on the upper body.",
+      "example": "He wears a blue shirt today.",
+      "level": "A1",
+      "synonyms": ["top"]
+    },
+    {
+      "id": "sister",
+      "word": "sister",
+      "phonetic": "/ˈsɪstə/",
+      "part": "noun",
+      "definition": "A female sibling.",
+      "example": "My sister plays the guitar.",
+      "level": "A1",
+      "synonyms": ["sibling"]
+    },
+    {
+      "id": "small",
+      "word": "small",
+      "phonetic": "/smɔːl/",
+      "part": "adjective",
+      "definition": "Having little size or amount.",
+      "example": "The cafe has a small table by the door.",
+      "level": "A1",
+      "synonyms": ["little"]
+    },
+    {
+      "id": "smile",
+      "word": "smile",
+      "phonetic": "/smaɪl/",
+      "part": "verb",
+      "definition": "To lift the corners of your mouth when you are pleased.",
+      "example": "We smile when our friend arrives.",
+      "level": "A1",
+      "synonyms": ["beam"]
+    },
+    {
+      "id": "sorry",
+      "word": "sorry",
+      "phonetic": "/ˈsɒri/",
+      "part": "adjective",
+      "definition": "Feeling regret about a mistake or an unhappy event.",
+      "example": "I am sorry I lost your pen.",
+      "level": "A1",
+      "synonyms": ["apologetic"]
+    },
+    {
+      "id": "street",
+      "word": "street",
+      "phonetic": "/striːt/",
+      "part": "noun",
+      "definition": "A road in a town with buildings beside it.",
+      "example": "The library is on our street.",
+      "level": "A1",
+      "synonyms": ["road"]
+    },
+    {
+      "id": "teacher",
+      "word": "teacher",
+      "phonetic": "/ˈtiːtʃə/",
+      "part": "noun",
+      "definition": "Someone who helps others learn.",
+      "example": "Our teacher explains the new words.",
+      "level": "A1",
+      "synonyms": ["educator"]
+    },
+    {
+      "id": "thirsty",
+      "word": "thirsty",
+      "phonetic": "/ˈθɜːsti/",
+      "part": "adjective",
+      "definition": "Wanting or needing a drink.",
+      "example": "I am thirsty after the game.",
+      "level": "A1",
+      "synonyms": ["needing water"]
+    },
+    {
+      "id": "tired",
+      "word": "tired",
+      "phonetic": "/ˈtaɪəd/",
+      "part": "adjective",
+      "definition": "Needing rest or sleep.",
+      "example": "I feel tired after a long day.",
+      "level": "A1",
+      "synonyms": ["sleepy"]
+    },
+    {
+      "id": "today",
+      "word": "today",
+      "phonetic": "/təˈdeɪ/",
+      "part": "adverb",
+      "definition": "On the day that is happening now.",
+      "example": "We have a speaking lesson today.",
+      "level": "A1",
+      "synonyms": ["this day"]
+    },
+    {
+      "id": "tomorrow",
+      "word": "tomorrow",
+      "phonetic": "/təˈmɒrəʊ/",
+      "part": "adverb",
+      "definition": "On the day after today.",
+      "example": "We will visit the library tomorrow.",
+      "level": "A1",
+      "synonyms": ["the next day"]
+    },
+    {
+      "id": "water",
+      "word": "water",
+      "phonetic": "/ˈwɔːtə/",
+      "part": "noun",
+      "definition": "The clear liquid people drink and use for washing.",
+      "example": "Please bring a bottle of water.",
+      "level": "A1",
+      "synonyms": ["drinking water"]
+    },
+    {
+      "id": "weather",
+      "word": "weather",
+      "phonetic": "/ˈweðə/",
+      "part": "noun",
+      "definition": "The conditions outside, such as rain, sunshine, or wind.",
+      "example": "The weather is warm this morning.",
+      "level": "A1",
+      "synonyms": ["outdoor conditions"]
+    },
+    {
+      "id": "window",
+      "word": "window",
+      "phonetic": "/ˈwɪndəʊ/",
+      "part": "noun",
+      "definition": "An opening with glass that lets light into a building.",
+      "example": "The cat sits beside the window.",
+      "level": "A1",
+      "synonyms": ["glass opening"]
+    },
+    {
+      "id": "write",
+      "word": "write",
+      "phonetic": "/raɪt/",
+      "part": "verb",
+      "definition": "To form words on paper or a screen.",
+      "example": "Please write your answer in a full sentence.",
+      "level": "A1",
+      "synonyms": ["put into words"]
+    },
+    {
+      "id": "arrive",
+      "word": "arrive",
+      "phonetic": "/əˈraɪv/",
+      "part": "verb",
+      "definition": "To reach the place you are going to.",
+      "example": "We arrive at the station before noon.",
+      "level": "A2",
+      "synonyms": ["reach"]
+    },
+    {
+      "id": "appointment",
+      "word": "appointment",
+      "phonetic": "/əˈpɔɪntmənt/",
+      "part": "noun",
+      "definition": "An agreed time to meet someone.",
+      "example": "I have an appointment at three o'clock.",
+      "level": "A2",
+      "synonyms": ["scheduled meeting"]
+    },
+    {
+      "id": "backpack",
+      "word": "backpack",
+      "phonetic": "/ˈbækpæk/",
+      "part": "noun",
+      "definition": "A bag carried on your back.",
+      "example": "My notebook is in my backpack.",
+      "level": "A2",
+      "synonyms": ["rucksack"]
+    },
+    {
+      "id": "believe",
+      "word": "believe",
+      "phonetic": "/bɪˈliːv/",
+      "part": "verb",
+      "definition": "To think something is true.",
+      "example": "I believe your story.",
+      "level": "A2",
+      "synonyms": ["trust"]
+    },
+    {
+      "id": "careful",
+      "word": "careful",
+      "phonetic": "/ˈkeəfəl/",
+      "part": "adjective",
+      "definition": "Taking attention to avoid mistakes or harm.",
+      "example": "Be careful when you cross the road.",
+      "level": "A2",
+      "synonyms": ["cautious"]
+    },
+    {
+      "id": "comfortable",
+      "word": "comfortable",
+      "phonetic": "/ˈkʌmftəbəl/",
+      "part": "adjective",
+      "definition": "Feeling physically relaxed and at ease.",
+      "example": "This chair is comfortable for reading.",
+      "level": "A2",
+      "synonyms": ["cosy"]
+    },
+    {
+      "id": "compare",
+      "word": "compare",
+      "phonetic": "/kəmˈpeə/",
+      "part": "verb",
+      "definition": "To look at things together to find similarities and differences.",
+      "example": "Compare the two pictures with your partner.",
+      "level": "A2",
+      "synonyms": ["look at side by side"]
+    },
+    {
+      "id": "customer",
+      "word": "customer",
+      "phonetic": "/ˈkʌstəmə/",
+      "part": "noun",
+      "definition": "A person who buys goods or services.",
+      "example": "The customer asks for a cup of tea.",
+      "level": "A2",
+      "synonyms": ["buyer"]
+    },
+    {
+      "id": "decide",
+      "word": "decide",
+      "phonetic": "/dɪˈsaɪd/",
+      "part": "verb",
+      "definition": "To choose after thinking about the options.",
+      "example": "We need to decide which bus to take.",
+      "level": "A2",
+      "synonyms": ["choose"]
+    },
+    {
+      "id": "delicious",
+      "word": "delicious",
+      "phonetic": "/dɪˈlɪʃəs/",
+      "part": "adjective",
+      "definition": "Very pleasant to taste.",
+      "example": "This vegetable soup is delicious.",
+      "level": "A2",
+      "synonyms": ["tasty"]
+    },
+    {
+      "id": "describe",
+      "word": "describe",
+      "phonetic": "/dɪˈskraɪb/",
+      "part": "verb",
+      "definition": "To say what someone or something is like.",
+      "example": "Describe your favourite place to your partner.",
+      "level": "A2",
+      "synonyms": ["explain"]
+    },
+    {
+      "id": "direction",
+      "word": "direction",
+      "phonetic": "/dɪˈrekʃən/",
+      "part": "noun",
+      "definition": "The way something moves or points.",
+      "example": "The arrow shows the direction of the station.",
+      "level": "A2",
+      "synonyms": ["way"]
+    },
+    {
+      "id": "enough",
+      "word": "enough",
+      "phonetic": "/ɪˈnʌf/",
+      "part": "adjective",
+      "definition": "As much or as many as needed.",
+      "example": "We have enough chairs for everyone.",
+      "level": "A2",
+      "synonyms": ["sufficient"]
+    },
+    {
+      "id": "explain",
+      "word": "explain",
+      "phonetic": "/ɪkˈspleɪn/",
+      "part": "verb",
+      "definition": "To make an idea or situation clear.",
+      "example": "Can you explain the rules again?",
+      "level": "A2",
+      "synonyms": ["make clear"]
+    },
+    {
+      "id": "favourite",
+      "word": "favourite",
+      "phonetic": "/ˈfeɪvərɪt/",
+      "part": "adjective",
+      "definition": "Liked more than the other choices.",
+      "example": "My favourite colour is green.",
+      "level": "A2",
+      "synonyms": ["preferred"]
+    },
+    {
+      "id": "festival",
+      "word": "festival",
+      "phonetic": "/ˈfestɪvəl/",
+      "part": "noun",
+      "definition": "An event with activities to celebrate something.",
+      "example": "We hear music at the spring festival.",
+      "level": "A2",
+      "synonyms": ["celebration"]
+    },
+    {
+      "id": "healthy",
+      "word": "healthy",
+      "phonetic": "/ˈhelθi/",
+      "part": "adjective",
+      "definition": "In good physical condition.",
+      "example": "Regular walks help us stay healthy.",
+      "level": "A2",
+      "synonyms": ["well"]
+    },
+    {
+      "id": "invite",
+      "word": "invite",
+      "phonetic": "/ɪnˈvaɪt/",
+      "part": "verb",
+      "definition": "To ask someone to come to an event or place.",
+      "example": "We invite our neighbours to dinner.",
+      "level": "A2",
+      "synonyms": ["ask to join"]
+    },
+    {
+      "id": "language",
+      "word": "language",
+      "phonetic": "/ˈlæŋɡwɪdʒ/",
+      "part": "noun",
+      "definition": "A system of words people use to communicate.",
+      "example": "Learning a language takes regular practice.",
+      "level": "A2",
+      "synonyms": ["way of communicating"]
+    },
+    {
+      "id": "luggage",
+      "word": "luggage",
+      "phonetic": "/ˈlʌɡɪdʒ/",
+      "part": "noun",
+      "definition": "Bags and cases taken on a journey.",
+      "example": "Put your luggage beside the door.",
+      "level": "A2",
+      "synonyms": ["baggage"]
+    },
+    {
+      "id": "message",
+      "word": "message",
+      "phonetic": "/ˈmesɪdʒ/",
+      "part": "noun",
+      "definition": "Information sent or given to another person.",
+      "example": "I leave a message for my friend.",
+      "level": "A2",
+      "synonyms": ["note"]
+    },
+    {
+      "id": "neighbour",
+      "word": "neighbour",
+      "phonetic": "/ˈneɪbə/",
+      "part": "noun",
+      "definition": "Someone who lives near you.",
+      "example": "Our neighbour lends us a ladder.",
+      "level": "A2",
+      "synonyms": ["person next door"]
+    },
+    {
+      "id": "notice",
+      "word": "notice",
+      "phonetic": "/ˈnəʊtɪs/",
+      "part": "verb",
+      "definition": "To become aware of something.",
+      "example": "Did you notice the new painting?",
+      "level": "A2",
+      "synonyms": ["observe"]
+    },
+    {
+      "id": "offer",
+      "word": "offer",
+      "phonetic": "/ˈɒfə/",
+      "part": "verb",
+      "definition": "To say you are willing to give or do something.",
+      "example": "I can offer you a seat.",
+      "level": "A2",
+      "synonyms": ["propose"]
+    },
+    {
+      "id": "prepare",
+      "word": "prepare",
+      "phonetic": "/prɪˈpeə/",
+      "part": "verb",
+      "definition": "To make something ready.",
+      "example": "We prepare lunch before our guests arrive.",
+      "level": "A2",
+      "synonyms": ["get ready"]
+    },
+    {
+      "id": "promise",
+      "word": "promise",
+      "phonetic": "/ˈprɒmɪs/",
+      "part": "verb",
+      "definition": "To say firmly that you will do something.",
+      "example": "I promise to return your book tomorrow.",
+      "level": "A2",
+      "synonyms": ["give your word"]
+    },
+    {
+      "id": "receipt",
+      "word": "receipt",
+      "phonetic": "/rɪˈsiːt/",
+      "part": "noun",
+      "definition": "A document showing that you paid for something.",
+      "example": "Keep the receipt for your new bag.",
+      "level": "A2",
+      "synonyms": ["proof of payment"]
+    },
+    {
+      "id": "remember",
+      "word": "remember",
+      "phonetic": "/rɪˈmembə/",
+      "part": "verb",
+      "definition": "To keep or bring something back into your mind.",
+      "example": "I remember our first English lesson.",
+      "level": "A2",
+      "synonyms": ["recall"]
+    },
+    {
+      "id": "repair",
+      "word": "repair",
+      "phonetic": "/rɪˈpeə/",
+      "part": "verb",
+      "definition": "To make something work again after damage.",
+      "example": "Can you repair my bicycle?",
+      "level": "A2",
+      "synonyms": ["fix"]
+    },
+    {
+      "id": "return",
+      "word": "return",
+      "phonetic": "/rɪˈtɜːn/",
+      "part": "verb",
+      "definition": "To go or give something back.",
+      "example": "Please return the key after your visit.",
+      "level": "A2",
+      "synonyms": ["give back"]
+    },
+    {
+      "id": "share",
+      "word": "share",
+      "phonetic": "/ʃeə/",
+      "part": "verb",
+      "definition": "To use or enjoy something with another person.",
+      "example": "We share our ideas with the class.",
+      "level": "A2",
+      "synonyms": ["use together"]
+    },
+    {
+      "id": "suggest",
+      "word": "suggest",
+      "phonetic": "/səˈdʒest/",
+      "part": "verb",
+      "definition": "To put forward an idea for someone to consider.",
+      "example": "I suggest a short break.",
+      "level": "A2",
+      "synonyms": ["propose"]
+    },
+    {
+      "id": "ticket",
+      "word": "ticket",
+      "phonetic": "/ˈtɪkɪt/",
+      "part": "noun",
+      "definition": "A document that lets you travel or enter an event.",
+      "example": "Show your ticket before you get on the train.",
+      "level": "A2",
+      "synonyms": ["pass"]
+    },
+    {
+      "id": "useful",
+      "word": "useful",
+      "phonetic": "/ˈjuːsfəl/",
+      "part": "adjective",
+      "definition": "Helping you do or achieve something.",
+      "example": "This map is useful when we travel.",
+      "level": "A2",
+      "synonyms": ["helpful"]
+    },
+    {
+      "id": "visitor",
+      "word": "visitor",
+      "phonetic": "/ˈvɪzɪtə/",
+      "part": "noun",
+      "definition": "Someone who comes to a place for a short time.",
+      "example": "The visitor asks where the library is.",
+      "level": "A2",
+      "synonyms": ["guest"]
+    },
+    {
+      "id": "wonderful",
+      "word": "wonderful",
+      "phonetic": "/ˈwʌndəfəl/",
+      "part": "adjective",
+      "definition": "Very good or enjoyable.",
+      "example": "We had a wonderful afternoon in the park.",
+      "level": "A2",
+      "synonyms": ["lovely"]
     }
   ],
   "books": [

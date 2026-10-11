@@ -55,5 +55,13 @@ books[0]["resources"].extend([
 ])
 
 pack = {"version": 1, "words": [dict(id=w[0], word=w[0], phonetic=w[1], part=w[2], definition=w[3], example=w[4], level=w[5], synonyms=w[6]) for w in words], "books": books, "lessons": lessons}
+for vocabulary in sorted(Path("src/content/vocabulary").glob("*.json")):
+    pack["words"].extend(json.loads(vocabulary.read_text()))
+
+for collection in ("words", "books", "lessons"):
+    ids = [entry["id"] for entry in pack[collection]]
+    if len(ids) != len(set(ids)):
+        raise ValueError(f"Duplicate IDs in {collection}")
+
 Path("src/content").mkdir(parents=True, exist_ok=True)
 Path("src/content/starter.json").write_text(json.dumps(pack, ensure_ascii=False, indent=2) + "\n")

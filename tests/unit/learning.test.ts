@@ -13,7 +13,7 @@ import seed from "../../src/content/starter.json";
 
 const content = packSchema.parse(seed);
 test("starter content is valid and contains only unique records", () => {
-  assert.equal(content.words.length, 24);
+  assert.equal(content.words.length, 90);
   assert.equal(content.books.length, 6);
   assert.equal(content.lessons.length, 6);
 });

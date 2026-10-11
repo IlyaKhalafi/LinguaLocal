@@ -108,7 +108,7 @@ For development, run `npm run dev`.
 3. Set each book resource’s file path relative to that directory.
 4. Validate and install the collection using the content guide.
 
-Media files travel separately. The bundled collection contains six original book shells, six lessons, 24 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
+Media files travel separately. The bundled collection contains six original book shells, six lessons, 90 dictionary words, a spoken listening sample, a short captioned video, and a PDF worksheet. Replace or expand it with material your school has permission to use.
 
 [Read the content guide](docs/CONTENT.md) for the pack format, large files, and migration from the previous Python app.
 
