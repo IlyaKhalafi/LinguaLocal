@@ -2,6 +2,7 @@
 
 import type { Recording } from "./recording";
 import { saveRecording } from "./recordings";
+import { protectVoiceTake } from "./voice-unload";
 
 export type VoiceSession = {
   draft: Recording | null;
@@ -18,9 +19,11 @@ export const emptyVoiceSession: VoiceSession = {
 };
 let session = emptyVoiceSession;
 const listeners = new Set<() => void>();
+const unloadOwner = {};
 
 function update(next: VoiceSession) {
   session = next;
+  protectVoiceTake(unloadOwner, Boolean(next.draft) || next.busy);
   listeners.forEach((listener) => listener());
 }
 

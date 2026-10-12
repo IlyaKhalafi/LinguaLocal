@@ -120,6 +120,7 @@ test("a failed recorder stop releases the microphone immediately", async () => {
       return true;
     }
     state = "inactive";
+    onstop?: () => void;
     start() {
       this.state = "recording";
     }
@@ -178,11 +179,13 @@ test("late microphone results cannot stop a newer capture", async () => {
       return true;
     }
     state = "inactive";
+    onstop?: () => void;
     start() {
       this.state = "recording";
     }
     stop() {
       this.state = "inactive";
+      this.onstop?.();
     }
   }
   try {

@@ -1,5 +1,6 @@
 import { recordingLimits, type Recording } from "./recording";
 import type { Book } from "./schema";
+import { protectVoiceTake } from "./voice-unload";
 
 export type CaptureState = {
   phase: "idle" | "requesting" | "recording" | "finishing";
@@ -44,6 +45,7 @@ export class VoiceCapture {
 
   private emit(phase: CaptureState["phase"], error = "") {
     this.phase = phase;
+    protectVoiceTake(this, phase === "recording" || phase === "finishing");
     if (!this.disposed)
       this.update({
         phase,
@@ -202,6 +204,7 @@ export class VoiceCapture {
           "Unable to record audio. Check your microphone and try again.";
       }
       this.release();
+      if (this.recorder !== recorder) return;
       if (failed) {
         recorder.onstop?.(new Event("stop"));
         return;
@@ -216,12 +219,18 @@ export class VoiceCapture {
 
   dispose() {
     this.disposed = true;
+    if (this.phase === "recording") {
+      this.finishingAfterDispose = true;
+      this.stop();
+      return;
+    }
     if (this.phase === "finishing") {
       this.finishingAfterDispose = true;
       this.release();
       return;
     }
     ++this.generation;
+    protectVoiceTake(this, false);
     if (VoiceCapture.current === this) VoiceCapture.current = undefined;
     if (this.recorder) {
       this.recorder.ondataavailable = null;
@@ -230,7 +239,7 @@ export class VoiceCapture {
       try {
         if (this.recorder.state !== "inactive") this.recorder.stop();
       } catch {
-        // Navigation discards an unfinished take and still releases its tracks.
+        // Inactive capture cleanup must still release its tracks.
       }
       this.recorder = undefined;
     }

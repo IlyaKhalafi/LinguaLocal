@@ -271,6 +271,15 @@ test("failed storage retains a playable downloadable take and retries once", asy
   await page
     .getByRole("link", { name: "Back to library", exact: true })
     .click();
+  let unloadPrompts = 0;
+  page.on("dialog", async (dialog) => {
+    expect(dialog.type()).toBe("beforeunload");
+    unloadPrompts++;
+    await dialog.dismiss();
+  });
+  await page.evaluate(() => location.reload());
+  await expect.poll(() => unloadPrompts).toBe(1);
+  await expect(page).toHaveURL(/\/library$/);
   await page
     .getByRole("link", { name: new RegExp(seed.books[1].title) })
     .first()
@@ -287,9 +296,11 @@ test("failed storage retains a playable downloadable take and retries once", asy
     page.getByRole("button", { name: "Record a take", exact: true }),
   ).toBeFocused();
   expect(await stored(page)).toHaveLength(1);
+  await page.reload();
+  expect(unloadPrompts).toBe(1);
 });
 
-test("closing practice saves a take and navigating away releases the microphone", async ({
+test("closing practice and navigating away save the take and release the microphone", async ({
   page,
 }) => {
   await requireNativeRecording(page);
@@ -313,12 +324,13 @@ test("closing practice saves a take and navigating away releases the microphone"
   await expect(
     page.getByRole("button", { name: "Stop and save", exact: true }),
   ).toBeVisible();
+  await page.waitForTimeout(1000);
   await page
     .getByRole("link", { name: "Back to library", exact: true })
     .click();
   await expect(page).toHaveURL(/\/library$/);
   expect((await fixture(page)).stopped).toBe(2);
-  expect(await stored(page)).toHaveLength(1);
+  await expect.poll(async () => (await stored(page)).length).toBe(2);
 });
 
 test("two tabs respect the device limit atomically and retain the extra take", async ({
