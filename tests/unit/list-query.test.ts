@@ -63,3 +63,14 @@ test("list updates preserve unrelated parameters and round-trip punctuation", ()
     false,
   );
 });
+
+test("changing filters leaves an exact dictionary link", () => {
+  const original = new URLSearchParams("word=curious");
+  assert.equal(
+    updateListQuery(original, { search: "journey" }).has("word"),
+    false,
+  );
+  assert.equal(updateListQuery(original, { saved: true }).has("word"), false);
+  assert.equal(updateListQuery(original, { page: 0 }).get("word"), "curious");
+  assert.equal(original.get("word"), "curious");
+});

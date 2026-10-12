@@ -1,4 +1,7 @@
 "use client";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
 import { useDeferredValue, useMemo, useState } from "react";
@@ -22,6 +25,7 @@ export function Dictionary({
   focusSearch?: boolean;
 }) {
   const { t } = useLocale();
+  const wordId = useSearchParams().get("word");
   const { search: query, level, page, saved, update } = useListQuery();
   const [focusRequest, setFocusRequest] = useState(0);
   const [focusWord, setFocusWord] = useState<string | null>(null);
@@ -44,9 +48,9 @@ export function Dictionary({
         index,
         search,
         (word) =>
-          (!level || word.level === level) && (!saved || savedIds.has(word.id)),
+          (!wordId || word.id === wordId) && (!level || word.level === level) && (!saved || savedIds.has(word.id)),
       ),
-    [index, search, level, saved, savedIds],
+    [index, search, level, saved, savedIds, wordId],
   );
   const pages = Math.ceil(filtered.length / pageSize);
   const currentPage = Math.max(0, Math.min(page, pages - 1));
@@ -61,6 +65,7 @@ export function Dictionary({
   }
   return (
     <>
+      {wordId && <Link className="back-link" href="/dictionary"><ArrowLeft size={14} />{t("All words")}</Link>}
       <PageHeading title={t("Dictionary")} />
       <div className="toolbar">
         <SearchField

@@ -16,7 +16,7 @@ export const LOCALE_COOKIE = "lingualocal.locale";
 export function parseLocale(value: unknown): Locale {
   return locales.includes(value as Locale) ? (value as Locale) : "en";
 }
-export function direction(locale: Locale) {
+export function direction(locale: Locale): "ltr" | "rtl" {
   return locale === "fa" || locale === "ar" ? "rtl" : "ltr";
 }
 export const messages: Record<Locale, Record<string, string>> = {
@@ -60,4 +60,12 @@ export function translate(
       ? numberFormats[locale].format(value)
       : value;
   });
+}
+
+export function textDirection(value: string, fallback: "ltr" | "rtl" = "ltr") {
+  const firstLetter = value.match(/\p{L}/u)?.[0];
+  if (!firstLetter) return fallback;
+  return /[\p{Script=Arabic}\p{Script=Hebrew}]/u.test(firstLetter)
+    ? "rtl"
+    : "ltr";
 }

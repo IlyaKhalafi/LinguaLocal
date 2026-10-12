@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   direction,
+  textDirection,
   locales,
   messages,
   parseLocale,
@@ -66,4 +67,12 @@ test("English and Arabic counters handle singular, dual, and plural forms", () =
   assert.equal(translate("ar", "{count} books", { count: 2 }), "كتابان");
   assert.equal(translate("ar", "{count} books", { count: 3 }), "٣ كتب");
   assert.equal(translate("ar", "{count} books", { count: 11 }), "١١ كتابًا");
+});
+
+test("private names use their first letter for native select direction", () => {
+  assert.equal(textDirection("Travel", "rtl"), "ltr");
+  assert.equal(textDirection("۱۲ تمرین", "ltr"), "rtl");
+  assert.equal(textDirection("3 رحلة", "ltr"), "rtl");
+  assert.equal(textDirection("... Türkçe", "rtl"), "ltr");
+  assert.equal(textDirection("123", "rtl"), "rtl");
 });

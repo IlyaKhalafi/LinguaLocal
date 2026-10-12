@@ -1,11 +1,12 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
+import { textDirection } from "@/lib/locale";
 import { useLocale } from "./locale-provider";
 import { useProgress } from "./progress-provider";
 
 export function DeckManager() {
-  const { t } = useLocale();
+  const { t, dir } = useLocale();
   const { progress, editDeck, deleteDeck } = useProgress();
   const [selection, setSelection] = useState("");
   const [draft, setDraft] = useState<{
@@ -81,7 +82,7 @@ export function DeckManager() {
         ref={form}
         onSubmit={(event) => {
           event.preventDefault();
-          save();
+          save(conflict);
         }}
       >
         <div className="form-field">
@@ -89,6 +90,7 @@ export function DeckManager() {
           <select
             id={`${field}-selection`}
             value={selection}
+            dir={existing ? textDirection(existing.name, dir) : dir}
             onChange={(event) => {
               if (
                 draft &&
@@ -147,17 +149,10 @@ export function DeckManager() {
         </div>
         <div className="button-row">
           <button className="button primary" type="submit" disabled={missing}>
-            {t("Save deck")}
+            {t(conflict ? "Overwrite deck" : "Save deck")}
           </button>
           {conflict && (
             <>
-              <button
-                type="button"
-                className="button secondary"
-                onClick={() => save(true)}
-              >
-                {t("Overwrite deck")}
-              </button>
               <button
                 type="button"
                 className="button secondary"

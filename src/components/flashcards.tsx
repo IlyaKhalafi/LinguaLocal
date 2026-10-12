@@ -1,4 +1,5 @@
 "use client";
+import { textDirection } from "@/lib/locale";
 import { useLocale } from "@/components/locale-provider";
 import { useId, useState } from "react";
 import Link from "next/link";
@@ -30,7 +31,7 @@ export function Flashcards({
   words: Word[];
   scope?: LessonStudyScope;
 }) {
-  const { t } = useLocale();
+  const { t, dir } = useLocale();
   const { progress, review } = useProgress();
   const [mode, setMode] = useState("all");
   if (mode.startsWith("deck/") && !Object.hasOwn(progress.decks, mode.slice(5)))
@@ -145,6 +146,11 @@ export function Flashcards({
                     <label htmlFor={`${field}-deck`}>{t("Study deck")}</label>
                     <select
                       id={`${field}-deck`}
+                      dir={
+                        selectedDeck
+                          ? textDirection(selectedDeck.name, dir)
+                          : dir
+                      }
                       value={mode.startsWith("deck/") ? mode.slice(5) : ""}
                       onChange={(event) =>
                         setMode(

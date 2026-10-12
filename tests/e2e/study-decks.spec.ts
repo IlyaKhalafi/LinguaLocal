@@ -304,7 +304,9 @@ test("conflicting deck metadata offers reload and deliberate overwrite", async (
   await expect(
     page.getByText("This deck changed in another tab."),
   ).toBeVisible();
-  await page.getByRole("button", { name: "Save deck", exact: true }).click();
+  await expect(
+    page.getByRole("button", { name: "Save deck", exact: true }),
+  ).toBeHidden();
   await expect(other.getByLabel("Deck name")).toHaveValue("Other tab");
   await page.getByRole("button", { name: "Reload deck", exact: true }).click();
   await expect(page.getByLabel("Deck name")).toBeFocused();

@@ -22,6 +22,7 @@ export function WordDecks({ id, word }: { id: string; word: string }) {
       const active = focused.current;
       if (!active) return;
       requestAnimationFrame(() => {
+        if (focused.current === active) focused.current = null;
         if (!active.isConnected && document.activeElement === document.body)
           (
             card?.querySelector<HTMLElement>(".word-decks > summary") ??
