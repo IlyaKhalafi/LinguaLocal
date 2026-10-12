@@ -8,7 +8,7 @@ The next release expands student practice, classroom materials, and local deploy
 - [x] Selected book media saved for offline playback
 - [x] Timed transcripts with dictionary lookup
 - [x] Shadowing through repeat controls and dictation with word-level feedback
-- [ ] Private voice recordings saved on the student device
+- [x] Private voice recordings saved on the student device
 - [x] Spelling, listening, and gap-fill practice
 - [x] Named study decks and tags
 - [x] Review ratings, ease, lapses, and difficult-card practice
@@ -25,7 +25,7 @@ The next release expands student practice, classroom materials, and local deploy
 
 ## Everyday use
 
-- [ ] Keyboard and accessibility coverage for every new workflow
+- [x] Keyboard and accessibility coverage for every new workflow
 - [x] Reading size, spacing, bundled reading font, and contrast
 - [x] Quiet mode with reduced decoration and motion
 - [x] Dark appearance

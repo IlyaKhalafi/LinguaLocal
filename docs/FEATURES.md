@@ -14,6 +14,8 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 | Matching                          | `/games/match`                      | [View](screenshots/matching.png)                     | [View](screenshots/matching-mobile.png)                     |
 | Flashcards                        | `/flashcards`                       | [View](screenshots/flashcards.png)                   | [View](screenshots/flashcards-mobile.png)                   |
 | Lesson vocabulary review          | `/flashcards?lesson=present-simple` | [View](screenshots/lesson-review.png)                | [View](screenshots/lesson-review-mobile.png)                |
+| Classroom assignment              | `/assignment?plan=PLAN`             | [View](screenshots/assignment.png)                   | [View](screenshots/assignment-mobile.png)                   |
+| Unavailable assignment link       | `/assignment`                       | [View](screenshots/assignment-invalid.png)           | [View](screenshots/assignment-invalid-mobile.png)           |
 | Progress                          | `/progress`                         | [View](screenshots/progress.png)                     | [View](screenshots/progress-mobile.png)                     |
 | Settings                          | `/settings`                         | [View](screenshots/settings.png)                     | [View](screenshots/settings-mobile.png)                     |
 | Everyday English                  | `/library/everyday-english`         | [View](screenshots/book-everyday-english.png)        | [View](screenshots/book-everyday-english-mobile.png)        |
@@ -39,8 +41,6 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 | Choose the right register         | `/lessons/register-shift`           | [View](screenshots/lesson-register-shift.png)        | [View](screenshots/lesson-register-shift-mobile.png)        |
 | Read a claim closely              | `/lessons/critical-claims`          | [View](screenshots/lesson-critical-claims.png)       | [View](screenshots/lesson-critical-claims-mobile.png)       |
 | Page not found                    | `/not-a-page`                       | [View](screenshots/not-found.png)                    | [View](screenshots/not-found-mobile.png)                    |
-| Classroom assignment              | `/assignment?plan=PLAN`             | [View](screenshots/assignment.png)                   | [View](screenshots/assignment-mobile.png)                   |
-| Unavailable assignment link       | `/assignment`                       | [View](screenshots/assignment-invalid.png)           | [View](screenshots/assignment-invalid-mobile.png)           |
 
 ## A little practice in action
 
@@ -61,6 +61,14 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 ### Listening and transcripts
 
 ![Listening and transcripts](screenshots/listening.png)
+
+### Private voice practice
+
+Open voice practice on a book page when you want to record. Listen back, save up to ten short takes on this device, or download a copy. Recording needs microphone support and HTTPS or localhost. The microphone starts only after choosing Record a take.
+
+![Private voice practice](screenshots/voice-saved.png)
+
+[Ready to record](screenshots/voice-empty.png) · [Mobile](screenshots/voice-saved-mobile.png) · [Dark appearance](screenshots/voice-dark-saved.png)
 
 ### Joining the school network
 

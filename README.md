@@ -38,6 +38,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Learning overview              | Open books, review vocabulary, and see your daily goal                                                    | [Overview](docs/screenshots/overview.png)                    |
 | Book library                   | Search books and filter by subject or CEFR level                                                          | [Bookshelf](docs/screenshots/library.png)                    |
 | Listening and watching         | Play local media, follow timed transcripts, repeat passages, and practise dictation                       | [Listening](docs/screenshots/listening.png)                  |
+| Private voice practice         | Record a short take, listen back, download it, and keep it on this device without uploading audio         | [Voice practice](docs/screenshots/voice-saved.png)           |
 | Reading materials              | Open and download local PDF worksheets alongside book media                                               | [Book resources](docs/screenshots/book-everyday-english.png) |
 | Offline dictionary             | Search curated meanings and synonyms, see examples, and bookmark words                                    | [Dictionary](docs/screenshots/dictionary.png)                |
 | Guided lessons                 | Read short lessons, check your answer, review related words, and continue at the same level               | [Lesson](docs/screenshots/lesson-present-simple.png)         |

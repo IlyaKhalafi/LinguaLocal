@@ -67,3 +67,13 @@ Progress recovery keeps valid entries in each field and retains the most recent 
 The browser registers a service worker only after the student enables offline pages. Page caches are partitioned by interface language and application build. Saved documents include their referenced scripts and styles. Navigation prefers the school server and falls back to a saved page when the connection fails. Failed background prefetches do not trigger navigation.
 
 The cache has limits for page count, file size, total asset bytes, and explicit media selections. Warm-up has a shared deadline. Application updates wait for existing tabs to close. Removing offline copies clears page, asset, and media caches while retaining private learning progress.
+
+## Private voice practice
+
+Book pages load the recording controls only when students open Voice practice. The microphone is requested only after Record a take. Capture uses a supported native MediaRecorder audio format and stops after one minute, when the panel closes, or when the tab becomes hidden. Navigation stops the microphone and saves the take after the page changes.
+
+The browser stores at most ten takes, with a 16 MiB file limit and 64 MiB total limit. IndexedDB transactions check count and bytes before writing, so concurrent tabs cannot exceed the device limit. Audio is stored as ArrayBuffer data with validated metadata and reconstructed as a Blob for playback. Older Blob records can still be read. Malformed rows are retained until the student explicitly removes them.
+
+Saved takes are available from every book on the same browser origin. Playback keeps stable object URLs across list refreshes and releases them when a player is removed. Failed saves retain a playable, downloadable draft across internal navigation. Closing or reloading the page prompts while audio is recording, saving, or unsaved. Leaving despite the prompt clears an in-memory draft. Audio does not enter school content, progress backups, or shared summaries. Students use Download take to keep an independent copy. Browser storage can be cleared or evicted.
+
+Native recording tests use real MediaRecorder encoders with a deterministic Web Audio input. The Linux WebKit build lacks the recording API, so that platform checks saved-file controls and the unsupported-browser state. A separate macOS CI job requires native WebKit recording support and runs the capture workflows.

@@ -51,6 +51,19 @@
     "label": "Lesson vocabulary review"
   },
   {
+    "name": "assignment",
+    "path": "/assignment?plan=%7B%22version%22%3A1%2C%22title%22%3A%22A%20little%20everyday%20English%22%2C%22tasks%22%3A%5B%7B%22kind%22%3A%22lesson%22%2C%22id%22%3A%22present-simple%22%7D%2C%7B%22kind%22%3A%22book%22%2C%22id%22%3A%22everyday-english%22%7D%2C%7B%22kind%22%3A%22word%22%2C%22id%22%3A%22curious%22%7D%5D%7D",
+    "heading": "A little everyday English",
+    "label": "Classroom assignment",
+    "displayPath": "/assignment?plan=PLAN"
+  },
+  {
+    "name": "assignment-invalid",
+    "path": "/assignment",
+    "heading": "Assignment",
+    "label": "Unavailable assignment link"
+  },
+  {
     "name": "progress",
     "path": "/progress",
     "heading": "Progress"
