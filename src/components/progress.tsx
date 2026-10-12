@@ -1,4 +1,5 @@
 "use client";
+import { StudySummary } from "./study-summary";
 import { AssignmentList } from "./assignment-list";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
@@ -226,6 +227,9 @@ export function ProgressDashboard({
                 <p>{t("No completed lessons.")}</p>
               )}
             </details>
+          </section>
+          <section className="panel" style={{ marginTop: 24 }}>
+            <StudySummary content={content} />
           </section>
         </aside>
       </div>

@@ -187,6 +187,8 @@ Students open the materials and mark their own checklist. Up to 64 checklists th
 
 ## Classroom summaries
 
+Students open **Share summary** under Progress to download a JSON summary or a printable HTML sheet. Names are optional and are used only for that export. Personal notes, saved word lists and review history stay on the student’s device.
+
 Combine student-provided study summaries into a local spreadsheet and print sheet. The command accepts 1 to 200 distinct JSON files and validates each report before creating a new output directory. It leaves original files unchanged.
 
 ```sh

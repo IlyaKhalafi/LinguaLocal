@@ -385,6 +385,11 @@ async function main() {
       await page.goto(base + "/progress");
       await page.locator(".assignment-history > summary").click();
       await capture(page, "assignment-history", locale);
+      await page.locator(".share-summary > summary").click();
+      await page
+        .getByLabel(translate(locale, "Name (optional)"))
+        .fill("Sample learner");
+      await capture(page, "share-summary", locale);
       await context.close();
       console.log(`Captured ${locale} pages and practice`);
     }

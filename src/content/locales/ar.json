@@ -364,7 +364,9 @@
   "Name (optional)": "الاسم (اختياري)",
   "Download summary": "تنزيل الملخص",
   "Download print sheet": "تنزيل ورقة الطباعة",
-  "Only totals and assignment titles are shared. Notes and word lists stay private.": "تُشارك الأعداد الإجمالية وعناوين الواجبات فقط. تبقى الملاحظات وقوائم الكلمات خاصة.",
   "Use a name with letters or numbers, up to 64 characters.": "استخدم اسمًا يحتوي على حروف أو أرقام ولا يتجاوز ٦٤ حرفًا.",
-  "Unable to download the summary. Try again.": "تعذّر تنزيل الملخص. حاول مجددًا."
+  "Unable to download the summary. Try again.": "تعذّر تنزيل الملخص. حاول مجددًا.",
+  "The summary includes study totals and assignment details. Notes and word lists stay private.": "يتضمن الملخص إجماليات الدراسة وتفاصيل الواجبات. تبقى الملاحظات وقوائم الكلمات خاصة.",
+  "Print file prepared. Open it to print.": "ملف الطباعة جاهز. افتحه للطباعة.",
+  "Summary file prepared.": "ملف الملخص جاهز."
 }

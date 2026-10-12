@@ -364,7 +364,9 @@
   "Name (optional)": "Ad (isteğe bağlı)",
   "Download summary": "Özeti indir",
   "Download print sheet": "Yazdırma sayfasını indir",
-  "Only totals and assignment titles are shared. Notes and word lists stay private.": "Yalnızca toplamlar ve ödev başlıkları paylaşılır. Notlar ve kelime listeleri gizli kalır.",
   "Use a name with letters or numbers, up to 64 characters.": "Harf veya rakam içeren, en fazla 64 karakterlik bir ad kullanın.",
-  "Unable to download the summary. Try again.": "Özet indirilemedi. Tekrar deneyin."
+  "Unable to download the summary. Try again.": "Özet indirilemedi. Tekrar deneyin.",
+  "The summary includes study totals and assignment details. Notes and word lists stay private.": "Özet, çalışma toplamlarını ve ödev ayrıntılarını içerir. Notlar ve kelime listeleri gizli kalır.",
+  "Print file prepared. Open it to print.": "Yazdırma dosyası hazır. Yazdırmak için açın.",
+  "Summary file prepared.": "Özet dosyası hazır."
 }

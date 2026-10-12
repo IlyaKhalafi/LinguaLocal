@@ -12,6 +12,13 @@ import { z } from "zod";
 import { dayKey, getReview, type Progress } from "./learning";
 import type { ContentPack } from "./schema";
 
+export const STUDY_NAME_LIMIT = 64;
+export const studyReportNameSchema = z
+  .string()
+  .transform((value) =>
+    value.replace(/[\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, ""),
+  )
+  .pipe(assignmentTitleSchema.max(STUDY_NAME_LIMIT));
 const count = z.number().int().nonnegative();
 const assignmentReportSchema = z
   .object({
@@ -28,7 +35,7 @@ export const studyReportSchema = z.object({
   version: z.literal(1),
   selfReported: z.literal(true),
   generatedAt: z.iso.datetime(),
-  name: assignmentTitleSchema.max(64).optional(),
+  name: studyReportNameSchema.optional(),
   summary: z
     .object({
       wordsSaved: count,
@@ -181,7 +188,7 @@ export function studyReportHtml(
     calendar: "gregory",
     numberingSystem: numberingSystem(language),
   });
-  const body = `<h1>${escape(labels.title)}</h1>${report.name ? `<p dir="auto">${escape(report.name)}</p>` : ""}<p class="meta">${escape(labels.generated)} <time datetime="${report.generatedAt}">${escape(date.format(new Date(report.generatedAt)))}</time></p><div class="stats">${Object.entries(
+  const body = `<h1>${escape(labels.title)}</h1>${report.name ? `<p><bdi dir="auto">${escape(report.name)}</bdi></p>` : ""}<p class="meta">${escape(labels.generated)} <time datetime="${report.generatedAt}">${escape(date.format(new Date(report.generatedAt)))}</time></p><div class="stats">${Object.entries(
     report.summary,
   )
     .filter(([, value]) => value !== undefined)
@@ -191,7 +198,7 @@ export function studyReportHtml(
     )
     .join(
       "",
-    )}</div>${report.assignments.length ? `<h2>${escape(labels.assignments)}</h2><div class="table-wrap"><table><thead><tr><th scope="col">${escape(labels.assignments)}</th><th scope="col">${escape(labels.complete)}</th><th scope="col">${escape(labels.due)}</th></tr></thead><tbody>${report.assignments.map((assignment) => `<tr><td dir="auto">${escape(assignment.title)}</td><td><bdi dir="ltr">${escape(number.format(assignment.done))} / ${escape(number.format(assignment.total))}</bdi></td><td>${assignment.due ? `<time datetime="${assignment.due}">${escape(date.format(new Date(assignment.due + "T12:00:00")))}</time>` : ""}</td></tr>`).join("")}</tbody></table></div>` : ""}`;
+    )}</div>${report.assignments.length ? `<h2>${escape(labels.assignments)}</h2><div class="table-wrap"><table><thead><tr><th scope="col">${escape(labels.assignments)}</th><th scope="col">${escape(labels.complete)}</th><th scope="col">${escape(labels.due)}</th></tr></thead><tbody>${report.assignments.map((assignment) => `<tr><td><bdi dir="auto">${escape(assignment.title)}</bdi></td><td><bdi dir="ltr">${escape(number.format(assignment.done))} / ${escape(number.format(assignment.total))}</bdi></td><td>${assignment.due ? `<time datetime="${assignment.due}">${escape(date.format(new Date(assignment.due + "T12:00:00")))}</time>` : ""}</td></tr>`).join("")}</tbody></table></div>` : ""}`;
   return reportDocument(labels.title, body, labels, locale);
 }
 
@@ -262,6 +269,6 @@ export function classroomHtml(
     labels.tasks,
     labels.generated,
   ];
-  const body = `<h1>${escape(labels.classroom)}</h1><p class="meta">${escape(translate(language, reportLabels.summaries, { count: collection.length }))}</p><div class="table-wrap" role="region" aria-label="${escape(labels.classroom)}" tabindex="0"><table class="classroom-table"><thead><tr>${headings.map((label) => `<th scope="col">${escape(label)}</th>`).join("")}</tr></thead><tbody>${collection.map((report) => `<tr><td dir="auto">${escape(report.name ?? labels.unnamed)}</td><td>${number(report.summary.lessonsCompleted)}</td><td>${number(report.summary.wordsLearned)}</td><td>${number(report.summary.practiceSessions)}</td><td><bdi dir="ltr">${report.summary.averageScore === undefined ? "" : number(report.summary.averageScore) + "%"}</bdi></td><td>${number(report.summary.studyDays)}</td><td>${number(report.assignments.reduce((total, assignment) => total + assignment.done, 0))}</td><td><time datetime="${report.generatedAt}">${escape(date.format(new Date(report.generatedAt)))}</time></td></tr>`).join("")}</tbody></table></div>`;
+  const body = `<h1>${escape(labels.classroom)}</h1><p class="meta">${escape(translate(language, reportLabels.summaries, { count: collection.length }))}</p><div class="table-wrap" role="region" aria-label="${escape(labels.classroom)}" tabindex="0"><table class="classroom-table"><thead><tr>${headings.map((label) => `<th scope="col">${escape(label)}</th>`).join("")}</tr></thead><tbody>${collection.map((report) => `<tr><td><bdi dir="auto">${escape(report.name ?? labels.unnamed)}</bdi></td><td>${number(report.summary.lessonsCompleted)}</td><td>${number(report.summary.wordsLearned)}</td><td>${number(report.summary.practiceSessions)}</td><td><bdi dir="ltr">${report.summary.averageScore === undefined ? "" : number(report.summary.averageScore) + "%"}</bdi></td><td>${number(report.summary.studyDays)}</td><td>${number(report.assignments.reduce((total, assignment) => total + assignment.done, 0))}</td><td><time datetime="${report.generatedAt}">${escape(date.format(new Date(report.generatedAt)))}</time></td></tr>`).join("")}</tbody></table></div>`;
   return reportDocument(labels.classroom, body, labels, language, true);
 }

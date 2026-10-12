@@ -3521,3 +3521,28 @@ html[data-reading-spacing="relaxed"] .practice-prompt {
   background: var(--green);
   border-radius: 6px;
 }
+
+.share-summary > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.share-summary form {
+  padding-top: 16px;
+}
+.summary-privacy {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 14px 0;
+}
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.summary-actions .button {
+  min-height: 44px;
+}

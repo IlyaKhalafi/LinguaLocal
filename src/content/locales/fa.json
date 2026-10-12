@@ -364,7 +364,9 @@
   "Name (optional)": "نام (اختیاری)",
   "Download summary": "دریافت خلاصه",
   "Download print sheet": "دریافت برگهٔ چاپ",
-  "Only totals and assignment titles are shared. Notes and word lists stay private.": "فقط آمار کلی و عنوان تکلیف‌ها به اشتراک گذاشته می‌شود. یادداشت‌ها و فهرست واژه‌ها خصوصی می‌مانند.",
   "Use a name with letters or numbers, up to 64 characters.": "نامی شامل حرف یا عدد با حداکثر ۶۴ نویسه وارد کنید.",
-  "Unable to download the summary. Try again.": "دریافت خلاصه ممکن نشد. دوباره تلاش کنید."
+  "Unable to download the summary. Try again.": "دریافت خلاصه ممکن نشد. دوباره تلاش کنید.",
+  "The summary includes study totals and assignment details. Notes and word lists stay private.": "خلاصه شامل آمار مطالعه و جزئیات تکلیف‌هاست. یادداشت‌ها و فهرست واژه‌ها خصوصی می‌مانند.",
+  "Print file prepared. Open it to print.": "فایل چاپ آماده شد. برای چاپ آن را باز کنید.",
+  "Summary file prepared.": "فایل خلاصه آماده شد."
 }

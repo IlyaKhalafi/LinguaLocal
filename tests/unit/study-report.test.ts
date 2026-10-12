@@ -26,6 +26,10 @@ test("shared summaries contain counts without notes or private word lists", () =
     new Date(2026, 9, 12, 12),
   );
   assert.equal(report.name, "Student");
+  assert.equal(
+    createStudyReport(emptyProgress, content, "\u200fعلی\u061c").name,
+    "علی",
+  );
   assert.equal(report.summary.wordsSaved, 1);
   assert.equal(report.summary.wordsLearned, 1);
   assert.equal(report.summary.studyDays, 1);
