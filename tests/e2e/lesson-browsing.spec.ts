@@ -55,8 +55,11 @@ test("fast dictionary input and saved filters survive browser navigation", async
   await expect(
     page.getByRole("button", { name: "Saved words", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
+  await expect(page).toHaveURL(/saved=1/);
   await page.getByRole("link", { name: "Flashcards", exact: true }).click();
+  await expect(page).toHaveURL(/\/flashcards$/);
   await page.goBack();
+  await expect(page).toHaveURL(/saved=1/);
   await expect(input).toHaveValue("curious");
   await expect(
     page.getByRole("button", { name: "Saved words", exact: true }),

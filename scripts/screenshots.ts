@@ -1,6 +1,7 @@
 import { chromium, type BrowserContext, type Page } from "@playwright/test";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { format } from "prettier";
 import { locales, translate, type Locale } from "../src/lib/locale";
 import { pageCatalogue } from "./page-catalogue";
 import seed from "../src/content/starter.json";
@@ -399,7 +400,7 @@ async function main() {
       await page.goto(base + "/progress");
       await page.locator(".assignment-history > summary").click();
       await capture(page, "assignment-history", locale);
-      await page.locator(".share-summary > summary").click();
+      await page.locator(".share-summary > summary:visible").click();
       await page
         .getByLabel(translate(locale, "Name (optional)"))
         .fill("Sample learner");
@@ -455,9 +456,12 @@ async function main() {
     const features = await readFile(featuresPath, "utf8");
     await writeFile(
       featuresPath,
-      features.replace(
-        /\| Page\s+\|[\s\S]*?(?=\n## A little practice)/,
-        table + "\n",
+      await format(
+        features.replace(
+          /\| Page\s+\|[\s\S]*?(?=\n## A little practice)/,
+          table + "\n",
+        ),
+        { parser: "markdown" },
       ),
     );
     if (errors.length) throw new Error(errors.join("\n"));

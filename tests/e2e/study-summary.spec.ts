@@ -83,7 +83,9 @@ for (const locale of locales)
     ]);
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/progress");
-    await page.locator(".share-summary > summary").focus();
+    const summary = page.locator(".share-summary > summary:visible");
+    await expect(summary).toBeVisible();
+    await summary.focus();
     await page.keyboard.press("Enter");
     await page
       .getByLabel(translate(locale, "Name (optional)"))
