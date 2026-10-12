@@ -3546,3 +3546,39 @@ html[data-reading-spacing="relaxed"] .practice-prompt {
 .summary-actions .button {
   min-height: 44px;
 }
+
+.offline-panel {
+  margin-top: 24px;
+}
+.offline-settings > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.offline-settings > p,
+.offline-status {
+  font-size: 13px;
+  margin: 14px 0;
+  line-height: 1.6;
+}
+.offline-settings .button {
+  min-height: 44px;
+}
+
+.disclosure-chevron {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+details[open] > summary > .disclosure-chevron {
+  transform: rotate(180deg);
+}
+
+.destructive-link {
+  color: #a33b35;
+}
+html[data-appearance="dark"] .destructive-link {
+  color: #f1aca6;
+}

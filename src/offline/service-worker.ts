@@ -67,7 +67,11 @@ async function saveSettings(value: Settings) {
   );
   settingsPromise = Promise.resolve(value);
 }
-async function boundedResponse(response: Response, limit: number) {
+async function boundedResponse(
+  response: Response,
+  limit: number,
+  deadlineAt = Infinity,
+) {
   if (
     !response.ok ||
     response.status !== 200 ||
@@ -84,7 +88,13 @@ async function boundedResponse(response: Response, limit: number) {
   const deadline = new Promise<never>((_, reject) => {
     timeout = setTimeout(
       () => reject(new Error("timeout")),
-      limit === MAX_MEDIA_BYTES ? 60_000 : 10_000,
+      Math.max(
+        1,
+        Math.min(
+          limit === MAX_MEDIA_BYTES ? 60_000 : 10_000,
+          deadlineAt - Date.now(),
+        ),
+      ),
     );
   });
   try {
@@ -106,19 +116,49 @@ async function boundedResponse(response: Response, limit: number) {
   headers.set("Content-Length", String(size));
   return new Response(new Blob(chunks), { headers, status: 200 });
 }
-async function savePage(url: URL, response: Response) {
+async function savePage(
+  url: URL,
+  response: Response,
+  deadlineAt = Date.now() + 20_000,
+) {
   if (!response.headers.get("Content-Type")?.includes("text/html")) return;
-  const copy = await boundedResponse(response, MAX_PAGE_BYTES);
-  const locale = documentLocale(await copy.clone().text());
+  const copy = await boundedResponse(response, MAX_PAGE_BYTES, deadlineAt);
+  const html = await copy.clone().text();
+  const locale = documentLocale(html);
+  // A saved document needs its own chunks, including pages warmed before a visit.
+  const references = [
+    ...html.matchAll(/<(?:script|link)\b[^>]*?\b(?:src|href)="([^"]+)"/g),
+  ]
+    .map((match) => new URL(match[1].replaceAll("&amp;", "&"), url))
+    .filter((asset) => assetAllowed(asset, worker.location.origin));
+  const assets = [...new Set(references.map((asset) => asset.href))].slice(
+    0,
+    40,
+  );
+  for (let start = 0; start < assets.length; start += 4) {
+    await Promise.all(
+      assets.slice(start, start + 4).map(async (href) => {
+        if (!(await settings()).enabled) return;
+        if (await (await caches.open(assetsName)).match(href)) return;
+        if (Date.now() >= deadlineAt) throw new Error("timeout");
+        await saveAsset(
+          new URL(href),
+          await timedFetch(href, Math.min(5000, deadlineAt - Date.now())),
+          deadlineAt,
+        );
+      }),
+    );
+  }
   await writeCaches(async () => {
     if (!(await settings()).enabled) return;
     const cache = await caches.open(pagesName);
     const key = offlinePageKey(url, locale);
     await cache.put(key, copy);
     const keys = await cache.keys();
-    const candidates = keys.filter(
-      (entry) => new URL(entry.url).pathname !== "/",
-    );
+    const candidates = keys.filter((entry) => {
+      const url = new URL(entry.url);
+      return url.pathname !== "/" || url.searchParams.size !== 1;
+    });
     for (const entry of candidates.slice(
       0,
       Math.max(0, keys.length - MAX_CACHED_PAGES),
@@ -126,8 +166,8 @@ async function savePage(url: URL, response: Response) {
       await cache.delete(entry);
   });
 }
-async function saveAsset(url: URL, response: Response) {
-  const copy = await boundedResponse(response, MAX_ASSET_BYTES);
+async function saveAsset(url: URL, response: Response, deadlineAt = Infinity) {
+  const copy = await boundedResponse(response, MAX_ASSET_BYTES, deadlineAt);
   await writeCaches(async () => {
     if (!(await settings()).enabled) return;
     const cache = await caches.open(assetsName);
@@ -143,17 +183,27 @@ async function saveAsset(url: URL, response: Response) {
       (keys.length >= MAX_ASSET_FILES &&
         !keys.some((key) => key.url === url.href))
     )
-      return;
+      throw new Error("asset-full");
     await cache.put(url.href, copy);
   });
 }
 async function timedFetch(request: Request | string, milliseconds = 5000) {
   const controller = new AbortController();
+  const incoming = request instanceof Request ? request.signal : undefined;
+  const cancelled = () => controller.abort();
+  if (incoming?.aborted) cancelled();
+  else incoming?.addEventListener("abort", cancelled, { once: true });
   const timeout = setTimeout(() => controller.abort(), milliseconds);
   try {
-    return await fetch(request, { signal: controller.signal });
+    return await fetch(request, {
+      signal:
+        incoming && typeof AbortSignal.any === "function"
+          ? AbortSignal.any([controller.signal, incoming])
+          : controller.signal,
+    });
   } finally {
     clearTimeout(timeout);
+    incoming?.removeEventListener("abort", cancelled);
   }
 }
 async function mediaEntries() {
@@ -206,7 +256,7 @@ async function handleCommand(data: Record<string, unknown>) {
       const deadline = Date.now() + 20_000;
       let pageCount = 0;
       for (const item of urls) {
-        if (Date.now() > deadline) break;
+        if (Date.now() >= deadline || !(await settings()).enabled) break;
         if (typeof item !== "string") continue;
         const url = new URL(item, worker.location.origin);
         if (
@@ -227,10 +277,11 @@ async function handleCommand(data: Record<string, unknown>) {
         try {
           const response = await timedFetch(
             new Request(url, { credentials: "same-origin" }),
+            Math.max(1, Math.min(5000, deadline - Date.now())),
           );
           if (pageAllowed(url, worker.location.origin))
-            await savePage(url, response);
-          else await saveAsset(url, response);
+            await savePage(url, response, deadline);
+          else await saveAsset(url, response, deadline);
         } catch {
           /* One unavailable resource does not discard other saved pages. */
         }
@@ -386,6 +437,37 @@ worker.addEventListener("fetch", (event) => {
               headers: { "Content-Type": "text/html;charset=utf-8" },
             })
           );
+        }
+      })(),
+    );
+  } else if (
+    request.method === "GET" &&
+    (request.headers.get("RSC") === "1" || url.searchParams.has("_rsc"))
+  ) {
+    event.respondWith(
+      (async () => {
+        if (!(await settings().catch(() => ({ enabled: false }))).enabled)
+          return fetch(request);
+        try {
+          return await timedFetch(request, 12_000);
+        } catch {
+          if (
+            !request.signal.aborted &&
+            !request.headers.has("Next-Router-Prefetch") &&
+            !request.headers.has("Next-Router-Segment-Prefetch") &&
+            event.clientId
+          ) {
+            const destination = new URL(url);
+            destination.searchParams.delete("_rsc");
+            if (pageAllowed(destination, worker.location.origin)) {
+              const client = await worker.clients.get(event.clientId);
+              client?.postMessage({
+                type: "NAVIGATION_OFFLINE",
+                href: destination.href,
+              });
+            }
+          }
+          return Response.error();
         }
       })(),
     );

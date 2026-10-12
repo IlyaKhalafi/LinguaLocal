@@ -35,6 +35,10 @@
     "{count} student summaries": {
       "one": "{count} student summary",
       "other": "{count} student summaries"
+    },
+    "{count} saved pages": {
+      "one": "{count} saved page",
+      "other": "{count} saved pages"
     }
   },
   "fa": {
@@ -115,6 +119,14 @@
       "few": "{count} ملخصات للطلاب",
       "many": "{count} ملخصًا للطلاب",
       "other": "{count} ملخص للطلاب"
+    },
+    "{count} saved pages": {
+      "zero": "لا توجد صفحات محفوظة",
+      "one": "صفحة واحدة محفوظة",
+      "two": "صفحتان محفوظتان",
+      "few": "{count} صفحات محفوظة",
+      "many": "{count} صفحة محفوظة",
+      "other": "{count} صفحة محفوظة"
     }
   },
   "tr": {

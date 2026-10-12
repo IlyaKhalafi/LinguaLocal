@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import type { Settings } from "@/lib/schema";
 import { LanguageSelect } from "./language-select";
+import { offlineSnapshot } from "@/lib/offline-client";
 
 const navigation = [
   { href: "/", label: "Home", icon: Compass },
@@ -84,6 +85,8 @@ export function Shell({
               .querySelector<HTMLInputElement>(".search-field input")
               ?.focus(),
           );
+        else if (offlineSnapshot().enabled)
+          location.assign(new URL("/dictionary#search", location.origin).href);
         else router.push("/dictionary?focus=search");
       }
     }

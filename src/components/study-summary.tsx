@@ -1,6 +1,6 @@
 "use client";
 import { useId, useState, useRef } from "react";
-import { Download } from "lucide-react";
+import { Download, ChevronDown } from "lucide-react";
 import { useLocale } from "./locale-provider";
 import { useProgress } from "./progress-provider";
 import { dayKey } from "@/lib/learning";
@@ -63,6 +63,11 @@ export function StudySummary({ content }: { content: ContentPack }) {
       <summary>
         <Download size={16} aria-hidden="true" />
         {t("Share summary")}
+        <ChevronDown
+          className="disclosure-chevron"
+          size={16}
+          aria-hidden="true"
+        />
       </summary>
       <form
         onSubmit={(event) => {

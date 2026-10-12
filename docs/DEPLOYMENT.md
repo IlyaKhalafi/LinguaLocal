@@ -101,3 +101,11 @@ A Docker container cannot discover the host computer’s Wi-Fi address. Set `LIN
 When using a reverse proxy or remapped port, set `LINGUALOCAL_PUBLIC_URL` to the address that students use.
 
 Use the network button in Settings to show a join QR code. If the server has multiple network connections, choose the school’s address before sharing it. QR images are generated on the device without a cloud service.
+
+## Optional offline pages
+
+Open **Offline use** in Settings and choose **Enable offline pages**. The browser saves Home and up to 30 distinct visited pages, including filter variations. Pages are separated by interface language. Saved pages include the scripts and bundled fonts needed for local study. Pages that have not been saved show a short reconnect screen.
+
+[Service workers require HTTPS or localhost](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API). The ordinary learning hub remains available over HTTP on the school network. Installation depends on the browser. When **Install app** is available, it appears inside the same optional section. Other browsers offer installation through their own menus.
+
+App updates wait until existing tabs close. Cached pages and app assets refresh for the new build when it is opened online. A new build never mixes old HTML with different JavaScript files. **Remove offline copies** clears saved pages and media on this device without clearing personal progress, notes or decks. Browser storage can be evicted by the device, so offline copies supplement the school’s original collection.

@@ -61,3 +61,9 @@ Logical CSS properties mirror navigation and spacing for Persian and Arabic. Bun
 Tests compare catalogue keys and placeholders, exercise every page in all four interfaces on desktop and mobile, and verify that language changes preserve progress and English reading direction.
 
 Progress recovery keeps valid entries in each field and retains the most recent unreadable raw value in a separate browser key. Reset removes that recovery copy. A temporary storage failure can recover on the next write. If another tab changes saved progress during the failure, persistent writes stop until the student reloads the saved version. The unsaved visit can be exported first.
+
+## Optional offline use
+
+The browser registers a service worker only after the student enables offline pages. Page caches are partitioned by interface language and application build. Saved documents include their referenced scripts and styles. Navigation prefers the school server and falls back to a saved page when the connection fails. Failed background prefetches do not trigger navigation.
+
+The cache has limits for page count, file size, total asset bytes, and explicit media selections. Warm-up has a shared deadline. Application updates wait for existing tabs to close. Removing offline copies clears page, asset, and media caches while retaining private learning progress.

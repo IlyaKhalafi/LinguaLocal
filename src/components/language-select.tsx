@@ -12,6 +12,7 @@ export function LanguageSelect({ id = "interface-language" }: { id?: string }) {
       <span className="sr-only">{t("Language")}</span>
       <select
         id={id}
+        aria-label={t("Language")}
         value={locale}
         onChange={(event) => setLocale?.(parseLocale(event.target.value))}
       >

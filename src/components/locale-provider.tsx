@@ -16,9 +16,11 @@ import {
   type Locale,
 } from "@/lib/locale";
 
+import { offlineSnapshot, setOfflineLocale } from "@/lib/offline-client";
+
 const LocaleContext = createContext<{
   locale: Locale;
-  setLocale: (locale: Locale) => void;
+  setLocale: (locale: Locale) => Promise<void>;
 } | null>(null);
 
 export function LocaleProvider({
@@ -34,14 +36,30 @@ export function LocaleProvider({
     <LocaleContext.Provider
       value={{
         locale,
-        setLocale: (input) => {
+        setLocale: async (input) => {
           const next = parseLocale(input);
-          document.cookie = `${LOCALE_COOKIE}=${next}; Path=/; Max-Age=31536000; SameSite=Lax`;
+          let persistent = false;
+          try {
+            document.cookie = `${LOCALE_COOKIE}=${next}; Path=/; Max-Age=31536000; SameSite=Lax`;
+            persistent = document.cookie
+              .split("; ")
+              .includes(`${LOCALE_COOKIE}=${next}`);
+          } catch {
+            /* The current interface can still change temporarily. */
+          }
           document.documentElement.lang = next;
           document.documentElement.dir = direction(next);
           setCurrentLocale(next);
-          if (document.cookie.split("; ").includes(`${LOCALE_COOKIE}=${next}`))
-            router.refresh();
+          if (offlineSnapshot().enabled) {
+            try {
+              await setOfflineLocale(next);
+              if (!navigator.onLine && persistent) window.location.reload();
+            } catch {
+              /* The current interface language still changes locally. */
+            }
+            if (!navigator.onLine) return;
+          }
+          if (persistent) router.refresh();
         },
       }}
     >

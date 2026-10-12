@@ -41,6 +41,11 @@ export function offlinePageKey(url: URL, locale: string) {
   key.searchParams.set("__ll_locale", offlineLocale(locale));
   return key.href;
 }
+export function offlineNavigationKey(url: URL) {
+  const query = new URLSearchParams(url.search);
+  query.sort();
+  return url.origin + url.pathname + (query.size ? "?" + query.toString() : "");
+}
 export function mediaAllowed(url: URL, origin: string) {
   return (
     url.origin === origin &&

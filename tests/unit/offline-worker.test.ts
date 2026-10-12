@@ -62,6 +62,7 @@ function workerHarness(fetcher: typeof fetch, shortBodyTimeout = false) {
     Blob,
     Uint8Array,
     AbortController,
+    AbortSignal,
     fetch: fetcher,
     caches: cacheStorage,
     location: { origin: "http://school.test" },
@@ -78,9 +79,7 @@ function workerHarness(fetcher: typeof fetch, shortBodyTimeout = false) {
     clearTimeout,
   });
   vm.runInContext(source, context);
-  async function command(
-    data: Record<string, unknown>,
-  ): Promise<{
+  async function command(data: Record<string, unknown>): Promise<{
     ok: boolean;
     value?: { enabled: boolean; pages: number };
     error?: string;
@@ -93,10 +92,10 @@ function workerHarness(fetcher: typeof fetch, shortBodyTimeout = false) {
       }),
     );
   }
-  async function navigate() {
+  async function navigate(url = "http://school.test/dictionary") {
     const pending: Promise<void>[] = [];
     let response: Promise<Response> | undefined;
-    const request = new Request("http://school.test/dictionary");
+    const request = new Request(url);
     Object.defineProperty(request, "mode", { value: "navigate" });
     callbacks.get("fetch")!({
       request,
@@ -157,4 +156,20 @@ test("a stalled media body times out and leaves later commands usable", async ()
     (await worker.command({ type: "DISABLE" })).value?.enabled,
     false,
   );
+});
+
+test("query variants of the home page stay within the page cache limit", async () => {
+  const worker = workerHarness(
+    async () =>
+      new Response('<html lang="en">School</html>', {
+        headers: { "Content-Type": "text/html" },
+      }),
+  );
+  await worker.command({ type: "ENABLE", locale: "en" });
+  await Promise.all(await worker.navigate("http://school.test/"));
+  for (let index = 0; index < 40; index++)
+    await Promise.all(
+      await worker.navigate(`http://school.test/?page=${index}`),
+    );
+  assert.equal((await worker.command({ type: "STATUS" })).value?.pages, 30);
 });

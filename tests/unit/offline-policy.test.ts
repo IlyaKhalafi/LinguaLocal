@@ -7,6 +7,7 @@ import {
   byteRange,
   documentLocale,
   offlinePageKey,
+  offlineNavigationKey,
 } from "../../src/lib/offline-policy";
 const origin = "http://school.test";
 test("offline storage accepts bounded school pages and immutable assets only", () => {
@@ -47,6 +48,12 @@ test("offline storage accepts bounded school pages and immutable assets only", (
   assert.notEqual(
     offlinePageKey(new URL("/dictionary", origin), "en"),
     offlinePageKey(new URL("/dictionary", origin), "fa"),
+  );
+  assert.equal(
+    offlineNavigationKey(
+      new URL("/assignment?plan=hello%20world#task", origin),
+    ),
+    offlineNavigationKey(new URL("/assignment?plan=hello+world", origin)),
   );
 });
 test("offline media ranges support seeking and reject malformed or unsatisfiable ranges", () => {

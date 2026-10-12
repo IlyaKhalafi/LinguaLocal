@@ -28,7 +28,11 @@ async function capture(page: Page, name: string, locale: Locale) {
     await page.setViewportSize(
       mobile ? { width: 390, height: 844 } : { width: 1440, height: 1040 },
     );
-    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.evaluate(() => {
+      (document.activeElement as HTMLElement)?.blur();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
+    await page.waitForTimeout(300);
     if (
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -390,6 +394,23 @@ async function main() {
         .getByLabel(translate(locale, "Name (optional)"))
         .fill("Sample learner");
       await capture(page, "share-summary", locale);
+      await page.goto(base + "/settings");
+      await page.locator(".offline-settings > summary").click();
+      await capture(page, "offline-settings", locale);
+      const enable = page.getByRole("button", {
+        name: translate(locale, "Enable offline pages"),
+        exact: true,
+      });
+      if (await enable.isVisible()) {
+        await enable.click();
+        await page
+          .getByRole("button", {
+            name: translate(locale, "Remove offline copies"),
+            exact: true,
+          })
+          .waitFor();
+        await capture(page, "offline-enabled", locale);
+      }
       await context.close();
       console.log(`Captured ${locale} pages and practice`);
     }

@@ -166,3 +166,11 @@ Students can share a small summary without including their notes or word lists. 
 | --------------- | ----------------------------------------- | ------------------------------------------------ |
 | Student sheet   | [View](screenshots/student-summary.png)   | [View](screenshots/student-summary-mobile.png)   |
 | Classroom sheet | [View](screenshots/classroom-summary.png) | [View](screenshots/classroom-summary-mobile.png) |
+
+## Optional offline pages
+
+Offline use stays folded in Settings. Enable it to save visited pages and their scripts on a supported secure connection. Remove offline copies from the same section. Private progress stays on the device.
+
+![Offline controls](screenshots/offline-enabled.png)
+
+[Mobile](screenshots/offline-enabled-mobile.png) · [Dark appearance](screenshots/dark-offline-enabled.png) · [Connection requirement](screenshots/offline-unsupported.png)

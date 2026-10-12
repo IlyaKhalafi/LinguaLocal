@@ -370,5 +370,20 @@
   "Print file prepared. Open it to print.": "Print file prepared. Open it to print.",
   "Summary file prepared.": "Summary file prepared.",
   "You’re offline": "You’re offline",
-  "Reconnect to the school network to open this page.": "Reconnect to the school network to open this page."
+  "Reconnect to the school network to open this page.": "Reconnect to the school network to open this page.",
+  "Offline use": "Offline use",
+  "Loading…": "Loading…",
+  "Offline pages require HTTPS or localhost.": "Offline pages require HTTPS or localhost.",
+  "Offline pages are unavailable in this browser.": "Offline pages are unavailable in this browser.",
+  "When enabled, visited pages are saved on this device.": "When enabled, visited pages are saved on this device.",
+  "Saving pages…": "Saving pages…",
+  "Enable offline pages": "Enable offline pages",
+  "Remove saved pages and offline media from this device?": "Remove saved pages and offline media from this device?",
+  "Remove offline copies": "Remove offline copies",
+  "Install app": "Install app",
+  "{count} saved pages": "{count} saved pages",
+  "Offline storage is unavailable. Try again.": "Offline storage is unavailable. Try again.",
+  "Unable to remove offline copies. Try again.": "Unable to remove offline copies. Try again.",
+  "Use your browser’s install option to add this app.": "Use your browser’s install option to add this app.",
+  "Visited pages are saved on this device.": "Visited pages are saved on this device."
 }

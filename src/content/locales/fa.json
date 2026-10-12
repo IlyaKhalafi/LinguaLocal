@@ -370,5 +370,20 @@
   "Print file prepared. Open it to print.": "فایل چاپ آماده شد. برای چاپ آن را باز کنید.",
   "Summary file prepared.": "فایل خلاصه آماده شد.",
   "You’re offline": "آفلاین هستید",
-  "Reconnect to the school network to open this page.": "برای باز کردن این صفحه دوباره به شبکهٔ آموزشگاه وصل شوید."
+  "Reconnect to the school network to open this page.": "برای باز کردن این صفحه دوباره به شبکهٔ آموزشگاه وصل شوید.",
+  "Offline use": "استفادهٔ آفلاین",
+  "Loading…": "در حال بارگذاری…",
+  "Offline pages require HTTPS or localhost.": "صفحه‌های آفلاین به HTTPS یا localhost نیاز دارند.",
+  "Offline pages are unavailable in this browser.": "صفحه‌های آفلاین در این مرورگر در دسترس نیستند.",
+  "When enabled, visited pages are saved on this device.": "با فعال‌سازی، صفحه‌هایی که باز می‌کنید روی این دستگاه ذخیره می‌شوند.",
+  "Saving pages…": "در حال ذخیرهٔ صفحه‌ها…",
+  "Enable offline pages": "فعال‌سازی صفحه‌های آفلاین",
+  "Remove saved pages and offline media from this device?": "صفحه‌ها و رسانه‌های آفلاین ذخیره‌شده از این دستگاه حذف شوند؟",
+  "Remove offline copies": "حذف نسخه‌های آفلاین",
+  "Install app": "نصب برنامه",
+  "{count} saved pages": "{count} صفحهٔ ذخیره‌شده",
+  "Offline storage is unavailable. Try again.": "فضای ذخیرهٔ آفلاین در دسترس نیست. دوباره تلاش کنید.",
+  "Unable to remove offline copies. Try again.": "حذف نسخه‌های آفلاین ممکن نشد. دوباره تلاش کنید.",
+  "Use your browser’s install option to add this app.": "برای افزودن این برنامه از گزینهٔ نصب مرورگر استفاده کنید.",
+  "Visited pages are saved on this device.": "صفحه‌هایی که باز می‌کنید روی این دستگاه ذخیره می‌شوند."
 }

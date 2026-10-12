@@ -2,7 +2,8 @@
 import { useLocale } from "@/components/locale-provider";
 
 import { useState } from "react";
-import { Download } from "lucide-react";
+import { Download, Upload } from "lucide-react";
+import { OfflineSettings } from "./offline-settings";
 import { ReadingSettings } from "./reading-settings";
 import { NetworkJoin } from "./network-join";
 import { useProgress } from "./progress-provider";
@@ -42,6 +43,7 @@ export function PersonalSettings() {
               htmlFor="restore-progress"
               className="button secondary upload-control"
             >
+              <Upload size={14} aria-hidden="true" />
               {t("Restore a progress backup")}
             </label>
             <input
@@ -159,7 +161,7 @@ export function PersonalSettings() {
                   ? focusTarget
                   : undefined
               }
-              className="text-link"
+              className="text-link destructive-link"
               style={{ marginTop: 20, border: 0, background: "none" }}
               onClick={() => {
                 setPending(null);
@@ -173,6 +175,7 @@ export function PersonalSettings() {
         </section>
         <NetworkJoin />
       </div>
+      <OfflineSettings />
     </>
   );
 }

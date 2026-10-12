@@ -9,12 +9,14 @@ export function SearchField({
   value,
   onChange,
   autoFocus = false,
+  id,
 }: {
   label: string;
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
   autoFocus?: boolean;
+  id?: string;
 }) {
   const { dir } = useLocale();
   return (
@@ -22,6 +24,7 @@ export function SearchField({
       <Search size={17} aria-hidden="true" />
       <span className="sr-only">{label}</span>
       <input
+        id={id}
         autoFocus={autoFocus}
         dir={value.trim() ? "auto" : dir}
         value={value}

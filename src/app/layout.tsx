@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/noto-sans-arabic";
 import "@fontsource-variable/atkinson-hyperlegible-next";
@@ -8,6 +9,7 @@ import "./reading.css";
 import { getRequestPreferences } from "@/lib/preferences-server";
 import { preferenceAttributes } from "@/lib/preferences";
 import { PreferencesProvider } from "@/components/preferences-provider";
+import { OfflineBridge } from "@/components/offline-bridge";
 import { Shell } from "@/components/shell";
 import { ProgressProvider } from "@/components/progress-provider";
 import { getSettingsState } from "@/lib/content";
@@ -42,6 +44,9 @@ export default async function RootLayout({
         <LocaleProvider initialLocale={locale}>
           <PreferencesProvider initialPreferences={preferences}>
             <ProgressProvider>
+              <Suspense fallback={null}>
+                <OfflineBridge />
+              </Suspense>
               <Shell settings={settings}>
                 {warning && (
                   <p className="inline-message" role="status">

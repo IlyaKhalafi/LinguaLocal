@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { SearchField } from "./search-field";
 import { useLocale } from "@/components/locale-provider";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { Bookmark } from "lucide-react";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
@@ -25,6 +25,13 @@ export function Dictionary({
   focusSearch?: boolean;
 }) {
   const { t } = useLocale();
+  useEffect(() => {
+    if (location.hash !== "#search") return;
+    const frame = requestAnimationFrame(() =>
+      document.getElementById("search")?.focus(),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const wordId = useSearchParams().get("word");
   const { search: query, level, page, saved, update } = useListQuery();
   const [focusRequest, setFocusRequest] = useState(0);
@@ -76,6 +83,7 @@ export function Dictionary({
       <PageHeading title={t("Dictionary")} />
       <div className="toolbar">
         <SearchField
+          id="search"
           autoFocus={focusSearch}
           label={t("Search dictionary")}
           placeholder={t("Search words or meanings")}

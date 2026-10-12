@@ -4,7 +4,7 @@ The next release expands student practice, classroom materials, and local deploy
 
 ## Learning
 
-- [ ] Installable app and cached pages for supported secure browser contexts
+- [x] Installable app and cached pages for supported secure browser contexts
 - [ ] Selected book media saved for offline playback
 - [x] Timed transcripts with dictionary lookup
 - [x] Shadowing through repeat controls and dictation with word-level feedback

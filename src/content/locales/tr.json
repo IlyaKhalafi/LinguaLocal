@@ -370,5 +370,20 @@
   "Print file prepared. Open it to print.": "Yazdırma dosyası hazır. Yazdırmak için açın.",
   "Summary file prepared.": "Özet dosyası hazır.",
   "You’re offline": "Çevrimdışısınız",
-  "Reconnect to the school network to open this page.": "Bu sayfayı açmak için okul ağına yeniden bağlanın."
+  "Reconnect to the school network to open this page.": "Bu sayfayı açmak için okul ağına yeniden bağlanın.",
+  "Offline use": "Çevrimdışı kullanım",
+  "Loading…": "Yükleniyor…",
+  "Offline pages require HTTPS or localhost.": "Çevrimdışı sayfalar için HTTPS veya localhost gerekir.",
+  "Offline pages are unavailable in this browser.": "Bu tarayıcıda çevrimdışı sayfalar kullanılamıyor.",
+  "When enabled, visited pages are saved on this device.": "Etkinleştirildiğinde ziyaret ettiğiniz sayfalar bu cihazda saklanır.",
+  "Saving pages…": "Sayfalar kaydediliyor…",
+  "Enable offline pages": "Çevrimdışı sayfaları etkinleştir",
+  "Remove saved pages and offline media from this device?": "Kaydedilen sayfalar ve çevrimdışı medya bu cihazdan kaldırılsın mı?",
+  "Remove offline copies": "Çevrimdışı kopyaları kaldır",
+  "Install app": "Uygulamayı yükle",
+  "{count} saved pages": "{count} kayıtlı sayfa",
+  "Offline storage is unavailable. Try again.": "Çevrimdışı depolama kullanılamıyor. Tekrar deneyin.",
+  "Unable to remove offline copies. Try again.": "Çevrimdışı kopyalar kaldırılamadı. Tekrar deneyin.",
+  "Use your browser’s install option to add this app.": "Bu uygulamayı eklemek için tarayıcınızın yükleme seçeneğini kullanın.",
+  "Visited pages are saved on this device.": "Ziyaret ettiğiniz sayfalar bu cihazda saklanır."
 }

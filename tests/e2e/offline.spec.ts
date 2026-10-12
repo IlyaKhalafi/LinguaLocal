@@ -149,3 +149,259 @@ test("selected media supports offline seeking, head requests and removal", async
   );
   await context.setOffline(false);
 });
+
+test("offline settings stay optional and remove copies without clearing progress", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  expect(
+    await page.evaluate(
+      async () => (await navigator.serviceWorker.getRegistrations()).length,
+    ),
+  ).toBe(0);
+  await expect(
+    page.getByRole("button", { name: "Enable offline pages", exact: true }),
+  ).not.toBeVisible();
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  const remove = page.getByRole("button", {
+    name: "Remove offline copies",
+    exact: true,
+  });
+  await expect(remove).toBeEnabled();
+  await page.goto("/dictionary");
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const names = await caches.keys();
+        const name = names.find((name) => name.endsWith("-pages"));
+        return name
+          ? (await (await caches.open(name)).keys()).some(
+              (key) => new URL(key.url).pathname === "/dictionary",
+            )
+          : false;
+      }),
+    )
+    .toBe(true);
+  await page.getByRole("button", { name: "Save curious", exact: true }).click();
+  await context.setOffline(true);
+  await page.getByRole("link", { name: "Home", exact: true }).first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await page
+    .getByRole("link", { name: "Dictionary", exact: true })
+    .first()
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Unsave curious", exact: true }),
+  ).toBeVisible();
+  await page.getByLabel("Search dictionary").fill("journey");
+  await expect(
+    page.locator(".word-card h2").filter({ hasText: "journey" }),
+  ).toBeVisible();
+  await context.setOffline(false);
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  page.once("dialog", (dialog) => dialog.dismiss());
+  await remove.click();
+  await expect(remove).toBeVisible();
+  page.once("dialog", (dialog) => dialog.accept());
+  await remove.click();
+  await expect(
+    page.getByRole("button", { name: "Enable offline pages", exact: true }),
+  ).toBeEnabled();
+  expect(
+    await page.evaluate(
+      () => JSON.parse(localStorage.getItem("lingualocal.progress.v1")!).saved,
+    ),
+  ).toContain("curious");
+});
+test("offline enable errors can be retried and saved pages restore current reading preferences", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page.evaluate(() => {
+    const original = navigator.serviceWorker.register.bind(
+      navigator.serviceWorker,
+    );
+    let fail = true;
+    navigator.serviceWorker.register = (...args) => {
+      if (fail) {
+        fail = false;
+        return Promise.reject(new Error("Blocked"));
+      }
+      return original(...args);
+    };
+  });
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.locator(".offline-settings").getByRole("alert"),
+  ).toContainText("Offline storage");
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await page.locator(".reading-settings > summary").click();
+  await page.getByLabel("Appearance", { exact: true }).selectOption("dark");
+  await context.setOffline(true);
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-appearance", "dark");
+  await context.setOffline(false);
+});
+test("installation is offered only after an explicit action", async ({
+  page,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await page.evaluate(() => {
+    const event = new Event("beforeinstallprompt", { cancelable: true });
+    Object.defineProperties(event, {
+      prompt: {
+        value: async () => {
+          document.documentElement.dataset.promptRequested = "true";
+        },
+      },
+      userChoice: { value: Promise.resolve({ outcome: "accepted" }) },
+    });
+    window.dispatchEvent(event);
+  });
+  expect(
+    await page.locator("html").getAttribute("data-prompt-requested"),
+  ).toBeNull();
+  await page.getByRole("button", { name: "Install app", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-prompt-requested",
+    "true",
+  );
+});
+
+test("offline language changes use a saved page in the chosen language", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await page.locator(".language-select select").selectOption("fa");
+  await expect(page.locator("html")).toHaveAttribute("lang", "fa");
+  await expect
+    .poll(() =>
+      page.evaluate(async () => {
+        const name = (await caches.keys()).find((name) =>
+          name.endsWith("-pages"),
+        );
+        return name
+          ? (await (await caches.open(name)).keys()).some(
+              (key) =>
+                new URL(key.url).pathname === "/settings" &&
+                new URL(key.url).searchParams.get("__ll_locale") === "fa",
+            )
+          : false;
+      }),
+    )
+    .toBe(true);
+  await context.setOffline(true);
+  await page.locator(".language-select select").selectOption("en");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(
+    page.getByRole("heading", { name: "Settings", exact: true }),
+  ).toBeVisible();
+  await context.setOffline(false);
+});
+
+test("cached navigation recovers when the school connection fails but the browser reports online", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await context.setOffline(true);
+  await page.evaluate(() =>
+    Object.defineProperty(navigator, "onLine", {
+      value: true,
+      configurable: true,
+    }),
+  );
+  await page.getByRole("link", { name: "Home", exact: true }).first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator("main h1")).toBeVisible();
+  await context.setOffline(false);
+});
+
+test("background prefetch failures never navigate away from the current page", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await context.setOffline(true);
+  await page.evaluate(async () => {
+    try {
+      await fetch("/dictionary?_rsc=background", {
+        headers: { RSC: "1", "Next-Router-Prefetch": "1" },
+      });
+    } catch {}
+  });
+  await expect(page).toHaveURL(/\/settings$/);
+  await expect(
+    page.getByRole("heading", { name: "Settings", exact: true }),
+  ).toBeVisible();
+  await context.setOffline(false);
+});
+
+test("saved pages include unvisited page chunks and preserve dictionary keyboard navigation", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/settings");
+  await page.locator(".offline-settings > summary").click();
+  await page
+    .getByRole("button", { name: "Enable offline pages", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Remove offline copies", exact: true }),
+  ).toBeEnabled();
+  await page.goto("/dictionary");
+  await warm(page);
+  await context.setOffline(true);
+  await page.goto("/");
+  await expect(page.locator("main h1")).toBeVisible();
+  await page.keyboard.press("/");
+  await expect(page).toHaveURL(/\/dictionary#search$/);
+  await expect(page.getByLabel("Search dictionary")).toHaveCount(1);
+  await expect(page.getByLabel("Search dictionary")).toBeFocused();
+  await page.getByLabel("Search dictionary").fill("curious");
+  await expect(page.locator(".word-card h2").first()).toHaveText("curious");
+  await context.setOffline(false);
+});
