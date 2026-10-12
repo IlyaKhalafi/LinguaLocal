@@ -368,5 +368,7 @@
   "Unable to download the summary. Try again.": "Unable to download the summary. Try again.",
   "The summary includes study totals and assignment details. Notes and word lists stay private.": "The summary includes study totals and assignment details. Notes and word lists stay private.",
   "Print file prepared. Open it to print.": "Print file prepared. Open it to print.",
-  "Summary file prepared.": "Summary file prepared."
+  "Summary file prepared.": "Summary file prepared.",
+  "You’re offline": "You’re offline",
+  "Reconnect to the school network to open this page.": "Reconnect to the school network to open this page."
 }

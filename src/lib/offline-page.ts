@@ -1,0 +1,6 @@
+import { escapeHtml } from "./html";
+import { translate, direction, type Locale } from "./locale";
+export function offlinePage(locale: Locale) {
+  const t = (message: string) => escapeHtml(translate(locale, message));
+  return `<!doctype html><html lang="${locale}" dir="${direction(locale)}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${t("You’re offline")} | LinguaLocal</title><style>*{box-sizing:border-box}body{margin:0;padding:24px;min-height:100vh;display:grid;place-items:center;background:#f8f9f7;color:#243f36;font:16px/1.6 system-ui,Arial,sans-serif}main{width:100%;max-width:480px;padding:40px;background:white;border:1px solid #e7ebe5;border-radius:20px}small{font-size:14px;color:#526946}h1{font-size:30px;line-height:1.2;margin:24px 0 16px}p{color:#546550;margin-bottom:28px}a{display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;background:#214d39;color:white;border-radius:10px;text-decoration:none}a:focus-visible{outline:3px solid #597c65;outline-offset:4px}@media(max-width:500px){main{padding:28px}h1{font-size:26px}}</style></head><body><main><small>LinguaLocal</small><h1>${t("You’re offline")}</h1><p>${t("Reconnect to the school network to open this page.")}</p><a href="/">${t("Home")}</a></main></body></html>`;
+}

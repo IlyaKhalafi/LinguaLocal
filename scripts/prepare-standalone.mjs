@@ -20,6 +20,7 @@ const sources = [
     `src/content/locales/${language}.json`,
     `locale-${language}.json`,
   ]),
+  ["src/lib/offline-page.ts", "offline-page.mjs"],
   ["src/lib/html.ts", "html.mjs"],
   ["src/lib/csv-cell.ts", "csv-cell.mjs"],
   ["src/lib/study-report.ts", "study-report.mjs"],
@@ -85,3 +86,55 @@ for (const [source, target] of sources) {
   });
   await writeFile(`.next/standalone/scripts/${target}`, outputText);
 }
+
+const { offlinePage } = await import(
+  path.resolve(".next/standalone/scripts/offline-page.mjs")
+);
+const { locales } = await import(
+  path.resolve(".next/standalone/scripts/locale.mjs")
+);
+const buildId = (await readFile(".next/BUILD_ID", "utf8")).trim();
+const offlinePages = Object.fromEntries(
+  locales.map((locale) => [locale, offlinePage(locale)]),
+);
+const compileWorker = (source) =>
+  ts.transpileModule(source, {
+    compilerOptions: {
+      target: ts.ScriptTarget.ES2022,
+      module: ts.ModuleKind.ESNext,
+    },
+  }).outputText;
+const workerSources = [
+  "src/lib/byte-range.ts",
+  "src/lib/offline-policy.ts",
+  "src/offline/service-worker.ts",
+];
+const workerParts = [];
+for (const filename of workerSources) {
+  const source = await readFile(filename, "utf8");
+  for (const dependency of ts.preProcessFile(source).importedFiles) {
+    const dependencyPath = path.resolve(
+      path.dirname(filename),
+      dependency.fileName + ".ts",
+    );
+    if (!workerSources.some((entry) => path.resolve(entry) === dependencyPath))
+      throw new Error(
+        `Worker dependency ${dependency.fileName} must be packaged.`,
+      );
+  }
+  const compiled = compileWorker(source)
+    .replace(/^import[\s\S]*?;\s*/gm, "")
+    .replace(/^export (?=(?:const|function|class)\b)/gm, "");
+  if (/^\s*(?:import|export)\b/m.test(compiled))
+    throw new Error(`Unsupported worker module syntax in ${filename}.`);
+  workerParts.push(compiled);
+}
+const worker = workerParts
+  .join("\n")
+  .replace('"__LL_BUILD_ID__"', () => JSON.stringify(buildId))
+  .replace('"__LL_OFFLINE_PAGES__"', () =>
+    JSON.stringify(JSON.stringify(offlinePages)),
+  );
+const serviceWorker = worker;
+await writeFile("public/service-worker.js", serviceWorker);
+await writeFile(".next/standalone/public/service-worker.js", serviceWorker);

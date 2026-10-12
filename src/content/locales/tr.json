@@ -368,5 +368,7 @@
   "Unable to download the summary. Try again.": "Özet indirilemedi. Tekrar deneyin.",
   "The summary includes study totals and assignment details. Notes and word lists stay private.": "Özet, çalışma toplamlarını ve ödev ayrıntılarını içerir. Notlar ve kelime listeleri gizli kalır.",
   "Print file prepared. Open it to print.": "Yazdırma dosyası hazır. Yazdırmak için açın.",
-  "Summary file prepared.": "Özet dosyası hazır."
+  "Summary file prepared.": "Özet dosyası hazır.",
+  "You’re offline": "Çevrimdışısınız",
+  "Reconnect to the school network to open this page.": "Bu sayfayı açmak için okul ağına yeniden bağlanın."
 }

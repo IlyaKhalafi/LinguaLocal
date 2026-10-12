@@ -41,3 +41,6 @@ next-env.d.ts
 /public/uploads/
 /test-results/
 /playwright-report/
+
+# Worker generated for the current production build
+/public/service-worker.js

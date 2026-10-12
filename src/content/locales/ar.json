@@ -368,5 +368,7 @@
   "Unable to download the summary. Try again.": "تعذّر تنزيل الملخص. حاول مجددًا.",
   "The summary includes study totals and assignment details. Notes and word lists stay private.": "يتضمن الملخص إجماليات الدراسة وتفاصيل الواجبات. تبقى الملاحظات وقوائم الكلمات خاصة.",
   "Print file prepared. Open it to print.": "ملف الطباعة جاهز. افتحه للطباعة.",
-  "Summary file prepared.": "ملف الملخص جاهز."
+  "Summary file prepared.": "ملف الملخص جاهز.",
+  "You’re offline": "أنت غير متصل",
+  "Reconnect to the school network to open this page.": "أعد الاتصال بشبكة المدرسة لفتح هذه الصفحة."
 }
