@@ -79,13 +79,17 @@ export function Shell({
       ) {
         event.preventDefault();
         setOpen(false);
+        const offline = offlineSnapshot();
         if (pathname === "/dictionary")
           requestAnimationFrame(() =>
             document
               .querySelector<HTMLInputElement>(".search-field input")
               ?.focus(),
           );
-        else if (offlineSnapshot().enabled)
+        else if (
+          offline.enabled ||
+          (!offline.ready && navigator.serviceWorker?.controller)
+        )
           location.assign(new URL("/dictionary#search", location.origin).href);
         else router.push("/dictionary?focus=search");
       }

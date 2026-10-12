@@ -380,28 +380,60 @@ test("background prefetch failures never navigate away from the current page", a
   await context.setOffline(false);
 });
 
-test("saved pages include unvisited page chunks and preserve dictionary keyboard navigation", async ({
-  page,
-  context,
-}) => {
-  await page.goto("/settings");
-  await page.locator(".offline-settings > summary").click();
-  await page
-    .getByRole("button", { name: "Enable offline pages", exact: true })
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Remove offline copies", exact: true }),
-  ).toBeEnabled();
-  await page.goto("/dictionary");
-  await warm(page);
-  await context.setOffline(true);
-  await page.goto("/");
-  await expect(page.locator("main h1")).toBeVisible();
-  await page.keyboard.press("/");
-  await expect(page).toHaveURL(/\/dictionary#search$/);
-  await expect(page.getByLabel("Search dictionary")).toHaveCount(1);
-  await expect(page.getByLabel("Search dictionary")).toBeFocused();
-  await page.getByLabel("Search dictionary").fill("curious");
-  await expect(page.locator(".word-card h2").first()).toHaveText("curious");
-  await context.setOffline(false);
-});
+for (const reportedOnline of [false, true])
+  test(`saved pages include unvisited page chunks and preserve dictionary keyboard navigation when online is ${reportedOnline}`, async ({
+    page,
+    context,
+  }) => {
+    await page.goto("/settings");
+    await page.locator(".offline-settings > summary").click();
+    await page
+      .getByRole("button", { name: "Enable offline pages", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Remove offline copies", exact: true }),
+    ).toBeEnabled();
+    await page.goto("/dictionary");
+    await warm(page);
+    await page.addInitScript((reportedOnline) => {
+      Object.defineProperty(navigator, "onLine", {
+        configurable: true,
+        get: () => reportedOnline,
+      });
+      const getRegistration = navigator.serviceWorker.getRegistration.bind(
+        navigator.serviceWorker,
+      );
+      const restored = new Promise<void>((resolve) => {
+        window.addEventListener("restore-offline-status", () => resolve(), {
+          once: true,
+        });
+      });
+      navigator.serviceWorker.getRegistration = async (...args) => {
+        document.documentElement.dataset.offlineStatusRequested = "true";
+        await restored;
+        return getRegistration(...args);
+      };
+    }, reportedOnline);
+    await context.setOffline(true);
+    await page.goto("/");
+    await expect(page.locator("main h1")).toBeVisible();
+    await page.waitForFunction(
+      () => document.documentElement.dataset.offlineStatusRequested === "true",
+    );
+    await page.keyboard.press("/");
+    await expect(page).toHaveURL(/\/dictionary#search$/);
+    const search = page.getByRole("textbox", {
+      name: "Search dictionary",
+      exact: true,
+    });
+    await expect(search).toHaveCount(1);
+    await expect(search).toBeFocused();
+    await search.fill("curious");
+    await expect(page.locator(".word-card:visible h2").first()).toHaveText(
+      "curious",
+    );
+    await page.evaluate(() =>
+      window.dispatchEvent(new Event("restore-offline-status")),
+    );
+    await context.setOffline(false);
+  });
