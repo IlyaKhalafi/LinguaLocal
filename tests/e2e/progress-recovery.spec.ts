@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { emptyProgress } from "../../src/lib/learning";
 
-test("partial corruption preserves saved words and the first recovery copy", async ({
+test("partial corruption preserves valid progress and the latest recovery copy", async ({
   page,
 }) => {
   await page.goto("/dictionary");
@@ -36,5 +36,8 @@ test("partial corruption preserves saved words and the first recovery copy", asy
     await page.evaluate(() =>
       localStorage.getItem("lingualocal.progress.v1.corrupt"),
     ),
-  ).toBe("original recovery copy");
+  ).toBe(JSON.stringify(damaged));
+  expect(
+    await page.evaluate(() => localStorage.getItem("lingualocal.progress.v1")),
+  ).toBe(JSON.stringify(damaged));
 });
