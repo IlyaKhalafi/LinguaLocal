@@ -296,20 +296,31 @@ export async function retryOffline(locale: Locale) {
     update({ busy: false });
   }
 }
-export async function changeOfflineMedia(url: string, save: boolean) {
+export async function changeOfflineMedia(
+  url: string,
+  save: boolean,
+  captions?: string,
+) {
   if (snapshot.busy) throw new Error("busy");
   generation++;
   update({ busy: true });
   try {
+    await warming;
     update(
       await command(
-        { type: save ? "SAVE_MEDIA" : "REMOVE_MEDIA", url },
+        {
+          type: save ? "SAVE_MEDIA" : "REMOVE_MEDIA",
+          url,
+          captions,
+          deadline: Date.now() + 65_000,
+        },
         75_000,
       ),
     );
     announceChange();
   } finally {
     update({ busy: false });
+    void refreshOffline();
   }
 }
 export function offerInstall(event: InstallPrompt) {

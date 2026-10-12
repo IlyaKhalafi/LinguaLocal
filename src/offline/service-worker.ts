@@ -228,6 +228,32 @@ async function status() {
     media: await mediaEntries(),
   };
 }
+function mediaSelection(data: Record<string, unknown>) {
+  if (
+    typeof data.url !== "string" ||
+    (data.captions !== undefined && typeof data.captions !== "string")
+  )
+    throw new Error("unavailable");
+  const urls = [new URL(data.url, worker.location.origin)];
+  if (typeof data.captions === "string") {
+    const caption = new URL(data.captions, worker.location.origin);
+    if (!/\.vtt$/i.test(caption.pathname)) throw new Error("unavailable");
+    if (caption.href !== urls[0].href) urls.push(caption);
+  }
+  if (urls.some((url) => !mediaAllowed(url, worker.location.origin)))
+    throw new Error("unavailable");
+  return urls;
+}
+async function deleteUnusedCaption(cache: Cache, href: string) {
+  const shared = await Promise.all(
+    (await cache.keys()).map(
+      async (key) =>
+        (await cache.match(key))?.headers.get("X-LinguaLocal-Captions") ===
+        href,
+    ),
+  );
+  if (!shared.some(Boolean)) await cache.delete(href);
+}
 async function handleCommand(data: Record<string, unknown>) {
   const config = await settings();
   switch (data.type) {
@@ -289,36 +315,99 @@ async function handleCommand(data: Record<string, unknown>) {
       return status();
     }
     case "SAVE_MEDIA": {
-      if (!config.enabled || typeof data.url !== "string")
-        throw new Error("disabled");
-      const url = new URL(data.url, worker.location.origin);
-      if (!mediaAllowed(url, worker.location.origin))
-        throw new Error("unavailable");
+      if (!config.enabled) throw new Error("disabled");
+      const urls = mediaSelection(data);
       const entries = await mediaEntries();
-      const existing = entries.find((entry) => entry.url === url.href);
-      if (!existing && entries.length >= MAX_MEDIA_FILES)
-        throw new Error("media-full");
-      const response = await timedFetch(
-        new Request(url, { credentials: "same-origin", cache: "no-store" }),
+      const existing = entries.filter((entry) =>
+        urls.some((url) => url.href === entry.url),
       );
-      const copy = await boundedResponse(response, MAX_MEDIA_BYTES);
-      const size = Number(copy.headers.get("Content-Length"));
+      if (entries.length - existing.length + urls.length > MAX_MEDIA_FILES)
+        throw new Error("media-full");
+      const deadline = Math.min(
+        Date.now() + 65_000,
+        typeof data.deadline === "number" && Number.isFinite(data.deadline)
+          ? data.deadline
+          : Infinity,
+      );
+      const copies: Response[] = [];
+      for (const [index, url] of urls.entries()) {
+        if (Date.now() >= deadline) throw new Error("timeout");
+        const response = await timedFetch(
+          new Request(url, { credentials: "same-origin", cache: "no-store" }),
+          Math.max(1, Math.min(5000, deadline - Date.now())),
+        );
+        if (
+          index &&
+          response.headers.get("Content-Type")?.split(";")[0] !== "text/vtt"
+        )
+          throw new Error("unavailable");
+        copies.push(
+          await boundedResponse(
+            response,
+            index ? MAX_PAGE_BYTES : MAX_MEDIA_BYTES,
+            deadline,
+          ),
+        );
+      }
+      if (urls[1])
+        copies[0].headers.set("X-LinguaLocal-Captions", urls[1].href);
+      const size = copies.reduce(
+        (sum, copy) => sum + Number(copy.headers.get("Content-Length")),
+        0,
+      );
       if (
         entries.reduce((sum, entry) => sum + entry.bytes, 0) -
-          (existing?.bytes ?? 0) +
+          existing.reduce((sum, entry) => sum + entry.bytes, 0) +
           size >
         MAX_MEDIA_TOTAL
       )
         throw new Error("media-full");
-      await (await caches.open(mediaName)).put(url.href, copy);
+      const cache = await caches.open(mediaName);
+      const originals = await Promise.all(
+        urls.map((url) => cache.match(url.href)),
+      );
+      const written: number[] = [];
+      try {
+        for (const [index, url] of urls.entries()) {
+          await cache.put(url.href, copies[index]);
+          written.push(index);
+        }
+      } catch (error) {
+        let rollbackFailed = false;
+        for (const index of written.reverse()) {
+          const original = originals[index];
+          if (original)
+            await cache.put(urls[index].href, original).catch(() => {
+              rollbackFailed = true;
+            });
+          else
+            await cache.delete(urls[index].href).catch(() => {
+              rollbackFailed = true;
+            });
+        }
+        if (rollbackFailed) throw new Error("partial-save");
+        throw error;
+      }
+      const previousCaption = originals[0]?.headers.get(
+        "X-LinguaLocal-Captions",
+      );
+      if (previousCaption && previousCaption !== urls[1]?.href)
+        await deleteUnusedCaption(cache, previousCaption);
       return status();
     }
     case "REMOVE_MEDIA": {
-      if (typeof data.url !== "string") throw new Error("unavailable");
-      const url = new URL(data.url, worker.location.origin);
-      if (!mediaAllowed(url, worker.location.origin))
-        throw new Error("unavailable");
-      await (await caches.open(mediaName)).delete(url.href);
+      const urls = mediaSelection(data);
+      const cache = await caches.open(mediaName);
+      const storedCaption = (await cache.match(urls[0].href))?.headers.get(
+        "X-LinguaLocal-Captions",
+      );
+      await cache.delete(urls[0].href);
+      for (const href of new Set(
+        [urls[1]?.href, storedCaption].filter((href): href is string =>
+          Boolean(href),
+        ),
+      ))
+        await deleteUnusedCaption(cache, href);
       return status();
     }
     default:
