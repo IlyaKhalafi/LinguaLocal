@@ -59,3 +59,5 @@ Translation catalogues are bundled with the app. A validated language cookie sel
 Logical CSS properties mirror navigation and spacing for Persian and Arabic. Bundled Noto Sans Arabic supports both scripts without external font requests. Complete counter messages allow each language to use its own word order. English and Arabic noun counts use locale plural rules.
 
 Tests compare catalogue keys and placeholders, exercise every page in all four interfaces on desktop and mobile, and verify that language changes preserve progress and English reading direction.
+
+Progress recovery keeps valid entries in each field and retains the most recent unreadable raw value in a separate browser key. Reset removes that recovery copy. A temporary storage failure can recover on the next write. If another tab changes saved progress during the failure, persistent writes stop until the student reloads the saved version. The unsaved visit can be exported first.

@@ -211,14 +211,14 @@ export function Flashcards({
                   title={
                     mode.startsWith("deck/")
                       ? t("No words in this deck")
-                      : mode === "saved"
-                        ? t("No saved words")
-                        : tag
-                          ? t("No words in this selection")
+                      : tag
+                        ? t("No words in this selection")
+                        : mode === "saved"
+                          ? t("No saved words")
                           : t("No cards due")
                   }
                   description={
-                    mode === "saved" || mode.startsWith("deck/")
+                    (mode === "saved" && !tag) || mode.startsWith("deck/")
                       ? t(
                           mode.startsWith("deck/")
                             ? "Add words from the dictionary."
@@ -227,7 +227,7 @@ export function Flashcards({
                       : t("Choose all words to practise now.")
                   }
                   action={
-                    mode === "saved" || mode.startsWith("deck/") ? (
+                    (mode === "saved" && !tag) || mode.startsWith("deck/") ? (
                       <Link
                         className="button primary"
                         ref={focusTarget}

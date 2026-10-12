@@ -319,5 +319,12 @@
   "This deck was removed in another tab.": "این مجموعه در زبانه دیگری حذف شده است.",
   "Clear progress, notes, and decks on this device? Export a backup to keep them.": "پیشرفت، یادداشت‌ها و مجموعه‌های این دستگاه پاک شوند؟ برای نگه‌داشتن آن‌ها نسخه پشتیبان بگیرید.",
   "No words in this selection": "در این انتخاب واژه‌ای نیست",
-  "Discard unsaved deck changes?": "تغییرات ذخیره‌نشدهٔ مجموعه کنار گذاشته شوند؟"
+  "Discard unsaved deck changes?": "تغییرات ذخیره‌نشدهٔ مجموعه کنار گذاشته شوند؟",
+  "Note removed.": "یادداشت حذف شد.",
+  "This deck changed in another tab.": "این مجموعه در برگهٔ دیگری تغییر کرده است.",
+  "Overwrite deck": "بازنویسی مجموعه",
+  "Reload deck": "بارگذاری دوبارهٔ مجموعه",
+  "Another tab changed saved progress. Export this visit before reloading.": "پیشرفت ذخیره‌شده در برگهٔ دیگری تغییر کرده است. پیش از بارگذاری دوباره، این نشست را خروجی بگیرید.",
+  "Export this visit": "خروجی گرفتن از این نشست",
+  "Reload saved progress": "بارگذاری پیشرفت ذخیره‌شده"
 }

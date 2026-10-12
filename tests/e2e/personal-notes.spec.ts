@@ -67,6 +67,7 @@ test("word and lesson notes stay private and travel in progress backups", async 
   const stored = await page.evaluate(() =>
     JSON.parse(localStorage.getItem("lingualocal.progress.v1")!),
   );
+  await expect(note.getByRole("status")).toHaveText("Note removed.");
   expect(stored.notes).toEqual({
     "l/present-simple": "I practise every morning.",
   });
@@ -99,6 +100,7 @@ test("editing a note protects a draft from another tab", async ({
       .getByRole("textbox", { name: "My note" }),
   ).toHaveValue("My unsaved draft");
   await page.getByRole("button", { name: "Reload note" }).click();
+  await expect(page.locator(".personal-note[open] textarea")).toBeFocused();
   await expect(
     page
       .locator(".personal-note[open]")
@@ -202,3 +204,103 @@ for (const locale of locales) {
     await expect(note.locator("summary")).toBeFocused();
   });
 }
+
+test("storage retries after a temporary quota error and reset removes recovered data", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const original = Storage.prototype.setItem;
+    let fail = true;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "lingualocal.progress.v1" && fail) {
+        fail = false;
+        throw new DOMException("Full", "QuotaExceededError");
+      }
+      return original.call(this, key, value);
+    };
+  });
+  await page.goto("/dictionary?search=curious");
+  await page.getByRole("button", { name: "Save curious", exact: true }).click();
+  await expect(
+    page.getByText(
+      "Browser storage is unavailable. Progress will last for this visit.",
+    ),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Unsave curious", exact: true })
+    .click();
+  await expect(
+    page.getByText(
+      "Browser storage is unavailable. Progress will last for this visit.",
+    ),
+  ).toBeHidden();
+  await page.evaluate(() =>
+    localStorage.setItem(
+      "lingualocal.progress.v1.corrupt",
+      '{"notes":{"w/curious":"Private"}}',
+    ),
+  );
+  await page.goto("/settings");
+  await page
+    .getByRole("button", { name: "Reset progress", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Clear my progress", exact: true })
+    .click();
+  expect(
+    await page.evaluate(() =>
+      localStorage.getItem("lingualocal.progress.v1.corrupt"),
+    ),
+  ).toBe(null);
+});
+
+test("a failed save cannot overwrite changes made in another tab", async ({
+  page,
+  context,
+}) => {
+  await page.addInitScript(() => {
+    const original = Storage.prototype.setItem;
+    let fail = true;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === "lingualocal.progress.v1" && fail) {
+        fail = false;
+        throw new DOMException("Full", "QuotaExceededError");
+      }
+      return original.call(this, key, value);
+    };
+  });
+  await page.goto("/dictionary?search=curious");
+  await page.getByRole("button", { name: "Save curious", exact: true }).click();
+  const other = await context.newPage();
+  await other.goto("/dictionary?search=journey");
+  await other
+    .getByRole("button", { name: "Save journey", exact: true })
+    .click();
+  await expect(
+    page.getByRole("button", { name: "Export this visit", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Unsave curious", exact: true })
+    .click();
+  expect(
+    await other.evaluate(
+      () => JSON.parse(localStorage.getItem("lingualocal.progress.v1")!).saved,
+    ),
+  ).toEqual(["journey"]);
+  const download = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export this visit", exact: true })
+    .click();
+  expect((await download).suggestedFilename()).toBe(
+    "lingualocal-unsaved-progress.json",
+  );
+  await page
+    .getByRole("button", { name: "Reload saved progress", exact: true })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "Dictionary", exact: true }),
+  ).toBeFocused();
+  await expect(
+    page.getByRole("button", { name: "Export this visit", exact: true }),
+  ).toBeHidden();
+});

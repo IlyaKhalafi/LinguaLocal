@@ -156,3 +156,39 @@ test("unreviewed imported IDs cannot inherit object prototype entries", () => {
     false,
   );
 });
+
+test("recovery salvages valid entries from every private progress field", () => {
+  const recovered = recoverProgress({
+    ...emptyProgress,
+    saved: ["curious", ""],
+    completed: ["present-simple", null],
+    reviews: {
+      curious: { interval: 1, due: "2026-10-12", repetitions: 1 },
+      broken: { interval: 1, due: "bad" },
+    },
+    attempts: [
+      {
+        id: "good",
+        title: "Practice",
+        date: "2026-10-12T12:00:00.000Z",
+        score: 1,
+        total: 2,
+      },
+      { id: "broken" },
+    ],
+    activity: { "2026-10-12": 2, bad: 3 },
+  });
+  assert.deepEqual(recovered.saved, ["curious"]);
+  assert.deepEqual(recovered.completed, ["present-simple"]);
+  assert.deepEqual(Object.keys(recovered.reviews), ["curious"]);
+  assert.equal(recovered.attempts.length, 1);
+  assert.deepEqual(recovered.activity, { "2026-10-12": 2 });
+  assert.equal(
+    updateDeck(emptyProgress, "invalid", {
+      name: "Deck",
+      tags: ["a,b"],
+      words: [],
+    }),
+    undefined,
+  );
+});

@@ -319,5 +319,12 @@
   "This deck was removed in another tab.": "Bu deste başka bir sekmede silindi.",
   "Clear progress, notes, and decks on this device? Export a backup to keep them.": "Bu cihazdaki ilerleme, notlar ve desteler silinsin mi? Saklamak için yedek dışa aktarın.",
   "No words in this selection": "Bu seçimde kelime yok",
-  "Discard unsaved deck changes?": "Kaydedilmemiş deste değişiklikleri silinsin mi?"
+  "Discard unsaved deck changes?": "Kaydedilmemiş deste değişiklikleri silinsin mi?",
+  "Note removed.": "Not silindi.",
+  "This deck changed in another tab.": "Bu deste başka bir sekmede değişti.",
+  "Overwrite deck": "Destenin üzerine yaz",
+  "Reload deck": "Desteyi yeniden yükle",
+  "Another tab changed saved progress. Export this visit before reloading.": "Kayıtlı ilerleme başka bir sekmede değişti. Yeniden yüklemeden önce bu oturumu dışa aktarın.",
+  "Export this visit": "Bu oturumu dışa aktar",
+  "Reload saved progress": "Kayıtlı ilerlemeyi yeniden yükle"
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useId, useLayoutEffect, useRef, useState } from "react";
 import { Layers } from "lucide-react";
 import { useLocale } from "./locale-provider";
 import { useProgress } from "./progress-provider";
@@ -12,7 +12,24 @@ export function WordDecks({ id, word }: { id: string; word: string }) {
   const [open, setOpen] = useState(false);
   const details = useRef<HTMLDetailsElement>(null);
   const field = useId();
+  const focused = useRef<HTMLElement | null>(null);
   const decks = Object.entries(progress.decks);
+  const ids = JSON.stringify(decks.map(([id]) => id));
+  if (!decks.length && open) setOpen(false);
+  useLayoutEffect(() => {
+    const card = details.current?.closest(".word-card");
+    return () => {
+      const active = focused.current;
+      if (!active) return;
+      requestAnimationFrame(() => {
+        if (!active.isConnected && document.activeElement === document.body)
+          (
+            card?.querySelector<HTMLElement>(".word-decks > summary") ??
+            card?.querySelector<HTMLButtonElement>(".save-button")
+          )?.focus({ preventScroll: true });
+      });
+    };
+  }, [ids]);
   if (!decks.length) return null;
   const label = t("Study decks for {word}", { word });
   return (
@@ -21,6 +38,12 @@ export function WordDecks({ id, word }: { id: string; word: string }) {
       dir="ltr"
       lang={locale}
       ref={details}
+      onFocusCapture={(event) => {
+        focused.current = event.target;
+      }}
+      onBlurCapture={(event) => {
+        if (event.target.isConnected) focused.current = null;
+      }}
       onToggle={(event) => {
         setOpen(event.currentTarget.open);
         if (!event.currentTarget.open) setMessage("");

@@ -279,3 +279,76 @@ for (const locale of locales) {
     }
   });
 }
+
+test("conflicting deck metadata offers reload and deliberate overwrite", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/flashcards");
+  await page.locator(".deck-manager > summary").click();
+  await page.getByLabel("Deck name").fill("First");
+  await page.getByRole("button", { name: "Save deck", exact: true }).click();
+  await page.getByLabel("Deck name").fill("My draft");
+  const other = await context.newPage();
+  await other.goto("/flashcards");
+  await other.locator(".deck-manager > summary").click();
+  const id = await other.evaluate(
+    () =>
+      Object.keys(
+        JSON.parse(localStorage.getItem("lingualocal.progress.v1")!).decks,
+      )[0],
+  );
+  await other.getByLabel("Edit deck").selectOption(id);
+  await other.getByLabel("Deck name").fill("Other tab");
+  await other.getByRole("button", { name: "Save deck", exact: true }).click();
+  await expect(
+    page.getByText("This deck changed in another tab."),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Save deck", exact: true }).click();
+  await expect(other.getByLabel("Deck name")).toHaveValue("Other tab");
+  await page.getByRole("button", { name: "Reload deck", exact: true }).click();
+  await expect(page.getByLabel("Deck name")).toBeFocused();
+  await expect(page.getByLabel("Deck name")).toHaveValue("Other tab");
+  await page.getByLabel("Deck name").fill("My new draft");
+  await other.getByLabel("Deck name").fill("Other change");
+  await other.getByRole("button", { name: "Save deck", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Overwrite deck", exact: true })
+    .click();
+  await expect(other.getByLabel("Deck name")).toHaveValue("My new draft");
+});
+
+test("a cross-tab deck removal returns focused membership to the word", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/flashcards");
+  await page.locator(".deck-manager > summary").click();
+  await page.getByLabel("Deck name").fill("First");
+  await page.getByRole("button", { name: "Save deck", exact: true }).click();
+  await page.goto("/dictionary?search=curious");
+  await page.locator(".word-decks > summary").click();
+  await page.getByRole("checkbox", { name: "First", exact: true }).focus();
+  const other = await context.newPage();
+  await other.goto("/flashcards");
+  await other.locator(".deck-manager > summary").click();
+  const id = await other.evaluate(
+    () =>
+      Object.keys(
+        JSON.parse(localStorage.getItem("lingualocal.progress.v1")!).decks,
+      )[0],
+  );
+  await other.getByLabel("Edit deck").selectOption(id);
+  await page.bringToFront();
+  await page.getByRole("checkbox", { name: "First", exact: true }).focus();
+  await other.evaluate(() => {
+    const progress = JSON.parse(
+      localStorage.getItem("lingualocal.progress.v1")!,
+    );
+    progress.decks = {};
+    localStorage.setItem("lingualocal.progress.v1", JSON.stringify(progress));
+  });
+  await expect(
+    page.getByRole("button", { name: "Save curious", exact: true }),
+  ).toBeFocused();
+});

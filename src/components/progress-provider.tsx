@@ -6,6 +6,7 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
+import { downloadJson } from "./ui";
 import { ClientNotice } from "./client-notice";
 import { useLocale } from "./locale-provider";
 import { progressSchema, recoverProgress } from "@/lib/progress-schema";
@@ -24,13 +25,22 @@ const STORAGE_KEY = "lingualocal.progress.v1";
 let cachedRaw: string | null | undefined;
 let cached = emptyProgress;
 let memoryFallback = false;
+let storageConflict = false;
 const listeners = new Set<() => void>();
 function emit() {
   listeners.forEach((listener) => listener());
 }
 function snapshot(): Progress {
   if (typeof window === "undefined") return emptyProgress;
-  if (memoryFallback) return cached;
+  if (memoryFallback) {
+    try {
+      if (localStorage.getItem(STORAGE_KEY) !== cachedRaw)
+        storageConflict = true;
+    } catch {
+      /* Keep the recoverable in-memory copy. */
+    }
+    return cached;
+  }
   let raw: string | null;
   try {
     raw = localStorage.getItem(STORAGE_KEY);
@@ -49,7 +59,7 @@ function snapshot(): Progress {
     } catch {
       cached = recoverProgress(input);
       try {
-        if (raw && localStorage.getItem(`${STORAGE_KEY}.corrupt`) === null)
+        if (raw && localStorage.getItem(`${STORAGE_KEY}.corrupt`) !== raw)
           localStorage.setItem(`${STORAGE_KEY}.corrupt`, raw);
       } catch {
         /* The original value remains until the next save. */
@@ -70,8 +80,11 @@ function update(transform: (progress: Progress) => Progress) {
   cached = transform(snapshot());
   const raw = JSON.stringify(cached);
   try {
+    if (storageConflict)
+      throw new Error("Saved progress changed in another tab");
     localStorage.setItem(STORAGE_KEY, raw);
     cachedRaw = raw;
+    memoryFallback = false;
   } catch {
     memoryFallback = true;
   }
@@ -103,13 +116,14 @@ const context = createContext<{
   toggleSaved: (id: string) => void;
   complete: (id: string) => void;
   review: (id: string, remembered: boolean | ReviewRating) => void;
-  setNote: (key: string, text: string) => boolean;
+  setNote: (key: string, text: string, expected?: string) => boolean;
   editDeck: (
     id: string,
     name: string,
     tags: string[],
     creating?: boolean,
-  ) => boolean;
+    expected?: string,
+  ) => "saved" | "missing" | "full" | "invalid" | "conflict";
   setDeckWord: (
     deck: string,
     word: string,
@@ -131,24 +145,49 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   );
   const unavailable = useSyncExternalStore(
     subscribe,
-    () => memoryFallback,
-    () => false,
+    () =>
+      memoryFallback
+        ? storageConflict
+          ? "conflict"
+          : "unavailable"
+        : "available",
+    () => "available",
   );
   return (
     <context.Provider
       value={{
         progress,
-        persistent: !unavailable,
-        setNote: (key, text) => updateStudy((p) => updateNote(p, key, text)),
-        editDeck: (id, name, tags, creating = false) =>
+        persistent: unavailable === "available",
+        setNote: (key, text, expected) =>
           updateStudy((p) => {
-            if (!creating && !Object.hasOwn(p.decks, id)) return;
-            return updateDeck(p, id, {
-              name,
-              tags,
-              words: p.decks[id]?.words ?? [],
-            });
+            if (expected !== undefined && (p.notes[key] ?? "") !== expected)
+              return;
+            return updateNote(p, key, text);
           }),
+        editDeck: (id, name, tags, creating = false, expected) => {
+          let reason: "missing" | "full" | "invalid" | "conflict" = "invalid";
+          const saved = updateStudy((p) => {
+            const deck = Object.hasOwn(p.decks, id) ? p.decks[id] : undefined;
+            if (!creating && !deck) {
+              reason = "missing";
+              return;
+            }
+            if (creating && Object.keys(p.decks).length >= 32) {
+              reason = "full";
+              return;
+            }
+            if (
+              deck &&
+              expected !== undefined &&
+              JSON.stringify([deck.name, deck.tags]) !== expected
+            ) {
+              reason = "conflict";
+              return;
+            }
+            return updateDeck(p, id, { name, tags, words: deck?.words ?? [] });
+          });
+          return saved ? "saved" : reason;
+        },
         setDeckWord: (id, word, included) => {
           let reason: "missing" | "full" = "missing";
           const saved = updateStudy((p) => {
@@ -207,20 +246,63 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             ...p,
             goal: Math.max(1, Math.min(100, Math.round(goal))),
           })),
-        reset: () => update(() => ({ ...emptyProgress })),
+        reset: () => {
+          memoryFallback = false;
+          storageConflict = false;
+          try {
+            localStorage.removeItem(`${STORAGE_KEY}.corrupt`);
+          } catch {
+            /* Reset still clears in-memory progress. */
+          }
+          update(() => ({ ...emptyProgress }));
+        },
         restore: (input) => {
           const result = progressSchema.safeParse(input);
           if (!result.success) return false;
+          memoryFallback = false;
+          storageConflict = false;
           update(() => result.data);
           return true;
         },
       }}
     >
       {children}
-      {unavailable && (
+      {unavailable !== "available" && (
         <ClientNotice>
           {t(
-            "Browser storage is unavailable. Progress will last for this visit.",
+            unavailable === "conflict"
+              ? "Another tab changed saved progress. Export this visit before reloading."
+              : "Browser storage is unavailable. Progress will last for this visit.",
+          )}
+          {unavailable === "conflict" && (
+            <span className="button-row">
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() =>
+                  downloadJson(progress, "lingualocal-unsaved-progress.json")
+                }
+              >
+                {t("Export this visit")}
+              </button>
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() => {
+                  memoryFallback = false;
+                  storageConflict = false;
+                  cachedRaw = undefined;
+                  snapshot();
+                  emit();
+                  const heading =
+                    document.querySelector<HTMLElement>("main h1");
+                  heading?.setAttribute("tabindex", "-1");
+                  heading?.focus({ preventScroll: true });
+                }}
+              >
+                {t("Reload saved progress")}
+              </button>
+            </span>
           )}
         </ClientNotice>
       )}

@@ -319,5 +319,12 @@
   "This deck was removed in another tab.": "This deck was removed in another tab.",
   "Clear progress, notes, and decks on this device? Export a backup to keep them.": "Clear progress, notes, and decks on this device? Export a backup to keep them.",
   "No words in this selection": "No words in this selection",
-  "Discard unsaved deck changes?": "Discard unsaved deck changes?"
+  "Discard unsaved deck changes?": "Discard unsaved deck changes?",
+  "Note removed.": "Note removed.",
+  "This deck changed in another tab.": "This deck changed in another tab.",
+  "Overwrite deck": "Overwrite deck",
+  "Reload deck": "Reload deck",
+  "Another tab changed saved progress. Export this visit before reloading.": "Another tab changed saved progress. Export this visit before reloading.",
+  "Export this visit": "Export this visit",
+  "Reload saved progress": "Reload saved progress"
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { useLocale } from "./locale-provider";
 import { useProgress } from "./progress-provider";
 
@@ -8,11 +8,14 @@ export function DeckManager() {
   const { t } = useLocale();
   const { progress, editDeck, deleteDeck } = useProgress();
   const [selection, setSelection] = useState("");
-  const [draft, setDraft] = useState<{ name: string; tags: string } | null>(
-    null,
-  );
+  const [draft, setDraft] = useState<{
+    name: string;
+    tags: string;
+    base: string;
+  } | null>(null);
   const [message, setMessage] = useState("");
   const field = useId();
+  const form = useRef<HTMLFormElement>(null);
   const existing = Object.hasOwn(progress.decks, selection)
     ? progress.decks[selection]
     : undefined;
@@ -22,39 +25,63 @@ export function DeckManager() {
   const value = draft ?? {
     name: existing?.name ?? "",
     tags: existing?.tags.join(", ") ?? "",
+    base: JSON.stringify([existing?.name ?? "", existing?.tags ?? []]),
   };
+  const conflict = Boolean(
+    existing &&
+    draft &&
+    draft.base !== JSON.stringify([existing.name, existing.tags]),
+  );
+  function save(overwrite = false) {
+    if (missing) return;
+    if (!value.name.trim()) {
+      setMessage("Enter a deck name.");
+      document.getElementById(`${field}-name`)?.focus();
+      return;
+    }
+    const id =
+      selection ||
+      (crypto.randomUUID?.() ??
+        `deck-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
+    const tags = value.tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+    const result = editDeck(
+      id,
+      value.name,
+      tags,
+      !selection,
+      overwrite || !selection ? undefined : value.base,
+    );
+    if (result !== "saved") {
+      setMessage(
+        result === "missing"
+          ? "This deck was removed in another tab."
+          : result === "full"
+            ? "Deck limit reached."
+            : result === "conflict"
+              ? "This deck changed in another tab."
+              : "Deck not saved. Use up to 8 tags of 24 characters.",
+      );
+      return;
+    }
+    setSelection(id);
+    setDraft(null);
+    setMessage("Deck saved.");
+    form.current
+      ?.querySelector<HTMLInputElement>("input")
+      ?.focus({ preventScroll: true });
+  }
   return (
     <details className="deck-manager">
       <summary>{t("My decks")}</summary>
       <form
         className="panel"
+        ref={form}
         onSubmit={(event) => {
           event.preventDefault();
-          if (missing) return;
-          if (!value.name.trim()) {
-            setMessage("Enter a deck name.");
-            document.getElementById(`${field}-name`)?.focus();
-            return;
-          }
-          const id =
-            selection ||
-            (crypto.randomUUID?.() ??
-              `deck-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
-          const tags = value.tags
-            .split(",")
-            .map((tag) => tag.trim())
-            .filter(Boolean);
-          if (!existing && Object.keys(progress.decks).length >= 32) {
-            setMessage("Deck limit reached.");
-            return;
-          }
-          if (!editDeck(id, value.name, tags, !selection)) {
-            setMessage("Deck not saved. Use up to 8 tags of 24 characters.");
-            return;
-          }
-          setSelection(id);
-          setDraft(null);
-          setMessage("Deck saved.");
+          save();
         }}
       >
         <div className="form-field">
@@ -122,6 +149,28 @@ export function DeckManager() {
           <button className="button primary" type="submit" disabled={missing}>
             {t("Save deck")}
           </button>
+          {conflict && (
+            <>
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() => save(true)}
+              >
+                {t("Overwrite deck")}
+              </button>
+              <button
+                type="button"
+                className="button secondary"
+                onClick={() => {
+                  setDraft(null);
+                  setMessage("");
+                  document.getElementById(`${field}-name`)?.focus();
+                }}
+              >
+                {t("Reload deck")}
+              </button>
+            </>
+          )}
           {existing && (
             <button
               className="button secondary"
@@ -148,7 +197,13 @@ export function DeckManager() {
           className={missing || message ? "personal-note-status" : "sr-only"}
           role="status"
         >
-          {t(missing ? "This deck was removed in another tab." : message)}
+          {t(
+            missing
+              ? "This deck was removed in another tab."
+              : conflict
+                ? "This deck changed in another tab."
+                : message,
+          )}
         </p>
       </form>
     </details>

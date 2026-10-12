@@ -19,7 +19,15 @@ const uniqueItems = (schema: z.ZodString, maximum: number) =>
     .pipe(z.array(schema).max(maximum));
 export const deckSchema = z.object({
   name: z.string().trim().min(1).max(64),
-  tags: uniqueItems(z.string().trim().min(1).max(24), 8),
+  tags: uniqueItems(
+    z
+      .string()
+      .trim()
+      .min(1)
+      .max(24)
+      .refine((tag) => !tag.includes(","), "Tags cannot contain commas"),
+    8,
+  ),
   words: uniqueItems(identifier, 1000),
 });
 const boundedRecord = <T extends z.ZodType>(
@@ -88,6 +96,35 @@ export function recoverProgress(input: unknown): Progress {
   const recovered = Object.fromEntries(
     Object.entries(progressSchema.shape).map(([key, schema]) => {
       const result = schema.safeParse(fields[key]);
+      if (!result.success && ["saved", "completed", "attempts"].includes(key)) {
+        const item = key === "attempts" ? attemptSchema : identifier;
+        const limit =
+          key === "saved" ? 20000 : key === "completed" ? 1000 : 100;
+        const recovered = Array.isArray(fields[key])
+          ? fields[key]
+              .flatMap((value) => {
+                const parsed = item.safeParse(value);
+                return parsed.success ? [parsed.data] : [];
+              })
+              .slice(0, limit)
+          : [];
+        return [key, recovered];
+      }
+      if (!result.success && key === "reviews")
+        return [
+          key,
+          recoverRecord(fields[key], identifier, reviewSchema, 20000),
+        ];
+      if (!result.success && key === "activity")
+        return [
+          key,
+          recoverRecord(
+            fields[key],
+            z.iso.date(),
+            z.number().int().nonnegative(),
+            20000,
+          ),
+        ];
       if (!result.success && key === "notes")
         return [
           key,

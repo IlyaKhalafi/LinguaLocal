@@ -84,12 +84,17 @@ export function PersonalNote({
         onSubmit={(event) => {
           event.preventDefault();
           const text = draft?.text ?? saved;
-          if (!setNote(key, text)) {
+          if (
+            !setNote(key, text, conflict ? undefined : (draft?.base ?? saved))
+          ) {
             setNotice({ text: "Note limit reached.", value: saved });
             return;
           }
           setDraft(null);
-          setNotice({ text: "Note saved.", value: text.trim() });
+          setNotice({
+            text: text.trim() ? "Note saved." : "Note removed.",
+            value: text.trim(),
+          });
           details.current
             ?.querySelector<HTMLButtonElement>(".note-close")
             ?.focus({ preventScroll: true });
@@ -130,6 +135,9 @@ export function PersonalNote({
               onClick={() => {
                 setDraft(null);
                 setNotice(null);
+                details.current
+                  ?.querySelector("textarea")
+                  ?.focus({ preventScroll: true });
               }}
             >
               {t("Reload note")}
@@ -145,7 +153,8 @@ export function PersonalNote({
         </div>
         <p
           className={
-            conflict || (message && message !== "Note saved.")
+            conflict ||
+            (message && !["Note saved.", "Note removed."].includes(message))
               ? "inline-message"
               : message
                 ? "personal-note-status"

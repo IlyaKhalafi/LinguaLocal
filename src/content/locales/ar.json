@@ -319,5 +319,12 @@
   "This deck was removed in another tab.": "تم حذف هذه المجموعة في علامة تبويب أخرى.",
   "Clear progress, notes, and decks on this device? Export a backup to keep them.": "مسح التقدم والملاحظات والمجموعات على هذا الجهاز؟ صدّر نسخة احتياطية للاحتفاظ بها.",
   "No words in this selection": "لا توجد كلمات في هذا الاختيار",
-  "Discard unsaved deck changes?": "هل تريد تجاهل التغييرات غير المحفوظة في المجموعة؟"
+  "Discard unsaved deck changes?": "هل تريد تجاهل التغييرات غير المحفوظة في المجموعة؟",
+  "Note removed.": "تم حذف الملاحظة.",
+  "This deck changed in another tab.": "تغيرت هذه المجموعة في علامة تبويب أخرى.",
+  "Overwrite deck": "استبدال المجموعة",
+  "Reload deck": "إعادة تحميل المجموعة",
+  "Another tab changed saved progress. Export this visit before reloading.": "تغير التقدم المحفوظ في علامة تبويب أخرى. صدّر هذه الزيارة قبل إعادة التحميل.",
+  "Export this visit": "تصدير هذه الزيارة",
+  "Reload saved progress": "إعادة تحميل التقدم المحفوظ"
 }
