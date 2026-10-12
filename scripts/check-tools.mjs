@@ -32,6 +32,28 @@ try {
   ]);
   const original = await readFile(output, "utf8");
   run("validate-content", [output]);
+  const worksheets = path.join(directory, "worksheets");
+  run("create-worksheets", [output, worksheets, "A1"]);
+  const lessonSheet = await readFile(
+    path.join(worksheets, "lessons.html"),
+    "utf8",
+  );
+  assert.ok(lessonSheet.includes("Check your understanding"));
+  assert.ok(
+    (await readFile(path.join(worksheets, "answers.html"), "utf8")).includes(
+      "Answer key",
+    ),
+  );
+  run("create-worksheets", [output, worksheets, "A1"], 1);
+  assert.equal(
+    await readFile(path.join(worksheets, "lessons.html"), "utf8"),
+    lessonSheet,
+  );
+  run(
+    "create-worksheets",
+    [output, path.join(directory, "invalid-worksheets"), "D2"],
+    1,
+  );
   const csvOutput = path.join(directory, "vocabulary.csv");
   run("export-vocabulary", [output, csvOutput]);
   const exportedCsv = await readFile(csvOutput, "utf8");

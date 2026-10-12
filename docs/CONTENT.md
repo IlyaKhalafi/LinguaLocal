@@ -62,6 +62,16 @@ Import the CSV with the original collection as the base to retain books, lessons
 
 In Docker, use `node scripts/export-vocabulary.mjs /tmp/collection.json /tmp/new-words.csv B1`.
 
+### Creating printable classroom materials
+
+Run `npm run worksheets:create -- collection.json new-worksheets A1` to generate vocabulary and lesson worksheets for a level. Omit the level to include the full collection. Open `new-worksheets/index.html` to choose a file and print it, or save it as a PDF from the browser. Answer keys are kept in a separate file.
+
+Vocabulary worksheets group up to eight words and adjust for longer definitions. Matching sheets use distinct headwords and meanings. The command reports repeated entries it skips. Lesson sheets preserve reading sections and offer the original practice question. Questions and their options stay together when they fit on a page. Long text continues onto later pages.
+
+The destination must be a new directory. Existing directories and the source collection stay intact. The output uses bundled CSS and system fonts and can be opened without a server or network connection. Printed classroom labels are in English. Browser interface language preferences do not change these files.
+
+In Docker, use `node scripts/create-worksheets.mjs /tmp/collection.json /tmp/new-worksheets A1`, then copy the directory out of the container.
+
 ### Book resources
 
 ```json

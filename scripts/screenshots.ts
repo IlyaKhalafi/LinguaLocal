@@ -5,6 +5,7 @@ import { locales, translate, type Locale } from "../src/lib/locale";
 import { pageCatalogue } from "./page-catalogue";
 import seed from "../src/content/starter.json";
 import { parseSubtitles, plainSubtitle } from "../src/lib/subtitles";
+import { captureWorksheetPreviews } from "./worksheet-previews";
 
 const base = process.env.SCREENSHOT_BASE_URL || "http://127.0.0.1:3100";
 const folder = "docs/screenshots";
@@ -282,6 +283,7 @@ async function main() {
   const browser = await chromium.launch();
   const errors: string[] = [];
   try {
+    await captureWorksheetPreviews(browser);
     for (const locale of locales) {
       const context = await browser.newContext({
         viewport: { width: 1440, height: 1040 },

@@ -24,6 +24,7 @@
     "content:diagnose": "tsx scripts/diagnose-content.ts",
     "vocabulary:import": "tsx scripts/import-vocabulary.ts",
     "vocabulary:export": "tsx scripts/export-vocabulary.ts",
+    "worksheets:create": "tsx scripts/create-worksheets.ts",
     "test:tools": "node scripts/check-tools.mjs",
     "subtitles:check": "tsx scripts/subtitles.ts check",
     "subtitles:convert": "tsx scripts/subtitles.ts convert",

@@ -119,3 +119,11 @@ Check an answer, mark the lesson complete, and review its own words without anot
 ![Lesson review](screenshots/lesson-review.png)
 
 [Completed lesson](screenshots/lesson-completed.png) · [Revealed meaning](screenshots/lesson-review-flipped.png) · [Review result](screenshots/lesson-review-complete.png)
+
+### Printed classroom materials
+
+The owner command creates vocabulary and lesson worksheets with separate answer keys. Open the generated files locally and print them or save them as PDF. Student pages do not gain authoring controls.
+
+![Vocabulary worksheet](screenshots/worksheet-vocabulary.png)
+
+[Lesson worksheet](screenshots/worksheet-lessons.png) · [Answer key](screenshots/worksheet-answers.png) · [File chooser](screenshots/worksheet-index.png) · [Mobile worksheet](screenshots/worksheet-vocabulary-mobile.png)
