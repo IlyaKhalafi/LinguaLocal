@@ -47,6 +47,8 @@ Validate the pack with `npm run content:validate -- your-pack.json`. Run `npm ru
 
 Capture the published GitHub README with `npm run readme:preview` after pushing documentation changes. This command needs internet access and an installed Playwright Chromium browser. It checks that every README image decodes and excludes floating GitHub controls from the capture.
 
+Use `npm run screenshots:language` against the running production server when changing language controls. It captures full pages and enlarged controls in Chromium and WebKit for every language, appearance, and viewport. The command selects the app appearance through its preferences cookie and checks spacing, mobile target size, input font size, and page overflow. Previews and measured dimensions are saved in `artifacts/language-previews`. Set `SCREENSHOT_BASE_URL` and `SCREENSHOT_REVIEW_DIR` to use another server or output folder.
+
 ## Preparing a distribution
 
 Run the checks above before using `npm run release:package -- releases/lingualocal.tar.gz`. See the [deployment guide](docs/DEPLOYMENT.md) for platform requirements. Record user-visible changes in [CHANGELOG.md](CHANGELOG.md).
