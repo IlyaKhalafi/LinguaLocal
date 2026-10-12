@@ -3,6 +3,7 @@ import { useId, useState, useRef } from "react";
 import { Download, ChevronDown } from "lucide-react";
 import { useLocale } from "./locale-provider";
 import { useProgress } from "./progress-provider";
+import { useClientReady } from "@/lib/use-client-ready";
 import { dayKey } from "@/lib/learning";
 import {
   createStudyReport,
@@ -14,6 +15,7 @@ import { downloadBlob, downloadJson } from "@/lib/download";
 import type { ContentPack } from "@/lib/schema";
 
 export function StudySummary({ content }: { content: ContentPack }) {
+  const ready = useClientReady();
   const { progress } = useProgress();
   const { locale, t } = useLocale();
   const id = useId();
@@ -78,6 +80,7 @@ export function StudySummary({ content }: { content: ContentPack }) {
         <div className="form-field">
           <label htmlFor={id}>{t("Name (optional)")}</label>
           <input
+            disabled={!ready}
             id={id}
             ref={nameInput}
             maxLength={STUDY_NAME_LIMIT}
@@ -100,11 +103,12 @@ export function StudySummary({ content }: { content: ContentPack }) {
           )}
         </p>
         <div className="summary-actions">
-          <button type="submit" className="button primary">
+          <button type="submit" className="button primary" disabled={!ready}>
             {t("Download summary")}
           </button>
           <button
             type="button"
+            disabled={!ready}
             className="button secondary"
             onClick={() => download(true)}
           >

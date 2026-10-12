@@ -11,6 +11,7 @@ import {
   type PracticeMode,
 } from "@/lib/practice";
 import { localEnglishVoice } from "@/lib/pronunciation";
+import { useClientReady } from "@/lib/use-client-ready";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { useLocale } from "./locale-provider";
 import { AnswerFeedback } from "./answer-feedback";
@@ -23,6 +24,7 @@ const names = {
   gap: "Gap fill",
 } as const;
 export function Practice({ words }: { words: Word[] }) {
+  const ready = useClientReady();
   const { t } = useLocale();
   const { progress, record } = useProgress();
   const [mode, setMode] = useState<PracticeMode>("spelling");
@@ -186,6 +188,7 @@ export function Practice({ words }: { words: Word[] }) {
             <select
               ref={focus}
               id="practice-mode"
+              disabled={!ready}
               value={mode}
               onChange={(e) => setMode(e.target.value as PracticeMode)}
             >
@@ -200,6 +203,7 @@ export function Practice({ words }: { words: Word[] }) {
             <label htmlFor="practice-level">{t("Level")}</label>
             <select
               id="practice-level"
+              disabled={!ready}
               value={level}
               onChange={(e) => setLevel(e.target.value)}
             >
@@ -212,13 +216,18 @@ export function Practice({ words }: { words: Word[] }) {
           <label className="practice-saved">
             <input
               type="checkbox"
+              disabled={!ready}
               checked={saved}
               onChange={(e) => setSaved(e.target.checked)}
             />
             {t("Saved words")}
           </label>
           {pool.length ? (
-            <button className="button primary" onClick={start}>
+            <button
+              className="button primary"
+              disabled={!ready}
+              onClick={start}
+            >
               {t("Start practice")}
             </button>
           ) : (

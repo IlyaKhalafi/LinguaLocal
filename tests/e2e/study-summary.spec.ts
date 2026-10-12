@@ -76,8 +76,9 @@ test("hidden streamed forms do not intercept summary input or downloads", async 
   page,
 }) => {
   await page.goto("/progress");
-  await expect(page.locator(".share-summary")).toHaveCount(1);
-  await page.locator(".share-summary").evaluate((panel) => {
+  const panel = page.locator(".share-summary:visible");
+  await expect(panel).toHaveCount(1);
+  await panel.evaluate((panel) => {
     const copy = panel.cloneNode(true) as HTMLElement;
     for (const input of copy.querySelectorAll<HTMLInputElement>("input[id]")) {
       const id = input.id;
@@ -93,7 +94,9 @@ test("hidden streamed forms do not intercept summary input or downloads", async 
   const summary = page.locator(".share-summary > summary:visible");
   await summary.focus();
   await page.keyboard.press("Enter");
-  await expect(page.getByLabel("Name (optional)")).toHaveCount(2);
+  await expect(page.getByLabel("Name (optional)", { exact: true })).toHaveCount(
+    2,
+  );
   await page
     .getByRole("textbox", { name: "Name (optional)", exact: true })
     .fill("Sample learner");

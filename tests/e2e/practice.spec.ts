@@ -2,6 +2,54 @@ import { test, expect } from "@playwright/test";
 import seed from "../../src/content/starter.json";
 import { gapSentence } from "../../src/lib/practice";
 
+test("server-rendered forms wait for client handlers before accepting input", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    baseURL,
+  });
+  try {
+    const page = await context.newPage();
+    await page.goto("/games/practice");
+    await expect(
+      page.getByLabel("Practice type", { exact: true }),
+    ).toBeDisabled();
+    await expect(page.getByLabel("Level", { exact: true })).toBeDisabled();
+    await expect(
+      page.getByLabel("Saved words", { exact: true }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", {
+        name: "Start practice",
+        exact: true,
+        includeHidden: true,
+      }),
+    ).toBeDisabled();
+    await page.goto("/progress");
+    await expect(
+      page.getByLabel("Name (optional)", { exact: true }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", {
+        name: "Download summary",
+        exact: true,
+        includeHidden: true,
+      }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", {
+        name: "Download print sheet",
+        exact: true,
+        includeHidden: true,
+      }),
+    ).toBeDisabled();
+  } finally {
+    await context.close();
+  }
+});
+
 test("spelling practice works by keyboard and records the result once", async ({
   page,
 }) => {
@@ -10,10 +58,15 @@ test("spelling practice works by keyboard and records the result once", async ({
     .getByRole("button", { name: "Start practice", exact: true })
     .click();
   for (let index = 0; index < 8; index++) {
-    const definition = await page.locator(".practice-prompt").innerText();
-    const word = seed.words.find((word) => word.definition === definition)!;
-    const input = page.getByLabel("Your answer", { exact: true });
+    const input = page.getByRole("textbox", {
+      name: "Your answer",
+      exact: true,
+    });
     await expect(input).toBeFocused();
+    const definition = await page
+      .locator(".practice-prompt:visible")
+      .innerText();
+    const word = seed.words.find((word) => word.definition === definition)!;
     await input.fill(word.word.toUpperCase());
     await input.press("Enter");
     const next = page.getByRole("button", {
@@ -47,14 +100,23 @@ test("gap fill accepts the omitted word and shows helpful correction", async ({
   page,
 }) => {
   await page.goto("/games/practice");
-  await page.getByLabel("Practice type").selectOption("gap");
+  const mode = page.getByRole("combobox", {
+    name: "Practice type",
+    exact: true,
+  });
+  await expect(mode).toBeEnabled();
+  await mode.selectOption("gap");
+  await expect(mode).toHaveValue("gap");
   await page
     .getByRole("button", { name: "Start practice", exact: true })
     .click();
-  const sentence = await page.locator(".practice-prompt").innerText();
-  const word = seed.words.find((word) => gapSentence(word) === sentence)!;
+  const sentence = await page.locator(".practice-prompt:visible").innerText();
+  const word = seed.words.find((word) => gapSentence(word) === sentence);
+  if (!word) throw new Error(`Unrecognized gap prompt ${sentence}`);
   expect(sentence).not.toContain(` ${word.word} `);
-  await page.getByLabel("Your answer", { exact: true }).fill("wrong answer");
+  await page
+    .getByRole("textbox", { name: "Your answer", exact: true })
+    .fill("wrong answer");
   await page.getByRole("button", { name: "Check answer", exact: true }).click();
   await expect(page.getByRole("status")).toContainText("Incorrect.");
   await expect(page.getByRole("status")).toContainText(word.word);
@@ -75,7 +137,13 @@ test("listening without a local voice offers a route back to another practice", 
     });
   });
   await page.goto("/games/practice");
-  await page.getByLabel("Practice type").selectOption("listening");
+  const mode = page.getByRole("combobox", {
+    name: "Practice type",
+    exact: true,
+  });
+  await expect(mode).toBeEnabled();
+  await mode.selectOption("listening");
+  await expect(mode).toHaveValue("listening");
   await page
     .getByRole("button", { name: "Start practice", exact: true })
     .click();
