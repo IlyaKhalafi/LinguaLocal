@@ -1,6 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { emptyProgress, scheduleReview } from "../../src/lib/learning";
+import {
+  emptyProgress,
+  scheduleReview,
+  isDifficultReview,
+  getReview,
+} from "../../src/lib/learning";
 import { progressSchema, recoverProgress } from "../../src/lib/progress-schema";
 import {
   noteKey,
@@ -127,14 +132,27 @@ test("review ratings adapt ease, count lapses and preserve legacy intervals", ()
     review = scheduleReview(review, "again", now);
   assert.equal(review.ease, 1.3);
   assert.equal(review.lapses, 101);
+  assert.equal(isDifficultReview(review), true);
   assert.equal(review.due, "2026-10-12");
   for (let index = 0; index < 100; index++)
     review = scheduleReview(review, "easy", now);
   assert.equal(review.ease, 3);
   assert.equal(review.interval, 180);
+  assert.equal(isDifficultReview(review), false);
   assert.equal(review.lapses, 101);
   assert.equal(
     progressSchema.shape.reviews.safeParse({ word: review }).success,
     true,
+  );
+});
+
+test("unreviewed imported IDs cannot inherit object prototype entries", () => {
+  assert.equal(getReview({}, "constructor"), undefined);
+  const review = scheduleReview(undefined, false);
+  assert.equal(getReview({ constructor: review }, "constructor"), review);
+  assert.equal(isDifficultReview({ ...review, lapses: 2 }), true);
+  assert.equal(
+    isDifficultReview({ ...review, lapses: 2, repetitions: 3 }),
+    false,
   );
 });

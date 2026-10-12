@@ -13,9 +13,9 @@ import {
   dayKey,
   emptyProgress,
   scheduleReview,
+  getReview,
   type Attempt,
   type Progress,
-  type StudyDeck,
   type ReviewRating,
 } from "@/lib/learning";
 import { updateNote, updateDeck, removeDeck } from "@/lib/personal-study";
@@ -88,8 +88,12 @@ function active(progress: Progress): Progress {
   };
 }
 function updateStudy(transform: (progress: Progress) => Progress | undefined) {
+  const previous = cached;
   const next = transform(snapshot());
-  if (!next) return false;
+  if (!next) {
+    if (previous !== cached) emit();
+    return false;
+  }
   update(() => next);
   return true;
 }
@@ -100,7 +104,17 @@ const context = createContext<{
   complete: (id: string) => void;
   review: (id: string, remembered: boolean | ReviewRating) => void;
   setNote: (key: string, text: string) => boolean;
-  setDeck: (id: string, deck: StudyDeck) => boolean;
+  editDeck: (
+    id: string,
+    name: string,
+    tags: string[],
+    creating?: boolean,
+  ) => boolean;
+  setDeckWord: (
+    deck: string,
+    word: string,
+    included: boolean,
+  ) => "saved" | "missing" | "full";
   deleteDeck: (id: string) => void;
   record: (attempt: Omit<Attempt, "date" | "id">) => void;
   setGoal: (goal: number) => void;
@@ -126,7 +140,30 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         progress,
         persistent: !unavailable,
         setNote: (key, text) => updateStudy((p) => updateNote(p, key, text)),
-        setDeck: (id, deck) => updateStudy((p) => updateDeck(p, id, deck)),
+        editDeck: (id, name, tags, creating = false) =>
+          updateStudy((p) => {
+            if (!creating && !Object.hasOwn(p.decks, id)) return;
+            return updateDeck(p, id, {
+              name,
+              tags,
+              words: p.decks[id]?.words ?? [],
+            });
+          }),
+        setDeckWord: (id, word, included) => {
+          let reason: "missing" | "full" = "missing";
+          const saved = updateStudy((p) => {
+            const deck = p.decks[id];
+            if (!deck || !Object.hasOwn(p.decks, id)) return;
+            reason = "full";
+            return updateDeck(p, id, {
+              ...deck,
+              words: included
+                ? [...deck.words, word]
+                : deck.words.filter((item) => item !== word),
+            });
+          });
+          return saved ? "saved" : reason;
+        },
         deleteDeck: (id) => update((p) => removeDeck(p, id)),
         toggleSaved: (id) =>
           update((p) => ({
@@ -147,7 +184,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
               ...p,
               reviews: {
                 ...p.reviews,
-                [id]: scheduleReview(p.reviews[id], remembered),
+                [id]: scheduleReview(getReview(p.reviews, id), remembered),
               },
             }),
           ),

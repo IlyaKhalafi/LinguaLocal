@@ -7,6 +7,7 @@ import { useProgress } from "./progress-provider";
 import { Badge } from "./ui";
 import { localEnglishVoice } from "@/lib/pronunciation";
 import { PersonalNote } from "./personal-note";
+import { WordDecks } from "./word-decks";
 
 export function WordCard({
   word,
@@ -47,7 +48,7 @@ export function WordCard({
     <article
       lang="en"
       dir="ltr"
-      className={`word-card ${featured ? "featured-word" : ""}`}
+      className={`word-card ${featured ? "featured-word" : ""} ${Object.keys(progress.decks).length ? "has-decks" : ""}`}
     >
       <div className="word-top">
         <div>
@@ -88,13 +89,16 @@ export function WordCard({
         <Badge tone="green">{word.level}</Badge>
         <span>{word.synonyms.join(" · ")}</span>
       </div>
-      <PersonalNote
-        key={word.id}
-        kind="word"
-        id={word.id}
-        title={word.word}
-        compact
-      />
+      <div className="word-tools">
+        <PersonalNote
+          key={word.id}
+          kind="word"
+          id={word.id}
+          title={word.word}
+          compact
+        />
+        <WordDecks id={word.id} word={word.word} />
+      </div>
       {message && (
         <p className="inline-message" role="status" lang={locale} dir={dir}>
           {t(message)}

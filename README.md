@@ -43,7 +43,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Guided lessons                 | Read short lessons, check your answer, review related words, and continue at the same level               | [Lesson](docs/screenshots/lesson-present-simple.png)         |
 | Vocabulary quiz                | Choose a level, discover meanings, get feedback, and save your score                                      | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
 | Matching game                  | Pair words and definitions without a timer or leaderboard                                                 | [Matching](docs/screenshots/matching-playing.png)            |
-| Spaced flashcards              | Study all words, saved words, or cards ready for review                                                   | [Flashcards](docs/screenshots/flashcards-playing.png)        |
+| Spaced flashcards              | Study saved, due, difficult, or tagged words with optional hard and easy ratings                          | [Flashcards](docs/screenshots/flashcards-playing.png)        |
 | Written and listening practice | Spell words, complete sentences, and use a local English voice                                            | [Practice](docs/screenshots/practice-playing.png)            |
 | Appearance                     | Choose light, dark, or your device setting alongside reading and quiet preferences                        | [Dark appearance](docs/screenshots/dark-overview.png)        |
 | Classroom worksheets           | Print vocabulary and lesson sheets with separate answer keys                                              | [Worksheet](docs/screenshots/worksheet-vocabulary.png)       |
@@ -52,6 +52,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | School network                 | Reveal a shareable school address and scan a local QR code                                                | [Join the school network](docs/screenshots/join-network.png) |
 | Reading preferences            | Choose larger text, readable fonts, spacing, contrast, and quiet mode                                     | [Reading controls](docs/screenshots/reading-settings.png)    |
 | Personal notes                 | Keep browser notes beside words and lessons and include them in progress backups                          | [Word note](docs/screenshots/word-note.png)                  |
+| Private study decks            | Collect words in named decks, add tags, and practise a focused selection                                  | [Study decks](docs/screenshots/study-decks.png)              |
 | Personal settings              | Export or restore progress backups                                                                        | [Settings](docs/screenshots/settings.png)                    |
 
 <table>

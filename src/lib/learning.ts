@@ -36,6 +36,12 @@ export const emptyProgress: Progress = {
   notes: {},
   decks: {},
 };
+export function isDifficultReview(review: Review | undefined) {
+  return (review?.lapses ?? 0) >= 2 && (review?.repetitions ?? 0) < 3;
+}
+export function getReview(reviews: Record<string, Review>, id: string) {
+  return Object.hasOwn(reviews, id) ? reviews[id] : undefined;
+}
 
 export function dayKey(date = new Date()): string {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;

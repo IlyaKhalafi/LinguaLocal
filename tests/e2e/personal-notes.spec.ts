@@ -18,6 +18,9 @@ test("word and lesson notes stay private and travel in progress backups", async 
   await note.getByRole("textbox", { name: "My note" }).fill("Keep asking why.");
   await note.getByRole("button", { name: "Save note", exact: true }).click();
   await expect(note.getByRole("status")).toHaveText("Note saved.");
+  await expect(
+    note.getByRole("button", { name: "Close note", exact: true }),
+  ).toBeFocused();
   await note.getByRole("textbox", { name: "My note" }).press("Escape");
   await expect(note.locator("summary")).toBeFocused();
   await expect(note.locator("textarea")).toBeHidden();

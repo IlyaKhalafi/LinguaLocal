@@ -10,8 +10,8 @@ The next release expands student practice, classroom materials, and local deploy
 - [x] Shadowing through repeat controls and dictation with word-level feedback
 - [ ] Private voice recordings saved on the student device
 - [x] Spelling, listening, and gap-fill practice
-- [ ] Named study decks and tags
-- [ ] Review ratings, ease, lapses, and difficult-card practice
+- [x] Named study decks and tags
+- [x] Review ratings, ease, lapses, and difficult-card practice
 - [x] Personal notes on words and lessons
 
 ## Classroom materials

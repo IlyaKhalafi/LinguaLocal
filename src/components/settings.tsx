@@ -129,7 +129,7 @@ export function PersonalSettings() {
             <div className="inline-message">
               <p>
                 {t(
-                  "Clear all progress on this device? Export a backup to keep it.",
+                  "Clear progress, notes, and decks on this device? Export a backup to keep them.",
                 )}
               </p>
               <div className="button-row">

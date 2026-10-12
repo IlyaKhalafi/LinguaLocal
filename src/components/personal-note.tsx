@@ -90,6 +90,9 @@ export function PersonalNote({
           }
           setDraft(null);
           setNotice({ text: "Note saved.", value: text.trim() });
+          details.current
+            ?.querySelector<HTMLButtonElement>(".note-close")
+            ?.focus({ preventScroll: true });
         }}
       >
         <div className="form-field">
@@ -132,7 +135,11 @@ export function PersonalNote({
               {t("Reload note")}
             </button>
           )}
-          <button type="button" className="text-link" onClick={close}>
+          <button
+            type="button"
+            className="text-link note-close"
+            onClick={close}
+          >
             {t("Close note")}
           </button>
         </div>

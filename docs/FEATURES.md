@@ -135,3 +135,13 @@ Keep a private note beside a word or below a lesson. The editor opens on request
 ![Personal word note](screenshots/word-note.png)
 
 [Mobile word note](screenshots/word-note-mobile.png) · [Lesson note](screenshots/lesson-note.png) · [Mobile lesson note](screenshots/lesson-note-mobile.png) · [Dark appearance](screenshots/dark-word-note.png) · [Dark mobile](screenshots/dark-word-note-mobile.png)
+
+### Private study decks
+
+Create a named deck in the review screen and add dictionary words using the small deck control. Tags filter the available words. Decks stay in this browser and travel with progress backups. Removing a deck keeps notes and review history.
+
+![Study decks](screenshots/study-decks.png)
+
+[Deck controls](screenshots/deck-manager.png) · [Mobile](screenshots/deck-manager-mobile.png) · [Word membership](screenshots/word-decks.png) · [Mobile membership](screenshots/word-decks-mobile.png) · [Review ratings](screenshots/review-ratings.png) · [Mobile ratings](screenshots/review-ratings-mobile.png)
+
+Hard and easy ratings are folded beneath the two regular review buttons. Difficult practice appears after repeated forgotten answers and clears after three successful recalls.

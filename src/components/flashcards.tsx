@@ -1,6 +1,6 @@
 "use client";
 import { useLocale } from "@/components/locale-provider";
-import { useState } from "react";
+import { useId, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -9,12 +9,19 @@ import {
   RotateCcw,
   Sparkles,
 } from "lucide-react";
-import { dayKey, shuffle } from "@/lib/learning";
+import {
+  dayKey,
+  shuffle,
+  isDifficultReview,
+  getReview,
+  type ReviewRating,
+} from "@/lib/learning";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import type { Word } from "@/lib/schema";
 import type { LessonStudyScope } from "@/lib/lesson-study";
 import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
+import { DeckManager } from "./deck-manager";
 
 export function Flashcards({
   words,
@@ -26,18 +33,46 @@ export function Flashcards({
   const { t } = useLocale();
   const { progress, review } = useProgress();
   const [mode, setMode] = useState("all");
+  if (mode.startsWith("deck/") && !Object.hasOwn(progress.decks, mode.slice(5)))
+    setMode("all");
+  const [tag, setTag] = useState("");
+  const field = useId();
+  const decks = Object.entries(progress.decks);
+  const tags = [...new Set(decks.flatMap(([, deck]) => deck.tags))].sort();
+  if (tag && !tags.includes(tag)) setTag("");
+  const difficult = words.some((word) =>
+    isDifficultReview(getReview(progress.reviews, word.id)),
+  );
+  if (mode === "difficult" && !difficult) setMode("all");
+  const selectedDeck =
+    mode.startsWith("deck/") && Object.hasOwn(progress.decks, mode.slice(5))
+      ? progress.decks[mode.slice(5)]
+      : undefined;
+  if (selectedDeck && tag && !selectedDeck.tags.includes(tag)) setMode("all");
   const [deck, setDeck] = useState<Word[]>(scope ? words : []);
   const [started, setStarted] = useState(Boolean(scope && words.length));
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const focusTarget = useFocusOnChange(`${started}-${index}`);
-  const pool = words.filter((word) =>
-    mode === "saved"
-      ? progress.saved.includes(word.id)
-      : mode === "due"
-        ? !progress.reviews[word.id] ||
-          progress.reviews[word.id].due <= dayKey()
-        : true,
+  const taggedWords = tag
+    ? new Set(
+        decks
+          .filter(([, deck]) => deck.tags.includes(tag))
+          .flatMap(([, deck]) => deck.words),
+      )
+    : null;
+  const pool = words.filter(
+    (word) =>
+      (!taggedWords || taggedWords.has(word.id)) &&
+      (mode.startsWith("deck/")
+        ? Boolean(selectedDeck?.words.includes(word.id))
+        : mode === "difficult"
+          ? isDifficultReview(getReview(progress.reviews, word.id))
+          : mode === "saved"
+            ? progress.saved.includes(word.id)
+            : mode === "due"
+              ? (getReview(progress.reviews, word.id)?.due ?? "") <= dayKey()
+              : true),
   );
   function start(selection = pool) {
     setDeck(scope ? words : shuffle(selection).slice(0, 20));
@@ -45,7 +80,7 @@ export function Flashcards({
     setFlipped(false);
     setStarted(true);
   }
-  function answer(remembered: boolean) {
+  function answer(remembered: boolean | ReviewRating) {
     review(deck[index].id, remembered);
     setIndex(index + 1);
     setFlipped(false);
@@ -90,6 +125,9 @@ export function Flashcards({
                   { id: "all", label: "All words" },
                   { id: "saved", label: "Saved words" },
                   { id: "due", label: "Due for review" },
+                  ...(difficult
+                    ? [{ id: "difficult", label: "Difficult words" }]
+                    : []),
                 ].map((item) => (
                   <button
                     className={`tab ${mode === item.id ? "active" : ""}`}
@@ -101,6 +139,59 @@ export function Flashcards({
                   </button>
                 ))}
               </div>
+              {decks.length > 0 && (
+                <div className="deck-filters">
+                  <div className="form-field">
+                    <label htmlFor={`${field}-deck`}>{t("Study deck")}</label>
+                    <select
+                      id={`${field}-deck`}
+                      value={mode.startsWith("deck/") ? mode.slice(5) : ""}
+                      onChange={(event) =>
+                        setMode(
+                          event.target.value
+                            ? `deck/${event.target.value}`
+                            : "all",
+                        )
+                      }
+                    >
+                      <option value="">{t("Choose a deck")}</option>
+                      {decks
+                        .filter(([, deck]) => !tag || deck.tags.includes(tag))
+                        .map(([id, deck]) => (
+                          <option key={id} value={id}>
+                            {deck.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  {tags.length > 0 && (
+                    <div className="form-field">
+                      <label htmlFor={`${field}-tag`}>{t("Tag")}</label>
+                      <select
+                        id={`${field}-tag`}
+                        value={tag}
+                        onChange={(event) => {
+                          const value = event.target.value;
+                          setTag(value);
+                          if (
+                            selectedDeck &&
+                            value &&
+                            !selectedDeck.tags.includes(value)
+                          )
+                            setMode("all");
+                        }}
+                      >
+                        <option value="">{t("All tags")}</option>
+                        {tags.map((value) => (
+                          <option key={value} value={value}>
+                            {value}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                </div>
+              )}
               {pool.length ? (
                 <div className="panel">
                   <h2
@@ -118,15 +209,25 @@ export function Flashcards({
               ) : (
                 <EmptyState
                   title={
-                    mode === "saved" ? t("No saved words") : t("No cards due")
+                    mode.startsWith("deck/")
+                      ? t("No words in this deck")
+                      : mode === "saved"
+                        ? t("No saved words")
+                        : tag
+                          ? t("No words in this selection")
+                          : t("No cards due")
                   }
                   description={
-                    mode === "saved"
-                      ? t("Save words in the dictionary first.")
+                    mode === "saved" || mode.startsWith("deck/")
+                      ? t(
+                          mode.startsWith("deck/")
+                            ? "Add words from the dictionary."
+                            : "Save words in the dictionary first.",
+                        )
                       : t("Choose all words to practise now.")
                   }
                   action={
-                    mode === "saved" ? (
+                    mode === "saved" || mode.startsWith("deck/") ? (
                       <Link
                         className="button primary"
                         ref={focusTarget}
@@ -140,6 +241,7 @@ export function Flashcards({
                         ref={focusTarget}
                         onClick={() => {
                           setMode("all");
+                          setTag("");
                           start(words);
                         }}
                       >
@@ -149,6 +251,7 @@ export function Flashcards({
                   }
                 />
               )}
+              <DeckManager />
             </>
           )}
         </>
@@ -253,19 +356,38 @@ export function Flashcards({
             )}
           </button>
           {flipped && (
-            <div className="flashcard-actions">
-              <button
-                className="button secondary"
-                onClick={() => answer(false)}
-              >
-                <RotateCcw size={14} />
-                {t("Not yet")}
-              </button>
-              <button className="button primary" onClick={() => answer(true)}>
-                <Check size={15} />
-                {t("I remembered")}
-              </button>
-            </div>
+            <>
+              <div className="flashcard-actions">
+                <button
+                  className="button secondary"
+                  onClick={() => answer(false)}
+                >
+                  <RotateCcw size={14} />
+                  {t("Not yet")}
+                </button>
+                <button className="button primary" onClick={() => answer(true)}>
+                  <Check size={15} />
+                  {t("I remembered")}
+                </button>
+              </div>
+              <details className="review-ratings">
+                <summary>{t("More ratings")}</summary>
+                <div className="button-row">
+                  <button
+                    className="button secondary"
+                    onClick={() => answer("hard")}
+                  >
+                    {t("Hard")}
+                  </button>
+                  <button
+                    className="button secondary"
+                    onClick={() => answer("easy")}
+                  >
+                    {t("Easy")}
+                  </button>
+                </div>
+              </details>
+            </>
           )}
         </>
       )}

@@ -306,6 +306,38 @@ async function capturePersonalNotes(context: BrowserContext, locale: Locale) {
   await page.close();
 }
 
+async function captureStudyDecks(context: BrowserContext, locale: Locale) {
+  const page = await context.newPage();
+  await page.goto(base + "/flashcards");
+  await page.locator(".deck-manager > summary").click();
+  await page.getByLabel(translate(locale, "Deck name")).fill("Travel");
+  await page
+    .getByLabel(translate(locale, "Tags, separated by commas"))
+    .fill("school, travel");
+  await page
+    .getByRole("button", { name: translate(locale, "Save deck"), exact: true })
+    .click();
+  await capture(page, "deck-manager", locale);
+  for (const word of ["curious", "journey"]) {
+    await page.goto(base + `/dictionary?search=${word}`);
+    await page.locator(".word-decks > summary").first().click();
+    await page.getByRole("checkbox", { name: "Travel", exact: true }).check();
+    if (word === "curious") await capture(page, "word-decks", locale);
+  }
+  await page.goto(base + "/flashcards");
+  await capture(page, "study-decks", locale);
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Start review"),
+      exact: true,
+    })
+    .click();
+  await page.locator(".flashcard").click();
+  await page.locator(".review-ratings > summary").click();
+  await capture(page, "review-ratings", locale);
+  await page.close();
+}
+
 async function main() {
   await mkdir(folder, { recursive: true });
   if (reviewFolder) await mkdir(reviewFolder, { recursive: true });
@@ -337,6 +369,7 @@ async function main() {
       }
       await capturePersonalNotes(context, locale);
       await capturePractice(context, locale);
+      await captureStudyDecks(context, locale);
       await context.close();
       console.log(`Captured ${locale} pages and practice`);
     }

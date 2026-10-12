@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { usePrintDetails } from "@/lib/use-print-details";
 import { useToday } from "@/lib/use-today";
-import { dayKey, streak } from "@/lib/learning";
+import { dayKey, streak, getReview } from "@/lib/learning";
 import type { ContentPack } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
@@ -34,7 +34,7 @@ export function ProgressDashboard({
     progress.saved.includes(word.id),
   );
   const mastered = content.words.filter(
-    (word) => (progress.reviews[word.id]?.repetitions ?? 0) >= 3,
+    (word) => (getReview(progress.reviews, word.id)?.repetitions ?? 0) >= 3,
   );
   const day = useToday(serverDay);
   const today = progress.activity[day] ?? 0;

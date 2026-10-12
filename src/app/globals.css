@@ -1404,7 +1404,72 @@ label {
   display: none;
 }
 .personal-note-compact {
+  position: static;
   margin: 0;
+}
+.word-tools {
+  position: relative;
+}
+.personal-note-compact.word-decks > summary {
+  inset-inline-end: 48px;
+}
+.word-card.has-decks .word-bottom {
+  padding-inline-end: 104px;
+}
+.deck-memberships {
+  max-height: 240px;
+  overflow-y: auto;
+}
+.deck-memberships label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+.word-decks fieldset {
+  border: 0;
+  padding-inline: 0;
+}
+.word-decks legend {
+  font-size: 13px;
+  padding-block-start: 16px;
+}
+.deck-manager,
+.review-ratings {
+  margin-block-start: 20px;
+}
+.deck-manager summary,
+.review-ratings summary {
+  cursor: pointer;
+  color: var(--subtle);
+  font-size: 13px;
+}
+.deck-manager .panel {
+  margin-block-start: 16px;
+}
+.deck-manager .form-field {
+  margin-block-end: 16px;
+}
+.deck-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block-end: 20px;
+}
+.deck-filters .form-field {
+  display: grid;
+  gap: 8px;
+  flex: 1;
+  min-width: 140px;
+  font-size: 13px;
+}
+.deck-filters label {
+  font-size: 13px;
+}
+.review-ratings .button-row {
+  justify-content: center;
+  margin-block-start: 12px;
 }
 .personal-note-compact > summary {
   position: absolute;
