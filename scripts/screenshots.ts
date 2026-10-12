@@ -402,7 +402,10 @@ async function main() {
       await capture(page, "assignment-history", locale);
       await page.locator(".share-summary > summary:visible").click();
       await page
-        .getByLabel(translate(locale, "Name (optional)"))
+        .getByRole("textbox", {
+          name: translate(locale, "Name (optional)"),
+          exact: true,
+        })
         .fill("Sample learner");
       await capture(page, "share-summary", locale);
       await page.goto(base + "/settings");
