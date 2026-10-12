@@ -2,11 +2,12 @@
 
 import { useEffect, type RefObject } from "react";
 
-export function useMediaLoop(
+export function useMediaSegment(
   ref: RefObject<HTMLMediaElement | null>,
   active: boolean,
   start: number | null,
   end: number | null,
+  mode: "repeat" | "stop",
 ) {
   useEffect(() => {
     const player = ref.current;
@@ -15,7 +16,14 @@ export function useMediaLoop(
     const stop = () => cancelAnimationFrame(frame);
     const tick = () => {
       if (player.paused) return;
-      if (player.currentTime >= end) player.currentTime = start;
+      if (player.currentTime >= end) {
+        if (mode === "stop") {
+          player.pause();
+          player.currentTime = end;
+          return;
+        }
+        player.currentTime = start;
+      }
       frame = requestAnimationFrame(tick);
     };
     const begin = () => {
@@ -32,5 +40,5 @@ export function useMediaLoop(
       player.removeEventListener("pause", stop);
       player.removeEventListener("ended", stop);
     };
-  }, [ref, active, start, end]);
+  }, [ref, active, start, end, mode]);
 }

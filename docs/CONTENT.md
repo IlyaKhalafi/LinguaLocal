@@ -92,6 +92,8 @@ The packaged commands are `node scripts/subtitle-tools.mjs convert INPUT.srt OUT
 
 [Download example captions](../examples/captions.srt).
 
+Timed transcripts also support short dictation sessions. The player uses up to five caption cues containing at most 120 words, 2,000 characters, and 60 seconds each. Empty and longer cues stay readable in the transcript. Plain transcripts without timing remain available for reading. Sentence capitalization and punctuation are ignored during checking, while contractions and word spelling count.
+
 ### Lessons
 
 Each lesson has a title, description, level, category, reading time, and text sections. Its practice question contains two to six options, a zero-based correct answer index, and an explanation. Categories are Grammar, Vocabulary, Reading, Speaking, and Writing.

@@ -4,6 +4,7 @@ import path from "node:path";
 import { locales, translate, type Locale } from "../src/lib/locale";
 import { pageCatalogue } from "./page-catalogue";
 import seed from "../src/content/starter.json";
+import { parseSubtitles, plainSubtitle } from "../src/lib/subtitles";
 
 const base = process.env.SCREENSHOT_BASE_URL || "http://127.0.0.1:3100";
 const folder = "docs/screenshots";
@@ -157,6 +158,61 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
     video.currentTime = 4;
   });
   await capture(page, "timed-transcript", locale);
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Practise listening"),
+      exact: true,
+    })
+    .click();
+  await page.locator("video").evaluate((video: HTMLVideoElement) => {
+    video.pause();
+    video.currentTime = 0;
+  });
+  await capture(page, "dictation", locale);
+  await page
+    .getByLabel(translate(locale, "Type what you hear"))
+    .fill("Hello. A conversation starts here.");
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Check answer"),
+      exact: true,
+    })
+    .click();
+  await capture(page, "dictation-correction", locale);
+  await page.evaluate(() => {
+    document.documentElement.dataset.appearance = "dark";
+  });
+  await capture(page, "dictation-dark", locale);
+  await page.evaluate(() => {
+    document.documentElement.dataset.appearance = "light";
+  });
+  const passages = parseSubtitles(
+    await readFile("public/demo/greetings.vtt", "utf8"),
+  ).cues;
+  for (const cue of passages.slice(1)) {
+    await page
+      .getByRole("button", {
+        name: translate(locale, "Next passage"),
+        exact: true,
+      })
+      .click();
+    await page
+      .getByLabel(translate(locale, "Type what you hear"))
+      .fill(plainSubtitle(cue.text));
+    await page
+      .getByRole("button", {
+        name: translate(locale, "Check answer"),
+        exact: true,
+      })
+      .click();
+  }
+  await page
+    .getByRole("button", {
+      name: translate(locale, "View result"),
+      exact: true,
+    })
+    .click();
+  await capture(page, "dictation-complete", locale);
   await page.route("**/api/network", (route) =>
     route.fulfill({ json: { addresses: ["http://192.168.1.20:3000"] } }),
   );

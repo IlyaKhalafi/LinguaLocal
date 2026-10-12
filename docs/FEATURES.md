@@ -90,6 +90,14 @@ Replay a captioned passage by its timestamp. Select text to look it up in the di
 
 ![Timed transcript](screenshots/timed-transcript.png)
 
+### Dictation from book audio
+
+Open a timed transcript and choose listening practice. Replay short passages, type what you hear, and check individual words. Checked passages count toward private progress, including when leaving early. Capitalization and punctuation do not affect the score.
+
+![Dictation](screenshots/dictation.png)
+
+[Answer correction](screenshots/dictation-correction.png) · [Mobile](screenshots/dictation-correction-mobile.png) · [Dark appearance](screenshots/dictation-dark.png) · [Result](screenshots/dictation-complete.png)
+
 ### Written and listening practice
 
 Choose spelling, local listening, or gap fill. Use the whole dictionary, a level, or your saved words. Keyboard answers receive immediate feedback. Listening uses an English voice installed on the device.

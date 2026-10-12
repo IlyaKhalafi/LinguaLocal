@@ -265,5 +265,16 @@
   "No words for this lesson": "لا توجد كلمات لهذا الدرس",
   "Restart review": "أعد بدء المراجعة",
   "Not yet": "ليس بعد",
-  "Review all words": "راجع كل الكلمات"
+  "Review all words": "راجع كل الكلمات",
+  "Dictation": "الإملاء",
+  "Back to transcript": "العودة إلى النص",
+  "Passage {current} of {total}": "المقطع {current} من {total}",
+  "Type what you hear": "اكتب ما تسمعه",
+  "Highlighted words need practice.": "الكلمات المميزة تحتاج إلى تدريب.",
+  "Extra words": "كلمات إضافية",
+  "Next passage": "المقطع التالي",
+  "Practise listening": "تدرب على الاستماع",
+  "{score} of {total} words": "{score} من {total} كلمة",
+  "Use {count} words or fewer.": "اكتب {count} كلمة أو أقل.",
+  "Press Listen to start playback.": "اضغط استمع لبدء التشغيل."
 }

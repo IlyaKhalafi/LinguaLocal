@@ -5,10 +5,12 @@ import { useLocale } from "./locale-provider";
 export function AnswerFeedback({
   correct,
   children,
+  after,
   ref,
 }: {
   correct: boolean;
   children: ReactNode;
+  after?: ReactNode;
   ref?: Ref<HTMLDivElement>;
 }) {
   const { t } = useLocale();
@@ -23,6 +25,7 @@ export function AnswerFeedback({
       <div className="feedback-content" lang="en" dir="ltr">
         {children}
       </div>
+      {after}
     </div>
   );
 }

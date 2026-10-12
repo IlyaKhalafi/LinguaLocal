@@ -265,5 +265,16 @@
   "No words for this lesson": "این درس واژه‌ای برای مرور ندارد",
   "Restart review": "شروع دوبارهٔ مرور",
   "Not yet": "هنوز نه",
-  "Review all words": "مرور همهٔ واژه‌ها"
+  "Review all words": "مرور همهٔ واژه‌ها",
+  "Dictation": "دیکته",
+  "Back to transcript": "بازگشت به متن",
+  "Passage {current} of {total}": "بخش {current} از {total}",
+  "Type what you hear": "آنچه می‌شنوید بنویسید",
+  "Highlighted words need practice.": "واژه‌های مشخص‌شده نیاز به تمرین دارند.",
+  "Extra words": "واژه‌های اضافه",
+  "Next passage": "بخش بعدی",
+  "Practise listening": "تمرین شنیداری",
+  "{score} of {total} words": "{score} از {total} واژه",
+  "Use {count} words or fewer.": "حداکثر {count} واژه بنویسید.",
+  "Press Listen to start playback.": "برای پخش، شنیدن را انتخاب کنید."
 }

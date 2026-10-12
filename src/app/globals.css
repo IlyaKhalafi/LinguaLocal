@@ -1388,6 +1388,44 @@ label {
   text-align: start;
   margin-block-start: 4px;
 }
+
+.dictation form > .form-field {
+  margin-block: 20px;
+}
+.media-player[data-dictation="true"] > video,
+.media-player[data-dictation="true"] > audio,
+.media-player[data-dictation="true"] > .listening-controls,
+.media-player[data-dictation="true"] > .repeat-controls {
+  display: none;
+}
+.dictation .game-progress {
+  margin-block: 8px 16px;
+}
+.dictation form > .button.primary {
+  margin-top: 16px;
+}
+.dictation .section-heading {
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.dictation .section-heading .text-link {
+  border: 0;
+  background: none;
+  min-height: 44px;
+}
+.dictation-reference mark {
+  color: #24392d;
+  background: #f6d6ca;
+  padding: 2px 3px;
+  border-radius: 3px;
+}
+.dictation-legend {
+  margin-top: 12px;
+  font-size: 13px;
+}
+.dictation-result {
+  padding-block: 16px;
+}
 .feedback-content p {
   margin-block-start: 4px;
 }

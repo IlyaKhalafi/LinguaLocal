@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "./locale-provider";
 import { Pagination } from "./pagination";
 import {
@@ -12,6 +12,12 @@ import { transcriptSelection } from "@/lib/transcript-selection";
 import { DOCUMENT_LIMIT } from "@/lib/document-limits";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { mediaUrl } from "@/lib/media-url";
+import {
+  dictationTokens,
+  dictationWordLimit,
+  dictationTextLimit,
+} from "@/lib/dictation";
+import { Dictation } from "./dictation";
 
 function clock(seconds: number) {
   const whole = Math.floor(seconds);
@@ -23,11 +29,17 @@ export function TimedTranscript({
   fallback,
   currentTime,
   seek,
+  playPassage,
+  stopPassage,
+  onPracticeChange,
 }: {
   file?: string;
   fallback?: string;
   currentTime: number;
   seek: (time: number) => void;
+  playPassage: (start: number, end: number) => void;
+  stopPassage: () => void;
+  onPracticeChange: (active: boolean) => void;
 }) {
   const { t } = useLocale();
   const [open, setOpen] = useState(false);
@@ -35,6 +47,12 @@ export function TimedTranscript({
   const [error, setError] = useState(false);
   const [page, setPage] = useState(0);
   const [selection, setSelection] = useState("");
+  const [practising, setPractising] = useState(false);
+  const practiceTrigger = useFocusOnChange(practising);
+  function changePractice(active: boolean) {
+    setPractising(active);
+    onPracticeChange(active);
+  }
   const text = useRef<HTMLDivElement>(null);
   const captionRef = useFocusOnChange(page);
   useEffect(() => {
@@ -115,91 +133,146 @@ export function TimedTranscript({
     cues?.findIndex(
       (cue) => currentTime >= cue.start && currentTime < cue.end,
     ) ?? -1;
+  const passages = useMemo(
+    () =>
+      (cues ?? [])
+        .filter((cue) => {
+          const text = plainSubtitle(cue.text);
+          const count = dictationTokens(text).length;
+          return (
+            text.length <= dictationTextLimit &&
+            count > 0 &&
+            count <= dictationWordLimit &&
+            cue.end - cue.start <= 60
+          );
+        })
+        .slice(0, 5),
+    [cues],
+  );
   return (
     <details
       className="transcript"
       onToggle={(event) => {
         setOpen(event.currentTarget.open);
-        if (!event.currentTarget.open) setSelection("");
+        if (!event.currentTarget.open) {
+          setSelection("");
+          if (practising) {
+            stopPassage();
+            changePractice(false);
+          }
+        }
       }}
     >
       <summary>{t("Read the transcript")}</summary>
-      <div ref={text} onMouseUp={captureSelection} onKeyUp={captureSelection}>
-        {file && !cues && !error && open && (
-          <p role="status">{t("Loading transcript")}</p>
-        )}
-        {error && (
-          <p className="inline-message" role="status">
-            {t("Timed transcript is unavailable.")}
-          </p>
-        )}
-        {(!file || error) && fallback && (
-          <p lang="en" dir="ltr">
-            {fallback}
-          </p>
-        )}
-        {cues && (
-          <>
-            <p className="sr-only" tabIndex={-1} ref={captionRef}>
-              {t("Page {current} of {total}", {
-                current: page + 1,
-                total: Math.ceil(cues.length / pageSize),
-              })}
-            </p>
-            {active >= 0 && Math.floor(active / pageSize) !== page && (
-              <button
-                className="button secondary"
-                onClick={() => setPage(Math.floor(active / pageSize))}
-              >
-                {t("Current passage")}
-              </button>
-            )}
-            <ol className="transcript-cues" start={page * pageSize + 1}>
-              {cues
-                .slice(page * pageSize, (page + 1) * pageSize)
-                .map((cue, index) => (
-                  <li
-                    key={`${cue.start}-${page * pageSize + index}`}
-                    className={
-                      active === page * pageSize + index ? "current" : ""
-                    }
-                  >
-                    <button
-                      className="transcript-time"
-                      aria-label={t("Play from {time}", {
-                        time: clock(cue.start),
-                      })}
-                      aria-current={
-                        active === page * pageSize + index ? "true" : undefined
-                      }
-                      onClick={() => seek(cue.start)}
-                    >
-                      <span dir="ltr">{clock(cue.start)}</span>
-                    </button>
-                    <p lang="en" dir="ltr">
-                      {plainSubtitle(cue.text)}
-                    </p>
-                  </li>
-                ))}
-            </ol>
-            <Pagination
-              page={page}
-              pages={Math.ceil(cues.length / pageSize)}
-              onChange={setPage}
-            />
-          </>
-        )}
-      </div>
-      <div aria-live="polite">
-        {selection && (
-          <Link
-            className="text-link transcript-lookup"
-            href={`/dictionary?search=${encodeURIComponent(selection)}`}
+      {practising ? (
+        <Dictation
+          cues={passages}
+          play={playPassage}
+          stop={stopPassage}
+          onClose={() => {
+            stopPassage();
+            changePractice(false);
+          }}
+        />
+      ) : (
+        <>
+          <div
+            ref={text}
+            onMouseUp={captureSelection}
+            onKeyUp={captureSelection}
           >
-            {t("Look up {word}", { word: selection })}
-          </Link>
-        )}
-      </div>
+            {file && !cues && !error && open && (
+              <p role="status">{t("Loading transcript")}</p>
+            )}
+            {error && (
+              <p className="inline-message" role="status">
+                {t("Timed transcript is unavailable.")}
+              </p>
+            )}
+            {(!file || error) && fallback && (
+              <p lang="en" dir="ltr">
+                {fallback}
+              </p>
+            )}
+            {cues && (
+              <>
+                <p className="sr-only" tabIndex={-1} ref={captionRef}>
+                  {t("Page {current} of {total}", {
+                    current: page + 1,
+                    total: Math.ceil(cues.length / pageSize),
+                  })}
+                </p>
+                {active >= 0 && Math.floor(active / pageSize) !== page && (
+                  <button
+                    className="button secondary"
+                    onClick={() => setPage(Math.floor(active / pageSize))}
+                  >
+                    {t("Current passage")}
+                  </button>
+                )}
+                <ol className="transcript-cues" start={page * pageSize + 1}>
+                  {cues
+                    .slice(page * pageSize, (page + 1) * pageSize)
+                    .map((cue, index) => (
+                      <li
+                        key={`${cue.start}-${page * pageSize + index}`}
+                        className={
+                          active === page * pageSize + index ? "current" : ""
+                        }
+                      >
+                        <button
+                          className="transcript-time"
+                          aria-label={t("Play from {time}", {
+                            time: clock(cue.start),
+                          })}
+                          aria-current={
+                            active === page * pageSize + index
+                              ? "true"
+                              : undefined
+                          }
+                          onClick={() => seek(cue.start)}
+                        >
+                          <span dir="ltr">{clock(cue.start)}</span>
+                        </button>
+                        <p lang="en" dir="ltr">
+                          {plainSubtitle(cue.text)}
+                        </p>
+                      </li>
+                    ))}
+                </ol>
+                <Pagination
+                  page={page}
+                  pages={Math.ceil(cues.length / pageSize)}
+                  onChange={setPage}
+                />
+              </>
+            )}
+          </div>
+          <div aria-live="polite">
+            {selection && (
+              <Link
+                className="text-link transcript-lookup"
+                href={`/dictionary?search=${encodeURIComponent(selection)}`}
+              >
+                {t("Look up {word}", { word: selection })}
+              </Link>
+            )}
+          </div>
+          {passages.length > 0 && (
+            <button
+              ref={practiceTrigger}
+              className="button secondary"
+              onClick={() => {
+                setSelection("");
+                changePractice(true);
+                playPassage(passages[0].start, passages[0].end);
+              }}
+            >
+              {t("Practise listening")}
+            </button>
+          )}
+        </>
+      )}
     </details>
   );
 }

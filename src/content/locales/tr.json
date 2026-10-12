@@ -265,5 +265,16 @@
   "No words for this lesson": "Bu ders için kelime yok",
   "Restart review": "Tekrarı yeniden başlat",
   "Not yet": "Henüz değil",
-  "Review all words": "Tüm kelimeleri tekrar et"
+  "Review all words": "Tüm kelimeleri tekrar et",
+  "Dictation": "Dikte",
+  "Back to transcript": "Metne dön",
+  "Passage {current} of {total}": "{total} parçadan {current}. parça",
+  "Type what you hear": "Duyduğunu yaz",
+  "Highlighted words need practice.": "İşaretli kelimeleri tekrar çalış.",
+  "Extra words": "Fazladan kelimeler",
+  "Next passage": "Sonraki parça",
+  "Practise listening": "Dinleme çalış",
+  "{score} of {total} words": "{total} kelimeden {score}",
+  "Use {count} words or fewer.": "En fazla {count} kelime yaz.",
+  "Press Listen to start playback.": "Oynatmak için Dinle düğmesine bas."
 }

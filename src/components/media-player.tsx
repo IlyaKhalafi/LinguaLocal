@@ -5,7 +5,7 @@ import { Repeat2, RotateCcw } from "lucide-react";
 import type { Resource } from "@/lib/schema";
 import { mediaUrl } from "@/lib/media-url";
 import { TimedTranscript } from "./timed-transcript";
-import { useMediaLoop } from "@/lib/use-media-loop";
+import { useMediaSegment } from "@/lib/use-media-segment";
 
 export function MediaPlayer({
   resource,
@@ -29,10 +29,14 @@ export function MediaPlayer({
   const [loop, setLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [captions, setCaptions] = useState(false);
+  const [passageEnd, setPassageEnd] = useState<number | null>(null);
+  const [practising, setPractising] = useState(false);
   function playFailure(error: unknown, message: string) {
     if ((error as { name?: string })?.name !== "AbortError") setError(message);
   }
-  useMediaLoop(resource.kind === "video" ? video : audio, loop, start, end);
+  const playerRef = resource.kind === "video" ? video : audio;
+  useMediaSegment(playerRef, loop, start, end, "repeat");
+  useMediaSegment(playerRef, passageEnd !== null, 0, passageEnd, "stop");
   const section = useRef<HTMLElement>(null);
   useEffect(() => {
     const track = captionTrack.current;
@@ -103,6 +107,7 @@ export function MediaPlayer({
       return;
     }
     setEnd(current);
+    setPassageEnd(null);
     setLoop(true);
     setError("");
   }
@@ -140,6 +145,7 @@ export function MediaPlayer({
   return (
     <section
       className="media-player"
+      data-dictation={practising}
       aria-label={t("Media player")}
       ref={section}
       tabIndex={-1}
@@ -209,6 +215,7 @@ export function MediaPlayer({
             const player = media();
             if (player)
               player.currentTime = Math.max(0, player.currentTime - 10);
+            setPassageEnd(null);
           }}
         >
           <RotateCcw size={12} />
@@ -222,6 +229,7 @@ export function MediaPlayer({
             className="button secondary"
             onClick={() => {
               setStart(media()?.currentTime ?? 0);
+              setPassageEnd(null);
               setEnd(null);
               setLoop(false);
             }}
@@ -242,7 +250,10 @@ export function MediaPlayer({
           {end !== null && (
             <button
               className={`button ${loop ? "primary" : "secondary"}`}
-              onClick={() => setLoop(!loop)}
+              onClick={() => {
+                setPassageEnd(null);
+                setLoop(!loop);
+              }}
             >
               <Repeat2 size={12} />
               {loop ? t("Repeat on") : t("Repeat off")}
@@ -268,11 +279,30 @@ export function MediaPlayer({
           file={resource.captions}
           fallback={resource.transcript}
           currentTime={currentTime}
+          onPracticeChange={setPractising}
+          playPassage={(start, end) => {
+            const player = media();
+            if (!player) return;
+            setLoop(false);
+            setPassageEnd(end);
+            player.currentTime = start;
+            setCurrentTime(start);
+            void player
+              .play()
+              .catch((error) =>
+                playFailure(error, "Press Listen to start playback."),
+              );
+          }}
+          stopPassage={() => {
+            setPassageEnd(null);
+            media()?.pause();
+          }}
           seek={(time) => {
             const player = media();
             if (!player) return;
             if (loop) setAnnouncement(t("Repeat off"));
             setLoop(false);
+            setPassageEnd(null);
             player.currentTime = time;
             setCurrentTime(time);
             void player
