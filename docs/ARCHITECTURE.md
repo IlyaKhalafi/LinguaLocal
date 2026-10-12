@@ -25,7 +25,9 @@ Shared writes are performed through server files or the validated command-line i
 
 Browser progress uses a validated local storage document and a React external store. Storage events update other tabs. Corrupt JSON is retained under a recovery key before a fresh state is used. If storage is unavailable, progress stays in memory and a notice appears.
 
-Review intervals expand from one day to three days, then about 2.2 times the previous interval, capped at 180 days. Forgetting resets a card for practice that day. This is a simple spaced review model rather than SM-2.
+Review intervals begin at one day and three days. Later intervals use the card’s ease, initially 2.2 and bounded between 1.3 and 3, with a 180-day cap. Forgetting resets the card for practice that day, counts a lapse, and lowers its ease. Hard and easy ratings adjust future intervals. Existing reviews retain their dates when loaded. This is a simple spaced review model rather than SM-2.
+
+The progress document also supports bounded personal notes and study decks with tags. Missing fields in older backups receive empty defaults. Recovery retains valid individual notes and decks when another entry is damaged. Word and lesson notes use separate key prefixes so matching curriculum IDs remain distinct.
 
 Date-dependent content uses a hydration-safe server snapshot before switching to the browser’s local day. Streaks allow yesterday to remain the latest active day before today’s first practice.
 

@@ -40,7 +40,13 @@ test("every level supports a full quiz and new examples support gap practice", (
 test("reviews progress through intervals and forgetting resets the schedule", () => {
   const now = new Date(2026, 9, 11, 12);
   const first = scheduleReview(undefined, true, now);
-  assert.deepEqual(first, { interval: 1, repetitions: 1, due: "2026-10-12" });
+  assert.deepEqual(first, {
+    interval: 1,
+    repetitions: 1,
+    due: "2026-10-12",
+    ease: 2.2,
+    lapses: 0,
+  });
   const second = scheduleReview(first, true, now);
   assert.equal(second.interval, 3);
   assert.equal(scheduleReview(second, true, now).interval, 7);
@@ -48,6 +54,8 @@ test("reviews progress through intervals and forgetting resets the schedule", ()
     interval: 0,
     repetitions: 0,
     due: "2026-10-11",
+    ease: 2,
+    lapses: 1,
   });
 });
 test("review intervals cross month and year boundaries and remain capped", () => {
