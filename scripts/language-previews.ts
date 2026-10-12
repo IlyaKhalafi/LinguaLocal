@@ -93,6 +93,7 @@ async function main() {
               await page.screenshot({
                 path: path.join(folder, fullPage),
                 fullPage: true,
+                scale: "css",
                 animations: "disabled",
               });
               const rectangle = await page

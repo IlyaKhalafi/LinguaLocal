@@ -61,12 +61,12 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/library.png" alt="The searchable book library" width="480" /></td>
-    <td><img src="docs/screenshots/games.png" alt="Vocabulary practice and games" width="480" /></td>
+    <td><img src="docs/screenshots/library-gallery.png" alt="The searchable book library" width="480" /></td>
+    <td><img src="docs/screenshots/games-gallery.png" alt="Vocabulary practice and games" width="480" /></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/quiz-playing.png" alt="A vocabulary question with four meanings" width="480" /></td>
-    <td><img src="docs/screenshots/flashcards-playing.png" alt="A vocabulary flashcard ready to flip" width="480" /></td>
+    <td><img src="docs/screenshots/quiz-playing-gallery.png" alt="A vocabulary question with four meanings" width="480" /></td>
+    <td><img src="docs/screenshots/flashcards-playing-gallery.png" alt="A vocabulary flashcard ready to flip" width="480" /></td>
   </tr>
 </table>
 

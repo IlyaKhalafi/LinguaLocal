@@ -48,6 +48,16 @@ async function capture(page: Page, name: string, locale: Locale) {
         fullPage: true,
         animations: "disabled",
       });
+    if (
+      locale === "en" &&
+      !mobile &&
+      ["library", "games", "quiz-playing", "flashcards-playing"].includes(name)
+    )
+      await page.screenshot({
+        path: path.join(folder, `${name}-gallery.png`),
+        fullPage: false,
+        animations: "disabled",
+      });
   }
 }
 
