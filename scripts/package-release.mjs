@@ -58,6 +58,20 @@ async function packageRelease() {
     await mkdir(path.join(root, "docs"));
     for (const file of ["DEPLOYMENT.md", "CONTENT.md", "ARCHITECTURE.md"])
       await cp(path.join("docs", file), path.join(root, "docs", file));
+    await mkdir(path.join(root, "examples", "packs"), { recursive: true });
+    for (const file of [
+      "assignment.json",
+      "study-report.json",
+      "vocabulary.csv",
+      "captions.srt",
+      "packs/README.md",
+      "packs/a1.json",
+      "packs/a2.json",
+      "packs/b1.json",
+      "packs/b2.json",
+      "packs/c1.json",
+    ])
+      await cp(path.join("examples", file), path.join(root, "examples", file));
     await writeFile(
       path.join(root, "README.txt"),
       [
@@ -71,6 +85,9 @@ async function packageRelease() {
         "Set LINGUALOCAL_DATA_DIR to an absolute directory for school content and media.",
         "School data and environment files are not included in this archive.",
         "The docs directory contains deployment, content, and architecture guides.",
+        "The examples directory includes original level packs, vocabulary, captions, assignments, and study reports.",
+        "Run bundled owner tools with node scripts/TOOL.mjs from this directory.",
+        "Use scripts/starter.json when a tool needs the included content collection.",
         "",
       ].join("\n"),
     );

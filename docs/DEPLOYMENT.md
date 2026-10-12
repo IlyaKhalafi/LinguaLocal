@@ -12,6 +12,15 @@ In Windows PowerShell, set `$env:HOSTNAME='0.0.0.0'` and run `node server.js`.
 
 Archives include the standalone server, local assets, owner tools, guides, and original starter content. They exclude school data and root environment files. Native dependencies are built for the packaging computer, so use Docker when deploying across different platforms. Archive creation leaves the build and existing output files intact.
 
+The `examples` directory includes original A1 through C1 packs and sample vocabulary, subtitles, assignments, and study reports. Run owner tools directly from the extracted directory without installing development dependencies.
+
+```sh
+node scripts/validate-content.mjs scripts/starter.json
+node scripts/subtitle-tools.mjs convert examples/captions.srt captions.vtt
+node scripts/create-assignment.mjs examples/assignment.json scripts/starter.json http://192.168.1.20:3000 assignment-link.txt
+node scripts/combine-reports.mjs classroom-summary examples/study-report.json
+```
+
 ## Docker deployment
 
 ```sh
@@ -111,3 +120,11 @@ Open **Offline use** in Settings and choose **Enable offline pages**. The browse
 App updates wait until existing tabs close. Cached pages and app assets refresh for the new build when it is opened online. A new build never mixes old HTML with different JavaScript files. **Remove offline copies** clears saved pages and media on this device without clearing personal progress, notes or decks. Browser storage can be evicted by the device, so offline copies supplement the school’s original collection.
 
 After enabling offline pages, open a book’s **Offline copies** section to save selected resources. Video copies include their caption file. Copies remain until refreshed or removed, including after an application update. Refresh a copy after the school replaces its file. Storage is limited to 12 files including captions, 64 MiB per media file, 3 MiB per caption file, and 256 MiB in total. Browser storage limits can be lower. File downloads remain available through each resource’s Download action.
+
+## Voice practice
+
+Voice practice is folded on book pages and needs a supported browser microphone API on HTTPS or localhost. Students grant microphone access only when they choose Record a take. Plain HTTP on the school network continues to support dictionaries, books, games, and the other learning tools.
+
+Recordings stay in the student browser, with a one-minute limit per take and room for ten takes. Each file can use up to 16 MiB and the collection up to 64 MiB. The controls offer playback, download, and deletion. All saved takes are available from any book so students can manage storage even if a book is removed.
+
+Progress backups and school snapshots do not contain these audio files. Download useful takes before clearing browser storage. If a save fails, the draft remains available while navigating within the app. Download it before closing or reloading the page.
