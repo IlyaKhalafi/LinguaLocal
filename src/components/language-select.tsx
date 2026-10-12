@@ -23,6 +23,14 @@ export function LanguageSelect({ id = "interface-language" }: { id?: string }) {
             </option>
           ))}
         </select>
+        <span
+          className="language-value"
+          lang={locale}
+          dir="auto"
+          aria-hidden="true"
+        >
+          {localeNames[locale]}
+        </span>
         <ChevronDown
           className="language-chevron"
           size={16}
