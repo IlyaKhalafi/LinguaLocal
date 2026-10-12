@@ -163,7 +163,7 @@ export function TimedTranscript({
         }
       }}
     >
-      <summary>{t("Read the transcript")}</summary>
+      <summary hidden={practising}>{t("Read the transcript")}</summary>
       {practising ? (
         <Dictation
           cues={passages}

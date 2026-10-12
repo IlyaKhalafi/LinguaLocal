@@ -32,5 +32,8 @@ test("checking a quiz answer keeps keyboard focus on the next action", async ({
   const check = page.getByRole("button", { name: "Check meaning" });
   await check.focus();
   await page.keyboard.press("Enter");
+  await expect(
+    page.getByText("Choose the meaning", { exact: true }),
+  ).toBeHidden();
   await expect(page.getByRole("button", { name: "Next word" })).toBeFocused();
 });

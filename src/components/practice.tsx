@@ -256,15 +256,17 @@ export function Practice({ words }: { words: Word[] }) {
               }
             }}
           >
-            <p className="eyebrow">
-              {t(
-                mode === "gap"
-                  ? "Complete the sentence"
-                  : mode === "listening"
-                    ? "Listen and type the word"
-                    : "Type the word for this meaning",
-              )}
-            </p>
+            {!checked && (
+              <p className="eyebrow">
+                {t(
+                  mode === "gap"
+                    ? "Complete the sentence"
+                    : mode === "listening"
+                      ? "Listen and type the word"
+                      : "Type the word for this meaning",
+                )}
+              </p>
+            )}
             {mode === "listening" ? (
               <button
                 className="button secondary practice-listen"

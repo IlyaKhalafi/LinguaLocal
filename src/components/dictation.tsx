@@ -83,7 +83,12 @@ export function Dictation({
   return (
     <div className="dictation">
       <div className="section-heading">
-        <h4>{t("Dictation")}</h4>
+        <h4
+          ref={finished ? focus : undefined}
+          tabIndex={finished ? -1 : undefined}
+        >
+          {t(finished ? "Practice complete" : "Dictation")}
+        </h4>
         {!finished && (
           <button className="text-link" onClick={onClose}>
             {t("Back to transcript")}
@@ -92,9 +97,6 @@ export function Dictation({
       </div>
       {finished ? (
         <div className="dictation-result">
-          <h4 ref={focus} tabIndex={-1}>
-            {t("Practice complete")}
-          </h4>
           <p>{t("{score} of {total} words", { score, total })}</p>
           <button className="button primary" onClick={onClose}>
             {t("Back to transcript")}
@@ -141,7 +143,9 @@ export function Dictation({
             {t("Listen")}
           </button>
           <div className="form-field">
-            <label htmlFor="dictation-answer">{t("Type what you hear")}</label>
+            <label htmlFor="dictation-answer">
+              {t(checked ? "Your answer" : "Type what you hear")}
+            </label>
             <textarea
               id="dictation-answer"
               lang="en"

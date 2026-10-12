@@ -134,7 +134,7 @@ export function Quiz({ words }: { words: Word[] }) {
             />
           </div>
           <section className="question-card">
-            <p className="eyebrow">{t("Choose the meaning")}</p>
+            {!checked && <p className="eyebrow">{t("Choose the meaning")}</p>}
             <h2
               className="quiz-word"
               lang="en"

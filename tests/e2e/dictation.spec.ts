@@ -42,6 +42,7 @@ test("dictation bounds playback, preserves keyboard focus and records one privat
 }) => {
   await openPractice(page);
   await expect(page.locator(".transcript-cues")).toHaveCount(0);
+  await expect(page.locator(".transcript > summary")).toBeHidden();
   await expect(page.locator("video")).toBeHidden();
   await expect(
     page.getByRole("button", { name: "Show captions", exact: true }),
@@ -72,6 +73,10 @@ test("dictation bounds playback, preserves keyboard focus and records one privat
   const input = page.getByLabel("Type what you hear");
   await input.fill("hello a new conversation starts here");
   await input.press("Enter");
+  await expect(page.getByLabel("Your answer")).toHaveValue(
+    "hello a new conversation starts here",
+  );
+  await expect(page.getByLabel("Your answer")).toHaveAttribute("readonly", "");
   await expect(page.locator(".dictation").getByRole("status")).toContainText(
     "Correct.",
   );
@@ -87,7 +92,7 @@ test("dictation bounds playback, preserves keyboard focus and records one privat
   await input.fill("I am well thank you for asking");
   await input.press("Enter");
   await page.keyboard.press("Enter");
-  await expect(page.locator(".dictation-result h4")).toBeFocused();
+  await expect(page.locator(".dictation h4")).toBeFocused();
   await expect(page.locator(".dictation-result")).toContainText(
     "16 of 17 words",
   );
@@ -109,17 +114,18 @@ test("dictation bounds playback, preserves keyboard focus and records one privat
   });
 });
 
-test("closing a transcript stops an unfinished passage without recording a result", async ({
+test("returning to the transcript stops an unfinished passage without recording a result", async ({
   page,
 }) => {
   await openPractice(page);
-  await page.getByText("Read the transcript", { exact: true }).click();
+  await page
+    .getByRole("button", { name: "Back to transcript", exact: true })
+    .click();
   await expect
     .poll(() =>
       page.locator("video").evaluate((video: HTMLVideoElement) => video.paused),
     )
     .toBe(true);
-  await page.getByText("Read the transcript", { exact: true }).click();
   await expect(page.locator(".transcript-cues li")).toHaveCount(3);
   const stored = await page.evaluate(() =>
     localStorage.getItem("lingualocal.progress.v1"),
