@@ -385,5 +385,18 @@
   "Offline storage is unavailable. Try again.": "التخزين دون اتصال غير متاح. حاول مجددًا.",
   "Unable to remove offline copies. Try again.": "تعذّر إزالة النسخ المحفوظة. حاول مجددًا.",
   "Use your browser’s install option to add this app.": "استخدم خيار التثبيت في المتصفح لإضافة هذا التطبيق.",
-  "Visited pages are saved on this device.": "تُحفظ الصفحات التي تزورها على هذا الجهاز."
+  "Visited pages are saved on this device.": "تُحفظ الصفحات التي تزورها على هذا الجهاز.",
+  "Offline copies": "النسخ دون اتصال",
+  "Choose files to keep on this device. Refresh a copy when your school changes the file.": "اختر الملفات لحفظها على هذا الجهاز. حدّث النسخة عندما تغيّر المدرسة الملف.",
+  "Saved offline": "محفوظ دون اتصال",
+  "Offline copy removed": "أُزيلت النسخة المحفوظة",
+  "Refresh copy": "تحديث النسخة",
+  "Save offline": "حفظ دون اتصال",
+  "Remove copy": "إزالة النسخة",
+  "Removing…": "جارٍ الإزالة…",
+  "This file is too large for offline storage. Use Download instead.": "هذا الملف كبير جدًا للحفظ دون اتصال. استخدم زر التنزيل.",
+  "Offline storage is full. Remove a saved file and try again.": "مساحة التخزين دون اتصال ممتلئة. أزل ملفًا محفوظًا وحاول مجددًا.",
+  "Some files could not be saved. Remove this copy and try again.": "تعذّر حفظ بعض الملفات. أزل هذه النسخة وحاول مجددًا.",
+  "Unable to update this offline copy. Reconnect and try again.": "تعذّر تحديث هذه النسخة. أعد الاتصال وحاول مجددًا.",
+  "Saving…": "جارٍ الحفظ…"
 }

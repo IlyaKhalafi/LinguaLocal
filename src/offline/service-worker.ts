@@ -244,15 +244,20 @@ function mediaSelection(data: Record<string, unknown>) {
     throw new Error("unavailable");
   return urls;
 }
-async function deleteUnusedCaption(cache: Cache, href: string) {
+async function captionIsShared(cache: Cache, href: string, except?: string) {
   const shared = await Promise.all(
-    (await cache.keys()).map(
-      async (key) =>
-        (await cache.match(key))?.headers.get("X-LinguaLocal-Captions") ===
-        href,
-    ),
+    (await cache.keys())
+      .filter((key) => key.url !== except)
+      .map(
+        async (key) =>
+          (await cache.match(key))?.headers.get("X-LinguaLocal-Captions") ===
+          href,
+      ),
   );
-  if (!shared.some(Boolean)) await cache.delete(href);
+  return shared.some(Boolean);
+}
+async function deleteUnusedCaption(cache: Cache, href: string) {
+  if (!(await captionIsShared(cache, href))) await cache.delete(href);
 }
 async function handleCommand(data: Record<string, unknown>) {
   const config = await settings();
@@ -318,8 +323,20 @@ async function handleCommand(data: Record<string, unknown>) {
       if (!config.enabled) throw new Error("disabled");
       const urls = mediaSelection(data);
       const entries = await mediaEntries();
-      const existing = entries.filter((entry) =>
-        urls.some((url) => url.href === entry.url),
+      const cache = await caches.open(mediaName);
+      const previousCaption = (await cache.match(urls[0].href))?.headers.get(
+        "X-LinguaLocal-Captions",
+      );
+      const retiredCaption =
+        previousCaption &&
+        !urls.some((url) => url.href === previousCaption) &&
+        !(await captionIsShared(cache, previousCaption, urls[0].href))
+          ? previousCaption
+          : undefined;
+      const existing = entries.filter(
+        (entry) =>
+          urls.some((url) => url.href === entry.url) ||
+          entry.url === retiredCaption,
       );
       if (entries.length - existing.length + urls.length > MAX_MEDIA_FILES)
         throw new Error("media-full");
@@ -362,7 +379,6 @@ async function handleCommand(data: Record<string, unknown>) {
         MAX_MEDIA_TOTAL
       )
         throw new Error("media-full");
-      const cache = await caches.open(mediaName);
       const originals = await Promise.all(
         urls.map((url) => cache.match(url.href)),
       );
@@ -388,9 +404,6 @@ async function handleCommand(data: Record<string, unknown>) {
         if (rollbackFailed) throw new Error("partial-save");
         throw error;
       }
-      const previousCaption = originals[0]?.headers.get(
-        "X-LinguaLocal-Captions",
-      );
       if (previousCaption && previousCaption !== urls[1]?.href)
         await deleteUnusedCaption(cache, previousCaption);
       return status();

@@ -410,6 +410,21 @@ async function main() {
           })
           .waitFor();
         await capture(page, "offline-enabled", locale);
+        await page.goto(base + "/library/everyday-english");
+        await page.locator(".offline-resources > summary").click();
+        await page
+          .getByRole("button", {
+            name: translate(locale, "Save offline") + " Start with hello",
+            exact: true,
+          })
+          .click();
+        await page
+          .getByRole("button", {
+            name: translate(locale, "Refresh copy") + " Start with hello",
+            exact: true,
+          })
+          .waitFor();
+        await capture(page, "offline-resources", locale);
       }
       await context.close();
       console.log(`Captured ${locale} pages and practice`);

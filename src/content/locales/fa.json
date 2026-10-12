@@ -385,5 +385,18 @@
   "Offline storage is unavailable. Try again.": "فضای ذخیرهٔ آفلاین در دسترس نیست. دوباره تلاش کنید.",
   "Unable to remove offline copies. Try again.": "حذف نسخه‌های آفلاین ممکن نشد. دوباره تلاش کنید.",
   "Use your browser’s install option to add this app.": "برای افزودن این برنامه از گزینهٔ نصب مرورگر استفاده کنید.",
-  "Visited pages are saved on this device.": "صفحه‌هایی که باز می‌کنید روی این دستگاه ذخیره می‌شوند."
+  "Visited pages are saved on this device.": "صفحه‌هایی که باز می‌کنید روی این دستگاه ذخیره می‌شوند.",
+  "Offline copies": "نسخه‌های آفلاین",
+  "Choose files to keep on this device. Refresh a copy when your school changes the file.": "فایل‌های مورد نیاز را روی این دستگاه ذخیره کنید. اگر آموزشگاه فایل را تغییر داد، نسخه را به‌روز کنید.",
+  "Saved offline": "آفلاین ذخیره شد",
+  "Offline copy removed": "نسخه آفلاین حذف شد",
+  "Refresh copy": "به‌روزرسانی نسخه",
+  "Save offline": "ذخیره آفلاین",
+  "Remove copy": "حذف نسخه",
+  "Removing…": "در حال حذف…",
+  "This file is too large for offline storage. Use Download instead.": "این فایل برای ذخیره آفلاین بیش از حد بزرگ است. از دکمه دانلود استفاده کنید.",
+  "Offline storage is full. Remove a saved file and try again.": "فضای آفلاین پر است. یک فایل ذخیره‌شده را حذف و دوباره تلاش کنید.",
+  "Some files could not be saved. Remove this copy and try again.": "برخی فایل‌ها ذخیره نشدند. این نسخه را حذف و دوباره تلاش کنید.",
+  "Unable to update this offline copy. Reconnect and try again.": "این نسخه آفلاین به‌روز نشد. دوباره به شبکه وصل شوید و تلاش کنید.",
+  "Saving…": "در حال ذخیره…"
 }

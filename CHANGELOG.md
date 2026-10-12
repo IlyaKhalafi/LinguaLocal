@@ -4,6 +4,7 @@
 
 LinguaLocal runs as one Next.js service on the school network. Shared curriculum is managed through server files and command-line tools. Students use the hub without accounts.
 
+- Selected offline audio, video, captions, and PDFs with explicit refresh controls
 - Optional installation and bounded offline page storage
 - Optional student summaries, translated print sheets and local classroom summaries
 - Responsive library, dictionary, lessons, and four vocabulary practice modes

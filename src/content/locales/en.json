@@ -385,5 +385,18 @@
   "Offline storage is unavailable. Try again.": "Offline storage is unavailable. Try again.",
   "Unable to remove offline copies. Try again.": "Unable to remove offline copies. Try again.",
   "Use your browser’s install option to add this app.": "Use your browser’s install option to add this app.",
-  "Visited pages are saved on this device.": "Visited pages are saved on this device."
+  "Visited pages are saved on this device.": "Visited pages are saved on this device.",
+  "Offline copies": "Offline copies",
+  "Choose files to keep on this device. Refresh a copy when your school changes the file.": "Choose files to keep on this device. Refresh a copy when your school changes the file.",
+  "Saved offline": "Saved offline",
+  "Offline copy removed": "Offline copy removed",
+  "Refresh copy": "Refresh copy",
+  "Save offline": "Save offline",
+  "Remove copy": "Remove copy",
+  "Removing…": "Removing…",
+  "This file is too large for offline storage. Use Download instead.": "This file is too large for offline storage. Use Download instead.",
+  "Offline storage is full. Remove a saved file and try again.": "Offline storage is full. Remove a saved file and try again.",
+  "Some files could not be saved. Remove this copy and try again.": "Some files could not be saved. Remove this copy and try again.",
+  "Unable to update this offline copy. Reconnect and try again.": "Unable to update this offline copy. Reconnect and try again.",
+  "Saving…": "Saving…"
 }

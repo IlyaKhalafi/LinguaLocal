@@ -301,3 +301,48 @@ test("a failed caption replacement restores the previous playable pair", async (
     0,
   );
 });
+
+test("changing an unshared caption at capacity replaces one selection", async () => {
+  const worker = workerHarness(async (request) => {
+    const url =
+      typeof request === "string"
+        ? request
+        : request instanceof URL
+          ? request.href
+          : request.url;
+    return new Response("File", {
+      headers: {
+        "Content-Type": url.endsWith(".vtt") ? "text/vtt" : "audio/wav",
+      },
+    });
+  });
+  await worker.command({ type: "ENABLE", locale: "en" });
+  const selection = {
+    url: "/api/media/lesson.mp4",
+    captions: "/api/media/first.vtt",
+  };
+  await worker.command({ type: "SAVE_MEDIA", ...selection });
+  for (let index = 0; index < 10; index++)
+    await worker.command({
+      type: "SAVE_MEDIA",
+      url: `/api/media/audio-${index}.wav`,
+    });
+  assert.equal(
+    (await worker.command({ type: "STATUS" })).value!.media.length,
+    12,
+  );
+  assert.equal(
+    (
+      await worker.command({
+        type: "SAVE_MEDIA",
+        ...selection,
+        captions: "/api/media/revised.vtt",
+      })
+    ).ok,
+    true,
+  );
+  assert.equal(
+    (await worker.command({ type: "STATUS" })).value!.media.length,
+    12,
+  );
+});

@@ -174,3 +174,11 @@ Offline use stays folded in Settings. Enable it to save visited pages and their 
 ![Offline controls](screenshots/offline-enabled.png)
 
 [Mobile](screenshots/offline-enabled-mobile.png) · [Dark appearance](screenshots/dark-offline-enabled.png) · [Connection requirement](screenshots/offline-unsupported.png)
+
+## Selected offline resources
+
+After enabling offline pages, open a book’s optional **Offline copies** section. Save audio, video with captions, or reading files. Each saved resource has explicit Refresh and Remove controls.
+
+![Saved book resources](screenshots/offline-resources.png)
+
+[Mobile](screenshots/offline-resources-mobile.png) · [Dark appearance](screenshots/dark-offline-resources.png)

@@ -54,6 +54,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Personal notes                 | Keep browser notes beside words and lessons and include them in progress backups                          | [Word note](docs/screenshots/word-note.png)                  |
 | Classroom assignments          | Open shared lesson, book, and word links and keep a private checklist with an optional due date           | [Assignment](docs/screenshots/assignment.png)                |
 | Offline pages                  | Install the app and keep visited pages on supported browsers. Optional controls stay in Settings.         | [Offline controls](docs/screenshots/offline-enabled.png)     |
+| Offline book files             | Save selected audio, video, captions, and PDFs on supported browsers. Refresh or remove copies as needed. | [Saved book files](docs/screenshots/offline-resources.png)   |
 | Study summaries                | Share totals and print a student sheet. Combine exported summaries locally without accounts.              | [Summary](docs/screenshots/student-summary.png)              |
 | Private study decks            | Collect words in named decks, add tags, and practise a focused selection                                  | [Study decks](docs/screenshots/study-decks.png)              |
 | Personal settings              | Export or restore progress backups                                                                        | [Settings](docs/screenshots/settings.png)                    |

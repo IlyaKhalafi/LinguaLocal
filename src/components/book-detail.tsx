@@ -11,6 +11,7 @@ import {
   Video,
 } from "lucide-react";
 import { Badge, Cover, EmptyState } from "./ui";
+import { OfflineResources } from "./offline-resources";
 import { MediaPlayer } from "./media-player";
 import { mediaUrl } from "@/lib/media-url";
 import type { Book, Resource } from "@/lib/schema";
@@ -133,6 +134,7 @@ export function BookDetail({ book }: { book: Book }) {
           {resources.length === 0 && <EmptyState title={t("No resources")} />}
         </div>
       </div>
+      <OfflineResources resources={book.resources} />
       {selected && (
         <MediaPlayer
           key={selected.id}

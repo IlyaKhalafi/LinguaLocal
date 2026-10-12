@@ -385,5 +385,18 @@
   "Offline storage is unavailable. Try again.": "Çevrimdışı depolama kullanılamıyor. Tekrar deneyin.",
   "Unable to remove offline copies. Try again.": "Çevrimdışı kopyalar kaldırılamadı. Tekrar deneyin.",
   "Use your browser’s install option to add this app.": "Bu uygulamayı eklemek için tarayıcınızın yükleme seçeneğini kullanın.",
-  "Visited pages are saved on this device.": "Ziyaret ettiğiniz sayfalar bu cihazda saklanır."
+  "Visited pages are saved on this device.": "Ziyaret ettiğiniz sayfalar bu cihazda saklanır.",
+  "Offline copies": "Çevrimdışı kopyalar",
+  "Choose files to keep on this device. Refresh a copy when your school changes the file.": "Bu cihazda saklanacak dosyaları seçin. Okulunuz dosyayı değiştirdiğinde kopyayı yenileyin.",
+  "Saved offline": "Çevrimdışı kaydedildi",
+  "Offline copy removed": "Çevrimdışı kopya kaldırıldı",
+  "Refresh copy": "Kopyayı yenile",
+  "Save offline": "Çevrimdışı kaydet",
+  "Remove copy": "Kopyayı kaldır",
+  "Removing…": "Kaldırılıyor…",
+  "This file is too large for offline storage. Use Download instead.": "Bu dosya çevrimdışı depolama için çok büyük. İndir düğmesini kullanın.",
+  "Offline storage is full. Remove a saved file and try again.": "Çevrimdışı depolama dolu. Kayıtlı bir dosyayı kaldırıp tekrar deneyin.",
+  "Some files could not be saved. Remove this copy and try again.": "Bazı dosyalar kaydedilemedi. Bu kopyayı kaldırıp tekrar deneyin.",
+  "Unable to update this offline copy. Reconnect and try again.": "Bu çevrimdışı kopya güncellenemedi. Yeniden bağlanıp tekrar deneyin.",
+  "Saving…": "Kaydediliyor…"
 }
