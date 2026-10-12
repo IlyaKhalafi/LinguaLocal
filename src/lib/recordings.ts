@@ -3,6 +3,8 @@
 import {
   recordingCapacity,
   recordingSchema,
+  readRecording,
+  storedRecordingSchema,
   type Recording,
 } from "./recording";
 
@@ -72,16 +74,24 @@ async function transaction<T>(
     result: (value: T) => void,
     fail: (error: unknown) => void,
   ) => void,
+  retried = false,
 ) {
-  const db = await database();
+  const connection = database();
+  const db = await connection;
   return new Promise<T>((resolve, reject) => {
     let tx: IDBTransaction;
     try {
       tx = db.transaction(storeName, mode);
     } catch (error) {
       db.close();
-      opening = undefined;
-      reject(error);
+      if (opening === connection) opening = undefined;
+      if (
+        !retried &&
+        error instanceof DOMException &&
+        error.name === "InvalidStateError"
+      )
+        resolve(transaction(mode, operation, true));
+      else reject(error);
       return;
     }
     let value: T;
@@ -138,8 +148,8 @@ export function listRecordings() {
       const request = store.getAll();
       request.onsuccess = () => {
         const records = request.result.flatMap((value) => {
-          const parsed = recordingSchema.safeParse(value);
-          return parsed.success ? [parsed.data] : [];
+          const parsed = readRecording(value);
+          return parsed ? [parsed] : [];
         });
         result({
           records: records.sort((a, b) => b.createdAt - a.createdAt),
@@ -152,17 +162,30 @@ export function listRecordings() {
 
 export async function saveRecording(input: Recording) {
   const next = recordingSchema.parse(input);
+  const { blob, ...metadata } = next;
+  const stored = storedRecordingSchema.parse({
+    ...metadata,
+    mimeType: blob.type,
+    data: await blob.arrayBuffer(),
+  });
   await transaction<void>("readwrite", (store, result, fail) => {
     const request = store.getAll();
     request.onsuccess = () => {
       try {
         const records = request.result.map((value) => ({
           id: typeof value?.id === "string" ? value.id : "",
-          blob: value?.blob instanceof Blob ? value.blob : new Blob([]),
+          blob: {
+            size:
+              value?.data instanceof ArrayBuffer
+                ? value.data.byteLength
+                : value?.blob instanceof Blob
+                  ? value.blob.size
+                  : 0,
+          },
         }));
         if (!recordingCapacity(records, next))
           throw new Error("recordings-full");
-        store.put(next);
+        store.put(stored);
         result(undefined);
       } catch (error) {
         // Abort the whole transaction so an existing take is never replaced.
@@ -189,7 +212,11 @@ export async function removeUnreadableRecordings() {
       const cursor = request.result;
       if (!cursor) result(undefined);
       else {
-        if (!recordingSchema.safeParse(cursor.value).success) cursor.delete();
+        if (
+          !storedRecordingSchema.safeParse(cursor.value).success &&
+          !recordingSchema.safeParse(cursor.value).success
+        )
+          cursor.delete();
         cursor.continue();
       }
     };

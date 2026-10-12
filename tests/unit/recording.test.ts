@@ -5,6 +5,8 @@ import {
   recordingFilename,
   recordingLimits,
   recordingSchema,
+  readRecording,
+  storedRecordingSchema,
   type Recording,
 } from "../../src/lib/recording";
 import { VoiceCapture, type CaptureState } from "../../src/lib/voice-capture";
@@ -52,6 +54,23 @@ test("empty, oversized and non-audio recordings are rejected", () => {
   );
 });
 
+test("byte storage reconstructs playable blobs and preserves older takes", async () => {
+  const { blob, ...metadata } = take;
+  const stored = storedRecordingSchema.parse({
+    ...metadata,
+    data: await blob.arrayBuffer(),
+    mimeType: blob.type,
+  });
+  assert.equal(await readRecording(stored)?.blob.text(), "audio");
+  assert.equal(readRecording(stored)?.blob.type, blob.type);
+  assert.equal(readRecording(take)?.blob, blob);
+  assert.equal(readRecording({ ...stored, title: "" }), undefined);
+  assert.equal(
+    readRecording({ ...stored, data: new ArrayBuffer(0) }),
+    undefined,
+  );
+});
+
 test("count and storage limits permit an idempotent retry", () => {
   const records = Array.from({ length: 10 }, (_, index) => ({
     ...take,
@@ -83,6 +102,66 @@ test("count and storage limits permit an idempotent retry", () => {
     ),
     false,
   );
+});
+
+test("a failed recorder stop releases the microphone immediately", async () => {
+  const navigatorDescriptor = Object.getOwnPropertyDescriptor(
+    globalThis,
+    "navigator",
+  );
+  const recorderDescriptor = Object.getOwnPropertyDescriptor(
+    globalThis,
+    "MediaRecorder",
+  );
+  let stopped = 0;
+  let state: CaptureState | undefined;
+  class Recorder {
+    static isTypeSupported() {
+      return true;
+    }
+    state = "inactive";
+    start() {
+      this.state = "recording";
+    }
+    stop() {
+      throw new Error("recorder failure");
+    }
+  }
+  const capture = new VoiceCapture(
+    (next) => {
+      state = next;
+    },
+    () => assert.fail("A failed recording must not be saved"),
+  );
+  try {
+    Object.defineProperty(globalThis, "MediaRecorder", {
+      value: Recorder,
+      configurable: true,
+    });
+    Object.defineProperty(globalThis, "navigator", {
+      configurable: true,
+      value: {
+        mediaDevices: {
+          getUserMedia: async () => ({
+            getTracks: () => [{ stop: () => stopped++ }],
+          }),
+        },
+      },
+    });
+    await capture.start({ id: take.bookId, title: take.title });
+    capture.stop();
+    assert.equal(stopped, 1);
+    assert.equal(state?.phase, "idle");
+    assert.match(state?.error ?? "", /Unable to record audio/);
+  } finally {
+    capture.dispose();
+    if (navigatorDescriptor)
+      Object.defineProperty(globalThis, "navigator", navigatorDescriptor);
+    else Reflect.deleteProperty(globalThis, "navigator");
+    if (recorderDescriptor)
+      Object.defineProperty(globalThis, "MediaRecorder", recorderDescriptor);
+    else Reflect.deleteProperty(globalThis, "MediaRecorder");
+  }
 });
 
 test("late microphone results cannot stop a newer capture", async () => {

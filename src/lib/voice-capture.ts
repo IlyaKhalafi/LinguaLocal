@@ -14,6 +14,7 @@ export const idleCapture: CaptureState = {
 };
 
 export class VoiceCapture {
+  private static current?: VoiceCapture;
   private generation = 0;
   private disposed = false;
   private recorder?: MediaRecorder;
@@ -22,16 +23,22 @@ export class VoiceCapture {
   private deadline?: ReturnType<typeof setTimeout>;
   private phase: CaptureState["phase"] = "idle";
   private startedAt = 0;
+  private startedClock = 0;
+  private stoppedSeconds = 0;
+  private finishingAfterDispose = false;
+  private completionTimeout?: ReturnType<typeof setTimeout>;
+  private captureError = "";
 
   constructor(
     private update: (state: CaptureState) => void,
     private completed: (recording: Recording) => void,
+    private failed: (error: string) => void = () => {},
   ) {}
 
   private seconds() {
     return Math.min(
       recordingLimits.seconds,
-      Math.max(0.01, (Date.now() - this.startedAt) / 1000),
+      Math.max(0.01, (performance.now() - this.startedClock) / 1000),
     );
   }
 
@@ -50,12 +57,19 @@ export class VoiceCapture {
     clearTimeout(this.deadline);
     this.interval = undefined;
     this.deadline = undefined;
-    this.stream?.getTracks().forEach((track) => track.stop());
+    this.stream?.getTracks().forEach((track) => {
+      track.onended = null;
+      track.stop();
+    });
     this.stream = undefined;
   }
 
   async start(book: Pick<Book, "id" | "title">) {
     if (this.disposed || this.phase !== "idle") return;
+    if (VoiceCapture.current && VoiceCapture.current !== this) {
+      this.emit("idle", "Another take is still finishing. Try again.");
+      return;
+    }
     if (
       !navigator.mediaDevices?.getUserMedia ||
       typeof MediaRecorder === "undefined"
@@ -67,7 +81,11 @@ export class VoiceCapture {
       return;
     }
     const generation = ++this.generation;
+    VoiceCapture.current = this;
     this.startedAt = Date.now();
+    this.startedClock = performance.now();
+    this.stoppedSeconds = 0;
+    this.captureError = "";
     this.emit("requesting");
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -79,7 +97,10 @@ export class VoiceCapture {
       const mimeType = [
         "audio/webm;codecs=opus",
         "audio/mp4",
+        "audio/mp4;codecs=mp4a.40.2",
+        "audio/webm",
         "audio/ogg;codecs=opus",
+        "audio/ogg",
       ].find((type) => MediaRecorder.isTypeSupported(type));
       if (!mimeType) throw new Error("unsupported-recorder");
       const recorder = new MediaRecorder(stream, { mimeType });
@@ -88,7 +109,12 @@ export class VoiceCapture {
       let bytes = 0;
       let error = "";
       recorder.ondataavailable = (event) => {
-        if (this.disposed || generation !== this.generation || error) return;
+        if (
+          (this.disposed && !this.finishingAfterDispose) ||
+          generation !== this.generation ||
+          error
+        )
+          return;
         bytes += event.data.size;
         if (bytes > recordingLimits.fileBytes) {
           error = "This take is too large. Try a shorter recording.";
@@ -100,12 +126,23 @@ export class VoiceCapture {
         this.stop();
       };
       recorder.onstop = () => {
-        const seconds = this.seconds();
+        if (this.recorder !== recorder) return;
+        const seconds = this.stoppedSeconds || this.seconds();
         this.release();
+        clearTimeout(this.completionTimeout);
         this.recorder = undefined;
-        if (this.disposed || generation !== this.generation) return;
+        recorder.ondataavailable = null;
+        recorder.onstop = null;
+        recorder.onerror = null;
+        if (VoiceCapture.current === this) VoiceCapture.current = undefined;
+        if (
+          (this.disposed && !this.finishingAfterDispose) ||
+          generation !== this.generation
+        )
+          return;
         const blob = new Blob(chunks, { type: recorder.mimeType || mimeType });
         chunks.length = 0;
+        error ||= this.captureError;
         if (!error && !blob.size) error = "The recording is empty. Try again.";
         if (!error)
           this.completed({
@@ -116,10 +153,15 @@ export class VoiceCapture {
             seconds,
             blob,
           });
+        else if (this.disposed) this.failed(error);
         this.emit("idle", error);
       };
       this.startedAt = Date.now();
+      this.startedClock = performance.now();
       recorder.start(1000);
+      stream.getTracks().forEach((track) => {
+        track.onended = () => this.stop();
+      });
       this.emit("recording");
       this.interval = setInterval(() => this.emit("recording"), 250);
       this.deadline = setTimeout(
@@ -130,6 +172,7 @@ export class VoiceCapture {
       if (this.disposed || generation !== this.generation) return;
       this.release();
       this.recorder = undefined;
+      if (VoiceCapture.current === this) VoiceCapture.current = undefined;
       this.emit(
         "idle",
         error instanceof DOMException && error.name === "NotAllowedError"
@@ -142,24 +185,53 @@ export class VoiceCapture {
   stop() {
     if (this.phase === "requesting") {
       ++this.generation;
+      if (VoiceCapture.current === this) VoiceCapture.current = undefined;
       this.emit("idle");
-    } else if (this.recorder?.state === "recording") {
+    } else if (this.recorder && this.phase === "recording") {
+      this.stoppedSeconds = this.seconds();
       this.emit("finishing");
       clearInterval(this.interval);
       clearTimeout(this.deadline);
-      this.recorder.stop();
+      const recorder = this.recorder;
+      let failed = false;
+      try {
+        if (recorder.state !== "inactive") recorder.stop();
+      } catch {
+        failed = true;
+        this.captureError =
+          "Unable to record audio. Check your microphone and try again.";
+      }
       this.release();
+      if (failed) {
+        recorder.onstop?.(new Event("stop"));
+        return;
+      }
+      this.completionTimeout = setTimeout(() => {
+        this.captureError =
+          "Unable to record audio. Check your microphone and try again.";
+        recorder.onstop?.(new Event("stop"));
+      }, 10_000);
     }
   }
 
   dispose() {
     this.disposed = true;
+    if (this.phase === "finishing") {
+      this.finishingAfterDispose = true;
+      this.release();
+      return;
+    }
     ++this.generation;
+    if (VoiceCapture.current === this) VoiceCapture.current = undefined;
     if (this.recorder) {
       this.recorder.ondataavailable = null;
       this.recorder.onstop = null;
       this.recorder.onerror = null;
-      if (this.recorder.state !== "inactive") this.recorder.stop();
+      try {
+        if (this.recorder.state !== "inactive") this.recorder.stop();
+      } catch {
+        // Navigation discards an unfinished take and still releases its tracks.
+      }
       this.recorder = undefined;
     }
     this.release();
