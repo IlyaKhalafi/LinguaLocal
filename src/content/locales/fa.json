@@ -276,5 +276,17 @@
   "Practise listening": "تمرین شنیداری",
   "{score} of {total} words": "{score} از {total} واژه",
   "Use {count} words or fewer.": "حداکثر {count} واژه بنویسید.",
-  "Press Listen to start playback.": "برای پخش، شنیدن را انتخاب کنید."
+  "Press Listen to start playback.": "برای پخش، شنیدن را انتخاب کنید.",
+  "My note": "یادداشت من",
+  "Save note": "ذخیره یادداشت",
+  "Close note": "بستن یادداشت",
+  "Overwrite note": "جایگزینی یادداشت",
+  "Reload note": "بارگیری دوباره یادداشت",
+  "This note changed in another tab.": "این یادداشت در زبانه دیگری تغییر کرده است.",
+  "Note limit reached.": "ظرفیت یادداشت‌ها پر شده است.",
+  "Note saved.": "یادداشت ذخیره شد.",
+  "Note saved for this visit.": "یادداشت برای این بازدید ذخیره شد.",
+  "Add note for {title}": "افزودن یادداشت برای {title}",
+  "Edit note for {title}": "ویرایش یادداشت برای {title}",
+  "My note for {title}": "یادداشت من برای {title}"
 }

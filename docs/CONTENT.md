@@ -136,7 +136,9 @@ Copy the old app’s audio folders into the new media directory. Create books an
 
 ## Personal progress
 
-Progress is exported separately from My progress or Settings. It contains saved words, lesson completions, review schedules, game attempts, activity dates, and a daily goal. Restore it in another browser to continue the same journey.
+Progress is exported from Settings. It contains saved words, personal word and lesson notes, lesson completions, review schedules, game attempts, activity dates, and a daily goal. Restore it in another browser to continue the same journey. Older backups remain supported.
+
+Notes stay collapsed beside dictionary entries and below lessons. Each note supports up to 1,500 characters, with at most 500 notes per browser. Saving an empty note removes it. A draft stays intact when another tab changes the saved note, with a choice to reload or overwrite it. Notes do not change the school’s curriculum or leave the browser unless included in a progress export.
 
 Shared computers use the same progress when they share a browser profile. Clearing browser storage removes progress. Save a backup first.
 

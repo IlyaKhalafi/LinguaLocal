@@ -127,3 +127,11 @@ The owner command creates vocabulary and lesson worksheets with separate answer 
 ![Vocabulary worksheet](screenshots/worksheet-vocabulary.png)
 
 [Lesson worksheet](screenshots/worksheet-lessons.png) · [Answer key](screenshots/worksheet-answers.png) · [File chooser](screenshots/worksheet-index.png) · [Mobile worksheet](screenshots/worksheet-vocabulary-mobile.png)
+
+### Personal notes
+
+Keep a private note beside a word or below a lesson. The editor opens on request and travels with progress backups. Other tabs update saved notes without replacing an unfinished draft.
+
+![Personal word note](screenshots/word-note.png)
+
+[Mobile word note](screenshots/word-note-mobile.png) · [Lesson note](screenshots/lesson-note.png) · [Mobile lesson note](screenshots/lesson-note-mobile.png) · [Dark appearance](screenshots/dark-word-note.png) · [Dark mobile](screenshots/dark-word-note-mobile.png)

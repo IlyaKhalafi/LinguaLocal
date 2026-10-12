@@ -277,6 +277,35 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
   await page.close();
 }
 
+async function capturePersonalNotes(context: BrowserContext, locale: Locale) {
+  const page = await context.newPage();
+  for (const [route, name, text] of [
+    ["/dictionary?search=curious", "word-note", "Keep asking why."],
+    ["/lessons/present-simple", "lesson-note", "I practise every morning."],
+  ]) {
+    await page.goto(base + route);
+    const note = page.locator(".personal-note").first();
+    await note.locator("summary").click();
+    await note
+      .getByRole("textbox", { name: translate(locale, "My note") })
+      .fill(text);
+    await note
+      .getByRole("button", {
+        name: translate(locale, "Save note"),
+        exact: true,
+      })
+      .click();
+    await capture(page, name, locale);
+  }
+  await page.goto(base + "/dictionary?search=curious");
+  await page.locator(".personal-note > summary").first().click();
+  await page
+    .locator("html")
+    .evaluate((html) => html.setAttribute("data-appearance", "dark"));
+  await capture(page, "dark-word-note", locale);
+  await page.close();
+}
+
 async function main() {
   await mkdir(folder, { recursive: true });
   if (reviewFolder) await mkdir(reviewFolder, { recursive: true });
@@ -306,6 +335,7 @@ async function main() {
           throw new Error(`Unexpected page at ${route.path}`);
         await capture(page, route.name, locale);
       }
+      await capturePersonalNotes(context, locale);
       await capturePractice(context, locale);
       await context.close();
       console.log(`Captured ${locale} pages and practice`);

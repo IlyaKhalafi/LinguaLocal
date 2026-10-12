@@ -276,5 +276,17 @@
   "Practise listening": "Dinleme çalış",
   "{score} of {total} words": "{total} kelimeden {score}",
   "Use {count} words or fewer.": "En fazla {count} kelime yaz.",
-  "Press Listen to start playback.": "Oynatmak için Dinle düğmesine bas."
+  "Press Listen to start playback.": "Oynatmak için Dinle düğmesine bas.",
+  "My note": "Notum",
+  "Save note": "Notu kaydet",
+  "Close note": "Notu kapat",
+  "Overwrite note": "Notun üzerine yaz",
+  "Reload note": "Notu yeniden yükle",
+  "This note changed in another tab.": "Bu not başka bir sekmede değişti.",
+  "Note limit reached.": "Not sınırına ulaşıldı.",
+  "Note saved.": "Not kaydedildi.",
+  "Note saved for this visit.": "Not bu ziyaret için kaydedildi.",
+  "Add note for {title}": "{title} için not ekle",
+  "Edit note for {title}": "{title} için notu düzenle",
+  "My note for {title}": "{title} için notum"
 }

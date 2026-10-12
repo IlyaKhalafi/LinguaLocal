@@ -15,7 +15,10 @@ import {
   scheduleReview,
   type Attempt,
   type Progress,
+  type StudyDeck,
+  type ReviewRating,
 } from "@/lib/learning";
+import { updateNote, updateDeck, removeDeck } from "@/lib/personal-study";
 
 const STORAGE_KEY = "lingualocal.progress.v1";
 let cachedRaw: string | null | undefined;
@@ -84,12 +87,21 @@ function active(progress: Progress): Progress {
     },
   };
 }
+function updateStudy(transform: (progress: Progress) => Progress | undefined) {
+  const next = transform(snapshot());
+  if (!next) return false;
+  update(() => next);
+  return true;
+}
 const context = createContext<{
   progress: Progress;
   persistent: boolean;
   toggleSaved: (id: string) => void;
   complete: (id: string) => void;
-  review: (id: string, remembered: boolean) => void;
+  review: (id: string, remembered: boolean | ReviewRating) => void;
+  setNote: (key: string, text: string) => boolean;
+  setDeck: (id: string, deck: StudyDeck) => boolean;
+  deleteDeck: (id: string) => void;
   record: (attempt: Omit<Attempt, "date" | "id">) => void;
   setGoal: (goal: number) => void;
   reset: () => void;
@@ -113,6 +125,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       value={{
         progress,
         persistent: !unavailable,
+        setNote: (key, text) => updateStudy((p) => updateNote(p, key, text)),
+        setDeck: (id, deck) => updateStudy((p) => updateDeck(p, id, deck)),
+        deleteDeck: (id) => update((p) => removeDeck(p, id)),
         toggleSaved: (id) =>
           update((p) => ({
             ...p,

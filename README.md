@@ -51,6 +51,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Learning progress              | See an eight-week activity map, streaks, completed lessons, and recent results                            | [Progress](docs/screenshots/progress.png)                    |
 | School network                 | Reveal a shareable school address and scan a local QR code                                                | [Join the school network](docs/screenshots/join-network.png) |
 | Reading preferences            | Choose larger text, readable fonts, spacing, contrast, and quiet mode                                     | [Reading controls](docs/screenshots/reading-settings.png)    |
+| Personal notes                 | Keep browser notes beside words and lessons and include them in progress backups                          | [Word note](docs/screenshots/word-note.png)                  |
 | Personal settings              | Export or restore progress backups                                                                        | [Settings](docs/screenshots/settings.png)                    |
 
 <table>

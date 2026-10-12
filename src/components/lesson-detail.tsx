@@ -9,6 +9,7 @@ import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { useProgress } from "./progress-provider";
 import { Badge, PageHeading } from "./ui";
 import { AnswerFeedback } from "./answer-feedback";
+import { PersonalNote } from "./personal-note";
 
 export function LessonDetail({
   lesson,
@@ -171,6 +172,12 @@ export function LessonDetail({
           )}
         </div>
       )}
+      <PersonalNote
+        key={lesson.id}
+        kind="lesson"
+        id={lesson.id}
+        title={lesson.title}
+      />
     </article>
   );
 }

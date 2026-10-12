@@ -6,6 +6,7 @@ import type { Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { Badge } from "./ui";
 import { localEnglishVoice } from "@/lib/pronunciation";
+import { PersonalNote } from "./personal-note";
 
 export function WordCard({
   word,
@@ -87,6 +88,13 @@ export function WordCard({
         <Badge tone="green">{word.level}</Badge>
         <span>{word.synonyms.join(" · ")}</span>
       </div>
+      <PersonalNote
+        key={word.id}
+        kind="word"
+        id={word.id}
+        title={word.word}
+        compact
+      />
       {message && (
         <p className="inline-message" role="status" lang={locale} dir={dir}>
           {t(message)}

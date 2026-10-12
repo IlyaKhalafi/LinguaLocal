@@ -276,5 +276,17 @@
   "Practise listening": "تدرب على الاستماع",
   "{score} of {total} words": "{score} من {total} كلمة",
   "Use {count} words or fewer.": "اكتب {count} كلمة أو أقل.",
-  "Press Listen to start playback.": "اضغط استمع لبدء التشغيل."
+  "Press Listen to start playback.": "اضغط استمع لبدء التشغيل.",
+  "My note": "ملاحظتي",
+  "Save note": "حفظ الملاحظة",
+  "Close note": "إغلاق الملاحظة",
+  "Overwrite note": "استبدال الملاحظة",
+  "Reload note": "إعادة تحميل الملاحظة",
+  "This note changed in another tab.": "تغيرت هذه الملاحظة في علامة تبويب أخرى.",
+  "Note limit reached.": "تم بلوغ حد الملاحظات.",
+  "Note saved.": "تم حفظ الملاحظة.",
+  "Note saved for this visit.": "تم حفظ الملاحظة لهذه الزيارة.",
+  "Add note for {title}": "إضافة ملاحظة حول {title}",
+  "Edit note for {title}": "تعديل ملاحظة حول {title}",
+  "My note for {title}": "ملاحظتي حول {title}"
 }

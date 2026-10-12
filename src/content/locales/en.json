@@ -276,5 +276,17 @@
   "Practise listening": "Practise listening",
   "{score} of {total} words": "{score} of {total} words",
   "Use {count} words or fewer.": "Use {count} words or fewer.",
-  "Press Listen to start playback.": "Press Listen to start playback."
+  "Press Listen to start playback.": "Press Listen to start playback.",
+  "My note": "My note",
+  "Save note": "Save note",
+  "Close note": "Close note",
+  "Overwrite note": "Overwrite note",
+  "Reload note": "Reload note",
+  "This note changed in another tab.": "This note changed in another tab.",
+  "Note limit reached.": "Note limit reached.",
+  "Note saved.": "Note saved.",
+  "Note saved for this visit.": "Note saved for this visit.",
+  "Add note for {title}": "Add note for {title}",
+  "Edit note for {title}": "Edit note for {title}",
+  "My note for {title}": "My note for {title}"
 }

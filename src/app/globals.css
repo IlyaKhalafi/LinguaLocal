@@ -1389,6 +1389,57 @@ label {
   margin-block-start: 4px;
 }
 
+.personal-note {
+  position: relative;
+  margin-block-start: 24px;
+}
+.personal-note summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+.personal-note summary::-webkit-details-marker {
+  display: none;
+}
+.personal-note-compact {
+  margin: 0;
+}
+.personal-note-compact > summary {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: -31px;
+}
+.word-card .word-bottom {
+  padding-inline-end: 56px;
+}
+.personal-note-body {
+  padding-block-start: 16px;
+}
+.personal-note-body .form-field {
+  margin-block-end: 16px;
+}
+.personal-note-body textarea {
+  width: 100%;
+  resize: vertical;
+}
+.personal-note-body .text-link {
+  background: none;
+  border: 0;
+}
+.personal-note-status {
+  margin-block-start: 12px;
+  color: var(--subtle);
+  font-size: 12px;
+}
+.note-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
 .dictation form > .form-field {
   margin-block: 20px;
 }
