@@ -1,9 +1,12 @@
+import { encodeAssignment } from "../src/lib/assignments";
+import assignment from "../examples/assignment.json";
 import seed from "../src/content/starter.json";
 type PagePreview = {
   name: string;
   path: string;
   heading: string;
   label?: string;
+  displayPath?: string;
 };
 export const pageCatalogue: readonly PagePreview[] = [
   { name: "overview", path: "/", heading: "Home" },
@@ -20,6 +23,19 @@ export const pageCatalogue: readonly PagePreview[] = [
     path: "/flashcards?lesson=present-simple",
     heading: "Flashcards",
     label: "Lesson vocabulary review",
+  },
+  {
+    name: "assignment",
+    path: `/assignment?plan=${encodeURIComponent(encodeAssignment(assignment))}`,
+    heading: assignment.title,
+    label: "Classroom assignment",
+    displayPath: "/assignment?plan=PLAN",
+  },
+  {
+    name: "assignment-invalid",
+    path: "/assignment",
+    heading: "Assignment",
+    label: "Unavailable assignment link",
   },
   { name: "progress", path: "/progress", heading: "Progress" },
   { name: "settings", path: "/settings", heading: "Settings" },

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { assignmentTitleSchema } from "./assignments";
 import { emptyProgress, type Progress } from "./learning";
 
 const identifier = z.string().min(1).max(120);
@@ -61,6 +62,25 @@ export const attemptSchema = z
     "Score exceeds the number of questions",
   );
 
+const taskIdentifier = z
+  .string()
+  .regex(/^(lesson|book|word)\/[a-z0-9][a-z0-9-]{0,79}$/);
+export const checklistIdentifier = z.string().regex(/^[a-f0-9]{64}$/);
+export const checklistSchema = z
+  .object({
+    title: assignmentTitleSchema,
+    due: z.iso.date().optional(),
+    tasks: uniqueItems(taskIdentifier, 20).refine(
+      (tasks) => tasks.length > 0,
+      "At least one task is required",
+    ),
+    checked: uniqueItems(taskIdentifier, 20),
+  })
+  .refine(
+    (value) => value.checked.every((key) => value.tasks.includes(key)),
+    "Checked tasks must belong to the assignment",
+  );
+
 export const progressSchema = z.object({
   saved: z.array(identifier).max(20000),
   completed: z.array(identifier).max(1000),
@@ -70,6 +90,9 @@ export const progressSchema = z.object({
   goal: z.number().int().min(1).max(100),
   notes: boundedRecord(noteSchema, 500, noteIdentifier).default({}),
   decks: boundedRecord(deckSchema, 32, deckIdentifier).default({}),
+  assignments: boundedRecord(checklistSchema, 64, checklistIdentifier).default(
+    {},
+  ),
 });
 
 function recoverRecord(
@@ -124,6 +147,11 @@ export function recoverProgress(input: unknown): Progress {
             z.number().int().nonnegative(),
             20000,
           ),
+        ];
+      if (!result.success && key === "assignments")
+        return [
+          key,
+          recoverRecord(fields[key], checklistIdentifier, checklistSchema, 64),
         ];
       if (!result.success && key === "notes")
         return [

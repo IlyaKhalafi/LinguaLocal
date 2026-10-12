@@ -3428,3 +3428,96 @@ html[data-reading-size="large"] .practice-prompt {
 html[data-reading-spacing="relaxed"] .practice-prompt {
   line-height: 2;
 }
+
+.assignment-panel {
+  max-width: 720px;
+}
+.assignment-panel .section-heading {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.assignment-due {
+  font-size: 12px;
+  color: var(--muted);
+}
+.assignment-progress {
+  width: 100%;
+  height: 6px;
+  accent-color: var(--green);
+}
+.assignment-tasks {
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+.assignment-tasks li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.assignment-tasks li:last-child {
+  border: 0;
+  padding-bottom: 0;
+}
+.assignment-tasks input {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  accent-color: var(--green);
+}
+.assignment-tasks div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.assignment-tasks a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.assignment-tasks p {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.assignment-history {
+  margin-bottom: 24px;
+}
+.assignment-history li {
+  justify-content: space-between;
+}
+
+.assignment-check {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-height: 44px;
+  flex: 0 0 44px;
+  cursor: pointer;
+}
+.assignment-tasks a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.assignment-progress {
+  border: 0;
+  border-radius: 6px;
+  background: var(--soft);
+}
+.assignment-progress::-webkit-progress-bar {
+  background: var(--soft);
+  border-radius: 6px;
+}
+.assignment-progress::-webkit-progress-value {
+  background: var(--green);
+  border-radius: 6px;
+}
+.assignment-progress::-moz-progress-bar {
+  background: var(--green);
+  border-radius: 6px;
+}

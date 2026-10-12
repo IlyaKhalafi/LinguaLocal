@@ -326,5 +326,22 @@
   "Reload deck": "بارگذاری دوبارهٔ مجموعه",
   "Another tab changed saved progress. Export this visit before reloading.": "پیشرفت ذخیره‌شده در برگهٔ دیگری تغییر کرده است. پیش از بارگذاری دوباره، این نشست را خروجی بگیرید.",
   "Export this visit": "خروجی گرفتن از این نشست",
-  "Reload saved progress": "بارگذاری پیشرفت ذخیره‌شده"
+  "Reload saved progress": "بارگذاری پیشرفت ذخیره‌شده",
+  "Assignment": "تکلیف",
+  "Assignment checklist": "فهرست تکلیف",
+  "Assignment progress": "پیشرفت تکلیف",
+  "Ask your school for an updated link.": "از آموزشگاه پیوند تازه بخواهید.",
+  "{done} of {count} complete": "{done} از {count} انجام شده",
+  "Due {date}": "مهلت {date}",
+  "Was due {date}": "مهلت گذشته {date}",
+  "Complete {title}": "انجام {title}",
+  "No longer in this collection": "دیگر در این مجموعه نیست",
+  "Lesson": "درس",
+  "Book": "کتاب",
+  "My assignments": "تکلیف‌های من",
+  "Remove checklist for {title}": "حذف فهرست {title}",
+  "Remove this checklist? Your lessons and reviews stay saved.": "این فهرست حذف شود؟ درس‌ها و مرورهای شما باقی می‌مانند.",
+  "Assignment limit reached. Remove an older checklist from Progress.": "تعداد تکلیف‌ها به حد مجاز رسیده است. یک فهرست قدیمی را از صفحهٔ پیشرفت حذف کنید.",
+  "No available tasks": "تکلیف در دسترس نیست",
+  "This assignment link is unavailable": "پیوند این تکلیف در دسترس نیست"
 }

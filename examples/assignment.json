@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "title": "A little everyday English",
+  "tasks": [
+    { "kind": "lesson", "id": "present-simple" },
+    { "kind": "book", "id": "everyday-english" },
+    { "kind": "word", "id": "curious" }
+  ]
+}

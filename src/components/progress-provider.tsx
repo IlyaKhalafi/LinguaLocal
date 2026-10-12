@@ -18,8 +18,14 @@ import {
   type Attempt,
   type Progress,
   type ReviewRating,
+  type AssignmentChecklist,
 } from "@/lib/learning";
-import { updateNote, updateDeck, removeDeck } from "@/lib/personal-study";
+import {
+  updateNote,
+  updateDeck,
+  removeDeck,
+  updateChecklist,
+} from "@/lib/personal-study";
 
 const STORAGE_KEY = "lingualocal.progress.v1";
 let cachedRaw: string | null | undefined;
@@ -34,8 +40,9 @@ function snapshot(): Progress {
   if (typeof window === "undefined") return emptyProgress;
   if (memoryFallback) {
     try {
-      if (localStorage.getItem(STORAGE_KEY) !== cachedRaw)
-        storageConflict = true;
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (cachedRaw === undefined && raw === null) cachedRaw = null;
+      else if (raw !== cachedRaw) storageConflict = true;
     } catch {
       /* Keep the recoverable in-memory copy. */
     }
@@ -102,10 +109,15 @@ function active(progress: Progress): Progress {
 }
 function updateStudy(transform: (progress: Progress) => Progress | undefined) {
   const previous = cached;
-  const next = transform(snapshot());
+  const current = snapshot();
+  const next = transform(current);
   if (!next) {
     if (previous !== cached) emit();
     return false;
+  }
+  if (next === current) {
+    if (previous !== cached) emit();
+    return true;
   }
   update(() => next);
   return true;
@@ -130,6 +142,13 @@ const context = createContext<{
     included: boolean,
   ) => "saved" | "missing" | "full";
   deleteDeck: (id: string) => void;
+  removeAssignment: (id: string) => void;
+  setAssignmentTask: (
+    id: string,
+    plan: Omit<AssignmentChecklist, "checked">,
+    key: string,
+    checked: boolean,
+  ) => boolean;
   record: (attempt: Omit<Attempt, "date" | "id">) => void;
   setGoal: (goal: number) => void;
   reset: () => void;
@@ -203,6 +222,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
           });
           return saved ? "saved" : reason;
         },
+        removeAssignment: (id) =>
+          update((p) => {
+            const assignments = { ...p.assignments };
+            delete assignments[id];
+            return { ...p, assignments };
+          }),
+        setAssignmentTask: (id, plan, key, checked) =>
+          updateStudy((p) => updateChecklist(p, id, plan, key, checked)),
         deleteDeck: (id) => update((p) => removeDeck(p, id)),
         toggleSaved: (id) =>
           update((p) => ({

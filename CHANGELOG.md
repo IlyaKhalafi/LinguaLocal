@@ -8,6 +8,7 @@ LinguaLocal runs as one Next.js service on the school network. Shared curriculum
 - English, Persian, Arabic, and Turkish interfaces with mirrored layouts
 - Local audio and video, captions, timed transcripts, passage repetition, and dictation
 - Saved words, spaced review, private progress, daily goals, and portable backups
+- Classroom assignment links with private checklists and optional due dates
 - Private study decks, word membership, tags, and optional adaptive review ratings
 - Private notes beside words and lessons with protection for unfinished drafts
 - Light and dark appearance, larger text, readable fonts, spacing, contrast, and quiet mode

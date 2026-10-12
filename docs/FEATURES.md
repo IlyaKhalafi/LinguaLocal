@@ -39,6 +39,8 @@ Every starter page is captured on desktop and mobile. The examples use the origi
 | Choose the right register         | `/lessons/register-shift`           | [View](screenshots/lesson-register-shift.png)        | [View](screenshots/lesson-register-shift-mobile.png)        |
 | Read a claim closely              | `/lessons/critical-claims`          | [View](screenshots/lesson-critical-claims.png)       | [View](screenshots/lesson-critical-claims-mobile.png)       |
 | Page not found                    | `/not-a-page`                       | [View](screenshots/not-found.png)                    | [View](screenshots/not-found-mobile.png)                    |
+| Classroom assignment              | `/assignment?plan=PLAN`             | [View](screenshots/assignment.png)                   | [View](screenshots/assignment-mobile.png)                   |
+| Unavailable assignment link       | `/assignment`                       | [View](screenshots/assignment-invalid.png)           | [View](screenshots/assignment-invalid-mobile.png)           |
 
 ## A little practice in action
 
@@ -145,3 +147,13 @@ Create a named deck in the review screen and add dictionary words using the smal
 [Deck controls](screenshots/deck-manager.png) · [Mobile](screenshots/deck-manager-mobile.png) · [Word membership](screenshots/word-decks.png) · [Mobile membership](screenshots/word-decks-mobile.png) · [Concurrent edit](screenshots/deck-conflict.png) · [Mobile edit](screenshots/deck-conflict-mobile.png) · [Review ratings](screenshots/review-ratings.png) · [Mobile ratings](screenshots/review-ratings-mobile.png)
 
 Hard and easy ratings are folded beneath the two regular review buttons. Difficult practice appears after repeated forgotten answers and clears after three successful recalls.
+
+[Exact dictionary link](screenshots/dictionary-entry.png) · [Mobile entry](screenshots/dictionary-entry-mobile.png)
+
+### Classroom assignments
+
+Open a school link, work through its lessons, books, and words, and mark a private checklist. An optional date shows when the work is due. Started checklists can be reopened from progress or included in a backup.
+
+![Assignment](screenshots/assignment.png)
+
+[Mobile checklist](screenshots/assignment-mobile.png) · [Unavailable link](screenshots/assignment-invalid.png) · [Missing material](screenshots/assignment-stale.png) · [Saved checklists](screenshots/assignment-history.png)

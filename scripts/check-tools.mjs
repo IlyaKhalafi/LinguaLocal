@@ -35,6 +35,28 @@ try {
     output,
     "src/content/starter.json",
   ]);
+  const assignmentOutput = path.join(directory, "assignment.txt");
+  run("create-assignment", [
+    "examples/assignment.json",
+    "src/content/starter.json",
+    "http://192.168.1.20:3000",
+    assignmentOutput,
+  ]);
+  const assignmentLink = await readFile(assignmentOutput, "utf8");
+  assert.ok(
+    assignmentLink.includes("http://192.168.1.20:3000/assignment?plan="),
+  );
+  run(
+    "create-assignment",
+    [
+      "examples/assignment.json",
+      "src/content/starter.json",
+      "http://192.168.1.20:3000",
+      assignmentOutput,
+    ],
+    1,
+  );
+  assert.equal(await readFile(assignmentOutput, "utf8"), assignmentLink);
   const original = await readFile(output, "utf8");
   run("validate-content", [output]);
   const worksheets = path.join(directory, "worksheets");

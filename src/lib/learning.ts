@@ -16,6 +16,12 @@ export type Attempt = {
   total: number;
   date: string;
 };
+export type AssignmentChecklist = {
+  title: string;
+  due?: string;
+  tasks: string[];
+  checked: string[];
+};
 export type Progress = {
   saved: string[];
   completed: string[];
@@ -25,6 +31,7 @@ export type Progress = {
   goal: number;
   notes: Record<string, string>;
   decks: Record<string, StudyDeck>;
+  assignments: Record<string, AssignmentChecklist>;
 };
 export const emptyProgress: Progress = {
   saved: [],
@@ -35,6 +42,7 @@ export const emptyProgress: Progress = {
   goal: 10,
   notes: {},
   decks: {},
+  assignments: {},
 };
 export function isDifficultReview(review: Review | undefined) {
   return (review?.lapses ?? 0) >= 2 && (review?.repetitions ?? 0) < 3;

@@ -326,5 +326,22 @@
   "Reload deck": "Reload deck",
   "Another tab changed saved progress. Export this visit before reloading.": "Another tab changed saved progress. Export this visit before reloading.",
   "Export this visit": "Export this visit",
-  "Reload saved progress": "Reload saved progress"
+  "Reload saved progress": "Reload saved progress",
+  "Assignment": "Assignment",
+  "Assignment checklist": "Assignment checklist",
+  "Assignment progress": "Assignment progress",
+  "Ask your school for an updated link.": "Ask your school for an updated link.",
+  "{done} of {count} complete": "{done} of {count} complete",
+  "Due {date}": "Due {date}",
+  "Was due {date}": "Was due {date}",
+  "Complete {title}": "Complete {title}",
+  "No longer in this collection": "No longer in this collection",
+  "Lesson": "Lesson",
+  "Book": "Book",
+  "My assignments": "My assignments",
+  "Remove checklist for {title}": "Remove checklist for {title}",
+  "Remove this checklist? Your lessons and reviews stay saved.": "Remove this checklist? Your lessons and reviews stay saved.",
+  "Assignment limit reached. Remove an older checklist from Progress.": "Assignment limit reached. Remove an older checklist from Progress.",
+  "No available tasks": "No available tasks",
+  "This assignment link is unavailable": "This assignment link is unavailable"
 }

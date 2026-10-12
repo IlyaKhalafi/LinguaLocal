@@ -48,7 +48,9 @@ export function Dictionary({
         index,
         search,
         (word) =>
-          (!wordId || word.id === wordId) && (!level || word.level === level) && (!saved || savedIds.has(word.id)),
+          (!wordId || word.id === wordId) &&
+          (!level || word.level === level) &&
+          (!saved || savedIds.has(word.id)),
       ),
     [index, search, level, saved, savedIds, wordId],
   );
@@ -65,7 +67,12 @@ export function Dictionary({
   }
   return (
     <>
-      {wordId && <Link className="back-link" href="/dictionary"><ArrowLeft size={14} />{t("All words")}</Link>}
+      {wordId && (
+        <Link className="back-link" href="/dictionary">
+          <ArrowLeft size={14} />
+          {t("All words")}
+        </Link>
+      )}
       <PageHeading title={t("Dictionary")} />
       <div className="toolbar">
         <SearchField

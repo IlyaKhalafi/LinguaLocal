@@ -370,6 +370,19 @@ async function main() {
       await capturePersonalNotes(context, locale);
       await capturePractice(context, locale);
       await captureStudyDecks(context, locale);
+      await page.goto(
+        base +
+          `/assignment?plan=${encodeURIComponent(JSON.stringify({ version: 1, title: "A little everyday English", tasks: [{ kind: "word", id: "curious" }] }))}`,
+      );
+      await page
+        .getByRole("checkbox", {
+          name: translate(locale, "Complete {title}", { title: "curious" }),
+          exact: true,
+        })
+        .check();
+      await page.goto(base + "/progress");
+      await page.locator(".assignment-history > summary").click();
+      await capture(page, "assignment-history", locale);
       await context.close();
       console.log(`Captured ${locale} pages and practice`);
     }
@@ -383,7 +396,7 @@ async function main() {
       "| --- | --- | --- | --- |",
       ...pageCatalogue.map(
         (route) =>
-          `| ${route.label ?? route.heading} | \`${route.path}\` | [View](screenshots/${route.name}.png) | [View](screenshots/${route.name}-mobile.png) |`,
+          `| ${route.label ?? route.heading} | \`${route.displayPath ?? route.path}\` | [View](screenshots/${route.name}.png) | [View](screenshots/${route.name}-mobile.png) |`,
       ),
     ].join("\n");
     const features = await readFile(featuresPath, "utf8");

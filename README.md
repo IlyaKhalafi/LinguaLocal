@@ -52,6 +52,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | School network                 | Reveal a shareable school address and scan a local QR code                                                | [Join the school network](docs/screenshots/join-network.png) |
 | Reading preferences            | Choose larger text, readable fonts, spacing, contrast, and quiet mode                                     | [Reading controls](docs/screenshots/reading-settings.png)    |
 | Personal notes                 | Keep browser notes beside words and lessons and include them in progress backups                          | [Word note](docs/screenshots/word-note.png)                  |
+| Classroom assignments          | Open shared lesson, book, and word links and keep a private checklist with an optional due date           | [Assignment](docs/screenshots/assignment.png)                |
 | Private study decks            | Collect words in named decks, add tags, and practise a focused selection                                  | [Study decks](docs/screenshots/study-decks.png)              |
 | Personal settings              | Export or restore progress backups                                                                        | [Settings](docs/screenshots/settings.png)                    |
 

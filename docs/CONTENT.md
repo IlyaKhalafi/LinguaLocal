@@ -172,3 +172,15 @@ The 16 included lessons cover grammar, vocabulary, reading, speaking, and writin
 A lesson can optionally include `wordIds` containing up to 200 unique dictionary IDs from the same pack. Validation rejects missing or repeated references. Older packs without this field continue to work. Keep lesson IDs stable to preserve completed lessons in student browsers.
 
 After completing a lesson, students can review its linked words immediately. Cards follow the `wordIds` order and use the student's normal private review schedule. The next lesson follows collection order within the same CEFR level. Lessons without linked words still offer the next lesson. No learner account or shared editing is involved.
+
+## Assignment links
+
+Create a plan on the server using `examples/assignment.json`. Each task names a lesson, book, or dictionary word by its existing ID. A plan has up to 20 unique tasks and an optional `due` date in `YYYY-MM-DD` form.
+
+```sh
+npm run assignment:create -- examples/assignment.json src/content/starter.json http://192.168.1.20:3000 assignment-link.txt
+```
+
+The command validates tasks against the chosen collection and creates a new link file without replacing an existing file. Share its link on the school network. In a standalone archive, run `node scripts/create-assignment.mjs` with the same arguments.
+
+Students open the materials and mark their own checklist. Up to 64 checklists that have been marked at least once stay in the current browser and are included in progress backups. The progress screen can reopen or remove a checklist, including one whose boxes have all been cleared. Checklists are self-reported and do not verify identity or completion. Shared curriculum is unchanged.

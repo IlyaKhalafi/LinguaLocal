@@ -18,8 +18,10 @@ export function PageHeading({
   description,
   action,
   contentLanguage,
+  contentDirection,
 }: {
   contentLanguage?: string;
+  contentDirection?: "ltr" | "rtl" | "auto";
   eyebrow?: ReactNode;
   title: string;
   description?: string;
@@ -31,7 +33,9 @@ export function PageHeading({
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
         <h1
           lang={contentLanguage}
-          dir={contentLanguage === "en" ? "ltr" : undefined}
+          dir={
+            contentDirection ?? (contentLanguage === "en" ? "ltr" : undefined)
+          }
         >
           {title}
         </h1>
@@ -39,7 +43,9 @@ export function PageHeading({
           <p
             className="muted"
             lang={contentLanguage}
-            dir={contentLanguage === "en" ? "ltr" : undefined}
+            dir={
+              contentDirection ?? (contentLanguage === "en" ? "ltr" : undefined)
+            }
           >
             {description}
           </p>

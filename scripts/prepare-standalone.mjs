@@ -15,6 +15,8 @@ await cp("node_modules/zod", ".next/standalone/node_modules/zod", {
   recursive: true,
 });
 const sources = [
+  ["src/lib/assignments.ts", "assignments.mjs"],
+  ["scripts/create-assignment.ts", "create-assignment.mjs"],
   ["scripts/load-environment.mjs", "load-environment.mjs"],
   ["scripts/storage-paths.mjs", "storage-paths.mjs"],
   ["src/content/starter.json", "starter.json"],

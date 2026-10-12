@@ -1,4 +1,5 @@
 "use client";
+import { AssignmentList } from "./assignment-list";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import {
@@ -64,6 +65,7 @@ export function ProgressDashboard({
           </button>
         }
       />
+      <AssignmentList content={content} />
       <div className="stat-grid">
         {stats.map(({ icon: Icon, value, label }) => (
           <div className="stat-card" key={label}>

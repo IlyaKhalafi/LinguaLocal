@@ -1,5 +1,7 @@
-import type { Progress, StudyDeck } from "./learning";
+import type { Progress, StudyDeck, AssignmentChecklist } from "./learning";
 import {
+  checklistIdentifier,
+  checklistSchema,
   deckIdentifier,
   deckSchema,
   noteIdentifier,
@@ -60,4 +62,35 @@ export function removeDeck(progress: Progress, id: string): Progress {
   const decks = { ...progress.decks };
   delete decks[id];
   return { ...progress, decks };
+}
+
+export function updateChecklist(
+  progress: Progress,
+  id: string,
+  plan: Omit<AssignmentChecklist, "checked">,
+  key: string,
+  checked: boolean,
+): Progress | undefined {
+  if (!checklistIdentifier.safeParse(id).success || !plan.tasks.includes(key))
+    return;
+  const existing = Object.hasOwn(progress.assignments, id)
+    ? progress.assignments[id]
+    : undefined;
+  if (!existing && !checked) return progress;
+  const result = checklistSchema.safeParse({
+    ...plan,
+    checked: checked
+      ? [...(existing?.checked ?? []), key]
+      : (existing?.checked ?? []).filter((value) => value !== key),
+  });
+  if (!result.success) return;
+  if (
+    !existing &&
+    Object.keys(progress.assignments).length >= 64 &&
+    result.data.checked.length
+  )
+    return;
+  const assignments = { ...progress.assignments };
+  assignments[id] = result.data;
+  return { ...progress, assignments };
 }

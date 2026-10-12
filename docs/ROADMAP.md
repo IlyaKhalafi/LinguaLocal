@@ -16,7 +16,7 @@ The next release expands student practice, classroom materials, and local deploy
 
 ## Classroom materials
 
-- [ ] Assignment links with local checklists and optional due dates
+- [x] Assignment links with local checklists and optional due dates
 - [x] Printable vocabulary and lesson worksheets with separate answer keys
 - [ ] Self-reported progress summaries and classroom roll-ups
 - [x] Vocabulary spreadsheet import and deck export

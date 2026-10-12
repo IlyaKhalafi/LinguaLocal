@@ -38,7 +38,12 @@ export function updateListQuery(
   changes: Partial<ListQuery>,
 ) {
   const next = new URLSearchParams(params);
-  if (["search", "level", "category", "saved"].some(key => changes[key as keyof ListQuery] !== undefined)) next.delete("word");
+  if (
+    ["search", "level", "category", "saved"].some(
+      (key) => changes[key as keyof ListQuery] !== undefined,
+    )
+  )
+    next.delete("word");
   if (
     ["search", "level", "category", "saved"].some(
       (key) => changes[key as keyof ListQuery] !== undefined,

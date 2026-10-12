@@ -326,5 +326,22 @@
   "Reload deck": "Desteyi yeniden yükle",
   "Another tab changed saved progress. Export this visit before reloading.": "Kayıtlı ilerleme başka bir sekmede değişti. Yeniden yüklemeden önce bu oturumu dışa aktarın.",
   "Export this visit": "Bu oturumu dışa aktar",
-  "Reload saved progress": "Kayıtlı ilerlemeyi yeniden yükle"
+  "Reload saved progress": "Kayıtlı ilerlemeyi yeniden yükle",
+  "Assignment": "Ödev",
+  "Assignment checklist": "Ödev kontrol listesi",
+  "Assignment progress": "Ödev ilerlemesi",
+  "Ask your school for an updated link.": "Okulunuzdan güncel bir bağlantı isteyin.",
+  "{done} of {count} complete": "{count} görevden {done} tamamlandı",
+  "Due {date}": "Son tarih {date}",
+  "Was due {date}": "Son tarih geçti {date}",
+  "Complete {title}": "{title} görevini tamamla",
+  "No longer in this collection": "Artık bu koleksiyonda yok",
+  "Lesson": "Ders",
+  "Book": "Kitap",
+  "My assignments": "Ödevlerim",
+  "Remove checklist for {title}": "{title} kontrol listesini kaldır",
+  "Remove this checklist? Your lessons and reviews stay saved.": "Bu kontrol listesi kaldırılsın mı? Dersleriniz ve tekrarlarınız kayıtlı kalır.",
+  "Assignment limit reached. Remove an older checklist from Progress.": "Ödev sınırına ulaşıldı. İlerleme sayfasından eski bir kontrol listesini kaldırın.",
+  "No available tasks": "Kullanılabilir görev yok",
+  "This assignment link is unavailable": "Bu ödev bağlantısı kullanılamıyor"
 }
