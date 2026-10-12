@@ -64,7 +64,9 @@ test("blocked cookies and storage keep preferences usable with separate notices"
     "large",
   );
   await expect(
-    page.getByText("Preferences will last for this visit.", { exact: true }),
+    page.getByText("Preferences will reset when this page is reloaded.", {
+      exact: true,
+    }),
   ).toBeVisible();
   const notices = page.locator(".client-notices .storage-notice");
   await expect(notices).toHaveCount(2);

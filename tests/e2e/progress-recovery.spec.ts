@@ -25,6 +25,10 @@ test("partial corruption preserves saved words and the first recovery copy", asy
   ).toBeVisible();
   await page.goto("/progress");
   await expect(page.locator("#daily-goal")).toHaveValue("15");
+  await page
+    .locator("summary")
+    .filter({ hasText: "Completed lessons" })
+    .click();
   await expect(
     page.getByText("✓ Everyday habits, simple sentences", { exact: true }),
   ).toBeVisible();

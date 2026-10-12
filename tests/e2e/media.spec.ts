@@ -14,17 +14,33 @@ test("video captions, playback speed, and passage loops work", async ({
       .locator("video")
       .evaluate((v: HTMLVideoElement) => v.playbackRate),
   ).toBe(0.75);
-  await page.evaluate(async () => {
+  await page.evaluate(() => {
     const v = document.querySelector("video")!;
-    await v.play();
+    v.pause();
     v.currentTime = 2;
   });
+  await expect
+    .poll(() =>
+      page.locator("video").evaluate((v: HTMLVideoElement) => v.currentTime),
+    )
+    .toBeCloseTo(2, 1);
   await page.getByText("Repeat a passage", { exact: true }).click();
   await page.getByRole("button", { name: /Set loop start/ }).click();
+  await expect(
+    page.getByRole("button", { name: "Set loop start 2s", exact: true }),
+  ).toBeVisible();
   await page.evaluate(() => {
     document.querySelector("video")!.currentTime = 5;
   });
+  await expect
+    .poll(() =>
+      page.locator("video").evaluate((v: HTMLVideoElement) => v.currentTime),
+    )
+    .toBeCloseTo(5, 1);
   await page.getByRole("button", { name: /Set loop end/ }).click();
+  await expect(
+    page.getByRole("button", { name: "Repeat on", exact: true }),
+  ).toBeVisible();
   await page.evaluate(() => {
     const v = document.querySelector("video")!;
     v.currentTime = 7;
