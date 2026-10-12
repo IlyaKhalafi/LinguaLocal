@@ -45,6 +45,8 @@ Start with an [original example pack](examples/packs/README.md). Keep definition
 
 Validate the pack with `npm run content:validate -- your-pack.json`. Run `npm run content:diagnose -- your-pack.json` when including media. Add a short description of the intended CEFR level and classroom use in your pull request.
 
+Capture the published GitHub README with `npm run readme:preview` after pushing documentation changes. This command needs internet access and an installed Playwright Chromium browser. It checks that every README image decodes and excludes floating GitHub controls from the capture.
+
 ## Preparing a distribution
 
 Run the checks above before using `npm run release:package -- releases/lingualocal.tar.gz`. See the [deployment guide](docs/DEPLOYMENT.md) for platform requirements. Record user-visible changes in [CHANGELOG.md](CHANGELOG.md).
