@@ -439,6 +439,7 @@
       "description": "Turn a simple hello into a real conversation.",
       "level": "A1",
       "category": "Speaking",
+      "wordIds": ["hello", "friend", "listen", "classroom", "weather", "smile"],
       "minutes": 6,
       "sections": [
         {
@@ -469,6 +470,7 @@
       "description": "Talk about the things you do, day after day.",
       "level": "A1",
       "category": "Grammar",
+      "wordIds": ["read", "school", "morning", "learn", "write", "today"],
       "minutes": 8,
       "sections": [
         {

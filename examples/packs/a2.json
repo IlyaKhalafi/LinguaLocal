@@ -471,6 +471,14 @@
       "description": "Useful phrases for finding your way in a new city.",
       "level": "A2",
       "category": "Vocabulary",
+      "wordIds": [
+        "direction",
+        "journey",
+        "ticket",
+        "visitor",
+        "arrive",
+        "useful"
+      ],
       "minutes": 7,
       "sections": [
         {

@@ -1381,12 +1381,51 @@ label {
   background: #fbf0e9;
   background: light-dark(#fbf0e9, #452c27);
 }
+.answer-feedback > strong {
+  display: block;
+}
+.feedback-content {
+  text-align: start;
+  margin-block-start: 4px;
+}
+.feedback-content p {
+  margin-block-start: 4px;
+}
 .completion {
   margin-top: 24px;
   display: flex;
   align-items: center;
   gap: 14px;
   justify-content: space-between;
+}
+.lesson-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.lesson-navigation .back-link {
+  margin: 0;
+}
+.lesson-completion {
+  flex-wrap: wrap;
+}
+.lesson-completed {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-size: 13px;
+}
+.lesson-next-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.lesson-next-actions .text-link {
+  min-height: 44px;
 }
 .game-grid {
   display: grid;

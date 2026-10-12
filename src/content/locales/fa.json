@@ -21,7 +21,6 @@
   "Card {current} of {total}": "کارت {current} از {total}",
   "Check answer": "بررسی پاسخ",
   "Check meaning": "بررسی معنی",
-  "Check your answer before marking this lesson complete.": "پیش از تکمیل این درس، پاسخ خود را بررسی کنید.",
   "Choose a word first.": "ابتدا یک واژه انتخاب کنید.",
   "Choose a word, then its meaning.": "یک واژه و سپس معنی آن را انتخاب کنید.",
   "Choose all words to practise now.": "همه واژه‌ها را برای تمرین انتخاب کنید.",
@@ -117,7 +116,6 @@
   "Resources": "منابع",
   "Restore a progress backup": "بازیابی پشتیبان پیشرفت",
   "Reveal meaning of {word}": "نمایش معنی {word}",
-  "Review again": "مرور دوباره",
   "Review and remember words.": "واژه‌ها را مرور کنید و به خاطر بسپارید.",
   "Review complete": "مرور تمام شد",
   "Review more words": "مرور واژه‌های بیشتر",
@@ -260,5 +258,12 @@
   "Writing": "نوشتن",
   "Filter lessons by subject": "فیلتر درس‌ها بر اساس موضوع",
   "{count} lessons": "{count} درس",
-  "This selection needs four distinct words.": "این مجموعه به چهار واژهٔ متمایز نیاز دارد."
+  "This selection needs four distinct words.": "این مجموعه به چهار واژهٔ متمایز نیاز دارد.",
+  "Review lesson words": "مرور واژه‌های درس",
+  "Next lesson": "درس بعدی",
+  "Back to lesson": "بازگشت به درس",
+  "No words for this lesson": "این درس واژه‌ای برای مرور ندارد",
+  "Restart review": "شروع دوبارهٔ مرور",
+  "Not yet": "هنوز نه",
+  "Review all words": "مرور همهٔ واژه‌ها"
 }

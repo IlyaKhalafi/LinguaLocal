@@ -51,6 +51,17 @@ lessons = [
     {"id": "word-families", "title": "One word, many possibilities", "description": "Build your vocabulary through word families.", "level": "B1", "category": "Vocabulary", "minutes": 5, "sections": [{"title": "Meet a word family", "body": "Words often belong to a family. Think of create, creative, creativity, and creation. They share a central meaning, but their roles in a sentence differ. Create is a verb. Creative is an adjective. Creativity and creation are nouns."}, {"title": "Notice the ending", "body": "Endings can give you clues. Many nouns end in -tion or -ity. Many adjectives end in -ful or -ive. Learn a word with its family and write one sentence for each form."}], "question": "Which word is an adjective?", "options": ["Creativity", "Create", "Creative"], "answer": 2, "explanation": "Creative describes a person or thing, so it is an adjective."},
 ]
 
+lesson_words = {
+    "small-talk": ["hello", "friend", "listen", "classroom", "weather", "smile"],
+    "present-simple": ["read", "school", "morning", "learn", "write", "today"],
+    "travel-phrases": ["direction", "journey", "ticket", "visitor", "arrive", "useful"],
+    "reading-between-lines": ["notice", "evidence", "interpret", "patient", "careful", "compare"],
+    "giving-opinions": ["perspective", "thoughtful", "evidence", "convincing", "interpret", "compromise"],
+    "word-families": ["creative", "improve", "achieve", "generous", "useful", "thoughtful"],
+}
+for lesson in lessons:
+    lesson["wordIds"] = lesson_words[lesson["id"]]
+
 books[0]["resources"].extend([
     {"id": "greetings-video", "title": "Start with hello", "kind": "video", "file": "greetings.mp4", "captions": "greetings.vtt", "duration": "0:12", "unit": "Unit 1", "transcript": "Hello. A new conversation starts here.\nHow are you today?\nI am well. Thank you for asking."},
     {"id": "greetings-reading", "title": "Your first conversation", "kind": "pdf", "file": "greetings.pdf", "duration": "1 page", "unit": "Unit 1"},

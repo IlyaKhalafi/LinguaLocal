@@ -8,6 +8,7 @@ import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
 import { PageHeading } from "./ui";
+import { AnswerFeedback } from "./answer-feedback";
 
 export function Quiz({ words }: { words: Word[] }) {
   const { t } = useLocale();
@@ -165,19 +166,9 @@ export function Quiz({ words }: { words: Word[] }) {
               ))}
             </div>
             {checked && (
-              <p
-                className={`feedback ${selected === question.word.id ? "" : "incorrect"}`}
-                role="status"
-              >
-                <strong>
-                  {selected === question.word.id
-                    ? t("Correct. ")
-                    : t("Incorrect. ")}
-                </strong>
-                <bdi lang="en" dir="ltr">
-                  {question.word.example}
-                </bdi>
-              </p>
+              <AnswerFeedback correct={selected === question.word.id}>
+                {question.word.example}
+              </AnswerFeedback>
             )}
             <div className="game-controls">
               {checked ? (

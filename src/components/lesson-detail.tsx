@@ -2,26 +2,45 @@
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, Printer } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Printer } from "lucide-react";
 import type { Lesson } from "@/lib/schema";
+import type { LessonSummary } from "@/lib/lesson-study";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { useProgress } from "./progress-provider";
 import { Badge, PageHeading } from "./ui";
+import { AnswerFeedback } from "./answer-feedback";
 
-export function LessonDetail({ lesson }: { lesson: Lesson }) {
+export function LessonDetail({
+  lesson,
+  next,
+}: {
+  lesson: Lesson;
+  next?: LessonSummary;
+}) {
   const { t } = useLocale();
   const [selected, setSelected] = useState<number | null>(null);
   const [checked, setChecked] = useState(false);
+  const [completionRequest, setCompletionRequest] = useState(0);
   const { progress, complete } = useProgress();
   const done = progress.completed.includes(lesson.id);
   const retryTarget = useFocusOnChange(checked);
-  const completedTarget = useFocusOnChange(done);
+  const completedTarget = useFocusOnChange(completionRequest);
   return (
     <article className="lesson-content">
-      <Link className="back-link" href="/lessons">
-        <ArrowLeft size={14} />
-        {t("All lessons")}
-      </Link>
+      <div className="lesson-navigation no-print">
+        <Link className="back-link" href="/lessons">
+          <ArrowLeft size={14} />
+          {t("All lessons")}
+        </Link>
+        <button
+          className="icon-button"
+          aria-label={t("Print lesson")}
+          title={t("Print lesson")}
+          onClick={() => window.print()}
+        >
+          <Printer size={17} aria-hidden="true" />
+        </button>
+      </div>
       <PageHeading
         contentLanguage="en"
         eyebrow={
@@ -67,17 +86,12 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           ))}
         </div>
         {checked && (
-          <p
-            className={`feedback ${selected === lesson.answer ? "" : "incorrect"}`}
-            role="status"
+          <AnswerFeedback
+            correct={selected === lesson.answer}
+            ref={retryTarget}
           >
-            <strong>
-              {selected === lesson.answer ? t("Correct. ") : t("Incorrect. ")}
-            </strong>
-            <bdi lang="en" dir="ltr">
-              {lesson.explanation}
-            </bdi>
-          </p>
+            {lesson.explanation}
+          </AnswerFeedback>
         )}
         <div className="game-controls">
           {checked ? (
@@ -92,7 +106,7 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
             </button>
           ) : (
             <button
-              className="button primary"
+              className={`button ${done ? "secondary" : "primary"}`}
               disabled={selected === null}
               onClick={() => setChecked(true)}
             >
@@ -101,37 +115,61 @@ export function LessonDetail({ lesson }: { lesson: Lesson }) {
           )}
         </div>
       </section>
-      <div
-        className="completion"
-        ref={completedTarget}
-        tabIndex={-1}
-        role="group"
-        aria-label={done ? t("Completed") : t("Practice")}
-      >
-        <button className="button secondary" onClick={() => window.print()}>
-          <Printer size={14} />
-          {t("Print lesson")}
-        </button>
-        <button
-          className={`button ${done ? "soft-button" : "primary"}`}
-          disabled={done || !checked}
-          aria-describedby={
-            !done && !checked ? "lesson-complete-help" : undefined
-          }
-          onClick={() => complete(lesson.id)}
-        >
-          <CheckCircle2 size={15} />
-          {done ? t("Completed") : t("Mark as complete")}
-        </button>
-      </div>
-      {!done && !checked && (
-        <p
-          id="lesson-complete-help"
-          className="muted"
-          style={{ marginTop: 12, fontSize: 12 }}
-        >
-          {t("Check your answer before marking this lesson complete.")}
-        </p>
+      {(checked || done) && (
+        <div className="completion lesson-completion no-print">
+          {done ? (
+            <>
+              <span
+                className="lesson-completed"
+                role="status"
+                aria-label={t("Completed")}
+              >
+                <CheckCircle2 size={16} aria-hidden="true" />
+                {t("Completed")}
+              </span>
+              <div className="lesson-next-actions">
+                {lesson.wordIds?.length ? (
+                  <>
+                    <Link
+                      className="button primary"
+                      ref={completedTarget}
+                      href={`/flashcards?lesson=${lesson.id}`}
+                    >
+                      {t("Review lesson words")}
+                      <ArrowRight size={14} />
+                    </Link>
+                    {next && (
+                      <Link className="text-link" href={`/lessons/${next.id}`}>
+                        {t("Next lesson")}
+                        <ArrowRight size={14} />
+                      </Link>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    className="button primary"
+                    ref={completedTarget}
+                    href={next ? `/lessons/${next.id}` : "/lessons"}
+                  >
+                    {t(next ? "Next lesson" : "All lessons")}
+                    <ArrowRight size={14} />
+                  </Link>
+                )}
+              </div>
+            </>
+          ) : (
+            <button
+              className="button primary"
+              onClick={() => {
+                complete(lesson.id);
+                setCompletionRequest((request) => request + 1);
+              }}
+            >
+              <CheckCircle2 size={15} />
+              {t("Mark as complete")}
+            </button>
+          )}
+        </div>
       )}
     </article>
   );

@@ -3,6 +3,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { locales, translate, type Locale } from "../src/lib/locale";
 import { pageCatalogue } from "./page-catalogue";
+import seed from "../src/content/starter.json";
 
 const base = process.env.SCREENSHOT_BASE_URL || "http://127.0.0.1:3100";
 const folder = "docs/screenshots";
@@ -68,7 +69,67 @@ async function capturePractice(context: BrowserContext, locale: Locale) {
       })
       .click();
     await capture(page, flow.name, locale);
+    if (flow.name === "practice-playing") {
+      await page
+        .getByLabel(translate(locale, "Your answer"))
+        .fill("not-a-word");
+      await page
+        .getByRole("button", {
+          name: translate(locale, "Check answer"),
+          exact: true,
+        })
+        .click();
+      await capture(page, "practice-correction", locale);
+    } else if (flow.name === "quiz-playing") {
+      const headword = await page.locator(".quiz-word").innerText();
+      const word = seed.words.find((item) => item.word === headword)!;
+      await page
+        .getByRole("button", { name: word.definition, exact: false })
+        .click();
+      await page
+        .getByRole("button", {
+          name: translate(locale, "Check meaning"),
+          exact: true,
+        })
+        .click();
+      await capture(page, "quiz-feedback", locale);
+    }
   }
+  const lesson = seed.lessons.find((item) => item.id === "present-simple")!;
+  await page.goto(base + `/lessons/${lesson.id}`);
+  await page.locator(".option").nth(lesson.answer).click();
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Check answer"),
+      exact: true,
+    })
+    .click();
+  await page
+    .getByRole("button", {
+      name: translate(locale, "Mark as complete"),
+      exact: true,
+    })
+    .click();
+  await capture(page, "lesson-completed", locale);
+  await page
+    .getByRole("link", {
+      name: translate(locale, "Review lesson words"),
+      exact: true,
+    })
+    .click();
+  await capture(page, "lesson-review", locale);
+  await page.locator(".flashcard").click();
+  await capture(page, "lesson-review-flipped", locale);
+  for (let index = 0; index < lesson.wordIds.length; index++) {
+    if (index) await page.locator(".flashcard").click();
+    await page
+      .getByRole("button", {
+        name: translate(locale, "I remembered"),
+        exact: true,
+      })
+      .click();
+  }
+  await capture(page, "lesson-review-complete", locale);
   await page.goto(base + "/library/everyday-english");
   await page
     .getByRole("button", { name: translate(locale, "Listening"), exact: true })
@@ -201,7 +262,7 @@ async function main() {
       "| --- | --- | --- | --- |",
       ...pageCatalogue.map(
         (route) =>
-          `| ${route.heading} | \`${route.path}\` | [View](screenshots/${route.name}.png) | [View](screenshots/${route.name}-mobile.png) |`,
+          `| ${route.label ?? route.heading} | \`${route.path}\` | [View](screenshots/${route.name}.png) | [View](screenshots/${route.name}-mobile.png) |`,
       ),
     ].join("\n");
     const features = await readFile(featuresPath, "utf8");

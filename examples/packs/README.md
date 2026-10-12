@@ -6,8 +6,8 @@ Choose a starting collection for your class. Each pack includes original vocabul
 | ------------- | ----- | ----- | ------- |
 | [A1](a1.json) | 39    | 1     | 4       |
 | [A2](a2.json) | 44    | 1     | 3       |
-| [B1](b1.json) | 31    | 2     | 4       |
-| [B2](b2.json) | 24    | 1     | 3       |
+| [B1](b1.json) | 37    | 2     | 4       |
+| [B2](b2.json) | 25    | 1     | 3       |
 | [C1](c1.json) | 22    | 1     | 2       |
 
 Download a JSON file, keep the IDs stable when editing it, and follow the [content guide](../../docs/CONTENT.md) to validate and install it. Installing a pack replaces the school's shared collection. Keep a server snapshot first if you want to return to it.

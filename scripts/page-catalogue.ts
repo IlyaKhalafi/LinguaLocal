@@ -1,5 +1,11 @@
 import seed from "../src/content/starter.json";
-export const pageCatalogue = [
+type PagePreview = {
+  name: string;
+  path: string;
+  heading: string;
+  label?: string;
+};
+export const pageCatalogue: readonly PagePreview[] = [
   { name: "overview", path: "/", heading: "Home" },
   { name: "library", path: "/library", heading: "Library" },
   { name: "dictionary", path: "/dictionary", heading: "Dictionary" },
@@ -9,6 +15,12 @@ export const pageCatalogue = [
   { name: "quiz", path: "/games/quiz", heading: "Vocabulary quiz" },
   { name: "matching", path: "/games/match", heading: "Matching" },
   { name: "flashcards", path: "/flashcards", heading: "Flashcards" },
+  {
+    name: "lesson-review",
+    path: "/flashcards?lesson=present-simple",
+    heading: "Flashcards",
+    label: "Lesson vocabulary review",
+  },
   { name: "progress", path: "/progress", heading: "Progress" },
   { name: "settings", path: "/settings", heading: "Settings" },
   ...seed.books.map((book) => ({

@@ -50,12 +50,13 @@ test("matching and lesson completion retain a useful focus target", async ({
   await page.goto("/lessons/present-simple");
   await page.locator(".option").first().click();
   await page.getByRole("button", { name: "Check answer" }).click();
+  await expect(page.locator(".feedback")).toBeFocused();
   await page.getByRole("button", { name: "Try again" }).click();
   await expect(page.locator(".option").first()).toBeFocused();
   await page.locator(".option").first().click();
   await page.getByRole("button", { name: "Check answer" }).click();
   await page.getByRole("button", { name: "Mark as complete" }).click();
   await expect(
-    page.getByRole("group", { name: "Completed", exact: true }),
+    page.getByRole("link", { name: "Review lesson words", exact: true }),
   ).toBeFocused();
 });

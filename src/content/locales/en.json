@@ -21,7 +21,6 @@
   "Card {current} of {total}": "Card {current} of {total}",
   "Check answer": "Check answer",
   "Check meaning": "Check meaning",
-  "Check your answer before marking this lesson complete.": "Check your answer before marking this lesson complete.",
   "Choose a word first.": "Choose a word first.",
   "Choose a word, then its meaning.": "Choose a word, then its meaning.",
   "Choose all words to practise now.": "Choose all words to practise now.",
@@ -117,7 +116,6 @@
   "Resources": "Resources",
   "Restore a progress backup": "Restore a progress backup",
   "Reveal meaning of {word}": "Reveal meaning of {word}",
-  "Review again": "Review again",
   "Review and remember words.": "Review and remember words.",
   "Review complete": "Review complete",
   "Review more words": "Review more words",
@@ -260,5 +258,12 @@
   "Writing": "Writing",
   "Filter lessons by subject": "Filter lessons by subject",
   "{count} lessons": "{count} lessons",
-  "This selection needs four distinct words.": "This selection needs four distinct words."
+  "This selection needs four distinct words.": "This selection needs four distinct words.",
+  "Review lesson words": "Review lesson words",
+  "Next lesson": "Next lesson",
+  "Back to lesson": "Back to lesson",
+  "No words for this lesson": "No words for this lesson",
+  "Restart review": "Restart review",
+  "Not yet": "Not yet",
+  "Review all words": "Review all words"
 }

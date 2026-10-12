@@ -139,14 +139,18 @@ test("lesson exercises give feedback and record a completion once", async ({
   await page.goto("/lessons/present-simple");
   await expect(
     page.getByRole("button", { name: "Mark as complete" }),
-  ).toBeDisabled();
+  ).toHaveCount(0);
   await page.getByRole("button", { name: "B She walks to school." }).click();
   await page.getByRole("button", { name: "Check answer" }).click();
   await expect(page.getByRole("status")).toContainText("Correct.");
   await page.getByRole("button", { name: "Mark as complete" }).click();
-  await expect(page.getByRole("button", { name: "Completed" })).toBeDisabled();
+  await expect(
+    page.getByRole("status", { name: "Completed", exact: true }),
+  ).toBeVisible();
   await page.reload();
-  await expect(page.getByRole("button", { name: "Completed" })).toBeDisabled();
+  await expect(
+    page.getByRole("status", { name: "Completed", exact: true }),
+  ).toBeVisible();
   const progress = await page.evaluate(() =>
     JSON.parse(localStorage.getItem("lingualocal.progress.v1")!),
   );

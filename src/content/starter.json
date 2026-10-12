@@ -1641,7 +1641,8 @@
         "Is this your pen?"
       ],
       "answer": 1,
-      "explanation": "An open question invites the other person to share more than a yes or no answer."
+      "explanation": "An open question invites the other person to share more than a yes or no answer.",
+      "wordIds": ["hello", "friend", "listen", "classroom", "weather", "smile"]
     },
     {
       "id": "present-simple",
@@ -1667,7 +1668,8 @@
         "She walking to school."
       ],
       "answer": 1,
-      "explanation": "With she, add -s to the verb in the present simple."
+      "explanation": "With she, add -s to the verb in the present simple.",
+      "wordIds": ["read", "school", "morning", "learn", "write", "today"]
     },
     {
       "id": "travel-phrases",
@@ -1693,7 +1695,15 @@
         "Far away from the library"
       ],
       "answer": 1,
-      "explanation": "Opposite means on the other side, facing something."
+      "explanation": "Opposite means on the other side, facing something.",
+      "wordIds": [
+        "direction",
+        "journey",
+        "ticket",
+        "visitor",
+        "arrive",
+        "useful"
+      ]
     },
     {
       "id": "reading-between-lines",
@@ -1719,7 +1729,15 @@
         "Leo is learning to tell time."
       ],
       "answer": 0,
-      "explanation": "Repeatedly checking a watch suggests that time matters to Leo in this moment."
+      "explanation": "Repeatedly checking a watch suggests that time matters to Leo in this moment.",
+      "wordIds": [
+        "notice",
+        "evidence",
+        "interpret",
+        "patient",
+        "careful",
+        "compare"
+      ]
     },
     {
       "id": "giving-opinions",
@@ -1745,7 +1763,15 @@
         "I see your point, but I think..."
       ],
       "answer": 2,
-      "explanation": "Acknowledging the other person's point helps keep the discussion respectful."
+      "explanation": "Acknowledging the other person's point helps keep the discussion respectful.",
+      "wordIds": [
+        "perspective",
+        "thoughtful",
+        "evidence",
+        "convincing",
+        "interpret",
+        "compromise"
+      ]
     },
     {
       "id": "word-families",
@@ -1767,7 +1793,15 @@
       "question": "Which word is an adjective?",
       "options": ["Creativity", "Create", "Creative"],
       "answer": 2,
-      "explanation": "Creative describes a person or thing, so it is an adjective."
+      "explanation": "Creative describes a person or thing, so it is an adjective.",
+      "wordIds": [
+        "creative",
+        "improve",
+        "achieve",
+        "generous",
+        "useful",
+        "thoughtful"
+      ]
     },
     {
       "id": "asking-questions",

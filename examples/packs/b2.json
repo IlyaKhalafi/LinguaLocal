@@ -32,6 +32,16 @@
       "synonyms": ["considerate", "caring"]
     },
     {
+      "id": "perspective",
+      "word": "perspective",
+      "phonetic": "/pərˈspektɪv/",
+      "part": "noun",
+      "definition": "A particular way of considering something.",
+      "example": "Travel can give you a new perspective.",
+      "level": "C1",
+      "synonyms": ["viewpoint", "outlook"]
+    },
+    {
       "id": "consequence",
       "word": "consequence",
       "phonetic": "/ˈkɒnsɪkwəns/",
@@ -261,6 +271,14 @@
       "description": "Share an opinion and support it with a reason.",
       "level": "B2",
       "category": "Speaking",
+      "wordIds": [
+        "perspective",
+        "thoughtful",
+        "evidence",
+        "convincing",
+        "interpret",
+        "compromise"
+      ],
       "minutes": 8,
       "sections": [
         {

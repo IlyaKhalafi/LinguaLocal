@@ -21,7 +21,6 @@
   "Card {current} of {total}": "البطاقة {current} من {total}",
   "Check answer": "تحقق من الإجابة",
   "Check meaning": "تحقق من المعنى",
-  "Check your answer before marking this lesson complete.": "تحقق من إجابتك قبل إكمال هذا الدرس.",
   "Choose a word first.": "اختر كلمة أولًا.",
   "Choose a word, then its meaning.": "اختر كلمة ثم معناها.",
   "Choose all words to practise now.": "اختر كل الكلمات للتدرب الآن.",
@@ -117,7 +116,6 @@
   "Resources": "المصادر",
   "Restore a progress backup": "استعادة نسخة التقدم الاحتياطية",
   "Reveal meaning of {word}": "إظهار معنى {word}",
-  "Review again": "راجع مرة أخرى",
   "Review and remember words.": "راجع الكلمات وتذكرها.",
   "Review complete": "اكتملت المراجعة",
   "Review more words": "راجع كلمات أكثر",
@@ -260,5 +258,12 @@
   "Writing": "الكتابة",
   "Filter lessons by subject": "تصفية الدروس حسب الموضوع",
   "{count} lessons": "{count} درسًا",
-  "This selection needs four distinct words.": "تحتاج هذه المجموعة إلى أربع كلمات مختلفة."
+  "This selection needs four distinct words.": "تحتاج هذه المجموعة إلى أربع كلمات مختلفة.",
+  "Review lesson words": "راجع كلمات الدرس",
+  "Next lesson": "الدرس التالي",
+  "Back to lesson": "العودة إلى الدرس",
+  "No words for this lesson": "لا توجد كلمات لهذا الدرس",
+  "Restart review": "أعد بدء المراجعة",
+  "Not yet": "ليس بعد",
+  "Review all words": "راجع كل الكلمات"
 }

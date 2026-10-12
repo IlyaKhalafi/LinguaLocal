@@ -146,3 +146,5 @@ The source collections live in `src/content/vocabulary`. Rebuild the bundled pac
 The 16 included lessons cover grammar, vocabulary, reading, speaking, and writing from A1 to C1. New lessons live in `src/content/lessons.json` and are included when the starter pack is rebuilt.
 
 A lesson can optionally include `wordIds` containing up to 200 unique dictionary IDs from the same pack. Validation rejects missing or repeated references. Older packs without this field continue to work. Keep lesson IDs stable to preserve completed lessons in student browsers.
+
+After completing a lesson, students can review its linked words immediately. Cards follow the `wordIds` order and use the student's normal private review schedule. The next lesson follows collection order within the same CEFR level. Lessons without linked words still offer the next lesson. No learner account or shared editing is involved.

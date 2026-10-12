@@ -21,7 +21,6 @@
   "Card {current} of {total}": "Kart {current} / {total}",
   "Check answer": "Yanıtı kontrol et",
   "Check meaning": "Anlamı kontrol et",
-  "Check your answer before marking this lesson complete.": "Bu dersi tamamlamadan önce cevabınızı kontrol edin.",
   "Choose a word first.": "Önce bir kelime seçin.",
   "Choose a word, then its meaning.": "Bir kelime, sonra anlamını seçin.",
   "Choose all words to practise now.": "Çalışmak için tüm kelimeleri seçin.",
@@ -117,7 +116,6 @@
   "Resources": "Kaynaklar",
   "Restore a progress backup": "İlerleme yedeğini geri yükle",
   "Reveal meaning of {word}": "{word} anlamını göster",
-  "Review again": "Tekrar gözden geçir",
   "Review and remember words.": "Kelimeleri tekrar edin ve aklınızda tutun.",
   "Review complete": "Tekrar tamamlandı",
   "Review more words": "Daha fazla kelime tekrar et",
@@ -260,5 +258,12 @@
   "Writing": "Yazma",
   "Filter lessons by subject": "Dersleri konuya göre filtrele",
   "{count} lessons": "{count} ders",
-  "This selection needs four distinct words.": "Bu seçim için dört farklı kelime gerekir."
+  "This selection needs four distinct words.": "Bu seçim için dört farklı kelime gerekir.",
+  "Review lesson words": "Dersin kelimelerini tekrar et",
+  "Next lesson": "Sonraki ders",
+  "Back to lesson": "Derse dön",
+  "No words for this lesson": "Bu ders için kelime yok",
+  "Restart review": "Tekrarı yeniden başlat",
+  "Not yet": "Henüz değil",
+  "Review all words": "Tüm kelimeleri tekrar et"
 }

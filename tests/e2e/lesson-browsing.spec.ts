@@ -88,8 +88,8 @@ test("every new lesson supports a complete learning session", async ({
       .click();
     await page.reload();
     await expect(
-      page.getByRole("button", { name: "Completed", exact: true }),
-    ).toBeDisabled();
+      page.getByRole("status", { name: "Completed", exact: true }),
+    ).toBeVisible();
   }
 });
 

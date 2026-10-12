@@ -40,7 +40,7 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 | Listening and watching         | Play local audio and video, change speed, repeat a passage, and jump through timed transcripts          | [Listening](docs/screenshots/listening.png)                  |
 | Reading materials              | Open and download local PDF worksheets alongside book media                                             | [Book resources](docs/screenshots/book-everyday-english.png) |
 | Offline dictionary             | Search curated meanings and synonyms, see examples, and bookmark words                                  | [Dictionary](docs/screenshots/dictionary.png)                |
-| Guided lessons                 | Explore grammar, reading, vocabulary, speaking, and writing with practice questions                     | [Lesson](docs/screenshots/lesson-present-simple.png)         |
+| Guided lessons                 | Read short lessons, check your answer, review related words, and continue at the same level             | [Lesson](docs/screenshots/lesson-present-simple.png)         |
 | Vocabulary quiz                | Choose a level, discover meanings, get feedback, and save your score                                    | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
 | Matching game                  | Pair words and definitions without a timer or leaderboard                                               | [Matching](docs/screenshots/matching-playing.png)            |
 | Spaced flashcards              | Study all words, saved words, or cards ready for review                                                 | [Flashcards](docs/screenshots/flashcards-playing.png)        |

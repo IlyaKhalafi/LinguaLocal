@@ -2,19 +2,32 @@
 import { useLocale } from "@/components/locale-provider";
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, RotateCcw, Sparkles } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  RotateCcw,
+  Sparkles,
+} from "lucide-react";
 import { dayKey, shuffle } from "@/lib/learning";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import type { Word } from "@/lib/schema";
+import type { LessonStudyScope } from "@/lib/lesson-study";
 import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
 
-export function Flashcards({ words }: { words: Word[] }) {
+export function Flashcards({
+  words,
+  scope,
+}: {
+  words: Word[];
+  scope?: LessonStudyScope;
+}) {
   const { t } = useLocale();
   const { progress, review } = useProgress();
   const [mode, setMode] = useState("all");
-  const [deck, setDeck] = useState<Word[]>([]);
-  const [started, setStarted] = useState(false);
+  const [deck, setDeck] = useState<Word[]>(scope ? words : []);
+  const [started, setStarted] = useState(Boolean(scope && words.length));
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const focusTarget = useFocusOnChange(`${started}-${index}`);
@@ -26,8 +39,8 @@ export function Flashcards({ words }: { words: Word[] }) {
           progress.reviews[word.id].due <= dayKey()
         : true,
   );
-  function start() {
-    setDeck(shuffle(pool).slice(0, 20));
+  function start(selection = pool) {
+    setDeck(scope ? words : shuffle(selection).slice(0, 20));
     setIndex(0);
     setFlipped(false);
     setStarted(true);
@@ -40,49 +53,103 @@ export function Flashcards({ words }: { words: Word[] }) {
   const word = deck[index];
   return (
     <div className="game-panel">
-      <PageHeading title={t("Flashcards")} />
+      {scope && (
+        <Link className="back-link" href={`/lessons/${scope.id}`}>
+          <ArrowLeft size={14} />
+          {t("Back to lesson")}
+        </Link>
+      )}
+      <PageHeading
+        title={t("Flashcards")}
+        eyebrow={
+          scope && (
+            <bdi lang="en" dir="ltr">
+              {scope.title}
+            </bdi>
+          )
+        }
+      />
       {!started ? (
         <>
-          <div className="study-selector tabs">
-            {[
-              { id: "all", label: "All words" },
-              { id: "saved", label: "Saved words" },
-              { id: "due", label: "Due for review" },
-            ].map((item) => (
-              <button
-                className={`tab ${mode === item.id ? "active" : ""}`}
-                aria-pressed={mode === item.id}
-                key={item.id}
-                onClick={() => setMode(item.id)}
-              >
-                {t(item.label)}
-              </button>
-            ))}
-          </div>
-          {pool.length ? (
-            <div className="panel">
-              <h2 style={{ marginBottom: 20 }}>
-                {t("{count} words available", { count: pool.length })}
-              </h2>
-              <button className="button primary" onClick={start}>
-                {t("Start review")}
-                <ArrowRight size={14} />
-              </button>
-            </div>
-          ) : (
+          {scope ? (
             <EmptyState
-              title={mode === "saved" ? t("No saved words") : t("No cards due")}
-              description={
-                mode === "saved"
-                  ? t("Save words in the dictionary first.")
-                  : t("Choose all words to practise now.")
-              }
+              title={t("No words for this lesson")}
               action={
-                <Link className="button primary" href="/dictionary">
-                  {t("Open dictionary")}
+                <Link
+                  className="button primary"
+                  href={scope.next ? `/lessons/${scope.next.id}` : "/lessons"}
+                >
+                  {t(scope.next ? "Next lesson" : "All lessons")}
                 </Link>
               }
             />
+          ) : (
+            <>
+              <div className="study-selector tabs">
+                {[
+                  { id: "all", label: "All words" },
+                  { id: "saved", label: "Saved words" },
+                  { id: "due", label: "Due for review" },
+                ].map((item) => (
+                  <button
+                    className={`tab ${mode === item.id ? "active" : ""}`}
+                    aria-pressed={mode === item.id}
+                    key={item.id}
+                    onClick={() => setMode(item.id)}
+                  >
+                    {t(item.label)}
+                  </button>
+                ))}
+              </div>
+              {pool.length ? (
+                <div className="panel">
+                  <h2
+                    ref={focusTarget}
+                    tabIndex={-1}
+                    style={{ marginBottom: 20 }}
+                  >
+                    {t("{count} words available", { count: pool.length })}
+                  </h2>
+                  <button className="button primary" onClick={() => start()}>
+                    {t("Start review")}
+                    <ArrowRight size={14} />
+                  </button>
+                </div>
+              ) : (
+                <EmptyState
+                  title={
+                    mode === "saved" ? t("No saved words") : t("No cards due")
+                  }
+                  description={
+                    mode === "saved"
+                      ? t("Save words in the dictionary first.")
+                      : t("Choose all words to practise now.")
+                  }
+                  action={
+                    mode === "saved" ? (
+                      <Link
+                        className="button primary"
+                        ref={focusTarget}
+                        href="/dictionary"
+                      >
+                        {t("Open dictionary")}
+                      </Link>
+                    ) : (
+                      <button
+                        className="button primary"
+                        ref={focusTarget}
+                        onClick={() => {
+                          setMode("all");
+                          start(words);
+                        }}
+                      >
+                        {t("Review all words")}
+                      </button>
+                    )
+                  }
+                />
+              )}
+            </>
           )}
         </>
       ) : !word ? (
@@ -96,15 +163,32 @@ export function Flashcards({ words }: { words: Word[] }) {
           </div>
           <p>{t("Words reviewed.")}</p>
           <div className="button-row">
-            <button
-              className="button primary"
-              onClick={() => setStarted(false)}
-            >
-              {t("Review more words")}
-            </button>
-            <Link className="button secondary" href="/progress">
-              {t("View progress")}
-            </Link>
+            {scope ? (
+              <>
+                <Link
+                  className="button primary"
+                  href={scope.next ? `/lessons/${scope.next.id}` : "/lessons"}
+                >
+                  {t(scope.next ? "Next lesson" : "All lessons")}
+                  <ArrowRight size={14} />
+                </Link>
+                <button className="button secondary" onClick={() => start()}>
+                  {t("Restart review")}
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className="button primary"
+                  onClick={() => setStarted(false)}
+                >
+                  {t("Review more words")}
+                </button>
+                <Link className="button secondary" href="/progress">
+                  {t("View progress")}
+                </Link>
+              </>
+            )}
           </div>
         </div>
       ) : (
@@ -175,7 +259,7 @@ export function Flashcards({ words }: { words: Word[] }) {
                 onClick={() => answer(false)}
               >
                 <RotateCcw size={14} />
-                {t("Review again")}
+                {t("Not yet")}
               </button>
               <button className="button primary" onClick={() => answer(true)}>
                 <Check size={15} />

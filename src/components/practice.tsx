@@ -13,6 +13,7 @@ import {
 import { localEnglishVoice } from "@/lib/pronunciation";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { useLocale } from "./locale-provider";
+import { AnswerFeedback } from "./answer-feedback";
 import { useProgress } from "./progress-provider";
 import { EmptyState, PageHeading } from "./ui";
 
@@ -316,18 +317,10 @@ export function Practice({ words }: { words: Word[] }) {
               />
             </div>
             {checked && (
-              <div
-                className={`feedback ${correct ? "" : "incorrect"}`}
-                role="status"
-              >
-                <strong>{t(correct ? "Correct. " : "Incorrect. ")}</strong>
-                <span lang="en" dir="ltr">
-                  {word.word}
-                </span>
-                <p lang="en" dir="ltr">
-                  {word.example}
-                </p>
-              </div>
+              <AnswerFeedback correct={correct}>
+                <span>{word.word}</span>
+                <p>{word.example}</p>
+              </AnswerFeedback>
             )}
             <div className="game-controls">
               <button

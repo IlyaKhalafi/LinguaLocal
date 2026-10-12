@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { LessonDetail } from "@/components/lesson-detail";
 import { getContent } from "@/lib/content";
+import { resolveLessonStudy } from "@/lib/lesson-study";
 export async function generateMetadata({
   params,
 }: {
@@ -16,9 +17,7 @@ export default async function LessonPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const lesson = (await getContent()).lessons.find(
-    (lesson) => lesson.id === id,
-  );
-  if (!lesson) notFound();
-  return <LessonDetail lesson={lesson} />;
+  const study = resolveLessonStudy(await getContent(), id);
+  if (!study) notFound();
+  return <LessonDetail lesson={study.lesson} next={study.next} />;
 }

@@ -72,6 +72,16 @@
       "synonyms": ["necessary", "vital"]
     },
     {
+      "id": "thoughtful",
+      "word": "thoughtful",
+      "phonetic": "/ˈθɔːtfəl/",
+      "part": "adjective",
+      "definition": "Showing care for the needs of other people.",
+      "example": "It was thoughtful of you to bring an extra book.",
+      "level": "B2",
+      "synonyms": ["considerate", "caring"]
+    },
+    {
       "id": "habit",
       "word": "habit",
       "phonetic": "/ˈhæbɪt/",
@@ -282,6 +292,46 @@
       "synonyms": ["unpaid helper"]
     },
     {
+      "id": "evidence",
+      "word": "evidence",
+      "phonetic": "/ˈevɪdəns/",
+      "part": "noun",
+      "definition": "Information that supports a belief or conclusion.",
+      "example": "The writer uses evidence to support the argument.",
+      "level": "B2",
+      "synonyms": ["supporting information"]
+    },
+    {
+      "id": "interpret",
+      "word": "interpret",
+      "phonetic": "/ɪnˈtɜːprɪt/",
+      "part": "verb",
+      "definition": "To explain or understand the meaning of something.",
+      "example": "Readers may interpret the ending in different ways.",
+      "level": "B2",
+      "synonyms": ["make sense of"]
+    },
+    {
+      "id": "careful",
+      "word": "careful",
+      "phonetic": "/ˈkeəfəl/",
+      "part": "adjective",
+      "definition": "Taking care to avoid mistakes or harm.",
+      "example": "Be careful when you cross the road.",
+      "level": "A2",
+      "synonyms": ["cautious"]
+    },
+    {
+      "id": "compare",
+      "word": "compare",
+      "phonetic": "/kəmˈpeə/",
+      "part": "verb",
+      "definition": "To look at things together to find similarities and differences.",
+      "example": "Compare the two pictures with your partner.",
+      "level": "A2",
+      "synonyms": ["look at side by side"]
+    },
+    {
       "id": "message",
       "word": "message",
       "phonetic": "/ˈmesɪdʒ/",
@@ -290,6 +340,16 @@
       "example": "I leave a message for my friend.",
       "level": "A2",
       "synonyms": ["note"]
+    },
+    {
+      "id": "notice",
+      "word": "notice",
+      "phonetic": "/ˈnəʊtɪs/",
+      "part": "verb",
+      "definition": "To become aware of something.",
+      "example": "Did you notice the new painting?",
+      "level": "A2",
+      "synonyms": ["spot"]
     },
     {
       "id": "suggest",
@@ -351,6 +411,14 @@
       "description": "Find the meaning that a writer leaves unsaid.",
       "level": "B1",
       "category": "Reading",
+      "wordIds": [
+        "notice",
+        "evidence",
+        "interpret",
+        "patient",
+        "careful",
+        "compare"
+      ],
       "minutes": 10,
       "sections": [
         {
@@ -377,6 +445,14 @@
       "description": "Build your vocabulary through word families.",
       "level": "B1",
       "category": "Vocabulary",
+      "wordIds": [
+        "creative",
+        "improve",
+        "achieve",
+        "generous",
+        "useful",
+        "thoughtful"
+      ],
       "minutes": 5,
       "sections": [
         {

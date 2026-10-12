@@ -45,6 +45,12 @@
     "heading": "Flashcards"
   },
   {
+    "name": "lesson-review",
+    "path": "/flashcards?lesson=present-simple",
+    "heading": "Flashcards",
+    "label": "Lesson vocabulary review"
+  },
+  {
     "name": "progress",
     "path": "/progress",
     "heading": "Progress"
