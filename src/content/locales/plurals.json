@@ -31,9 +31,18 @@
     "{count} lessons": {
       "one": "{count} lesson",
       "other": "{count} lessons"
+    },
+    "{count} student summaries": {
+      "one": "{count} student summary",
+      "other": "{count} student summaries"
     }
   },
-  "fa": {},
+  "fa": {
+    "{count} student summaries": {
+      "one": "{count} خلاصهٔ زبان‌آموز",
+      "other": "{count} خلاصهٔ زبان‌آموزان"
+    }
+  },
   "ar": {
     "{count} words": {
       "zero": "لا كلمات",
@@ -98,7 +107,19 @@
       "few": "{count} دروس",
       "many": "{count} درسًا",
       "other": "{count} درس"
+    },
+    "{count} student summaries": {
+      "zero": "لا توجد ملخصات للطلاب",
+      "one": "ملخص طالب واحد",
+      "two": "ملخصان للطلاب",
+      "few": "{count} ملخصات للطلاب",
+      "many": "{count} ملخصًا للطلاب",
+      "other": "{count} ملخص للطلاب"
     }
   },
-  "tr": {}
+  "tr": {
+    "{count} student summaries": {
+      "other": "{count} öğrenci özeti"
+    }
+  }
 }

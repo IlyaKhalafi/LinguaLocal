@@ -1,19 +1,6 @@
+import { escapeHtml as escape } from "./html";
 import { distinctGameWords } from "./learning";
 import type { ContentPack, Word } from "./schema";
-
-function escape(text: string): string {
-  return text.replace(
-    /[&<>"']/g,
-    (character) =>
-      ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-      })[character]!,
-  );
-}
 
 const styles = `
 *{box-sizing:border-box}body{margin:0;padding:32px 16px;background:#f5f7f3;color:#233c30;font:16px/1.6 system-ui,sans-serif}

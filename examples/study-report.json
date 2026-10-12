@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "selfReported": true,
+  "generatedAt": "2026-10-12T12:00:00.000Z",
+  "name": "Sample learner",
+  "summary": {
+    "wordsSaved": 8,
+    "lessonsCompleted": 3,
+    "wordsReviewed": 15,
+    "wordsLearned": 5,
+    "practiceSessions": 4,
+    "averageScore": 80,
+    "studyDays": 3,
+    "activities": 26
+  },
+  "assignments": [
+    {
+      "title": "A little everyday English",
+      "due": "2026-12-01",
+      "done": 2,
+      "total": 3
+    }
+  ]
+}

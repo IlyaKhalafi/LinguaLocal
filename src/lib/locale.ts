@@ -1,8 +1,8 @@
-import english from "@/content/locales/en.json";
-import persian from "@/content/locales/fa.json";
-import arabic from "@/content/locales/ar.json";
-import turkish from "@/content/locales/tr.json";
-import pluralTranslations from "@/content/locales/plurals.json";
+import english from "../content/locales/en.json" with { type: "json" };
+import persian from "../content/locales/fa.json" with { type: "json" };
+import arabic from "../content/locales/ar.json" with { type: "json" };
+import turkish from "../content/locales/tr.json" with { type: "json" };
+import pluralTranslations from "../content/locales/plurals.json" with { type: "json" };
 
 export const locales = ["en", "fa", "ar", "tr"] as const;
 export type Locale = (typeof locales)[number];
@@ -29,12 +29,14 @@ const pluralMessages = pluralTranslations as Record<
   Locale,
   Record<string, Partial<Record<Intl.LDMLPluralRule, string>>>
 >;
+export function numberingSystem(locale: Locale) {
+  return locale === "ar" ? "arab" : locale === "fa" ? "arabext" : "latn";
+}
 const numberFormats = Object.fromEntries(
   locales.map((locale) => [
     locale,
     new Intl.NumberFormat(locale, {
-      numberingSystem:
-        locale === "ar" ? "arab" : locale === "fa" ? "arabext" : "latn",
+      numberingSystem: numberingSystem(locale),
     }),
   ]),
 ) as Record<Locale, Intl.NumberFormat>;

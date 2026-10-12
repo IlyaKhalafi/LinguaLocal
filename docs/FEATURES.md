@@ -157,3 +157,12 @@ Open a school link, work through its lessons, books, and words, and mark a priva
 ![Assignment](screenshots/assignment.png)
 
 [Mobile checklist](screenshots/assignment-mobile.png) · [Unavailable link](screenshots/assignment-invalid.png) · [Missing material](screenshots/assignment-stale.png) · [Saved checklists](screenshots/assignment-history.png)
+
+## Study summaries
+
+Students can share a small summary without including their notes or word lists. Schools combine those files locally and print a classroom summary. The examples use synthetic study data.
+
+| Summary         | Desktop                                   | Mobile                                           |
+| --------------- | ----------------------------------------- | ------------------------------------------------ |
+| Student sheet   | [View](screenshots/student-summary.png)   | [View](screenshots/student-summary-mobile.png)   |
+| Classroom sheet | [View](screenshots/classroom-summary.png) | [View](screenshots/classroom-summary-mobile.png) |

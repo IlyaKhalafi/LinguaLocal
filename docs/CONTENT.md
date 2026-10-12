@@ -184,3 +184,19 @@ npm run assignment:create -- examples/assignment.json src/content/starter.json h
 The command validates tasks against the chosen collection and creates a new link file without replacing an existing file. Share its link on the school network. In a standalone archive, run `node scripts/create-assignment.mjs` with the same arguments.
 
 Students open the materials and mark their own checklist. Up to 64 checklists that have been marked at least once stay in the current browser and are included in progress backups. The progress screen can reopen or remove a checklist, including one whose boxes have all been cleared. Checklists are self-reported and do not verify identity or completion. Shared curriculum is unchanged.
+
+## Classroom summaries
+
+Combine student-provided study summaries into a local spreadsheet and print sheet. The command accepts 1 to 200 distinct JSON files and validates each report before creating a new output directory. It leaves original files unchanged.
+
+```sh
+npm run reports:combine -- classroom-summary student-one.json student-two.json
+```
+
+Open `classroom-summary/index.html` to print or `classroom-summary/classroom.csv` in a spreadsheet. Standalone archives include `node scripts/combine-reports.mjs`.
+
+Reports are self-reported. They do not verify identity or score ownership. Students choose whether to include a name. Report files contain counts and assignment summaries without private notes, saved-word lists, or individual review histories. An average score is the arithmetic mean of recorded practice percentages.
+
+`examples/study-report.json` contains synthetic study counts for trying the command. Each file contributes a separate row. The command does not combine names or infer whether multiple reports belong to one student.
+
+Use `--language=fa`, `--language=ar` or `--language=tr` before the output directory to translate the printable classroom summary. The CSV keeps stable English column names. Printed dates use the viewer’s local time with the Gregorian calendar. CSV timestamps retain UTC.

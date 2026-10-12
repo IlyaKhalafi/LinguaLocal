@@ -15,6 +15,15 @@ await cp("node_modules/zod", ".next/standalone/node_modules/zod", {
   recursive: true,
 });
 const sources = [
+  ["src/lib/locale.ts", "locale.mjs"],
+  ...["en", "fa", "ar", "tr", "plurals"].map((language) => [
+    `src/content/locales/${language}.json`,
+    `locale-${language}.json`,
+  ]),
+  ["src/lib/html.ts", "html.mjs"],
+  ["src/lib/csv-cell.ts", "csv-cell.mjs"],
+  ["src/lib/study-report.ts", "study-report.mjs"],
+  ["scripts/combine-reports.ts", "combine-reports.mjs"],
   ["src/lib/assignments.ts", "assignments.mjs"],
   ["scripts/create-assignment.ts", "create-assignment.mjs"],
   ["scripts/load-environment.mjs", "load-environment.mjs"],

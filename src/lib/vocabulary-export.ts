@@ -1,13 +1,8 @@
+import { spreadsheetCell as cell } from "./csv-cell";
 import { DOCUMENT_LIMIT } from "./document-limits";
 import type { Word } from "./schema";
 
 export const vocabularyEncoding = "lingualocal-v1";
-
-// The declared encoding lets import restore spreadsheet-safe cells exactly.
-function cell(value: string): string {
-  const safe = /^(?:'|[\t\r\n]|\s*[=+\-@])/u.test(value) ? "'" + value : value;
-  return '"' + safe.replaceAll('"', '""') + '"';
-}
 
 export function exportVocabulary(words: readonly Word[]): string {
   if (!words.length) throw new Error("No vocabulary matches this selection.");

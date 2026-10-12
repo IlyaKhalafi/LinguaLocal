@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { cp, mkdtemp, readFile, rm } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm, link, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -35,6 +35,65 @@ try {
     output,
     "src/content/starter.json",
   ]);
+  const reportSource = path.join(directory, "report.json");
+  await cp("examples/study-report.json", reportSource);
+  const reportAlias = path.join(directory, "report-alias.json");
+  await symlink(reportSource, reportAlias);
+  run(
+    "combine-reports",
+    [path.join(directory, "duplicate-reports"), reportSource, reportAlias],
+    1,
+  );
+  const reportHardLink = path.join(directory, "report-hardlink.json");
+  await link(reportSource, reportHardLink);
+  run(
+    "combine-reports",
+    [path.join(directory, "duplicate-hardlinks"), reportSource, reportHardLink],
+    1,
+  );
+  const classDirectory = path.join(directory, "classroom");
+  run("combine-reports", [classDirectory, "examples/study-report.json"]);
+  const classCsv = await readFile(
+    path.join(classDirectory, "classroom.csv"),
+    "utf8",
+  );
+  assert.ok(classCsv.includes("Sample learner"));
+  assert.ok(
+    (await readFile(path.join(classDirectory, "index.html"), "utf8")).includes(
+      "Classroom summary",
+    ),
+  );
+  run("combine-reports", [classDirectory, "examples/study-report.json"], 1);
+  assert.equal(
+    await readFile(path.join(classDirectory, "classroom.csv"), "utf8"),
+    classCsv,
+  );
+  run(
+    "combine-reports",
+    [path.join(directory, "invalid-classroom"), "examples/assignment.json"],
+    1,
+  );
+  const persianDirectory = path.join(directory, "persian-classroom");
+  run("combine-reports", [
+    "--language=fa",
+    persianDirectory,
+    "examples/study-report.json",
+  ]);
+  const persianHtml = await readFile(
+    path.join(persianDirectory, "index.html"),
+    "utf8",
+  );
+  assert.ok(persianHtml.includes('lang="fa" dir="rtl"'));
+  assert.ok(persianHtml.includes("خلاصهٔ کلاس"));
+  run(
+    "combine-reports",
+    [
+      "--language=zz",
+      path.join(directory, "invalid-language"),
+      "examples/study-report.json",
+    ],
+    1,
+  );
   const assignmentOutput = path.join(directory, "assignment.txt");
   run("create-assignment", [
     "examples/assignment.json",
