@@ -33,24 +33,24 @@ No accounts. English, Persian, Arabic, and Turkish interfaces. No subscriptions.
 
 ## Feature catalogue
 
-| Feature                        | What you can do                                                                                         | Preview                                                      |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Learning overview              | Open books, review vocabulary, and see your daily goal                                                  | [Overview](docs/screenshots/overview.png)                    |
-| Book library                   | Search books and filter by subject or CEFR level                                                        | [Bookshelf](docs/screenshots/library.png)                    |
-| Listening and watching         | Play local audio and video, change speed, repeat a passage, and jump through timed transcripts          | [Listening](docs/screenshots/listening.png)                  |
-| Reading materials              | Open and download local PDF worksheets alongside book media                                             | [Book resources](docs/screenshots/book-everyday-english.png) |
-| Offline dictionary             | Search curated meanings and synonyms, see examples, and bookmark words                                  | [Dictionary](docs/screenshots/dictionary.png)                |
-| Guided lessons                 | Read short lessons, check your answer, review related words, and continue at the same level             | [Lesson](docs/screenshots/lesson-present-simple.png)         |
-| Vocabulary quiz                | Choose a level, discover meanings, get feedback, and save your score                                    | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
-| Matching game                  | Pair words and definitions without a timer or leaderboard                                               | [Matching](docs/screenshots/matching-playing.png)            |
-| Spaced flashcards              | Study all words, saved words, or cards ready for review                                                 | [Flashcards](docs/screenshots/flashcards-playing.png)        |
-| Written and listening practice | Spell words, complete sentences, and use a local English voice                                          | [Practice](docs/screenshots/practice-playing.png)            |
-| Appearance                     | Choose light, dark, or your device setting alongside reading and quiet preferences                      | [Dark appearance](docs/screenshots/dark-overview.png)        |
-| Owner content tools            | Import vocabulary spreadsheets, convert subtitles, diagnose files, and create portable server snapshots | [Content tools](docs/CONTENT.md)                             |
-| Learning progress              | See an eight-week activity map, streaks, completed lessons, and recent results                          | [Progress](docs/screenshots/progress.png)                    |
-| School network                 | Reveal a shareable school address and scan a local QR code                                              | [Join the school network](docs/screenshots/join-network.png) |
-| Reading preferences            | Choose larger text, readable fonts, spacing, contrast, and quiet mode                                   | [Reading controls](docs/screenshots/reading-settings.png)    |
-| Personal settings              | Export or restore progress backups                                                                      | [Settings](docs/screenshots/settings.png)                    |
+| Feature                        | What you can do                                                                                           | Preview                                                      |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Learning overview              | Open books, review vocabulary, and see your daily goal                                                    | [Overview](docs/screenshots/overview.png)                    |
+| Book library                   | Search books and filter by subject or CEFR level                                                          | [Bookshelf](docs/screenshots/library.png)                    |
+| Listening and watching         | Play local audio and video, change speed, repeat a passage, and jump through timed transcripts            | [Listening](docs/screenshots/listening.png)                  |
+| Reading materials              | Open and download local PDF worksheets alongside book media                                               | [Book resources](docs/screenshots/book-everyday-english.png) |
+| Offline dictionary             | Search curated meanings and synonyms, see examples, and bookmark words                                    | [Dictionary](docs/screenshots/dictionary.png)                |
+| Guided lessons                 | Read short lessons, check your answer, review related words, and continue at the same level               | [Lesson](docs/screenshots/lesson-present-simple.png)         |
+| Vocabulary quiz                | Choose a level, discover meanings, get feedback, and save your score                                      | [Vocabulary quiz](docs/screenshots/quiz-playing.png)         |
+| Matching game                  | Pair words and definitions without a timer or leaderboard                                                 | [Matching](docs/screenshots/matching-playing.png)            |
+| Spaced flashcards              | Study all words, saved words, or cards ready for review                                                   | [Flashcards](docs/screenshots/flashcards-playing.png)        |
+| Written and listening practice | Spell words, complete sentences, and use a local English voice                                            | [Practice](docs/screenshots/practice-playing.png)            |
+| Appearance                     | Choose light, dark, or your device setting alongside reading and quiet preferences                        | [Dark appearance](docs/screenshots/dark-overview.png)        |
+| Owner content tools            | Import and export vocabulary spreadsheets, convert subtitles, diagnose files, and create server snapshots | [Content tools](docs/CONTENT.md)                             |
+| Learning progress              | See an eight-week activity map, streaks, completed lessons, and recent results                            | [Progress](docs/screenshots/progress.png)                    |
+| School network                 | Reveal a shareable school address and scan a local QR code                                                | [Join the school network](docs/screenshots/join-network.png) |
+| Reading preferences            | Choose larger text, readable fonts, spacing, contrast, and quiet mode                                     | [Reading controls](docs/screenshots/reading-settings.png)    |
+| Personal settings              | Export or restore progress backups                                                                        | [Settings](docs/screenshots/settings.png)                    |
 
 <table>
   <tr>

@@ -32,6 +32,27 @@ try {
   ]);
   const original = await readFile(output, "utf8");
   run("validate-content", [output]);
+  const csvOutput = path.join(directory, "vocabulary.csv");
+  run("export-vocabulary", [output, csvOutput]);
+  const exportedCsv = await readFile(csvOutput, "utf8");
+  const roundTrip = path.join(directory, "round-trip.json");
+  run("import-vocabulary", [csvOutput, roundTrip, output]);
+  assert.deepEqual(
+    JSON.parse(await readFile(roundTrip, "utf8")),
+    JSON.parse(original),
+  );
+  run("export-vocabulary", [output, csvOutput], 1);
+  assert.equal(await readFile(csvOutput, "utf8"), exportedCsv);
+  const a2Csv = path.join(directory, "a2.csv");
+  run("export-vocabulary", [output, a2Csv, "A2"]);
+  const a2Vocabulary = path.join(directory, "a2-vocabulary.json");
+  run("import-vocabulary", [a2Csv, a2Vocabulary]);
+  assert.ok(
+    JSON.parse(await readFile(a2Vocabulary, "utf8")).words.every(
+      (word) => word.level === "A2",
+    ),
+  );
+  run("export-vocabulary", [output, a2Csv, "D2"], 1);
   const levelPack = path.join(directory, "a2.json");
   run("export-content", [output, levelPack, "A2"]);
   const levelContent = JSON.parse(await readFile(levelPack, "utf8"));

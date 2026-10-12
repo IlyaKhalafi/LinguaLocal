@@ -2,9 +2,10 @@ import { parse } from "csv-parse/sync";
 import { DOCUMENT_LIMIT } from "./document-limits";
 import { z } from "zod";
 import { packSchema, wordSchema, type ContentPack, type Word } from "./schema";
+import { vocabularyEncoding } from "./vocabulary-export";
 
 const required = ["id", "word", "part", "definition", "example", "level"];
-const allowed = new Set([...required, "phonetic", "synonyms"]);
+const allowed = new Set([...required, "phonetic", "synonyms", "encoding"]);
 function delimiter(csv: string): string {
   const header = csv
     .replace(/^\uFEFF/, "")
@@ -56,17 +57,64 @@ export function importVocabulary(csv: string, base?: ContentPack): ContentPack {
   if (!records.length) throw new Error("CSV contains no vocabulary records.");
   if (records.length > 20000)
     throw new Error("CSV contains too many vocabulary records.");
+  const encoding = records.find(({ record }) => record.encoding)?.record
+    .encoding;
+  if (encoding) {
+    const inconsistent = records.find(
+      ({ record }) => record.encoding !== encoding,
+    );
+    if (inconsistent)
+      throw new z.ZodError([
+        {
+          code: "custom",
+          path: [`CSV line ${inconsistent.info.lines}`, "encoding"],
+          message: "CSV encoding must be consistent on every record",
+        },
+      ]);
+  }
   const words: Word[] = [];
   const issues: z.core.$ZodIssue[] = [];
   const ids = new Set<string>();
   for (const { record, info } of records) {
+    if (record.encoding && record.encoding !== vocabularyEncoding) {
+      issues.push({
+        code: "custom",
+        path: [`CSV line ${info.lines}`, "encoding"],
+        message: "Unknown vocabulary encoding",
+      });
+      if (issues.length > 20) break;
+      continue;
+    }
+    const encoded = record.encoding === vocabularyEncoding;
+    const restored = encoded
+      ? Object.fromEntries(
+          Object.entries(record).map(([key, value]) => [
+            key,
+            value.startsWith("'") ? value.slice(1) : value,
+          ]),
+        )
+      : record;
+    let synonyms: unknown;
+    try {
+      synonyms = encoded
+        ? JSON.parse(restored.synonyms?.trim() || "[]")
+        : (record.synonyms ?? "")
+            .split("|")
+            .map((word) => word.trim())
+            .filter(Boolean);
+    } catch {
+      issues.push({
+        code: "custom",
+        path: [`CSV line ${info.lines}`, "synonyms"],
+        message: "Encoded synonyms must be a JSON array",
+      });
+      if (issues.length > 20) break;
+      continue;
+    }
     const result = wordSchema.safeParse({
-      ...record,
-      phonetic: record.phonetic ?? "",
-      synonyms: (record.synonyms ?? "")
-        .split("|")
-        .map((word) => word.trim())
-        .filter(Boolean),
+      ...restored,
+      phonetic: restored.phonetic ?? "",
+      synonyms,
     });
     if (!result.success)
       issues.push(

@@ -52,6 +52,16 @@ Run `npm run vocabulary:import -- words.csv new-collection.json collection.json`
 
 In Docker, use `node scripts/import-vocabulary.mjs /tmp/words.csv /tmp/new-collection.json /tmp/collection.json`. Validate the output before installing it. The input and resulting pack each have a 2 MB limit.
 
+### Exporting vocabulary
+
+Run `npm run vocabulary:export -- collection.json new-words.csv` to export every dictionary entry. Add a level such as `B1` to export only that level. The UTF-8 file opens in spreadsheets and preserves non-Latin text, quotes, and multiline examples. The source stays intact and the destination must be a new file.
+
+Exports include an `encoding` column identifying the reversible LinguaLocal format. Keep this column when reimporting. Synonyms are stored as JSON arrays so literal `|` characters survive. Formula-like cells and leading apostrophes receive a protective apostrophe that import removes. Existing plain CSV files continue to use pipe-separated synonyms.
+
+Import the CSV with the original collection as the base to retain books, lessons, and entries outside the exported level. A standalone vocabulary pack still needs at least four words. CSV exports have the same 2 MB size limit as imports.
+
+In Docker, use `node scripts/export-vocabulary.mjs /tmp/collection.json /tmp/new-words.csv B1`.
+
 ### Book resources
 
 ```json
