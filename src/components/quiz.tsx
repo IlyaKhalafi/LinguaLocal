@@ -1,9 +1,9 @@
 "use client";
 import { useLocale } from "@/components/locale-provider";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, RotateCcw, Sparkles } from "lucide-react";
-import { makeQuiz } from "@/lib/learning";
+import { distinctGameWords, makeQuiz } from "@/lib/learning";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import { levels, type Word } from "@/lib/schema";
 import { useProgress } from "./progress-provider";
@@ -19,7 +19,11 @@ export function Quiz({ words }: { words: Word[] }) {
   const [finished, setFinished] = useState(false);
   const [checked, setChecked] = useState(false);
   const { record } = useProgress();
-  const pool = words.filter((word) => !level || word.level === level);
+  const pool = useMemo(
+    () =>
+      distinctGameWords(words.filter((word) => !level || word.level === level)),
+    [words, level],
+  );
   const focusTarget = useFocusOnChange(
     `${finished}-${questions.length}-${index}`,
   );
@@ -93,15 +97,18 @@ export function Quiz({ words }: { words: Word[] }) {
               </select>
             </div>
             {pool.length < 4 && (
-              <p className="inline-message">
-                {t(
-                  "This level needs at least four words. Choose all levels or ask your school to add more.",
-                )}
+              <p
+                id="quiz-pool-help"
+                className="inline-message game-pool-help"
+                role="status"
+              >
+                {t("This selection needs four distinct words.")}
               </p>
             )}
             <button
               className="button primary"
               disabled={pool.length < 4}
+              aria-describedby={pool.length < 4 ? "quiz-pool-help" : undefined}
               onClick={start}
             >
               {t("Start quiz")}

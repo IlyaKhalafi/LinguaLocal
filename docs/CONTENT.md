@@ -40,6 +40,8 @@ Validate a pack without installing it using `npm run content:validate -- collect
 
 Use unique, stable IDs made from lowercase letters, numbers, and hyphens. Keep IDs unchanged when correcting an entry so bookmarks and reviews still refer to it. Supported levels are A1, A2, B1, B2, and C1.
 
+Quiz and matching rounds use distinct headwords and meanings so students do not face indistinguishable choices. If an imported collection repeats either, games use the first distinct entry. Dictionary and flashcards retain every entry. A game needs at least four distinct words in its selected pool.
+
 ### Importing a vocabulary spreadsheet
 
 Export a UTF-8 CSV from your spreadsheet with `id`, `word`, `part`, `definition`, `example`, and `level` columns. Optional `phonetic` and `synonyms` columns are supported. Separate synonyms with `|` inside the cell. Comma and semicolon separators are detected automatically. Quoted commas, line breaks, and spreadsheet byte-order marks are accepted. Invalid records report their CSV line and field.

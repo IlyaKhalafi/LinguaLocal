@@ -56,14 +56,38 @@ export function shuffle<T>(items: readonly T[]): T[] {
   return result;
 }
 
+/** Avoid indistinguishable choices when a school imports overlapping entries. */
+export function distinctGameWords(words: readonly Word[]): Word[] {
+  const heads = new Set<string>();
+  const meanings = new Set<string>();
+  const normalize = (value: string) =>
+    value
+      .normalize("NFKC")
+      .trim()
+      .replace(/\s+/gu, " ")
+      .toLocaleLowerCase("en");
+  return words.filter((word) => {
+    const head = normalize(word.word);
+    const meaning = normalize(word.definition)
+      .replace(/[.!?]+$/u, "")
+      .trimEnd();
+    if (heads.has(head) || meanings.has(meaning)) return false;
+    heads.add(head);
+    meanings.add(meaning);
+    return true;
+  });
+}
+
 export function makeQuiz(words: Word[], count = 8) {
-  return shuffle(words)
+  const pool = distinctGameWords(words);
+  if (pool.length < 4) return [];
+  return shuffle(pool)
     .slice(0, count)
     .map((word) => ({
       word,
       options: shuffle([
         word,
-        ...shuffle(words.filter((other) => other.id !== word.id)).slice(0, 3),
+        ...shuffle(pool.filter((other) => other.id !== word.id)).slice(0, 3),
       ]),
     }));
 }

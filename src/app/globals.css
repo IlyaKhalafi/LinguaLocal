@@ -1206,6 +1206,11 @@ label {
   color: #55784c;
   color: light-dark(#55784c, #b2bfac);
 }
+.game-pool-help {
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.6;
+}
 .dictionary-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -1,9 +1,9 @@
 "use client";
 import { useLocale } from "@/components/locale-provider";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
-import { shuffle } from "@/lib/learning";
+import { distinctGameWords, shuffle } from "@/lib/learning";
 import { useFocusOnChange } from "@/lib/use-focus-on-change";
 import type { Word } from "@/lib/schema";
 import { PageHeading } from "./ui";
@@ -25,8 +25,9 @@ export function Matching({ words }: { words: Word[] }) {
   const focusTarget = useFocusOnChange(`${left.length}-${matched.length}`);
   const nextWord = left.find((word) => !matched.includes(word.id));
   const { record } = useProgress();
+  const pool = useMemo(() => distinctGameWords(words), [words]);
   function start() {
-    const selection = shuffle(words).slice(0, 6);
+    const selection = shuffle(pool).slice(0, 6);
     setLeft(selection);
     setRight(shuffle(selection));
     setMatched([]);
@@ -94,7 +95,23 @@ export function Matching({ words }: { words: Word[] }) {
             <p className="muted" style={{ marginBottom: 20, fontSize: 12 }}>
               {t("Choose a word, then its meaning.")}
             </p>
-            <button className="button primary" onClick={start}>
+            {pool.length < 4 && (
+              <p
+                id="matching-pool-help"
+                className="inline-message game-pool-help"
+                role="status"
+              >
+                {t("This selection needs four distinct words.")}
+              </p>
+            )}
+            <button
+              className="button primary"
+              disabled={pool.length < 4}
+              aria-describedby={
+                pool.length < 4 ? "matching-pool-help" : undefined
+              }
+              onClick={start}
+            >
               {t("Start matching")}
               <ArrowRight size={14} />
             </button>

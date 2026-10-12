@@ -152,7 +152,6 @@
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "تعذرت قراءة ملف إعدادات المدرسة. اطلب من المدرسة إصلاح settings.json على الخادم.",
   "This file could not be played. Ask your school to check the media file and format.": "تعذر تشغيل هذا الملف. اطلب من مدرستك فحص ملف الوسائط وصيغته.",
   "This is not a valid progress backup.": "هذه ليست نسخة احتياطية صالحة للتقدم.",
-  "This level needs at least four words. Choose all levels or ask your school to add more.": "يحتاج هذا المستوى إلى أربع كلمات على الأقل. اختر كل المستويات أو اطلب من مدرستك إضافة المزيد.",
   "This page is unavailable.": "هذه الصفحة غير متاحة.",
   "Today": "اليوم",
   "Try a different search or choose another level.": "جرّب بحثًا آخر أو اختر مستوى آخر.",
@@ -260,5 +259,6 @@
   "Preferences will reset when this page is reloaded.": "ستُعاد التفضيلات إلى الإعدادات الافتراضية عند إعادة تحميل الصفحة.",
   "Writing": "الكتابة",
   "Filter lessons by subject": "تصفية الدروس حسب الموضوع",
-  "{count} lessons": "{count} درسًا"
+  "{count} lessons": "{count} درسًا",
+  "This selection needs four distinct words.": "تحتاج هذه المجموعة إلى أربع كلمات مختلفة."
 }

@@ -152,7 +152,6 @@
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "Okul ayar dosyası okunamadı. Okuldan sunucudaki settings.json dosyasını onarmasını isteyin.",
   "This file could not be played. Ask your school to check the media file and format.": "Bu dosya oynatılamadı. Okulunuzdan medya dosyasını ve biçimini kontrol etmesini isteyin.",
   "This is not a valid progress backup.": "Bu geçerli bir ilerleme yedeği değil.",
-  "This level needs at least four words. Choose all levels or ask your school to add more.": "Bu seviye için en az dört kelime gerekir. Tüm seviyeleri seçin veya okulunuzdan daha fazla eklemesini isteyin.",
   "This page is unavailable.": "Bu sayfa kullanılamıyor.",
   "Today": "Bugün",
   "Try a different search or choose another level.": "Başka bir arama deneyin veya başka bir seviye seçin.",
@@ -260,5 +259,6 @@
   "Preferences will reset when this page is reloaded.": "Sayfa yeniden yüklendiğinde tercihler sıfırlanır.",
   "Writing": "Yazma",
   "Filter lessons by subject": "Dersleri konuya göre filtrele",
-  "{count} lessons": "{count} ders"
+  "{count} lessons": "{count} ders",
+  "This selection needs four distinct words.": "Bu seçim için dört farklı kelime gerekir."
 }

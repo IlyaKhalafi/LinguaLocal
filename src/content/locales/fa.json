@@ -152,7 +152,6 @@
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "فایل تنظیمات مدرسه خوانده نشد. از مدرسه بخواهید settings.json را روی سرور اصلاح کند.",
   "This file could not be played. Ask your school to check the media file and format.": "این فایل پخش نشد. از مدرسه بخواهید فایل رسانه و قالب آن را بررسی کند.",
   "This is not a valid progress backup.": "این پشتیبان پیشرفت معتبر نیست.",
-  "This level needs at least four words. Choose all levels or ask your school to add more.": "این سطح دست‌کم چهار واژه لازم دارد. همه سطح‌ها را انتخاب کنید یا از مدرسه بخواهید واژه‌های بیشتری اضافه کند.",
   "This page is unavailable.": "این صفحه در دسترس نیست.",
   "Today": "امروز",
   "Try a different search or choose another level.": "جستجوی دیگری امتحان کنید یا سطح دیگری انتخاب کنید.",
@@ -260,5 +259,6 @@
   "Preferences will reset when this page is reloaded.": "با بارگذاری دوباره صفحه، تنظیمات بازنشانی می‌شوند.",
   "Writing": "نوشتن",
   "Filter lessons by subject": "فیلتر درس‌ها بر اساس موضوع",
-  "{count} lessons": "{count} درس"
+  "{count} lessons": "{count} درس",
+  "This selection needs four distinct words.": "این مجموعه به چهار واژهٔ متمایز نیاز دارد."
 }

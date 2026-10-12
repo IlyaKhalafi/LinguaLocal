@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   dailyWord,
+  distinctGameWords,
   dayKey,
   makeQuiz,
   scheduleReview,
@@ -92,4 +93,40 @@ test("shuffle leaves source untouched and word of the day is stable", () => {
     dailyWord(content.words, now).id,
     dailyWord(content.words, now).id,
   );
+});
+
+test("imported overlapping words never produce indistinguishable game choices", () => {
+  const words = content.words.slice(0, 6);
+  const duplicates = [
+    {
+      ...words[0],
+      id: "alternate-case",
+      word: `  ${words[0].word.toUpperCase()} `,
+    },
+    {
+      ...words[1],
+      id: "same-meaning",
+      word: "other-term",
+      definition: ` ${words[0].definition.toUpperCase().replace(/ /g, "  ")} `,
+    },
+    {
+      ...words[2],
+      id: "same-punctuation",
+      word: "another-term",
+      definition: words[0].definition.replace(/\.$/, "!"),
+    },
+  ];
+  const source = [...words, ...duplicates];
+  const before = structuredClone(source);
+  assert.deepEqual(distinctGameWords(source), words);
+  for (const question of makeQuiz(source, 20)) {
+    assert.equal(question.options.length, 4);
+    assert.equal(
+      new Set(question.options.map((word) => word.definition)).size,
+      4,
+    );
+    assert.ok(question.options.some((word) => word.id === question.word.id));
+  }
+  assert.deepEqual(makeQuiz([words[0], ...duplicates]), []);
+  assert.deepEqual(source, before);
 });

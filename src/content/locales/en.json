@@ -152,7 +152,6 @@
   "The school settings file could not be read. Ask the school to repair settings.json on the server.": "The school settings file could not be read. Ask the school to repair settings.json on the server.",
   "This file could not be played. Ask your school to check the media file and format.": "This file could not be played. Ask your school to check the media file and format.",
   "This is not a valid progress backup.": "This is not a valid progress backup.",
-  "This level needs at least four words. Choose all levels or ask your school to add more.": "This level needs at least four words. Choose all levels or ask your school to add more.",
   "This page is unavailable.": "This page is unavailable.",
   "Today": "Today",
   "Try a different search or choose another level.": "Try a different search or choose another level.",
@@ -260,5 +259,6 @@
   "Preferences will reset when this page is reloaded.": "Preferences will reset when this page is reloaded.",
   "Writing": "Writing",
   "Filter lessons by subject": "Filter lessons by subject",
-  "{count} lessons": "{count} lessons"
+  "{count} lessons": "{count} lessons",
+  "This selection needs four distinct words.": "This selection needs four distinct words."
 }
