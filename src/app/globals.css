@@ -3142,10 +3142,24 @@ button:disabled {
   gap: 8px;
 }
 .language-select select {
+  appearance: none;
   min-height: 40px;
-  padding: 8px 12px;
+  min-width: 110px;
+  padding-block: 8px;
+  padding-inline: 12px 36px;
   max-width: 140px;
   font-size: 13px;
+}
+.language-control {
+  position: relative;
+  display: inline-flex;
+}
+.language-chevron {
+  position: absolute;
+  inset-inline-end: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 [dir="rtl"] .back-link > svg,
 [dir="rtl"] .button > .lucide-arrow-right,
