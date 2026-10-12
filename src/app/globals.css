@@ -3613,10 +3613,12 @@ html[data-appearance="dark"] .destructive-link {
   color: #f1aca6;
 }
 
-.offline-resources {
+.offline-resources,
+.voice-practice {
   margin-block-start: 24px;
 }
-.offline-resources > summary {
+.offline-resources > summary,
+.voice-practice > summary {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3673,4 +3675,62 @@ html[data-appearance="dark"] .destructive-link {
 .offline-resource-list button[aria-disabled="true"] {
   opacity: 0.65;
   cursor: wait;
+}
+
+.voice-recorder > .muted {
+  margin-block: 20px;
+  font-size: 13px;
+}
+.voice-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.voice-recorder .button {
+  min-height: 44px;
+}
+.voice-recorder button[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: wait;
+}
+.recording-time {
+  font-variant-numeric: tabular-nums;
+}
+.recording-list {
+  list-style: none;
+  padding: 0;
+  margin-block: 24px 0;
+}
+.recording-list > li,
+.unsaved-take {
+  display: grid;
+  gap: 16px;
+  padding-block: 20px;
+  border-block-start: 1px solid var(--line);
+}
+.recording-heading {
+  display: grid;
+  gap: 6px;
+  overflow-wrap: anywhere;
+}
+.recording-heading strong {
+  font-size: 14px;
+}
+.recording-heading time {
+  font-size: 12px;
+}
+.voice-recorder audio {
+  width: 100%;
+  max-width: 560px;
+  min-width: 0;
+}
+.voice-recorder .button-row {
+  flex-wrap: wrap;
+}
+.recording-duration {
+  font-size: 12px;
+}
+.unsaved-take {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

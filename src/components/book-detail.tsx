@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Badge, Cover, EmptyState } from "./ui";
 import { OfflineResources } from "./offline-resources";
+import { VoicePractice } from "./voice-practice";
 import { MediaPlayer } from "./media-player";
 import { mediaUrl } from "@/lib/media-url";
 import type { Book, Resource } from "@/lib/schema";
@@ -135,6 +136,7 @@ export function BookDetail({ book }: { book: Book }) {
         </div>
       </div>
       <OfflineResources resources={book.resources} />
+      <VoicePractice key={book.id} book={book} />
       {selected && (
         <MediaPlayer
           key={selected.id}
