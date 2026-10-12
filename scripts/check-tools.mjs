@@ -1,16 +1,21 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
 const directory = await mkdtemp(path.join(tmpdir(), "lingualocal-tools-"));
 const dataDirectory = path.join(directory, "school");
 const output = path.join(directory, "collection.json");
+const distribution = path.join(directory, "distribution");
+await cp(".next/standalone", distribution, {
+  recursive: true,
+  verbatimSymlinks: true,
+});
 function run(name, args, expected = 0) {
   const result = spawnSync(
     process.execPath,
-    [`.next/standalone/scripts/${name}.mjs`, ...args],
+    [path.join(distribution, "scripts", `${name}.mjs`), ...args],
     {
       encoding: "utf8",
       env: {

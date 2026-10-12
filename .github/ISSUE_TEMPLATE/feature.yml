@@ -1,0 +1,17 @@
+name: Suggest an improvement
+description: Describe something that would help students or school owners
+body:
+  - type: textarea
+    id: classroom
+    attributes:
+      label: Classroom need
+      description: Who needs this and what are they trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Suggested behaviour
+      description: Keep the local network and account-free workflow in mind.
+    validations:
+      required: true

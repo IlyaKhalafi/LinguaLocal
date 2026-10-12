@@ -3,9 +3,15 @@ import ts from "typescript";
 import path from "node:path";
 await mkdir(".next/standalone/.next", { recursive: true });
 await cp(".next/static", ".next/standalone/.next/static", { recursive: true });
-await cp("public", ".next/standalone/public", { recursive: true });
+await cp("public", ".next/standalone/public", {
+  recursive: true,
+  filter: (source) => path.resolve(source) !== path.resolve("public/uploads"),
+});
 await mkdir(".next/standalone/scripts", { recursive: true });
 await cp("node_modules/csv-parse", ".next/standalone/node_modules/csv-parse", {
+  recursive: true,
+});
+await cp("node_modules/zod", ".next/standalone/node_modules/zod", {
   recursive: true,
 });
 const sources = [

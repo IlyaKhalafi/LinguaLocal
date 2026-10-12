@@ -26,6 +26,7 @@
     "vocabulary:export": "tsx scripts/export-vocabulary.ts",
     "worksheets:create": "tsx scripts/create-worksheets.ts",
     "test:tools": "node scripts/check-tools.mjs",
+    "release:package": "node scripts/package-release.mjs",
     "subtitles:check": "tsx scripts/subtitles.ts check",
     "subtitles:convert": "tsx scripts/subtitles.ts convert",
     "content:snapshot": "tsx scripts/server-snapshot.ts create",

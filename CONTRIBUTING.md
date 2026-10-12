@@ -38,3 +38,13 @@ Describe the classroom problem, the resulting behaviour, and how you verified it
 ## Reporting a problem
 
 Include the page, the steps to reproduce the problem, your browser, the deployment method, and any useful server output. Remove personal classroom content from shared logs and examples.
+
+## Contributing classroom content
+
+Start with an [original example pack](examples/packs/README.md). Keep definitions clear, examples natural, and lesson questions unambiguous. Give every entry a stable ID and check all lesson vocabulary references. Include only original or redistributable material and describe its license.
+
+Validate the pack with `npm run content:validate -- your-pack.json`. Run `npm run content:diagnose -- your-pack.json` when including media. Add a short description of the intended CEFR level and classroom use in your pull request.
+
+## Preparing a distribution
+
+Run the checks above before using `npm run release:package -- releases/lingualocal.tar.gz`. See the [deployment guide](docs/DEPLOYMENT.md) for platform requirements. Record user-visible changes in [CHANGELOG.md](CHANGELOG.md).

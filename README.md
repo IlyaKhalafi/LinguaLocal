@@ -144,7 +144,7 @@ Unit tests cover review scheduling, quiz generation, content validation, corrupt
 
 Capture fresh desktop and mobile screenshots from a running production server with `SCREENSHOT_BASE_URL=http://127.0.0.1:3000 npm run screenshots`.
 
-Direct dependencies were checked against their stable registry releases on 11 October 2026 and are pinned in the lockfile. TypeScript 7 is the compiler. The official TypeScript 6 compatibility package supplies the API needed by the current lint tooling.
+Direct dependencies were checked against their stable registry releases on 12 October 2026 and are pinned in the lockfile. TypeScript 7 is the compiler. The official TypeScript 6 compatibility package supplies the API needed by the current lint tooling.
 
 [Architecture and verification](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) · [Previous Python app](https://github.com/IlyaKhalafi/LinguaLocal-Before)
 

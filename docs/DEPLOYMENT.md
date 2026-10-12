@@ -2,6 +2,16 @@
 
 LinguaLocal runs on a school computer, mini PC, or Linux server connected to the local Wi-Fi router. A typical modem or router does not run the application itself. Students use the router to reach the computer hosting it.
 
+## Standalone archives
+
+After running `npm run build`, create a distribution with `npm run release:package -- releases/lingualocal.tar.gz`. The command needs the system `tar` program and a local filesystem that supports hard links. The destination must be a new file. Copy the completed archive to USB or network storage afterwards.
+
+Extract the archive on a computer with the same operating system and CPU architecture. Use Node.js 22.13 or newer. On Linux or macOS, run `HOSTNAME=0.0.0.0 node server.js` from the extracted directory. Set `LINGUALOCAL_DATA_DIR` to an absolute, persistent school data directory before starting the service.
+
+In Windows PowerShell, set `$env:HOSTNAME='0.0.0.0'` and run `node server.js`.
+
+Archives include the standalone server, local assets, owner tools, guides, and original starter content. They exclude school data and root environment files. Native dependencies are built for the packaging computer, so use Docker when deploying across different platforms. Archive creation leaves the build and existing output files intact.
+
 ## Docker deployment
 
 ```sh
