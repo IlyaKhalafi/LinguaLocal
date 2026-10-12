@@ -44,8 +44,12 @@ export function ReadingSettings() {
   return (
     <details className="panel reading-settings">
       <summary>
-        <ChevronDown size={18} aria-hidden="true" />
         {t("Reading preferences")}
+        <ChevronDown
+          className="disclosure-chevron"
+          size={18}
+          aria-hidden="true"
+        />
       </summary>
       <div className="reading-controls">
         {choices.map(({ key, label, options }) => (
